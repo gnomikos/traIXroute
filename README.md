@@ -1,5 +1,5 @@
 
-# **traIXroute**
+# traIXroute
 
 **traIXroute** is a tool that detects if and where a traceroute path crosses an IXP fabric. It uses multiple criteria to verify IXP crossings in the light of replies from third-party interfaces or inaccuracies in the available data about IP addresses assigned to IXPs. These discrepancies mislead simple heuristics based solely on the IP address prefixes allocated to IXPs. The detection uses data from  PeeringDB, Packet Clearing House and RouteViews. In addition, **traIXroute** uses in the background the standard  [traceroute](https://en.wikipedia.org/wiki/Traceroute) tool or the [scamper](https://www.caida.org/tools/measurement/scamper/) tool, which implements the Paris traceroute technique to deal with inaccurate paths due to load balancers [1]. It is open source under GPLv3. 
 
