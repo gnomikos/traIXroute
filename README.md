@@ -26,13 +26,10 @@ If you have problems, please contact George Nomikos (gnomikos [at] ics.forth.gr)
 ##Dependencies
 traIXroute has the following dependencies:
 
-[Python 3](https://www.python.org/downloads/)   —  **traIXroute** requires Python 3.4 or newer.
-
-[PySubnetTree](https://www.bro.org/downloads/release/pysubnettree-0.24.tar.gz)  —  A Python module for CIDR lookups.
-
-[Scamper](https://docs.google.com/document/d/1zgVz1WPGq76KLUCqTfo4JcxZteu7LNF245ytJOb4WB0/edit?ts=573308cd#)  —  A tool provided by CAIDA for probing the Internet in parallel, so that bulk data can be collected in a timely fashion.
-
-[Traceroute](https://en.wikipedia.org/wiki/Traceroute)  —  A diagnostic tool for measuring Internet paths and their per hop delay.
+[Python 3](https://www.python.org/downloads/)   —  **traIXroute** requires Python 3.4 or newer. <br />
+[PySubnetTree](https://www.bro.org/downloads/release/pysubnettree-0.24.tar.gz)  —  A Python module for CIDR lookups. <br />
+[Scamper](https://docs.google.com/document/d/1zgVz1WPGq76KLUCqTfo4JcxZteu7LNF245ytJOb4WB0/edit?ts=573308cd#)  —  A tool provided by CAIDA for probing the Internet in parallel, so that bulk data can be collected in a timely fashion. <br />
+[Traceroute](https://en.wikipedia.org/wiki/Traceroute)  —  A diagnostic tool for measuring Internet paths and their per hop delay. <br />
 
 ##Documentation
 **traIXroute** is thoroughly documented [here](http://www.inspire.edu.gr/traIXroute/traIXroute_documentation.pdf). The documentation covers the available command line options, how to extend or overwrite the data from PeeringDB and the Packet Clearing House with user-provided data, how to customize or extend traIXroute detection rules, and a diagram of its modules.
