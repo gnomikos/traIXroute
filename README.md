@@ -14,7 +14,7 @@ The source code is available in the traIXroute github [repository](https://githu
 **traIXroute** has been tested on Linux and Mac OS X. Detailed installation instructions can be found in the README file in the traIXroute repository. You can install traIXroute with all the necessary packages running:
 
 First:
->$ sudo bash setup/install_dependencies.sh
+>$ sudo bash ./setup/install_dependencies.sh
 
 and then:
 >$ sudo python3 ./setup/setup.py
