@@ -9,7 +9,7 @@ The heuristics used by traIXroute and their evaluation are described in the foll
 
 ##Download
 The source code is available in the traIXroute github [repository](https://github.com/gnomikos/traIXroute). You can download it directly from [here](https://github.com/gnomikos/traIXroute/archive/master.zip). The first version of traIXroute was released in May 2016. 
-##**Installation**
+##Installation
 
 **traIXroute** has been tested on Linux and Mac OS X. Detailed installation instructions can be found in the README file in the traIXroute repository. You can install traIXroute with all the necessary packages running:
 
