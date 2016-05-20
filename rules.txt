@@ -19,12 +19,11 @@
 
 AS_M0-(IXP_IP and AS_M1)-AS_M1: a
 AS_M0-(IXP_IP and AS_M1)-!AS_M2: a
-AS_M0-(IXP_IP and AS_M0)-AS_M1: a
 AS_M0-(IXP_IP and AS_M1)-AS_M2: a or b
-(IXP_IP0 and AS_M0)-(IXP_IP0 and AS_M1):a
-AS_M-(IXP_IP and !AS_M)-!AS_M: a or b
-!AS_M-(IXP_IP and !AS_M)-AS_M: a or b
-!AS_M0-(IXP_IP and AS_M1)-AS_M1: a or b
-!AS_M0-(IXP_IP and AS_M1)-!AS_M2: b
-(IXP_IP0 and AS_M0)-AS_M-(IXP_IP1 and AS_M1): a or b
-(IXP_IP0 and AS_M0)-(IXP_IP1 and AS_M1)-(IXP_IP2 and AS_M2): a and b
+AS_M0-(IXP_IP and !AS_M)-!AS_M1: a
+!AS_M0-(IXP_IP and !AS_M)-AS_M1: b
+!AS_M0-(IXP_IP and AS_M1)-AS_M1: b
+!AS_M0-(IXP_IP and AS_M1)-!AS_M1: a or b
+(IXP_IP0 and AS_M0)-(IXP_IP0 and AS_M1): a
+
+
