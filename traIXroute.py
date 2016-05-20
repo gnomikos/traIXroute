@@ -216,7 +216,6 @@ class traIXroute():
 
         if '-u' in temp_argv:
             download=1
-            merge_flag=1
             try:
                 check_argv.remove('-u')
             except:
@@ -305,11 +304,11 @@ class traIXroute():
         # Extract info from the database folder.
         if search or merge_flag:
             mydb=database_extract.database()
-            [final_ixp2asn,final_sub2names,reserved_sub_tree,final_asn2ip,final_ixp2name,asn_routeviews,Sub_tree,dirty_ixp2asn,additional_info_tree]=mydb.dbextract('ixp_subnets','ixp_exchange','ixp_membership','ix.json','netixlan.json','ixpfx.json','ixlan.json','routeviews','additional_info.txt',merge_flag,mypath)
-        output=traIXroute_output.traIXroute_output()
-        output.print_args(classic, search,arguments)
+            [final_ixp2asn,final_sub2names,reserved_sub_tree,final_asn2ip,final_ixp2name,asn_routeviews,Sub_tree,dirty_ixp2asn,additional_info_tree]=mydb.dbextract('ixp_subnets','ixp_exchange','ixp_membership','ix.json','netixlan.json','ixpfx.json','ixlan.json','routeviews','additional_info.txt',merge_flag,mypath) 
 
         if search:
+            output=traIXroute_output.traIXroute_output()
+            output.print_args(classic, search,arguments)
             while(1):
                 
                 # Loads the IP list after parsing the input file.
@@ -317,17 +316,15 @@ class traIXroute():
                     inputIP=input_list[temp_point]
 
                 # Calls the module responsible for probing.
+                output.print_traIXroute_dest(inputIP,outputfile,mypath)
                 [IP_route,path_delay]=myinput.trace_call(inputIP,classic,arguments)
                 num_ips=num_ips+1
 
-                #IP_route=['1.0.0.2','1.0.5.1','1.0.64.2']
-                #path_delay=['','','']
                 if IP_route!=0 and len(IP_route)>1:
                     
                     # IP path info extraction and print.
                     path_info_extract=path_info_extraction.path_info_extraction()
                     [asn_vector,encounter_type,ixp_long,ixp_short,unsure]=path_info_extract.path_info_extraction(final_ixp2asn,Sub_tree,IP_route,asn_routeviews,final_sub2names,final_ixp2name,dirty_ixp2asn,additional_info_tree)
-                    
                     
                     output.print_path_info(IP_route,asn_vector,path_delay,mypath,outputfile,ixp_short,ixp_long,unsure,asn_print)
 

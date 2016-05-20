@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
-import os,socket
+import os,socket,string_handler
 
 '''
 Handles all the prints.
@@ -66,7 +66,7 @@ class traIXroute_output():
         i) asn_print: TRUE if the user wants to print the ASNs, FALSE otherwise.
     '''
     def print_path_info(self,ip_path,asn_list,mytime,mypath,outputfile,ixp_short_names,ixp_long_names,unsure,asn_print):
-
+        
         # Makes dns queries.
         dns=[ip_path[i] for i in range(0,len(ip_path))]
         for i in range(0,len(ip_path)):
@@ -76,9 +76,6 @@ class traIXroute_output():
                 except:
                     pass
 
-        write_path=mypath+'/Output'
-        if os.path.exists(write_path)==False:
-            os.makedirs(write_path)
 
         # The minimum space between the printed strings.
         defaultstep = 3
@@ -111,9 +108,7 @@ class traIXroute_output():
         os.chdir(mypath+'/Output')
         try:
             f = open(outputfile, 'a')
-            data='traIXroute to '+dns[-1]+'('+ip_path[-1]+')'
-            print (data)
-            f.write(data+'\n')
+
             for i in range(0,len(ip_path)):
                 if ixp_short_names[i]=='Not IXP' and ixp_long_names[i]=='Not IXP':
                     if asn_print:
@@ -140,8 +135,47 @@ class traIXroute_output():
         except:
             print('---> Could not open output file, try to execute traIXroute with administrator rights. Exiting.')
             exit(0)
+
     
-    
+    '''
+    Prints traIXroute destination.
+    Input:
+        a) input_IP: The destination IP/FQDN to probe.
+        b) outputfile: The output file name.
+        c) mypath: The traIXroute directory path.
+    '''
+    def print_traIXroute_dest(self,input_IP,outputfile,mypath):
+        outputfile='Output/'+outputfile
+        write_path=mypath+'/Output'
+        if os.path.exists(write_path)==False:
+            os.makedirs(write_path)
+        try:
+            string_handle=string_handler.string_handler()
+            dns_name='*'
+            output_IP='*'
+            if string_handle.is_valid_ip_address(input_IP,'IP'):
+                try:
+                    dns_name=socket.gethostbyaddr(input_IP)[0]
+                except:
+                    pass
+                output_IP=input_IP
+            else:
+                try:
+                    output_IP=socket.gethostbyname(input_IP)
+                except:
+                    pass
+                dns_name=input_IP
+            data='traIXroute to '+dns_name+' ('+output_IP+').'
+            print (data)
+
+            f = open(outputfile, 'a')
+            f.write(data+'\n')
+            f.close()
+        except:
+            print('---> Could not open output file, try to execute traIXroute with administrator rights. Exiting.')
+            exit(0)
+        
+
     '''
     Sanitizes traIXroute output.
     Input: 
