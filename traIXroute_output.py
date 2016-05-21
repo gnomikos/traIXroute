@@ -216,8 +216,9 @@ class traIXroute_output():
         j) num: The number of detected IXP Hops.
         k) ixp_short: A list that contains short IXP names.
         l) cur_asmt: The current assesment.
+        m) ixp_long: A list that contains long IXP names.
     '''
-    def print_result(self,asn_print,print_rule,cur_ixp_long,cur_ixp_short,cur_path_asn,path,i,j,f,num,ixp_short,cur_asmt):
+    def print_result(self,asn_print,print_rule,cur_ixp_long,cur_ixp_short,cur_path_asn,path,i,j,f,num,ixp_short,cur_asmt,ixp_long):
      
         rule=''
         if print_rule:

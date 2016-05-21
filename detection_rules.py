@@ -175,7 +175,7 @@ class detection_rules():
                         if rule_check:
                             IXP_flag=False
                             rule_hits[j]=rule_hits[j]+1
-                            output.print_result(asn_print,print_rule,cur_ixp_long,cur_ixp_short,cur_path_asn,path,i,j,f,num,ixp_short,cur_asmt)
+                            output.print_result(asn_print,print_rule,cur_ixp_long,cur_ixp_short,cur_path_asn,path,i,j,f,num,ixp_short,cur_asmt,ixp_long)
                             num=num+1
 
 
