@@ -7,6 +7,8 @@ The heuristics used by traIXroute and their evaluation are described in the foll
 
  - G. Nomikos, X. Dimitropoulos. **“traIXroute: Detecting IXPs in traceroute paths".** In Proceedings of the Passive and Active Measurements Conference (PAM'16) 31 March - 1 April 2016, Heraklion, Greece.
 
+ - G. Nomikos, X. Dimitropoulos. [**“Detecting IXPs in Traceroute Paths Using traIXroute"**](https://labs.ripe.net/Members/george_nomikos/detecting-ixps-in-traceroute-paths-using-traixroute). RIPE Labs, 3 Aug 2016.
+
 ##Download
 The source code is available in the traIXroute github [repository](https://github.com/gnomikos/traIXroute). You can download it directly from [here](https://github.com/gnomikos/traIXroute). The first version of traIXroute was released in May 2016. 
 ##Installation
