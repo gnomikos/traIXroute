@@ -1,0 +1,782 @@
+exchange_point_id, region, country, city, long_name, status, media_type, organization_type, establishment, url, member_list_url, looking_glass_url, participants, traffic, prefixes
+1705, Asia-Pacific, Afghanistan, Kabul, National Internet Exchange of Afghanistan, Planned, Ethernet, Governmental, 20110500, http://mcit.gov.af/en/news/1290, , , 0, 0, 0
+1849, Europe, Albania, Tirana, Albania IX, Active, Ethernet, Commercial, 20110000, http://www.albtelecom.al/en/dedicated-service/infrastructure/434-alb-ix, http://www.albtelecom.al/en/dedicated-service/infrastructure/434-alb-ix, , 8, 0, 0
+1708, Africa, Algeria, Algiers, Algeria Internet Exchange, Planned, Ethernet, Governmental, 20130000, , , , 0, 0, 0
+932, Africa, Angola, Luanda, Angola Internet Exchange, Active, Ethernet, Association, 20060317, http://www.angola-ixp.ao, http://www.angola-ixp.ao/membros.php, , 12, 600000, 0
+1848, Africa, Angola, Luanda, ANGONIX, Active, Ethernet, Commercial, 20150309, http://angonix.net, http://angonix.net/customers-partners/customers/, http://lg.angonix.net, 16, 3200000, 281
+545, Africa, Angola, Luanda, Ponto de Intercambio Internet Angola, Planned, Ethernet, Association, 0, http://www.aapsi.og.ao/index.php/infraestruturas/ponto-de-intercambio-internet, , , 0, 0, 0
+1403, Latin America, Argentina, Bahía Blanca, NAP CABASE Bahía Blanca, Active, , Association, 20130427, http://www.cabase.org.ar/wordpress/nap-bahia-blanca-2/, http://www.cabase.org.ar/wordpress/nap-bahia-blanca-2/, , 15, 713000, 0
+1822, Latin America, Argentina, Bariloche, NAP CABASE Bariloche, Active, Ethernet, Association, 20140915, http://www.cabase.org.ar/, http://www.cabase.org.ar/nap-bariloche/, , 6, 0, 0
+2, Latin America, Argentina, Buenos Aires, NAP CABASE Buenos Aires, Active, Ethernet, Association, 19980401, http://www.cabase.org.ar, http://www.cabase.org.ar/eng/asociados/asociados_completo.php, http://trafico.cabase.org.ar/lg, 71, 974000, 15972
+1404, Latin America, Argentina, Córdoba, NAP CABASE Córdoba, Active, Ethernet, Association, 20120424, http://www.cabase.org.ar/wordpress/nap-cordoba/, http://www.cabase.org.ar/wordpress/nap-cordoba/, , 22, 175000, 10737
+1406, Latin America, Argentina, La Plata, NAP CABASE La Plata, Active, Ethernet, Association, 20120606, http://www.cabase.org.ar/wordpress/nap-la-plata/, http://www.cabase.org.ar/wordpress/nap-la-plata/, , 13, 85000, 0
+1407, Latin America, Argentina, Mar del Plata, NAP CABASE Mar del Plata, Active, Ethernet, Association, 20121107, http://www.cabase.org.ar/wordpress/nap-mar-del-plata/, http://www.cabase.org.ar/wordpress/nap-mar-del-plata/, , 10, 968000, 0
+1405, Latin America, Argentina, Mar del Tuyú, NAP CABASE De la Costa, Active, Ethernet, Association, 20111129, http://www.cabase.org.ar/wordpress/nap-de-la-costa/, http://www.cabase.org.ar/wordpress/nap-de-la-costa/, , 8, 919000, 0
+1408, Latin America, Argentina, Mendoza, NAP CABASE Mendoza, Active, Ethernet, Association, 20111020, http://www.cabase.org.ar/wordpress/nap-mendoza/, http://www.cabase.org.ar/wordpress/nap-mendoza/, , 13, 2160000, 0
+1198, Latin America, Argentina, Neuquén, NAP CABASE Neuquén, Active, Ethernet, Association, 20100510, http://www.cabase.org.ar/wordpress/nap-neuquen/, http://www.cabase.org.ar/wordpress/nap-neuquen/, , 17, 2210000, 10706
+1820, Latin America, Argentina, Posadas, NAP CABASE Posadas, Active, Ethernet, Association, 20131128, http://www.cabase.org.ar/wordpress/nap-posadas/, , , 12, 627000, 0
+1823, Latin America, Argentina, Puerto Madryn, NAP CABASE Puerto Madryn, Active, Ethernet, Association, 20141030, http://www.cabase.org.ar/wordpress/nap-puerto-madryn/, , , 7, 0, 0
+1409, Latin America, Argentina, Rosario, NAP CABASE Rosario, Active, Ethernet, Association, 20110331, http://www.cabase.org.ar/wordpress/nap-rosario/, http://www.cabase.org.ar/wordpress/nap-rosario/, , 17, 2290000, 0
+1410, Latin America, Argentina, Santa Fe, NAP CABASE Santa Fe, Active, Ethernet, Association, 20111122, http://www.cabase.org.ar/wordpress/nap-santa-fe/, http://www.cabase.org.ar/wordpress/nap-santa-fe/, , 6, 122000, 0
+1, Latin America, Argentina, Buenos Aires, Cubecorp, Not an exchange, Ethernet, Commercial, 0, http://www.cubecorp.com.ar/, , , 0, 0, 0
+1817, Latin America, Argentina, Buenos Aires, NAP CABASE La Matanza, Planned, Ethernet, Association, 0, , , , 0, 0, 0
+1818, Latin America, Argentina, Corrientes, NAP CABASE Corrientes, Planned, Ethernet, Association, 0, , , , 0, 0, 0
+1821, Latin America, Argentina, Parana, NAP CABASE Parana, Planned, Ethernet, Association, 0, , , , 0, 0, 0
+1819, Latin America, Argentina, Resistencia, NAP CABASE Resistencia, Planned, Ethernet, Association, 0, , , , 0, 0, 0
+1499, Europe, Armenia, Yerevan, Armenian Internet Traffic Exchange, Active, Ethernet, Association, 20100000, http://www.armix.am/, http://www.armix.am/eng/members.php, , 9, 0, 0
+387, Asia-Pacific, Australia, Adelaide, PIPE Networks Adelaide, Active, Ethernet, Commercial, 20030000, http://www.pipenetworks.com, http://www.pipenetworks.com/Peering/who.shtml#SouthAustralia, http://lg.pipenetworks.com/#NOTICE-USE-SA-ROUTER, 13, 0, 0
+1473, Asia-Pacific, Australia, Adelaide, South Australia Internet Exchange, Active, Ethernet, Association, 20130227, http://www.ix.asn.au/peering.html, http://www.ix.asn.au/peering-peers-saix.html, http://monitor.qld.ix.asn.au/ulg/, 12, 799790, 0
+13, Asia-Pacific, Australia, Brisbane, PIPE Networks Brisbane, Active, Ethernet, Commercial, 20020500, http://www.pipenetworks.com, http://www.pipenetworks.com/Peering/who.shtml#Queensland, http://lg.pipenetworks.com/#NOTICE-USE-QLD-ROUTER, 36, 0, 0
+1472, Asia-Pacific, Australia, Brisbane, Queensland Internet Exchange, Active, Ethernet, Association, 20110000, http://www.ix.asn.au/peering.html, http://www.ix.asn.au/peering-peers-qldix.html, http://monitor.nsw.ix.asn.au/ulg/, 30, 14010000, 0
+1008, Asia-Pacific, Australia, Canberra, ACT Internet Exchange, Active, Ethernet, Association, 20081001, http://www.actix.net.au, http://www.actix.net.au/about.html, , 7, 1000000, 0
+400, Asia-Pacific, Australia, Canberra, PIPE Networks Canberra, Active, Ethernet, Commercial, 20040600, http://www.pipenetworks.com, http://www.pipenetworks.com/Peering/who.shtml#AustralianCapitalTerritory, , 2, 0, 0
+388, Asia-Pacific, Australia, Hobart, PIPE Networks Hobart, Active, Ethernet, Commercial, 20030800, http://www.pipenetworks.com, http://www.pipenetworks.com/Peering/who.shtml#Tasmania, http://lg.pipenetworks.com/#NOTICE-USE-TAS-ROUTER, 1, 0, 0
+6, Asia-Pacific, Australia, Melbourne, AUSIX, Active, Ethernet, Commercial, 20010700, http://www.ausix.net/, , , 7, 20000, 0
+389, Asia-Pacific, Australia, Melbourne, PIPE Networks Melbourne, Active, Ethernet, Commercial, 20030700, http://www.pipenetworks.com, http://www.pipenetworks.com/Peering/who.shtml#Victoria, http://lg.pipenetworks.com/#NOTICE-USE-VIC-ROUTER, 32, 0, 0
+8, Asia-Pacific, Australia, Melbourne, Victoria Internet Exchange, Active, Ethernet, Association, 20110000, http://www.ix.asn.au/peering.html, http://www.ix.asn.au/peering-peers-vicix.html, http://monitor.vic.ix.asn.au/ulg/, 49, 44920000, 0
+9, Asia-Pacific, Australia, Perth, Western Australian Internet Association, Active, Ethernet, Association, 19970000, http://www.ix.asn.au/peering.html, http://www.ix.asn.au/peering-peers-waix.html, http://monitor.wa.ix.asn.au/ulg/, 82, 29740000, 27133
+12, Asia-Pacific, Australia, Sydney, Equinix Sydney, Active, Ethernet, Commercial, 20030000, http://www.equinix.com, , , 85, 108000, 54670
+1916, Asia-Pacific, Australia, Sydney, Megaport-IX Sydney, Active, Ethernet, Commercial, 0, https://www.megaport.com, https://www.megaport.com/services/ix-connected-networks, https://lg.megaport.com/, 0, 0, 0
+1585, Asia-Pacific, Australia, Sydney, New South Wales IX, Active, Ethernet, Association, 20130000, http://www.ix.asn.au/peering.html, https://www.ix.asn.au/peers-nsw/, http://monitor.nsw.ix.asn.au/ulg/, 148, 79850000, 34015
+402, Asia-Pacific, Australia, Sydney, PIPE Networks Sydney, Active, Ethernet, Commercial, 20030000, http://www.pipenetworks.com, http://www.pipenetworks.com/Peering/who.shtml#NewSouthWales, http://lg.pipenetworks.com/#NOTICE-USE-NSW-ROUTER, 173, 0, 0
+3, Asia-Pacific, Australia, Adelaide, South Australian Internet Exchange, Defunct, Ethernet, Association, 19960700, http://www.saia.asn.au/saix, , , 23, 0, 0
+4, Asia-Pacific, Australia, Brisbane, AusBONE-Brisbane Internet Exchange, Defunct, Ethernet, Unknown, 19971000, http://www.ausbone.net/whyisps.htm, , , 0, 0, 0
+1851, Asia-Pacific, Australia, Canberra, TransACT IX, Unknown, Ethernet, Commercial, 0, http://www.transact.com.au/en-ACT/wholesale/products/wholesale-ip, , , 0, 0, 0
+243, Asia-Pacific, Australia, Hobart, Tasmanian Internet Exchange, Defunct, , , 0, http://www.tia.asn.au/, , , 0, 0, 0
+807, Asia-Pacific, Australia, Lismore, lismore internet exchange, Unknown, , Unknown, 0, , , , 0, 0, 0
+5, Asia-Pacific, Australia, Melbourne, AusBONE-Melbourne Internet Exchange, Defunct, Ethernet, Unknown, 19970000, http://www.ausbone.net/whyisps.htm, , , 0, 0, 0
+748, Asia-Pacific, Australia, Melbourne, AUSIX.net, Unknown, , Commercial, 20020000, http://www.ausix.net/, , , 0, 0, 0
+7, Asia-Pacific, Australia, Melbourne, Melbourne NAPette, Defunct, ISDN, Unknown, 19990400, http://peer.sensation.net.au/, , , 5, 0, 0
+10, Asia-Pacific, Australia, Sydney, AusBONE-Sydney Internet Exchange, Defunct, Ethernet, Unknown, 19971000, http://www.ausbone.net/whyisps.htm, , , 0, 0, 0
+1850, Asia-Pacific, Australia, Sydney, Pacific-IX, Unknown, Ethernet, Commercial, 0, http://www.vocus.com.au/pacificix/, , , 0, 0, 0
+11, Asia-Pacific, Australia, Sydney, Pihana Sydney, Not an exchange, , , 0, , , , 0, 0, 0
+14, Europe, Austria, Graz, Grazer Internet Exchange, Active, Ethernet, Association, 20100304, http://www.grax.at/, http://www.grax.at/index.html, , 16, 36365, 0
+1225, Europe, Austria, Klagenfurt, Alpes Adria Internet Exchange, Active, Ethernet, Association, 20100000, http://www.aaix.at/, http://www.aaix.at/, , 12, 150000, 184
+1896, Europe, Austria, Salzburg, Salzburg Internet eXchange, Active, Ethernet, Association, 20150515, https://www.saix.at, https://www.saix.at/members.html, https://www.saix.at/lg, 22, 40000, 0
+15, Europe, Austria, Vienna, Vienna Internet Exchange, Active, Ethernet, University, 19960400, http://www.VIX.at/, http://www.vix.at/vix_participants.html, http://www.vix.at/vix_lookingglass.html, 124, 318040000, 145453
+1710, Europe, Azerbaijan, Baku, Azerbaijan Internet exchange, Not an exchange, Ethernet, Unknown, 20130000, , , , 0, 0, 0
+1065, Europe, Bahrain, Manama, Gateway Gulf Internet Exchange Bahrain, Active, Ethernet, Commercial, 20090401, http://www.gatewaygulf.bh, , , 3, 0, 23
+1117, Europe, Bahrain, Manama, Bahrain Internet Exchange, Not an exchange, Layer-3, Association, 20030813, http://www.bix.bh/, , , 0, 0, 0
+16, Asia-Pacific, Bangladesh, Dhaka, Bangladesh Internet Exchange, Active, Ethernet, Association, 20040826, http://www.bdix.net/, http://www.bdix.net/member_list.htm, https://prefix.pch.net/applications/lg/, 31, 11094433, 4640
+739, Asia-Pacific, Bangladesh, Dhaka, Bangladesh Society of Internet Exchange, Active, Ethernet, Association, 20040500, http://www.bsixbd.net/news.php, , , 0, 0, 0
+1812, Europe, Belarus, Minsk, Belarus National Internet Exchange Point, Unknown, , Governmental, 0, , , , 0, 0, 0
+17, Europe, Belgium, Brussels, Belgian National Internet Exchange, Active, Ethernet, Governmental, 19950000, http://www.bnix.net/, http://www.bnix.net/members.php, , 57, 140000000, 0
+18, Europe, Belgium, Brussels, Free Belgian Internet Exchange, Defunct, Ethernet, Association, 20030904, http://www.freebix.net/, http://www.freebix.net/members, , 22, 0, 0
+1918, Latin America, Belize, Belize City , Belize Internet Exchange Point, Active, Ethernet, Association, 20160427, , , , 0, 0, 150
+1838, Africa, Benin, Cotonou, Benin IX, Active, Ethernet, Association, 20131200, http://www.benin-ix.org.bj, , , 6, 951784, 141
+1530, Latin America, Bolivia, La Paz, IX-LAPAZ, Active, Ethernet, Commercial, 20131101, https://ixp.megalink.com/, https://ixp.megalink.com/participantes.php, , 4, 1000, 322
+1789, Latin America, Bolivia, La Paz, Punto de Intercambio de Trafico de Bolivia, Active, Ethernet, Association, 20131113, , , , 6, 175000, 0
+1006, Latin America, Bolivia, Santa Cruz, IX de Bolivia, Defunct, Ethernet, Association, 20120000, , , , 0, 0, 0
+367, Africa, Botswana, Gaborone, Botswana Internet Exchange, Active, Ethernet, Association, 20051000, http://www.info.bw/bispa/binx.html, http://www.info.bw/bispa/binx.html, , 14, 1000000, 0
+1440, Latin America, Brazil, Belém, Ponto de Troca de Trafego do Belém, Active, Ethernet, Association, 20110600, http://ptt.br/adesao/bel, http://ptt.br/particip/bel, , 16, 518650, 0
+19, Latin America, Brazil, Belo Horizonte, Ponto de Troca de Tráfego do Belo Horizonte, Active, Ethernet, Association, 20100100, http://ptt.br/adesao/mg/, http://ptt.br/particip/mg, , 39, 6300000, 0
+20, Latin America, Brazil, Brasília, Ponto de Troca de Tráfego do Brasília, Active, Ethernet, Association, 20090000, http://ptt.br/adesao/df, http://ptt.br/particip/df, , 35, 8290000, 0
+1275, Latin America, Brazil, Campina Grande, Ponto de Troca de Trafego do Campina Grande, Active, Ethernet, Association, 20100928, http://ptt.br/adesao/cpv, http://ptt.br/particip/cpv, , 17, 15940000, 0
+1199, Latin America, Brazil, Campinas, Ponto de Troca de Trafego do Campinas, Active, Ethernet, Association, 20091130, http://ptt.br/adesao/cas, http://ptt.br/particip/cas, , 36, 29070000, 0
+1441, Latin America, Brazil, Caxias do Sul, Ponto de Troca de Trafego do Caxias do Sul, Active, Ethernet, Association, 20130600, http://ptt.br/adesao/cxj, http://ptt.br/particip/cxj, , 5, 213350, 0
+1807, Latin America, Brazil, Cuiabá, Ponto de Troca de Tráfego do Cuiabá, Active, Ethernet, Association, 20140700, http://ptt.br/adesao/cgb, http://ptt.br/particip/cgb, , 13, 89920, 0
+1832, Latin America, Brazil, Curitiba, Ponto de Troca de Trafego do Curitiba, Active, Ethernet, Governmental, 20070000, http://ptt.br/adesao/pr, http://ptt.br/particip/pr, , 71, 53100000, 0
+22, Latin America, Brazil, Florianópolis, Ponto de Troca de Tráfego do Florianópolis, Active, Ethernet, Association, 20080000, http://ptt.br/adesao/ce, http://ptt.br/particip/sc, , 35, 4020000, 0
+1089, Latin America, Brazil, Fortaleza, Ponto de Troca de Trafego do Fortaleza, Active, Ethernet, Association, 20081001, http://ptt.br/adesao/ce, http://ptt.br/particip/ce, , 32, 9080000, 0
+1276, Latin America, Brazil, Goiânia, Ponto de Troca de Trafego do Goiânia, Active, Ethernet, Association, 20101020, http://ptt.br/adesao/gyn, http://ptt.br/particip/gyn, , 23, 2270000, 0
+1808, Latin America, Brazil, Lajeado, Ponto de Troca de Trafego do Lajeado, Active, Ethernet, Association, 20130300, http://ptt.br/adesao/laj, http://ptt.br/particip/laj, , 13, 860930, 0
+1088, Latin America, Brazil, Londrina, Ponto de Troca de Trafego do Londrina, Active, Ethernet, Association, 20090215, http://ptt.br/adesao/lda, http://ptt.br/particip/lda, , 27, 9490000, 0
+1442, Latin America, Brazil, Manaus, Ponto de Troca de Trafego do Manaus, Active, Ethernet, Association, 20130100, http://ptt.br/adesao/mao, http://ptt.br/particip/mao, , 10, 122680, 0
+1833, Latin America, Brazil, Maringá, Ponto de Troca de Trafego do Maringa, Active, Ethernet, Governmental, 20131100, http://ptt.br/adesao/mgf, http://ptt.br/particip/mgf, , 25, 2810000, 0
+1443, Latin America, Brazil, Natal, Ponto de Troca de Trafego do Natal, Active, Ethernet, Association, 20110600, http://ptt.br/adesao/nat, http://ptt.br/particip/nat, , 14, 1450000, 0
+21, Latin America, Brazil, Paraná, Ponto de Troca de Tráfego do Paraná, Active, Ethernet, University, 20020600, http://ptt.br/adesao/pr, http://ptt.br/particip/pr, , 71, 53100000, 0
+1092, Latin America, Brazil, Porto Alegre, Ponto de Troca de Trafego do Porto Alegre, Active, Ethernet, Association, 20020400, http://ptt.br/adesao/rs, http://ptt.br/particip/rs, , 141, 159460000, 0
+1200, Latin America, Brazil, Recife, Ponto de Troca de Trafego do Recife, Active, Ethernet, Association, 20091201, http://ptt.br/adesao/pe, http://ptt.br/particip/pe, , 24, 4100000, 0
+415, Latin America, Brazil, Rio de Janeiro, Ponto de Troca de Tráfego do Rio de Janeiro, Active, Ethernet, Association, 20100000, http://ptt.br/adesao/rj, http://ptt.br/particip/rj, , 108, 225350000, 0
+1018, Latin America, Brazil, Salvador, Ponto de Troca de Trafego do Salvador, Active, Ethernet, Association, 20080000, http://ptt.br/adesao/ba, http://ptt.br/particip/ba, , 49, 5160000, 0
+1809, Latin America, Brazil, São Carlos, Ponto de Troca de Trafego do Central Paulista , Active, Ethernet, Association, 20131000, http://ptt.br/adesao/sca, http://ptt.br/particip/sca, , 4, 7410, 0
+1445, Latin America, Brazil, São José do Rio Preto, Ponto de Troca de Trafego do São José do Rio Preto, Active, Ethernet, Association, 20130100, http://ptt.br/adesao/sjp, http://ptt.br/particip/sjp, , 11, 762890, 0
+1444, Latin America, Brazil, São José dos Campos, Ponto de Troca de Trafego do São José dos Campos, Active, Ethernet, Association, 20110000, http://ptt.br/adesao/sjc, http://ptt.br/particip/sjc, , 13, 170410, 0
+29, Latin America, Brazil, São Paulo, NAP do Brasil, Active, Ethernet, Commercial, 19980000, http://www.verizonenterprise.com/infrastructure/data-centers/latin-america/nap-do-brazil/, , , 37, 20000000, 0
+30, Latin America, Brazil, São Paulo, Ponto de Troca de Tráfego Metro São Paulo, Active, Ethernet, Association, 20041004, http://ptt.br/adesao/sp, http://ptt.br/particip/sp, , 817, 1886180000, 0
+1446, Latin America, Brazil, Vitória, Ponto de Troca de Trafego do Vitória, Active, Ethernet, Association, 20120000, http://ptt.br/adesao/vix, http://ptt.br/particip/vix, , 25, 380400, 0
+1109, Latin America, Brazil, , LNCC, Unknown, Ethernet, Unknown, 0, http://www.lncc.br/frame.html, , , 0, 0, 0
+1274, Latin America, Brazil, Americana, Ponto de Troca de Trafego do Americana, Unknown, Ethernet, Association, 20101220, http://ptt.br/adesao/ame/, http://ame.ptt.br/particip.html, , 12, 572040, 0
+23, Latin America, Brazil, Porto Alegre, Rio Grande do Sul Internet Exchange, Deprecated, Ethernet, Unknown, 20001120, http://rs.ptt.br/, , , 19, 76821000, 0
+24, Latin America, Brazil, Rio De Janeiro, Optiglobe Internet Exchange - Latin America, Defunct, Ethernet, Unknown, 0, , , , 0, 0, 0
+1110, Latin America, Brazil, São Paulo, An Academic Network at Sao Paulo, Not an exchange, Ethernet, Governmental, 0, http://www.ansp.br/, http://www.ansp.br/index.php/us/participants, http://lg.ansp.br/lgform.cgi, 48, 0, 0
+25, Latin America, Brazil, São Paulo, Daedalus, Defunct, , , 0, , , , 0, 0, 0
+26, Latin America, Brazil, São Paulo, Diveo NAP, Not an exchange, ATM, , 0, , , , 0, 0, 0
+27, Latin America, Brazil, São Paulo, NAP Abranet (Not an exchange), Not an exchange, , , 0, , , , 0, 0, 0
+31, Latin America, Brazil, São Paulo, Telcomp, Defunct, Ethernet, Unknown, 20030000, http://www.telcomp.org.br/, , , 5, 75000, 0
+28, Latin America, Brazil, São Paulo, Tivit, Defunct, Ethernet, Commercial, 0, http://www2.tivit.com.br/internet2/, , , 39, 0, 0
+1299, Latin America, British Virgin Islands, Road Town, British Virgin Islands IXP, Planned, Ethernet, Association, 0, , , , 0, 0, 0
+1194, Europe, Bulgaria, Sofia, Balkan Internet Exchange, Active, Ethernet, Association, 20100000, http://www.b-ix.net, http://www.b-ix.net/members/peers/, http://lg.b-ix.net/, 41, 166960000, 0
+1137, Europe, Bulgaria, Sofia, Bulgarian Internet eXchange, Active, Ethernet, Commercial, 20090801, http://www.bix.bg/en/, http://www.bix.bg/en/bix.bg_members.html, http://lg.bix.bg/, 66, 120260000, 165008
+1623, Europe, Bulgaria, Sofia, NetIX, Active, Ethernet, Commercial, 20130101, http://www.netix.net, http://netix.net/members, http://lg.netix.bg/, 91, 233920000, 982145
+1892, Europe, Bulgaria, Sofia, T-CIX, Active, Ethernet, Commercial, 20150518, http://www.t-cix.net, http://www.t-cix.net/index.php?page=members&lang=eng, http://www.t-cix.net/lg/lg.cgi, 20, 0, 153861
+32, Europe, Bulgaria, Sofia, GoCIS, Unknown, , , 0, , , , 0, 0, 0
+33, Europe, Bulgaria, Sofia, Sofia Internet Exchange, Unknown, , , 0, , , , 0, 0, 0
+499, Europe, Bulgaria, Varna, Varna Internet Exchange, Unknown, , Unknown, 0, , , , 0, 0, 0
+1839, Africa, Burkina Faso, Ouagadougou, Burkina Faso IXP, Active, , Association, 20150626, www.bfix.bf, , , 8, 0, 0
+546, Africa, Burundi, Bujumbura, BurundiX Internet Exchange Point, Active, Ethernet, Association, 20140321, http://www.burundix.bi, , , 1, 81, 0
+1906, Asia-Pacific, Cambodia, Phnom Penh, Cambodian Network Exchange, Active, Ethernet, Association, 20081201, http://cnx.net.kh/, http://cnx.net.kh/member/, , 24, 2600000, 0
+1526, Asia-Pacific, Cambodia, Phnom Penh, HTN-Cambodia Internet Exchange, Active, , Commercial, 20130000, http://www.htnetworks.com.kh/index.php/ixservices, , , 9, 0, 0
+34, Asia-Pacific, Cambodia, Phnom Penh, Finder Internet Exchange, Defunct, Ethernet, Association, 20030600, http://www.finder.com.kh/, , , 4, 3000, 0
+1669, North America, Canada, Calgary, AlbertaIX, Active, Ethernet, University, 20140123, https://www.albertaix.ca/, https://www.albertaix.ca/peers/, , 3, 0, 0
+1461, North America, Canada, Calgary, Calgary Internet Exchange, Active, Ethernet, Association, 20130000, http://www.yycix.ca, http://yycix.ca/peers.html, , 25, 784280, 155356
+1693, North America, Canada, Halifax, Halifax Internet Exchange, Active, Ethernet, Association, 20131125, http://hfxix.ca, http://hfxix.ca/peering-lan-ip-assignments/, , 12, 0, 118
+1616, North America, Canada, Montreal, Quebec Internet Exchange, Active, Ethernet, Association, 20130100, http://www.qix.ca, http://www.qix.ca/en/members/membership, , 48, 32220000, 93714
+37, North America, Canada, Ottawa, Ottawa Internet Exchange, Active, Ethernet, Association, 20010410, http://www.ottix.net/, http://www.ottix.net/peers.html, http://www.ottix.net/cgi-bin/lg.pl, 14, 69666, 987
+39, North America, Canada, Toronto, Toronto Internet Exchange, Active, Ethernet, Association, 19980000, http://www.torix.net/, http://www.torix.net/peers.php, , 197, 282254000, 110607
+1802, North America, Canada, Vancouver, Vancouver Internet Exchange, Active, Ethernet, Association, 20131130, http://www.vanix.ca, http://www.vanix.ca/participants/, , 54, 16500000, 0
+1316, North America, Canada, Winnipeg, Manitoba Internet Exchange, Active, Ethernet, Association, 20130729, http://www.mbix.ca, http://www.mbix.ca/peers/, , 22, 740000, 154973
+1540, North America, Canada, Winnipeg, Winnipeg Internet Exchange, Active, Ethernet, Association, 20130500, http://www.wpgix.net, http://wpgix.net/?page_id=13, , 25, 3860000, 92293
+35, North America, Canada, Edmonton, Edmonton Internet Exchange, Defunct, , Unknown, 0, http://www.eix.net/, , , 7, 0, 0
+1882, North America, Canada, Edmonton, YEGIX Edmonton Internet Exchange, Planned, Ethernet, Association, 0, www.yegix.ca, , , 0, 0, 0
+1195, North America, Canada, Montreal, Peer1 Internet Exchange - Montreal, Not an exchange, Ethernet, Commercial, 20100000, http://www.peer1.com/infrastructure/pix, http://www.peer1.com/infrastructure/participants, , 0, 0, 0
+36, North America, Canada, Montreal, Quebec Internet Exchange/RISQ, Not an exchange, Layer-3, Unknown, 0, http://www.risq.qc.ca/reseau/architecture/archi_section.php?LANG=EN&S=qix, , , 11, 0, 0
+38, North America, Canada, Toronto, CANIX, Defunct, , Unknown, 0, http://www.canix.ca/toronto.php, http://www.canix.ca/toronto.php, , 0, 0, 0
+1852, North America, Canada, Toronto, Equinix Toronto, Unknown, Ethernet, Commercial, 0, http://www.equinix.com//locations/canada-colocation/toronto-data-center/tr1, , , 0, 0, 0
+1554, North America, Canada, Toronto, Greater Toronto International Internet Exchange, Not an exchange, Ethernet, Commercial, 20110600, http://www.iixpeering.net/peering/gtiix.php, http://www.iixpeering.net/peering/about-members.php, , 10, 0, 0
+974, North America, Canada, Toronto, Peer1 Internet Exchange - Toronto, Not an exchange, Ethernet, Commercial, 20080000, http://www.peer1.com/infrastructure/pix, http://www.peer1.com/infrastructure/participants, , 7, 0, 0
+40, North America, Canada, Vancouver, British Columbia Internet Exchange, Not an exchange, , Unknown, 0, http://www.bcix.net/, http://www.bcix.net/member_info/membership_categories.htm, , 0, 0, 0
+975, North America, Canada, Vancouver, Peer1 Internet Exchange - Vancouver, Not an exchange, Ethernet, Commercial, 20080000, http://www.peer1.com/infrastructure/pix, http://www.peer1.com/infrastructure/participants, , 25, 0, 0
+1672, North America, Canada, Victoria, Victoria Transit Exchange, , Layer-3, University, 0, , , , 0, 0, 0
+41, Latin America, Chile, Santiago, NAP Chile, Active, , Governmental, 19970900, http://www.nap.cl/, http://www.nap.cl/f_proveedores.html, http://pit.nap.cl/cgi-bin/lg.cgi, 13, 0, 0
+42, Latin America, Chile, , Chile Network Access Point, Unknown, , , 0, , , , 0, 0, 0
+43, Asia-Pacific, China, Beijing, Beijing National Internet Exchange Center, Active, Ethernet, Governmental, 20000400, , , , 11, 2000000, 0
+1913, Asia-Pacific, China, Beijing, CHN IX, Active, Ethernet, Commercial, 20151201, http://www.chn-ix.net, , , 2, 0, 0
+1926, Asia-Pacific, China, Beijing, CNIX China Internet Exchange, Active, Ethernet, Commercial, 20150300, www.cnix.com.cn, , , 1, 0, 0
+1319, Asia-Pacific, China, Hong Kong, AMS-IX Hong Kong, Active, Ethernet, Association, 20120401, http://www.ams-ix.hk, http://www.ams-ix.hk/connected_parties, , 28, 19104000, 0
+1836, Asia-Pacific, China, Hong Kong, BBIX Hong Kong, Active, Ethernet, Commercial, 20141001, www.bbix.net, , , 0, 0, 0
+834, Asia-Pacific, China, Hong Kong, Equinix Hong Kong, Active, Ethernet, Commercial, 20090000, http://www.equinix.hk, , , 0, 0, 0
+96, Asia-Pacific, China, Hong Kong, Hong Kong Internet Exchange, Active, Ethernet, University, 19950400, http://www.hkix.net, http://www.hkix.net/hkix/participant.htm, http://www.hkix.net/hkix/hkixlg.htm, 234, 654643000, 394683
+971, Asia-Pacific, China, Beijing, CNC Beijing NAP, Unknown, Ethernet, Unknown, 20080000, , , , 0, 0, 0
+44, Asia-Pacific, China, Beijing, TerreNAP Beijing, Unknown, , , 0, http://www.corporate-ir.net/ireye/ir_site.zhtml?ticker=tww&script=410&layout=-6&item_id=137869, , , 0, 0, 0
+45, Asia-Pacific, China, Guangzhou, , Unknown, , , 20001200, , , , 0, 0, 0
+95, Asia-Pacific, China, Hong Kong, Hong Kong Academic Internet Exchange, Planned, Ethernet, , 0, http://cn.apan.net?, , , 0, 0, 0
+97, Asia-Pacific, China, Hong Kong, Level3, Defunct, Ethernet, , 0, , , , 0, 0, 0
+98, Asia-Pacific, China, Hong Kong, Pihana Hong Kong, Not an exchange, , , 0, , , , 0, 0, 0
+46, Asia-Pacific, China, Shanghai, Asia Pacific Internet Exchange, Not an exchange, Layer-3, , 0, , , , 0, 0, 0
+47, Asia-Pacific, China, Shanghai, Shanghai City Exchange, Unknown, , , 0, , , , 0, 0, 0
+48, Asia-Pacific, China, Shanghai, Shanghai Internet Exchange, Unknown, , , 20001200, http://www.sii.com.cn/html/en/infoport/internet_exchange_center.htm, , , 8, 0, 0
+49, Latin America, Colombia, Bogotá, NAP-Colombia, Active, , Association, 20000629, http://www.nap.com.co/, http://www.nap.com.co/html/integrantes.php, , 19, 45500000, 0
+50, Latin America, Colombia, , CIN, Unknown, , , 0, , , , 0, 0, 0
+985, Latin America, Colombia, Bogota, NAP de las Americas Colombia, Unknown, Ethernet, Commercial, 20080300, http://www.verizonenterprise.com/infrastructure/data-centers/latin-america/nap-de-las-americas-colombia/, , , 14, 0, 0
+1541, Africa, Congo-Brazzaville, Brazzaville, Congo Brazzaville IX, Active, Ethernet, Governmental, 20130510, http://www.cgix-congo.cg/, http://www.cgix-congo.cg/membre.html, , 7, 20, 0
+1574, Africa, Congo-Brazzaville, Pointe-Noire, CG-IX Pointe-Noire, , Ethernet, Association, 0, , , , 0, 0, 0
+479, Africa, Congo-Kinshasa, Kinshasa, Kinshasa Internet Exchange, Active, Ethernet, Association, 20021100, http://www.ispa-drc.cd/, http://www.ispa-drc.cd/index.php?option=com_content&view=article&id=2&Itemid=4, , 9, 617670, 0
+1910, Africa, Congo-Kinshasa, Goma, Goma Internet Exchange, Planned, Ethernet, Association, 0, http://www.ispa-drc.cd/index.php?option=com_content&view=article&id=20&Itemid=20, , , 0, 0, 0
+1909, Africa, Congo-Kinshasa, Lubumbashi, Lubumbashi Internet Exchange, Planned, Ethernet, Association, 0, http://www.ispa-drc.cd/index.php?option=com_content&view=article&id=21&Itemid=21, , , 0, 0, 0
+1806, Latin America, Costa Rica, San Jose, Punto de Intercambio Neutro de Internet, Active, Ethernet, Association, 20140429, http://www.crix.cr/, https://www.crix.cr/miembros, , 21, 272660, 1317
+1801, Africa, Cote D'Ivoire, Abidjan, Côte d'Ivoire Internet Exchange Point, Active, Ethernet, Governmental, 20131003, www.civix.ci, http://www.civix.ci/index.php/membres, , 6, 79000, 0
+699, Africa, Cote D'Ivoire, Abidjan, Côte d'Ivoire Internet Exchange Point, Defunct, Ethernet, Unknown, 20060000, http://www.ciixp.ci, , , 5, 4000, 0
+51, Europe, Croatia, Zagreb, Croatian Internet Exchange, Active, , University, 20050000, http://www.cix.hr/, http://www.cix.hr/cix_clanice.html, http://www.cix.hr/index.php?id=lg&L=1, 29, 64000000, 0
+52, Latin America, Cuba, Habana, NAP de Cuba, Active, Ethernet, Governmental, 20010600, http://www.etecsa.cu/?page=internet_conectividad&sub=transmision_datos, , , 5, 50000, 0
+988, Latin America, Curaçao, Willemstad, Caribbean Internet Exchange, Active, Ethernet, Association, 20090420, https://cw.ams-ix.net/, https://cw.ams-ix.net/connected_parties, , 13, 9394000, 0
+53, Europe, Cyprus, Lefkosia, Cyprus Internet Exchange, Active, Ethernet, University, 19990000, http://www.cytanet.com.cy/network/cyix/, , , 3, 10000, 0
+613, Europe, Czech Republic, Prague, Neutral czFree eXchange, Active, Ethernet, Association, 20070000, http://www.nfx.cz, http://www.nfx.cz/clenove, , 19, 42400000, 0
+55, Europe, Czech Republic, Prague, NIX.CZ - Neutral Internet eXchange for the Czech Republic, Active, Ethernet, Association, 19960831, http://www.nix.cz, https://www.nix.cz/en/networks, , 141, 446000000, 0
+1758, Europe, Czech Republic, Prague, Peering.cz, Active, Ethernet, Commercial, 20121017, http://www.peering.cz, http://peering.cz/en/traffic, http://lg.peering.cz, 91, 265000000, 101876
+612, Europe, Czech Republic, Brno, Commercial Brno Internet Exchange, Defunct, Ethernet, Commercial, 20070512, http://www.cbix.cz/en, http://www.cbix.cz/en/connected-networks, , 7, 0, 0
+54, Europe, Czech Republic, Brno, Neutral Internet Exchange, Planned, , , 0, , , , 0, 0, 0
+1853, Europe, Denmark, Copenhagen, Content-IX, Active, Ethernet, Commercial, 20120200, www.content-ix.dk, http://www.globalconnect.dk/produkter/internet/ip-transit/content-ix-medlemsliste, , 10, 0, 0
+56, Europe, Denmark, Copenhagen, Danish Internet Exchange, Active, Ethernet, University, 19940500, http://www.dix.dk/, http://www.dix.dk/connectednetworks/, , 45, 43200000, 0
+1781, Europe, Denmark, Copenhagen, Netnod COMIX, Active, Ethernet, Association, 20140500, www.netnod.se, http://www.netnod.se/ix/members, , 40, 54339000, 0
+1261, Europe, Denmark, Copenhagen, Copenhagen Internet Exchange, Defunct, Ethernet, Unknown, 0, http://www.cophix.net/, http://www.cophix.net/members, , 29, 0, 0
+1364, Latin America, Dominica, Roseau, Dominica National Internet Exchange Point, Active, Ethernet, Governmental, 20130227, http://danix.dm/, , , 6, 67470, 34
+984, Latin America, Dominican Republic, Santo Domingo, NAP del Caribe, Active, Ethernet, Commercial, 20080700, http://www.rsandh.com/who-we-serve/corporate/mission-critical/data-centers/terremark-nap-del-caribe, , , 0, 0, 0
+57, Latin America, Ecuador, Guayaquil, NAP AEPROVI Guayaquil, Active, Ethernet, Association, 20030000, http://www.aeprovi.org.ec/index.php?option=com_content&task=blogcategory&id=5&Itemid=85, , , 34, 2802555, 0
+58, Latin America, Ecuador, Quito, NAP AEPROVI Quito, Active, Ethernet, Association, 20030000, http://www.aeprovi.org.ec/index.php?option=com_content&task=blogcategory&id=5&Itemid=85, http://www.aeprovi.org.ec/index.php?option=com_content&task=view&id=30&Itemid=26, , 28, 16631447, 0
+59, Africa, Egypt, Cairo, Cairo Internet Exchange, Active, Ethernet, Governmental, 20020500, http://www.caix.net.eg/, http://www.caix.net.eg/index.php/member-list, , 7, 1390000, 3268
+593, Africa, Egypt, Cairo, Middle East Internet eXchange, Active, Ethernet, Commercial, 20070500, http://www.gpxglobal.net/, , , 10, 27, 0
+60, Africa, Egypt, Cairo, Cairo Regional Internet Exchange, Defunct, Ethernet, , 20020500, http://www.cr-ix.net, , , 3, 0, 0
+621, Latin America, El Salvador, San Salvador, IXP de El Salvador, Planned, Ethernet, Association, 0, , , , 0, 0, 0
+1365, Europe, Estonia, Tallinn, Tallinn Governmental Internet Exchange, Active, Ethernet, Governmental, 20090700, http://www.rtix.ee/rtix/, , , 7, 0, 1109
+68, Europe, Estonia, Tallinn, Tallinn Internet Exchange (TIX), Active, Ethernet, Commercial, 20020000, http://tix.estpak.ee, http://tix.estpak.ee/?members, , 13, 425250, 0
+559, Europe, Estonia, Tallinn, Tallinn Internet Exchange (TLLIX), Active, Ethernet, Commercial, 20051100, http://www.tllix.net, http://www.tllix.net/index.php?2,34, , 17, 1300000, 0
+1516, Europe, Finland, Espoo, Finnish Communication and Internet Exchange Espoo, Active, Ethernet, Association, 19930000, http://www.ficix.fi/english/main.php, http://www.ficix.fi/english/member.php, , 23, 19100000, 0
+69, Europe, Finland, Helsinki, Finnish Communication and Internet Exchange Helsinki, Active, Ethernet, Association, 19930000, http://www.ficix.fi/english/main.php, http://www.ficix.fi/english/member.php, , 25, 36000000, 0
+1515, Europe, Finland, Oulu, Finnish Communication and Internet Exchange Oulu, Active, Ethernet, Association, 20080000, http://www.ficix.fi/english/main.php, https://www.ficix.fi/membership/ficix-jasenet/, , 29, 900000, 0
+70, Europe, Finland, Tampere, Tampere Region Exchange, Active, Ethernet, University, 20030803, http://www.trex.fi/, http://www.trex.fi/members.html, , 15, 6000000, 1217
+712, Europe, France, Alsace, EuroGIX, Active, Ethernet, Association, 20020304, http://www.eurogix.net/, http://www.eurogix.net/fr/membres-eurogix, , 6, 1570, 0
+1792, Europe, France, Cayenne, Guyanix, Active, Ethernet, University, 20131001, http://www.renater.fr/guyanix, , , 0, 0, 0
+1373, Europe, France, Grenoble, GrenoblIX, Active, , Association, 20130000, http://www.grenoblix.net/, http://communication.rezopole.net/participants.php?ix=grenoblix, , 7, 0, 0
+1854, Europe, France, Lille, Lillix, Active, Ethernet, Association, 20140627, http://www.lillix.fr, http://www.lillix.fr/membres/, , 12, 0, 0
+71, Europe, France, Lyon, Lyon Internet Exchange, Active, Ethernet,Layer-3, Association, 20100601, http://www.lyonix.net/, http://www.lyonix.net/en/members-area/lyonix-members-list, https://noc.rezopole.net/lg/, 93, 25408732, 31926
+1894, Europe, France, Marseille, DE-CIX Marseille, Active, Ethernet, Commercial, 0, https://www.de-cix.net/products-services/de-cix-marseille/, , , 0, 400000, 0
+1656, Europe, France, Marseille, France-IX Marseille, Active, Ethernet, Association, 20110000, https://www.franceix.net/, https://www.franceix.net/en/members-resellers/members/, https://tools.franceix.net/lg, 299, 50760000, 0
+504, Europe, France, Marseille, Marseille Internet Exchange, Active, Ethernet, Association, 20050000, http://www.ma-ix.net/, http://www.ma-ix.net/members.php, , 0, 0, 0
+1815, Europe, France, Nantes, Ouest IX, Active, Ethernet, Association, 20140402, http://www.ouestix.fr, , , 10, 0, 0
+1837, Europe, France, Nice, NicIX - Alpes-Maritimes, Active, Ethernet, Association, 20140619, http://www.nicix.net/en, , , 3, 88000, 0
+1097, Europe, France, Paris, Equinix Paris, Active, Ethernet, Commercial, 20080000, http://www.equinix-ix.fr, http://www.equinix-ix.fr/members.php, , 315, 0, 146678
+1658, Europe, France, Paris, FR-IX 75, Active, Ethernet, Association, 20100505, http://www.fr-ix.fr/, https://mon.nap75.fr-ix.fr/p-liste.php, https://mon.nap75.fr-ix.fr/p-lg.php, 13, 0, 0
+1124, Europe, France, Paris, France-IX, Active, Ethernet, Association, 20101100, http://www.france-ix.fr/, https://www.franceix.net/en/members-resellers/members/, https://tools.franceix.net/lg, 299, 1065420000, 207270
+629, Europe, France, Paris, French National Internet Exchange IPv6, Active, Ethernet, Commercial, 20021101, http://www.fnix6.net, http://www.fnix6.net/members/, , 16, 0, 0
+74, Europe, France, Paris, Mix Internet Exchange and Transit, Active, , Commercial, 19990000, http://www.mixt.net/, http://www.mixt.net/membres?PHPSESSID=d70789dd2193dfc12c377b1c95fbe580, , 7, 0, 0
+78, Europe, France, Paris, Service for French Internet Exchange, Active, Ethernet, Association, 19950000, https://www.sfinx.fr/, https://www.sfinx.fr/, , 95, 26200000, 14164
+1790, Europe, France, Saint-Denis, Réunion, Réunion Internet Exchange, Active, Ethernet, University, 20060200, http://www.renater.fr/reunix?lang=en, http://www.renater.fr/connected-members,579, , 10, 0, 0
+1230, Europe, France, Toulouse, Le GIX de la grande region Toulousaine, Active, Ethernet, Association, 20090416, http://www.touix.net/, http://www.touix.net/node/6, , 11, 0, 0
+1923, Europe, France, Mamoudzou, Mayotte, Mayotte Internet Exchange, Unknown, Ethernet, University, 0, https://www.renater.fr/mayotix?lang=en, , , 0, 0, 0
+72, Europe, France, Paris, Free-IX, Defunct, Ethernet, Association, 20000000, http://www.FreeIX.net, http://tools.freeix.net/freeix/cgi-bin/members.pl, , 106, 2890000, 0
+838, Europe, France, Paris, Gigabit European Internet eXchange, Defunct, Ethernet, Unknown, 0, http://ether.geix.net, http://ether.geix.net, , 8, 0, 0
+1877, Europe, France, Paris, Hopus, Not an exchange, Ethernet, Commercial, 20140100, http://hopus.net, http://hopus.net, http://hopus.net/members, 25, 155000000, 0
+73, Europe, France, Paris, Metropolitan Area Ethernet-Paris, Unknown, Ethernet, Commercial, 0, http://www.mae.net/fac/mae-paris.htm, http://www.mae.net/fac/mae-paris-members.htm, , 18, 0, 0
+75, Europe, France, Paris, Paris Internet Exchange, Deprecated, , , 0, , , , 0, 0, 0
+76, Europe, France, Paris, Paris Internet Exchange Service, Unknown, , Unknown, 0, , , , 0, 0, 0
+79, Europe, France, Paris, Paris NAP, Defunct, Ethernet, Unknown, 20050700, http://www.panap.fr, http://www.panap.fr/members.php, , 153, 848000, 0
+628, Europe, France, Paris, Paris Operators for Universal Internet eXchange, Defunct, Ethernet, Association, 0, http://www.pouix.net/, http://www.pouix.net/members-en, , 33, 0, 0
+77, Europe, France, Paris, PARIX, Not an exchange, Ethernet, Commercial, 20010000, http://www.parix.net, http://www.parix.net/parix-members.html, , 46, 14000000, 0
+1231, Europe, France, Saint Etienne, The Saint-Etienne Internet eXchange Point, Defunct, Ethernet, Association, 20110100, http://www.saintetix.net/, http://www.saintetix.net/en/members-area, , 2, 0, 0
+973, Europe, France, Saint-Etienne, PhibIX Gix & Nap, Defunct, Ethernet, Unknown, 20080000, http://www.phibix.net, , , 2, 0, 0
+1375, Europe, France, Valence, The Ardèche and Drôme Internet eXchange Point , Defunct, Ethernet, Association, 20120000, http://www.adn-ix.net/en/, http://www.adn-ix.net/en/adnix-members, https://noc.rezopole.net/lg/, 2, 0, 0
+1887, Africa, Gabon, Libreville, Gabon Internet Exchange, Active, Ethernet, Association, 0, http://www.gabix.ga, , , 4, 0, 0
+1811, Africa, Gambia, Serrekunda, Serrekunda Internet Exchange Point, Active, Ethernet, Association, 20130725, www.sixp.gm, http://www.sixp.gm/about.html, http://www.sixp.gm/services.html#Looking_Glass, 14, 560000, 111
+80, Europe, Germany, Berlin, Berlin Commercial Internet Exchange, Active, Ethernet, Association, 20020906, http://www.bcix.de/, http://www.bcix.de/bcix/members/, , 80, 130000000, 189403
+81, Europe, Germany, Berlin, European Commercial Internet Exchange Berlin, Active, Ethernet, Commercial, 20030000, http://www.ecix.net/, http://www.ecix.net/about-us/members/, , 155, 286000000, 136905
+1855, Europe, Germany, Bremen, BREM-IX, Active, Ethernet, Commercial, 20130000, http://www.brem-ix.net, , , 10, 950000, 0
+1856, Europe, Germany, Dortmund, Dortmund Internet exchange, Active, Ethernet, Association, 20130901, https://www.do-ix.net, https://www.do-ix.net/members, , 8, 0, 0
+1919, Europe, Germany, Dusseldorf, DE-CIX Dusseldorf, Active, , Commercial, 20160000, https://www.de-cix.net/products-services/de-cix-dusseldorf/, https://www.de-cix.net/customers-partners/customers/de-cix-dusseldorf/, , 3, 0, 0
+82, Europe, Germany, Düsseldorf, European Commercial Internet Exchange Düsseldorf, Active, Ethernet, Commercial, 20030000, http://www.ecix.net/, http://www.ecix.net/about-us/members/, , 97, 22930000, 148088
+1667, Europe, Germany, Düsseldorf, OpenCarrier e.G. Member IX Duesseldorf, Active, Ethernet, Association, 20070500, http://www.opencarrier.eu/, http://www.opencarrier.eu/2-mitglieder.html, , 30, 0, 0
+83, Europe, Germany, Frankfurt, Deutscher Commercial Internet Exchange, Active, Ethernet, Association, 19950500, https://www.de-cix.net/, https://www.de-cix.net/customers-partners/customers/de-cix-frankfurt/, http://lg.de-cix.net/, 702, 4791800200, 1084234
+1663, Europe, Germany, Frankfurt, European Commercial Internet Exchange, Active, Ethernet, Commercial, 20130408, http://www.ecix.net/, http://www.ecix.net/about-us/members/, , 155, 0, 159237
+717, Europe, Germany, Frankfurt, Frankfurt Network Access Point, Active, , Association, 20031001, http://www.franap.net/, , , 10, 0, 0
+556, Europe, Germany, Frankfurt, KleyReX Internet Exchange, Active, Ethernet, Commercial, 20020900, http://www.kleyrex.net/, http://www.kleyrex.net/teilnehmer.php, , 138, 3060000, 0
+1670, Europe, Germany, Frankfurt, OpenCarrier e.G. Member IX Frankfort, Active, Ethernet, Association, 20070500, http://www.opencarrier.eu/, http://www.opencarrier.eu/2-mitglieder.html, , 30, 0, 0
+88, Europe, Germany, Hamburg, DE-CIX Hamburg, Active, Ethernet, Association, 20080000, http://www.de-cix.net/products-services/de-cix-hamburg/, http://www.de-cix.net/customers-partners/customers/de-cix-hamburg/, , 38, 23900000, 0
+1052, Europe, Germany, Hamburg, European Commercial Internet Exchange Hamburg, Active, Ethernet, Commercial, 20090121, http://www.ecix.de, https://www.ecix.net/about-us/members/, , 38, 0, 137111
+86, Europe, Germany, Hamburg, Internet Exchange Hamburg, Active, Ethernet, Commercial, 20001000, http://www.inxs.de, http://www.inxs.de/public/cgi-bin/showmembers, https://support.cw.com/prod/tools_lookingglass.html?CW=68b5b2fbf2bd809834bceba6d6519385, 40, 21000000, 0
+87, Europe, Germany, Hamburg, XchangePoint Hamburg IPP, Active, Ethernet, Unknown, 20030400, http://www.xchangepoint.net, , , 2, 0, 0
+1271, Europe, Germany, Munich, DE-CIX Munich, Active, Ethernet, Association, 20100400, http://www.de-cix.net/products-services/de-cix-munich/, http://www.de-cix.net/customers-partners/customers/de-cix-munich/, , 27, 12300000, 0
+89, Europe, Germany, Munich, Internet Exchange Service, Active, Ethernet, Commercial, 19940600, http://www.inxs.de, http://www.inxs.de/public/cgi-bin/showmembers, , 40, 21000000, 47901
+92, Europe, Germany, Nuremberg, Nürnberger Internet Exchange, Active, Ethernet, Association, 20030000, http://www.n-ix.de, http://www.n-ix.net/teilnehmerliste.html?&L=2, http://www.n-ix.net/lg.html, 43, 5700000, 8942
+705, Europe, Germany, Stuttgart, Stuttgarter Internet Exchange, Active, Ethernet, Association, 20050400, http://www.s-ix.info/, http://www.s-ix.info/Teilnehmer.htm, http://six.interscholz.net/, 22, 2591956, 0
+1914, Europe, Germany, Wuppertal, United Peering, Active, Ethernet, Commercial, 20150910, https://united-peering.net, , , 13, 0, 0
+718, Europe, Germany, Darmstadt, Metropolitan Area Network Darmstadt, Unknown, , Unknown, 0, http://www.tu-darmstadt.de/hrz/manda/, , , 0, 0, 0
+84, Europe, Germany, Frankfurt, MAE-Frankfurt, Unknown, ATM, Unknown, 0, http://www.mae.net/fac/mae-frankfurt.htm, http://www.mae.net/fac/mae-frankfurt-members.htm, , 0, 0, 0
+85, Europe, Germany, Frankfurt, XchangePoint Frankfurt IPP, Unknown, , , 0, , , , 9, 10000, 0
+716, Europe, Germany, Hamburg, Hansestadt Hamburg Commercial Internet Exchange, Defunct, , Unknown, 20030117, http://www.hhcix.de/, , , 13, 0, 0
+881, Europe, Germany, Leipzig, European Commercial Internet Exchange Leipzig, Planned, Ethernet, Commercial, 0, http://www.lei.ecix.de/index.shtml, http://www.lei.ecix.de/members.shtml, , 0, 0, 0
+90, Europe, Germany, Munich, Munich Commercial Internet Exchange, Defunct, , , 0, , , , 0, 0, 0
+91, Europe, Germany, Münster, Nederlands-Duitse Internet Exchange, Planned, Ethernet, , 0, http://www.ndix.net, , , 0, 0, 0
+93, Africa, Ghana, Accra, Ghana Internet Exchange, Active, Ethernet, Association, 20051018, http://www.gixa.org.gh, http://www.gixa.org.gh/?page_id=12, , 17, 440000, 0
+94, Europe, Greece, Athens, Greek Internet Exchange, Active, Ethernet, Association, 20000000, http://www.gr-ix.gr/, http://www.gr-ix.gr/members/, , 25, 40000000, 0
+1297, Latin America, Grenada, St. Georges, Grenada Internet Exchange, Active, Ethernet, Association, 20110512, http://ixgd.wordpress.com, http://ixgd.wordpress.com/membership/, , 6, 3000, 90
+982, Latin America, Haiti, Port au Prince, AHTIC Internet Exchange Point, Active, Ethernet, Association, 20090505, http://ixp.ht/, , , 9, 2116947, 48
+1903, Latin America, Honduras, Tegucigalpa, IXP-HN Puntos de Intercambio de Tráfico  Honduras, Active, , Governmental, 0, http://www.ixp.hn, http://www.ixp.hn/?p=20, , 0, 0, 18
+99, Europe, Hungary, Budapest, Budapest Internet Exchange, Active, Ethernet, Association, 19960000, http://www.bix.hu/, http://www.bix.hu/?lang=en&page=members, http://www.bix.hu/lg/lg.cgi, 52, 181400000, 0
+100, Europe, Iceland, Reykjavik, Reykjavik Internet Exchange, Active, , Association, 19990000, http://www.rix.is, http://www.rix.is/connected.html, , 24, 11502252, 0
+1022, Asia-Pacific, India, Ahmedabad, National Internet Exchange of India, Active, Ethernet, Association, 20080000, http://nixi.in/index.php?option=com_noclocation&task=click&id=58&Itemid=28, http://nixi.in/index.php?option=com_noclocation&task=click&id=58&Itemid=28, http://www.nixi.in/lookingglass.php, 3, 8000, 0
+1020, Asia-Pacific, India, Bangalore, National Internet Exchange of India, Active, Ethernet, Association, 20080000, http://nixi.in/index.php?option=com_noclocation&task=click&id=60&Itemid=28, http://nixi.in/index.php?option=com_noclocation&task=click&id=60&Itemid=28, http://www.nixi.in/lookingglass.php, 8, 3600, 0
+105, Asia-Pacific, India, Chennai, National Internet Exchange of India, Active, Ethernet, Governmental, 20030719, http://nixi.in/en/noc-locations/55?view=noclocation, http://nixi.in/en/member-list, http://www.nixi.in/lookingglass.php, 41, 3545906, 0
+1021, Asia-Pacific, India, Hyderabad, National Internet Exchange of India, Active, Ethernet, Association, 20080000, http://nixi.in/index.php?option=com_noclocation&task=click&id=59&Itemid=28, http://nixi.in/index.php?option=com_noclocation&task=click&id=59&Itemid=28, http://www.nixi.in/lookingglass.php, 6, 2097, 0
+106, Asia-Pacific, India, Kolkata, National Internet Exchange of India, Active, Ethernet, Association, 20030719, http://nixi.in/index.php?option=com_noclocation&task=click&id=53&Itemid=28, http://nixi.in/index.php?option=com_noclocation&task=click&id=53&Itemid=28, http://www.nixi.in/lookingglass.php, 10, 7556, 0
+1842, Asia-Pacific, India, Mumbai, Mumbai Convergence Hub, Active, Ethernet, Association, 20140815, www.mumbaich.com, https://mumbaich.com/connectednetworks, www.mumbaich.com/lg, 53, 0, 4002
+103, Asia-Pacific, India, Mumbai, National Internet Exchange of India, Active, Ethernet, Association, 20030719, http://nixi.in/en/, http://nixi.in/en/member-list, http://www.nixi.in/lookingglass.php, 50, 5368709, 0
+104, Asia-Pacific, India, New Delhi, National Internet Exchange of India, Active, Ethernet, Association, 20030719, http://nixi.in/index.php?option=com_noclocation&task=click&id=52&Itemid=28, http://nixi.in/index.php?option=com_noclocation&task=click&id=52&Itemid=28, http://www.nixi.in/lookingglass.php, 24, 1176081, 0
+1024, Asia-Pacific, India, Lucknow, National Internet Exchange of India, Planned, Ethernet, Association, 0, http://nixi.in/index.php?option=com_noclocation&task=click&id=57&Itemid=28, http://nixi.in/index.php?option=com_noclocation&task=click&id=57&Itemid=28, , 0, 0, 0
+1023, Asia-Pacific, India, Mohali, National Internet Exchange of India, Planned, Ethernet, Association, 0, http://nixi.in/index.php?option=com_noclocation&task=click&id=56&Itemid=28, http://nixi.in/index.php?option=com_noclocation&task=click&id=56&Itemid=28, , 0, 0, 0
+101, Asia-Pacific, India, Mumbai, Enron India Exchange, Defunct, , , 0, , , , 0, 0, 0
+102, Asia-Pacific, India, New Delhi, India Internet Exchange, Unknown, , Unknown, 0, http://www.in-ix.net/, , , 0, 0, 0
+907, Asia-Pacific, Indonesia, Jakarta, Biznet Internet Exchange, Active, Ethernet, Commercial, 20060000, http://www.biznetnetworks.com/En/?menu=Bix, http://www.biznetnetworks.com/En/?menu=Bix, , 18, 3000000, 0
+110, Asia-Pacific, Indonesia, Jakarta, Indonesian Internet Exchange, Active, Layer-3, Association, 19970800, http://www.iix.net.id, , http://www.iix.net.id/?do=lg, 99, 3400000, 31888
+1263, Asia-Pacific, Indonesia, Jakarta, Matrix Cable System Internet Exchange, Active, Ethernet, Commercial, 20110000, http://www.nap.net.id/internet_exchange.html, , , 70, 10000000, 124121
+1546, Asia-Pacific, Indonesia, Jakarta, NEX Internet Exchange, Active, Ethernet, Commercial, 20100000, http://www.nexdatacenter.com, , , 22, 990000, 0
+1550, Asia-Pacific, Indonesia, Jakarta, OpenIXP Internet exchange Point, Active, Ethernet, Commercial, 20050000, http://www.openixp.net/, , http://lg.mohonmaaf.com/index.cgi, 673, 241000000, 19
+1549, Asia-Pacific, Indonesia, Surabaya, IIX Jawa Timur, Active, Ethernet, Association, 20080000, http://www2.jatim.apjii.or.id/, , , 11, 0, 0
+114, Asia-Pacific, Indonesia, Surabaya, Indonesian Internet Exchange, Active, , Association, 20031000, http://www.iix.net.id, , http://www.iix.net.id/?do=lg, 0, 0, 0
+113, Asia-Pacific, Indonesia, , , Defunct, , Unknown, 20040300, http://www.iix.net.id, , , 0, 0, 0
+107, Asia-Pacific, Indonesia, Bali, Bali Internet Exchange, Planned, , , 0, , , , 0, 0, 0
+108, Asia-Pacific, Indonesia, Bandung, NPXP, Planned, , , 0, , , , 0, 0, 0
+1548, Asia-Pacific, Indonesia, DKI Jakarta, PT. Cyberplus Media Pratama, Planned, , Unknown, 20130000, http://www.cyberplus.net.id/, , , 0, 0, 0
+109, Asia-Pacific, Indonesia, Jakarta, IndonesiaEP, Unknown, , , 0, , , , 0, 0, 0
+111, Asia-Pacific, Indonesia, Jakarta, Jakarta Internet Exchange, Planned, , , 0, , , , 0, 0, 0
+112, Asia-Pacific, Indonesia, Jakarta, NAPSINDO International Internet Exchange, Defunct, , Unknown, 0, http://www.naiix.net/, , , 0, 0, 0
+972, Asia-Pacific, Indonesia, Jakarta, PT. Cyberindo Aditama, Unknown, Ethernet, Unknown, 20080000, http://www.cbn.net.id, , , 0, 0, 0
+115, Asia-Pacific, Indonesia, Surabaya, NPXP, Planned, , , 0, , , , 0, 0, 0
+1902, Europe, Iran, Tehran, Tehran IX, Active, Ethernet, Governmental, 20160515, http://www.tehran-ix.ir, http://www.tehran-ix.ir/members, , 24, 9530000, 0
+1105, Europe, Ireland, Cork, Cork Neutral Internet Exchange, Active, Ethernet, Association, 20090717, http://www.cnix.ie, http://www.cnix.ie/members.html, , 14, 0, 0
+116, Europe, Ireland, Dublin, Internet Neutral Exchange Association Limited, Active, Ethernet, Association, 19960000, http://www.inex.ie, https://www.inex.ie/about/memberlist, , 106, 110000000, 159677
+1108, Europe, Ireland, Galway, eXchange West, Active, Ethernet, Association, 20090604, http://www.exwest.net, http://www.exwest.net, , 5, 0, 0
+117, Europe, Israel, Tel Aviv, Israeli Internet Exchange, Active, Layer-3, Association, 19960000, http://www.isoc.org.il/iix/index.html, http://www.isoc.org.il/iix/2x_list.html, http://www.isoc.org.il/iix/2x_looking_glass.html, 16, 10300000, 0
+506, Europe, Italy, Florence, Tuscany Internet Exchange, Active, Ethernet, Association, 20030000, https://www.tix.it/en/web/guest/home, http://www.e.toscana.it/e-toscana/it/elenco_isp.wp, , 31, 687140, 0
+118, Europe, Italy, Milan, Milan Internet Exchange, Active, Ethernet, Association, 20001100, http://www.mix-it.net/, http://www.mix-it.net/index.php?option=com_content&view=article&id=85&Itemid=84&lang=en, , 109, 326030000, 0
+1233, Europe, Italy, Milan, Milan Neutral Access Point, Active, Ethernet, University, 20080000, http://www.minap.it/, http://www.minap.it/members/, , 15, 0, 0
+1128, Europe, Italy, Padova, VSIX NAP del Nord Est, Active, Ethernet, University, 20090901, http://www.vsix.it, http://www.vsix.it/VSIX/VSIX_completo/Aderenti.html, , 32, 6900000, 0
+1890, Europe, Italy, Palermo, DE-CIX Sicily Hub, Active, Ethernet, Commercial, 0, , , , 0, 4100000, 0
+120, Europe, Italy, Rome, NaMeX - Nautilus Mediterranean Exchange Point, Active, Ethernet, Association, 19960000, http://www.namex.it, https://www.namex.it/members-traffic-statistics/, , 53, 27772000, 0
+121, Europe, Italy, Torino, Torino Piemonte Exchange Point, Active, Ethernet, Association, 20020000, http://www.top-ix.org, http://www.top-ix.org/en/members/, , 85, 57871000, 155020
+1132, Europe, Italy, Udine, Friuli Venezia Giulia Internet Exchange, Active, , Commercial, 20090000, http://www.fvg-ix.net/, http://www.fvg-ix.net/index.php?option=com_content&view=article&id=63&Itemid=67&lang=en, , 11, 0, 0
+119, Europe, Italy, Rome, CASPUR, Not an exchange, , , 0, , , , 0, 0, 0
+1814, Latin America, Jamaica, Kingston, Jamaica Internet Exchange Point, Active, Ethernet, Governmental, 20140831, , , , 0, 0, 1372
+141, Asia-Pacific, Japan, Fukuoka, BBIX Fukuoka, Active, Ethernet, Commercial, 20041000, http://www.bbix.net/en/service/ix/, , , 0, 0, 0
+139, Asia-Pacific, Japan, Nagoya, BBIX Nagoya, Active, Ethernet, Commercial, 20050500, http://www.bbix.net/en/service/ix/, , , 0, 0, 0
+123, Asia-Pacific, Japan, Nagoya, JPIX Nagoya, Active, Ethernet, Commercial, 20010400, http://www.jpix.ad.jp/en/, http://www.jpix.ad.jp/en/user/user.html, , 11, 412870000, 0
+1857, Asia-Pacific, Japan, Niigata, Echigo-IX, Active, Ethernet, Association, 20110900, http://www.echigo-ix.jp, http://www.echigo-ix.jp/list.html, , 5, 0, 0
+138, Asia-Pacific, Japan, Osaka, BBIX Osaka, Active, Ethernet, Commercial, 20030900, http://www.bbix.net/en/service/ix/, , , 0, 0, 0
+125, Asia-Pacific, Japan, Osaka, JPIX Osaka, Active, Ethernet, Commercial, 20020400, http://www.jpix.ad.jp/en/, http://www.jpix.ad.jp/en/user/user.html, , 11, 0, 0
+126, Asia-Pacific, Japan, Osaka, JPNAP Osaka, Active, Ethernet, Commercial, 20020002, http://www.mfeed.co.jp/english/jpnap-osaka/index.html, http://www.mfeed.co.jp/english/jpnap-osaka/customer.html, , 37, 108510000, 0
+128, Asia-Pacific, Japan, Osaka, NSPIXP-3, Active, Ethernet, University, 19970300, http://nspixp.wide.ad.jp/3/, , , 23, 72000000, 0
+137, Asia-Pacific, Japan, Tokyo, BBIX Tokyo, Active, Ethernet, Commercial, 20030700, http://www.bbix.net/en/service/ix/, , , 0, 0, 0
+142, Asia-Pacific, Japan, Tokyo, Equinix IBX Tokyo, Active, , Commercial, 20010529, http://www.equinix.nl/insight-center/videos/tour-ibx-by-market/tokyo-ibx/, , , 0, 0, 0
+129, Asia-Pacific, Japan, Tokyo, Japan Internet Exchange, Active, Ethernet, Commercial, 19970700, http://www.jpix.ad.jp, http://www.jpix.ad.jp/en/user/user.html, , 135, 412870000, 73585
+124, Asia-Pacific, Japan, Tokyo, JPIX Nihonbashi, Active, Ethernet, Commercial, 20040400, http://www.jpix.ad.jp/en/, http://www.jpix.ad.jp/en/user/user.html, , 0, 0, 0
+130, Asia-Pacific, Japan, Tokyo, JPNAP Tokyo I - Otemachi, Active, Ethernet, Commercial, 20010000, http://www.jpnap.net/english/jpnap-tokyo-i/index.html, http://www.jpnap.net/english/jpnap-tokyo-i/customer.html, , 101, 505470000, 0
+894, Asia-Pacific, Japan, Tokyo, JPNAP Tokyo II - Ikebukuro, Active, Ethernet, Commercial, 20080401, http://www.jpnap.net/english/jpnap-tokyo-ii/index.html, http://www.jpnap.net/english/jpnap-tokyo-ii/customer.html, , 4, 31000000, 0
+134, Asia-Pacific, Japan, Tokyo, Network Service Provider IXP (Distributed IX in Edo), Active, Ethernet, Association, 19961000, http://nspixp.wide.ad.jp/2/, , , 85, 23000000, 5488
+135, Asia-Pacific, Japan, Tokyo, Network Service Provider IXP-6, Active, Ethernet, Association, 19990800, http://www.wide.ad.jp/nspixp6/, http://member.wide.ad.jp/nspixp6/peering-status.html, , 51, 100000, 0
+656, Asia-Pacific, Japan, Akita, Akita Regional IX, Unknown, , Unknown, 0, http://www.jetro.go.jp/en/invest/region/akita/#p2, , , 0, 0, 0
+122, Asia-Pacific, Japan, Kyoto, Kyoto Municipal Exchange, Unknown, Ethernet, , 0, , , , 0, 0, 0
+1834, Asia-Pacific, Japan, Okinawa, BBIX Okinawa, Defunct, Ethernet, Commercial, 20060900, http://www.bbix.net/en/service/ix/, , , 0, 0, 0
+127, Asia-Pacific, Japan, Osaka, NSPIXP-2, Deprecated, Ethernet, Unknown, 19970300, , , , 0, 0, 0
+140, Asia-Pacific, Japan, Sendai, BBIX Sendai, Defunct, Ethernet, Commercial, 20040800, http://www.bbix.net/en/service/ix/, , , 0, 0, 0
+132, Asia-Pacific, Japan, Tokyo, Media Exchange Co., Not an exchange, , Unknown, 0, http://www.mex.ad.jp/, , , 0, 0, 0
+133, Asia-Pacific, Japan, Tokyo, Network Service Provider IXP, Defunct, Ethernet, , 19940400, , , , 0, 0, 0
+136, Asia-Pacific, Japan, Tokyo, Pihana Tokyo, Not an exchange, , , 0, , , , 0, 0, 0
+1858, Asia-Pacific, Japan, Tokyo, Tokyo Lambda Exchange, Unknown, Ethernet, University, 20040300, http://www.t-lex.net, , , 0, 0, 0
+923, Europe, Kazakhstan, Almaty, Kazakhstan Internet Exchange (Kaz-IX), Almaty, Unknown, Ethernet, Unknown, 0, http://www.kaz-ix.kz/web/, http://www.kaz-ix.kz/web/parter.php, , 3, 0, 0
+1924, Africa, Kenya, Mombasa, Mombasa Internet Exchange Point, Active, Ethernet, Association, 20160601, , , , 3, 0, 0
+143, Africa, Kenya, Nairobi, Kenya Internet Exchange Point, Active, Ethernet, Association, 20010200, http://www.kixp.or.ke, http://www.kixp.or.ke/index.php?option=com_content&task=view&id=41&Itemid=23, , 30, 1330000, 4930
+1207, Africa, Kenya, Mombasa, AMS-IX East Africa, Defunct, Ethernet, Association, 20100800, https://eastafrica.ams-ix.net, https://eastafrica.ams-ix.net/connected_parties, , 3, 845679, 0
+144, Asia-Pacific, Korea, Seoul, 6NGIX, Active, Ethernet, Governmental, 20010800, http://vsix.net/eng/, http://vsix.net/eng/, , 27, 0, 0
+147, Asia-Pacific, Korea, Seoul, Korea Internet Neutral Exchange KINX, Active, Ethernet, Association, 19990600, https://global.kinx.net/, http://ix.kinx.net/eng/service/reference.asp, , 46, 210000000, 40327
+145, Asia-Pacific, Korea, Seoul, LGDACOM Internet Exchange, Active, Ethernet, Commercial, 19961000, , , , 52, 70000000, 0
+146, Asia-Pacific, Korea, Seoul, Korea Internet Data Center, Unknown, , Unknown, 19991000, http://www.kidc.net/eng/, , , 200, 300000000, 0
+148, Asia-Pacific, Korea, Seoul, Korea Internet Exchange KIX, Unknown, Ethernet, Unknown, 19961000, http://www.kix.ne.kr, , , 15, 6000000, 0
+149, Asia-Pacific, Korea, Seoul, Korea Telecom Internet Exchange, Not an exchange, Layer-3, , 19961000, http://www.kix.net, , , 45, 65000000, 0
+150, Asia-Pacific, Korea, Seoul, Pihana Seoul, Not an exchange, , , 0, , , , 0, 0, 0
+1702, Europe, Kosovo, Prishtinë, KOSIX Internet Exchange Point, Active, Ethernet, Governmental, 20110623, http://www.kosix.net, http://www.kosix.net/en-us/members/listofmembers.aspx, , 4, 60000, 0
+1283, Asia-Pacific, Laos, Vientiane, Lao National Internet Center, Active, Ethernet, Governmental, 20100901, http://www.lanic.la, , , 7, 1000, 0
+1236, Europe, Latvia, Riga, Santa Monica Internet Local Exchange, Active, Ethernet, Commercial, 20051011, http://www.smile-ixp.net/, , http://lg.smile.smn.lv/cgi-bin/lg/lg.cgi, 29, 8900000, 327
+151, Europe, Latvia, Riga, Latvian Internet Exchange, Not an exchange, Layer-3, Commercial, 20070600, http://www.lix.lv, http://www.lix.lv/site/members, http://lg.lix.lv/lg.cgi, 18, 0, 0
+693, Europe, Lebanon, Beirut, Beirut Internet Exchange, Active, Ethernet, Association, 20071206, http://www.beirutix.net, , , 5, 63400, 74
+1925, Africa, Lesotho, Maseru, Lesotho Internet Exchange Point, Active, , Association, 0, , , , 0, 0, 0
+1303, Africa, Lesotho, Maseru, Lesotho Internet Exchange, , Ethernet, University, 0, , , , 0, 0, 0
+1897, Africa, Liberia, Monrovia, Liberia Internet Exchange Point, Active, Ethernet, Association, 20150804, , , , 6, 2000, 108
+1859, Europe, Liechtenstein, Eschen, Rheintal Internet Exchange, Active, Ethernet, Association, 20111027, http://www.rheintal-ix.net, http://www.rheintal-ix.net/rheintal_ix/participants/, , 12, 109070, 0
+1576, Europe, Lithuania, Vilnius, Lithuania Internet Exchange, Active, Ethernet, Commercial, 20100000, http://www.litix.lt, , , 5, 2970000, 0
+926, Europe, Lithuania, Vilnius, Lithuanian Internet service providers exchange unit, Active, Ethernet, Governmental, 20080000, http://is.lt/, , , 24, 0, 0
+1234, Europe, Luxembourg, Luxembourg, Luxembourg Commercial Internet Exchange, Active, Ethernet, Commercial, 20100000, http://www.lu-cix.lu/, http://www.lu-cix.lu/members-list.html, , 71, 32000000, 0
+152, Europe, Luxembourg, Luxembourg, Luxembourg Internet Exchange, Defunct, Ethernet, Unknown, 19980000, http://www.lix.lu/, http://www.restena.lu/restena/en/EN-LIXMembersNet.html, , 12, 159550, 0
+1881, Africa, Madagascar, Antananarivo, Madagascar Global Internet Exchange, Active, Ethernet, Association, 20160316, http://www.mgix.mg, http://wiki.mgix.mg/display/PUB/Peers, http://lg.mgix.mg, 6, 16000, 454
+1029, Africa, Malawi, Blantyre, Malawi IXP, Active, Ethernet, Association, 20081201, http://www.mispa.org.mw/mix.html, http://www.mispa.org.mw/members.html, , 36, 10000, 168
+601, Asia-Pacific, Malaysia, Kuala Lumpur, Malaysia Internet Exchange, Active, Ethernet, Governmental, 20061215, http://www.myix.gov.my/, http://www.myix.gov.my/peering-status.html, , 23, 838000, 0
+153, Asia-Pacific, Malaysia, Kuala Lumpur, Asia Regional Internet Exchange NAP, Not an exchange, , , 0, http://www.arix-nap.net/, , , 0, 0, 0
+154, Asia-Pacific, Malaysia, Kuala Lumpur, Kuala Lumpur Internet Exchange, Not an exchange, Layer-3, , 0, , , , 0, 0, 0
+155, Europe, Malta, Msida, Malta Internet Exchange, Active, Ethernet, University, 19990907, http://www.mix.net.mt, http://www.mix.net.mt/participants.html, , 12, 0, 0
+1899, Latin America, Martinique, Schoelcher, Martinix, Unknown, , Unknown, 20150101, https://www.renater.fr/martinix?lang=fr, https://www.renater.fr/isp-raccordes-sur-le-martinix, , 0, 292900, 0
+1888, Africa, Mauritania, Nouakchott, Mauritania IX, Planned, Ethernet, Unknown, 0, , , , 0, 0, 0
+1904, Africa, Mauritania, Nouakchott, RIMIX, Planned, Ethernet, Governmental, 20151202, , , , 0, 0, 0
+156, Africa, Mauritius, Ebene, Mauritius Internet Exchange, Active, Ethernet, Association, 20051200, http://www.mixp.org/index.html, http://www.mixp.org/index.html#members, , 10, 30000, 197
+1844, North America, Mexico, Mexico DF, Mexico IXP, Active, Ethernet, Association, 20140430, http://ixp.mx, http://www.ixp.mx/informacion_gral/socios.html, , 10, 1000000, 89
+1237, Europe, Moldova, Chisinau, Moldova Internet Exchange, Not an exchange, Layer-3, Commercial, 0, http://www.moldtelecom.md/en/operators/exchange/, http://www.moldtelecom.md/common/PDF/PDF_content/Operatori/Internet_Exchange_lista_ro.pdf, , 0, 0, 0
+157, Asia-Pacific, Mongolia, Ulan Bator, Mongolia Internet Exchange, Active, Ethernet, Association, 20010500, http://www.infocon.mn/info/node/95, , , 6, 0, 0
+1587, Asia-Pacific, Mongolia, Ulaanbaatar, Mangolian Internet Exchange and Mangolian National Data Center, Planned, Ethernet, Unknown, 0, http://www.datacenter.gov.mn/, , , 0, 0, 0
+1917, Africa, Morocco, Casablanca, cas-ix, Unknown, , Unknown, 0, , , , 0, 0, 0
+158, Africa, Mozambique, Maputo, Mozambique Internet Exchange, Active, Ethernet, University, 20020700, http://www.mozix.org.mz, http://www.mozix.org.mz/membros.htm, , 17, 482418, 0
+1784, Africa, Namibia, Windhoek, Windhoek IXP, Active, Ethernet, Association, 20140307, http://www.ixp.org.na, , , 5, 50000, 99
+159, Asia-Pacific, Nepal, Kathmandu, Nepal Internet Exchange, Active, Ethernet, Association, 20020800, http://www.npix.net.np/, http://www.npix.net.np/members, , 31, 703560, 406
+160, Europe, Netherlands, Amsterdam, Amsterdam Internet Exchange, Active, Ethernet, Association, 19971229, http://www.ams-ix.net, http://www.ams-ix.net/connected/, , 783, 7694800000, 959824
+572, Europe, Netherlands, Amsterdam, Neutral Internet Exchange, Active, Ethernet, Association, 20020301, http://www.nl-ix.net, https://www.nl-ix.net/members/full-memberlist/, , 547, 1200000000, 98948
+162, Europe, Netherlands, Enschede, Nederlands-Duitse Internet Exchange, Active, Ethernet, Commercial, 20010400, http://www.ndix.net, , , 21, 50000, 0
+163, Europe, Netherlands, Groningen, Groningen-IX, Active, Ethernet, Association, 20010000, http://www.gn-ix.net/, http://www.gn-ix.net/content/customerlist, , 51, 0, 0
+508, Europe, Netherlands, Leeuwarden, Friese Internet Exchange, Active, , Association, 20060126, http://www.fr-ix.nl/, http://www.fr-ix.nl/index.php?option=com_content&view=article&id=121&Itemid=107, , 38, 1460000, 0
+803, Europe, Netherlands, Rotterdam, Rotterdam Internet eXchange, Active, Ethernet, Association, 20070000, http://www.r-ix.nl/, http://www.r-ix.nl/content/customerlist, , 63, 0, 0
+161, Europe, Netherlands, Amsterdam, XchangePoint Amsterdam IPP, Unknown, Ethernet, , 0, , , , 0, 0, 0
+599, Europe, Netherlands, Den Haag, Den Haag Internet Exchange, Defunct, Ethernet, Unknown, 19970000, , , , 2, 0, 0
+1880, Asia-Pacific, New Zealand, Auckland, Auckland Internet Exchange, Active, Ethernet, Association, 0, http://akl-ix.nz, , , 0, 0, 0
+164, Asia-Pacific, New Zealand, Auckland, Auckland Peering Exchange, Active, Ethernet, Commercial, 19990810, http://ape.nzix.net/, http://ape.nzix.net/peers.html, http://nzix.net/cgi-bin/lg.cgi?router=rs1.ape.net.nz, 92, 17080000, 21238
+1879, Asia-Pacific, New Zealand, Auckland, MegaPort-IX Auckland, Active, Ethernet, Commercial, 20141120, https://www.megaport.com, , https://lg.megaport.com/, 4, 0, 0
+165, Asia-Pacific, New Zealand, Christchurch, Christchurch Internet Exchange, Active, Ethernet, Commercial, 20070000, http://chix.nzix.net/, http://chix.nzix.net/peers.html, http://nzix.net/cgi-bin/lg.cgi?router=rs1.chix.nzix.net, 12, 0, 2598
+1264, Asia-Pacific, New Zealand, Hamilton, Hamilton Internet Exchange, Active, Ethernet, Municipal, 20100000, http://hix.nzix.net/, http://hix.nzix.net/peers.html, http://nzix.net/cgi-bin/lg.cgi, 2, 0, 0
+168, Asia-Pacific, New Zealand, Palmerston North, Palmerston North Internet Exchange, Active, Ethernet, Commercial, 20041130, http://pnix.nzix.net/, http://pnix.nzix.net/peers.html, http://nzix.net/cgi-bin/lg.cgi?router=rs1.pnix.nzix.net, 4, 0, 10
+171, Asia-Pacific, New Zealand, Wellington, Wellington Internet Exchange, Active, Ethernet, Commercial, 19961200, http://wix.nzix.net/, http://wix.nzix.net/peers.html, http://nzix.net/cgi-bin/lg.cgi?router=rs1.wix.net.nz, 90, 540000, 6325
+166, Asia-Pacific, New Zealand, Dunedin, Dunedin Peering Exchange, Defunct, Ethernet, Unknown, 20050000, http://dpe.nzix.net/, http://dpe.nzix.net/peers.html, , 3, 0, 0
+167, Asia-Pacific, New Zealand, Invercargill, Southland Internet Exchange, Planned, Ethernet, , 0, http://six.nzix.net/, , , 0, 0, 0
+170, Asia-Pacific, New Zealand, Upper Hutt/Lower Hutt/Porirua, Three Cities Internet Exchange, Defunct, Ethernet, Unknown, 20050600, http://3cix.nzix.net/, http://3cix.nzix.net/peers.html, , 4, 0, 0
+169, Asia-Pacific, New Zealand, Waikato, New Zealand Internet Exchange (Defunct), Defunct, , , 0, http://www.waikato.ac.nz/NZIX/, , , 0, 0, 0
+172, Latin America, Nicaragua, Managua, Nicaraguan Internet Exchange, Active, Ethernet, Association, 20040400, http://www.ain.org.ni/index.php/nicix, http://www.ain.org.ni/index.php/nicix#Miembros, , 10, 165516, 0
+1921, Africa, Niger, Niamey, , Unknown, Ethernet, University, 0, , , , 0, 0, 0
+1884, Africa, Nigeria, Abuja, IXPN - Abuja, Active, Ethernet, Association, 20110728, http://www.ixpn.net.ng, http://ixp.net.ng/abuja-member-list/, , 4, 0, 0
+616, Africa, Nigeria, Lagos, IXPN - Lagos, Active, Ethernet, Association, 20070500, http://www.ixp.net.ng/, http://ixp.net.ng/member-list/, http://lg.ixp.net.ng/lg/, 30, 1600000, 1809
+173, Africa, Nigeria, Ibadan, Ibadan Internet Exchange, Defunct, Ethernet, Association, 20020300, http://www.ib-ix.net, , , 2, 0, 0
+1886, Africa, Nigeria, Kano, IXPN - Kano, Planned, Ethernet, Association, 0, http://ixp.net.ng, , , 0, 0, 0
+1885, Africa, Nigeria, Port Harcourt, IXPN - Port Harcourt, Defunct, Ethernet, Association, 20120517, http://ixp.net.ng, , , 2, 0, 0
+1507, Europe, Norway, Bergen, Bergen Internet Exchange, Active, Ethernet, University, 20040000, http://www.nix.no/, http://www.uio.no/tjenester/it/nett/fastnett/nix/nix-ops.html, , 12, 178403, 0
+767, Europe, Norway, Oslo, Free Internet eXchange Oslo, Active, Ethernet, Association, 20080116, http://www.fixo.no, http://www.fixo.no/members, , 55, 0, 0
+174, Europe, Norway, Oslo, Norwegian Internet Exchange Oslo 1, Active, Ethernet, University, 19930300, http://www.nix.no/, http://www.uio.no/nix/nix-ops.html, , 61, 55600096, 0
+1506, Europe, Norway, Oslo, Norwegian Internet Exchange Oslo 2, Active, Ethernet, University, 20000500, http://www.nix.no/, http://www.uio.no/tjenester/it/nett/fastnett/nix/nix-ops.html, , 61, 8996474, 0
+1508, Europe, Norway, Trondheim, Trondheim Internet Exchange, Active, Ethernet, University, 20050000, http://www.nix.no/, http://www.uio.no/tjenester/it/nett/fastnett/nix/nix-ops.html, , 12, 698102, 0
+1511, Europe, Norway, Stavanger, Stavanger Internet exchange, Unknown, , University, 20070000, http://www.nix.no/, http://www.uio.no/tjenester/it/nett/fastnett/nix/nix-ops.html, , 0, 0, 0
+1512, Europe, Norway, Tromsø, Tromsø Internet exchange, Unknown, Ethernet, University, 20070000, http://www.nix.no/, http://www.uio.no/tjenester/it/nett/fastnett/nix/nix-ops.html, , 0, 0, 0
+1285, Asia-Pacific, Pakistan, Karachi, Zero Point Internet Exchange, Active, Ethernet, Association, 20110110, http://zpix.pk, , , 4, 3600, 0
+1544, Asia-Pacific, Pakistan, , Pakistan Internet Exchange, Planned, , Unknown, 20000000, , , , 0, 0, 0
+1575, Asia-Pacific, Pakistan, , Transworld Internet Exchange, Planned, , Association, 0, http://www.saifgroup.com/transworld.php, , , 0, 0, 0
+175, Asia-Pacific, Pakistan, Karachi, Pakistan Network Access Point, Defunct, , Governmental, 0, , , , 0, 0, 0
+1783, Europe, Palestine, Ramallah, Palestinian Internet Exchange, Active, Layer-3, Association, 20120604, http://pix.ps, http://pix.ps/index.php?option=com_content&view=article&id=54&Itemid=53, , 9, 27300, 436
+176, Latin America, Panama, Panama City, Intered Panamá, Active, Ethernet, Governmental, 19960000, , , , 10, 34700, 0
+1112, Latin America, Panama, , NAP Panamericano S.A., Unknown, Ethernet, Unknown, 0, , , , 0, 0, 0
+178, Latin America, Panama, , Secretaria Nacional de Ciencia, Tecnologia e Innovacion, Unknown, , , 0, http://www.senacyt.gob.pa/, , , 0, 0, 0
+177, Latin America, Panama, Panama City, NAP Panamericano S.A., Defunct, , , 0, http://www.sunglobefiber.com/panamnap.htm, , , 0, 0, 0
+1898, Asia-Pacific, Papua New Guinea, Port Moresby, PNG-IXP, Active, , Association, 20150901, http://202.165.202.187/, http://202.165.202.187/index.php/2015/09/05/members/, , 5, 0, 0
+179, Latin America, Paraguay, Asuncion, CAPADI NAP-PY, Active, Ethernet, Association, 20000920, http://www.capadi.org.py, http://www.capadi.org.py/articulo.php?id=17, , 15, 40000, 0
+181, Latin America, Peru, Lima, NAP Perú, Active, , Association, 20010514, http://www.nap.pe, , , 14, 0, 0
+1683, Latin America, Peru, Lima, NAP Inca, Not an exchange, Ethernet, Commercial, 20110000, , , , 5, 0, 0
+180, Latin America, Peru, Lima, NAP Lima, Defunct, Ethernet, Commercial, 0, , , , 0, 0, 0
+539, Asia-Pacific, Philippines, Manila, Philippine Open Internet Exchange, Active, Ethernet, Association, 20070000, http://www.phopenix.net/, http://www.phopenix.net/members, , 27, 24570000, 5622
+182, Asia-Pacific, Philippines, Manila, Common Routing Exchange, Defunct, Ethernet, Association, 19930000, http://www.ph.net/CORE/, http://www.ph.net/CORE/CORE-mem.html, , 6, 0, 0
+183, Asia-Pacific, Philippines, Manila, Manila Internet Exchange, Not an exchange, Layer-3, Commercial, 0, http://www.easterntelecom.com.ph/Products/index.asp?ID=39&MCID=3, , , 14, 0, 0
+184, Asia-Pacific, Philippines, Manila, Philippines Internet Exchange, Not an exchange, Layer-3, Unknown, 19970100, http://www.phix.net.ph, http://www.phix.net.ph/phix/network.html#isp, , 8, 0, 0
+880, Europe, Poland, Katowice, Tysiaclecie Internet Exchange, Active, Ethernet, Association, 20040400, http://www.ix.1000lecie.pl/, http://www.ix.1000lecie.pl/uczestnicy.html, , 7, 0, 0
+723, Europe, Poland, Kraków, Krakowski Traffic Exchange Point, Active, , Association, 20091100, http://www.ix.krakow.pl, http://www.ix.krakow.pl/?str=uczestnicy, , 52, 0, 0
+1238, Europe, Poland, Lodz, Lodz Internet Exchange, Active, Ethernet, Commercial, 20090000, http://www.lix.net.pl/, http://www.lix.net.pl/uczestnicy/, http://www.lix.net.pl/lg, 17, 10200000, 0
+917, Europe, Poland, Poznan, Poznan Internet Exchange, Active, Ethernet, Association, 20060310, http://www.pix.net.pl/, http://www.pix.net.pl/uczestnicy.html, , 82, 17420000, 0
+1645, Europe, Poland, Warsaw, Krajowa Izba Komunikacji Ethernetowej, Active, Ethernet, Association, 20090000, http://www.kike.pl/en/, http://tanie-lacze.pl/uczestnicy/, , 11, 0, 0
+509, Europe, Poland, Warsaw, Polish Internet Exchange, Active, Ethernet, Commercial, 20060402, http://www.plix.pl/, http://www.plix.pl/pl/member, http://www.plix.pl/en/network/looking_glass, 278, 514030000, 221604
+918, Europe, Poland, Warsaw, Thinx Poland, Active, Ethernet, Commercial, 20060000, http://www.thinx.pl/, http://en.thinx.pl/internet_exchange/members, http://lg.atman.pl/, 165, 65440000, 0
+1636, Europe, Poland, Warsaw, TPIX - Internet Exchange, Active, Ethernet, Commercial, 20101100, http://www.tpix.pl/, http://www.tpix.pl/uczestnicy.html, http://lg.tpix.pl, 131, 147450000, 0
+185, Europe, Poland, Warsaw, Warsaw Internet Exchange, Active, Ethernet, Association, 19960000, http://www.wix.aster.pl/vxb/w/, http://www.wix.aster.pl/vxb/w/index.asp?sid=e1130c4dbcc8bf8b213df928bdc8926c&klienci_x=klienci, , 42, 4860000, 0
+725, Europe, Poland, Wroclaw, Wroclaw Internet eXchange, Active, Ethernet, Association, 20010200, http://wrix.org, http://wrix.org/uczestnicy/, , 8, 0, 0
+1076, Europe, Poland, , Silesian Internet Exchange, Unknown, Ethernet, Unknown, 0, , , , 0, 0, 0
+186, Europe, Portugal, Lisbon, Gigabit Portugese Internet Exchange, Active, Ethernet, University, 19950000, http://www.fccn.pt/pt/servicos/conectividade-e-infraestrutura/gigapix/, http://www.fccn.pt/pt/servicos/conectividade-e-infraestrutura/gigapix/redes-ligadas/, , 22, 32190000, 0
+187, Europe, Portugal, Oporto, Gigabit Portugese Internet Exchange, Planned, Ethernet, , 0, http://www.fccn.pt/gigapix, , , 0, 0, 0
+583, North America, Puerto Rico, San Juan, Internet Exchange of Puerto Rico, Active, Ethernet, Association, 20060416, http://www.ix.pr/, http://www.ix.pr/members.php, , 2, 0, 0
+1920, Europe, Qatar, Doha, Qatar Internet Exchange Point, Active, Ethernet, Association, 20160604, http://ixp.qa, , , 4, 0, 0
+1385, Europe, Romania, Bucharest, Balcan-IX, Active, Ethernet, Commercial, 20080000, http://www.balcan-ix.net, http://www.balcan-ix.net/en/clienti_lista.php, http://www.balcan-ix.net/en/clienti_lg.php, 24, 37000000, 0
+804, Europe, Romania, Bucharest, InterLAN-IX, Active, Ethernet, Association, 20070000, http://www.interlan.ro/, http://www.interlan.ro/?t=5, http://lg.interlan.ro/summary/rs1/ipv4, 56, 26410000, 0
+189, Europe, Romania, Bucharest, Romanian National Internet Exchange, Active, Ethernet, Association, 20010907, http://www.ronix.ro/, http://www.ronix.ro/membri.php, http://www.ronix.ro/lgpublic/, 33, 31580000, 0
+188, Europe, Romania, Bucharest, Bucharest Internet Exchange, Defunct, Ethernet, Unknown, 19990000, http://www.buhix.ro/, http://www.buhix.ro/toc.htm, , 17, 0, 0
+513, Europe, Romania, Suceava, Suceava Internet Exchange, Defunct, Ethernet, Unknown, 0, http://www.svix.ro/default.html, , , 2, 120000, 0
+190, Europe, Russia, Ekaterinburg, MSK-IX Ekaterinburg, Active, Ethernet, Commercial, 20121201, http://www.msk-ix.ru/eng/,  http://www.ix.ru/eng/ekt/members/,  http://www.ix.ru/ekt/network/lookingglass.html, 40, 1899467000, 0
+1223, Europe, Russia, Kazan, MSK-IX Kazan, Active, Ethernet, Commercial, 20100500, http://www.msk-ix.ru/eng/,  http://www.ix.ru/eng/kzn/members/,  http://www.ix.ru/eng/kzn/lookingglass.html, 10, 1540000, 0
+1862, Europe, Russia, Khabarovsk, DataIX Khabarovsk, Active, Ethernet, Commercial, 20130000, http://www.dataix.ru/, http://www.dataix.ru/eng/members/, http://www.dataix.ru/eng/s/11/looking_glass.html, 237, 310000, 0
+1867, Europe, Russia, Krasnodar, Sea-IX Internet exchange, Active, Ethernet, Commercial, 20121008, http://sea-ix.ru, http://sea-ix.ru/participants.shtml, http://sea-ix.ru/lg.shtml, 39, 5370000, 0
+516, Europe, Russia, Krasnoyarsk, Krasnoyarsk Internet Exchange, Active, Ethernet, Association, 20060000, http://www.krs-ix.ru, http://www.krs-ix.ru/members/, , 50, 70370000, 0
+1270, Europe, Russia, Moscow, DataIX Moscow, Active, Ethernet, Commercial, 20101020, http://www.dataix.ru/, http://www.dataix.ru/eng/members/, http://www.dataix.ru/eng/s/11/looking_glass.html, 39, 990000000, 0
+191, Europe, Russia, Moscow, MSK-IX Moscow, Active, Ethernet, Commercial, 19951125, http://www.msk-ix.ru/eng/, http://www.msk-ix.ru/eng/members/,  http://www.msk-ix.ru/eng/lookingglass.html, 397, 1925830000, 0
+1861, Europe, Russia, Novosibirsk, DataIX Novosibirsk, Active, Ethernet, Commercial, 20120000, http://www.dataix.ru/, http://www.dataix.ru/eng/members/, http://www.dataix.ru/eng/s/11/looking_glass.html, 0, 8000000, 0
+192, Europe, Russia, Novosibirsk, MSK-IX Novosibirsk, Active, Ethernet, Commercial, 20040000, http://www.msk-ix.ru/eng/,  http://www.ix.ru/eng/nsk/members/,  http://www.ix.ru/eng/nsk/lookingglass.html, 48, 1899419000, 0
+1863, Europe, Russia, Omsk, Omsk Internet exchange, Active, Ethernet, Commercial, 20060000, http://www.omsk-ix.ru, http://www.omsk-ix.ru/members, http://www.omsk-ix.ru/looking-glass, 15, 22840000, 0
+1046, Europe, Russia, Rostov-on-Don, MSK-IX Rostov-on-Don, Active, Ethernet, Commercial, 20090000, http://www.msk-ix.ru/eng/,  http://www.ix.ru/eng/rnd/members/,  http://www.ix.ru/eng/rnd/lookingglass.html, 14, 3030000, 0
+193, Europe, Russia, Samara, MSK-IX Samara, Active, Ethernet, Commercial, 20090000, http://www.msk-ix.ru/eng/,  http://www.ix.ru/eng/smr/members/,  http://www.ix.ru/eng/smr/lookingglass.html, 19, 5130000, 0
+1383, Europe, Russia, Saratov, Saratov Internet Exchange, Active, Ethernet, Commercial, 20050000, http://saratov-ix.ru/, http://saratov-ix.ru/members/, , 12, 163000, 0
+1241, Europe, Russia, Simferopol, Crimea Internet Exchange, Active, Ethernet, Association, 20060220, http://crimea-ix.net/, http://crimea-ix.net/members.html, http://lg.crimea-ix.net/, 21, 30800000, 0
+1269, Europe, Russia, St. Petersburg, DataIX St Petersburg, Active, Ethernet, Commercial, 20101020, http://www.dataix.ru/, http://www.dataix.ru/eng/members/, http://www.dataix.ru/eng/s/11/looking_glass.html, 40, 410000000, 0
+195, Europe, Russia, St. Petersburg, MSK-IX St. Petersburg, Active, Ethernet, Commercial, 20090000, http://www.msk-ix.ru/eng/,  http://www.ix.ru/eng/spb/members/,  http://www.ix.ru/eng/spb/lookingglass.html, 84, 56786000, 0
+1864, Europe, Russia, St. Petersburg, Pirix, Active, Ethernet, Commercial, 20080000, http://www.pirix.ru/, http://www.pirix.ru/members/, , 50, 29380000, 0
+1384, Europe, Russia, Stavropol, MSK-IX Stavropol, Active, Ethernet, Commercial, 20090000, http://www.msk-ix.ru/eng/,  http://www.ix.ru/eng/stw/members/,  http://www.ix.ru/eng/stw/lookingglass.html, 8, 530000, 0
+1860, Europe, Russia, Ufa, DataIX Ufa, Active, Ethernet, Commercial, 20130000, http://www.dataix.ru, http://www.dataix.ru/eng/members/, http://www.dataix.ru/eng/s/11/looking_glass.html, 237, 78000000, 0
+1134, Europe, Russia, Ulyanovsk, Ulyanovsk Internet Exchange, Active, Ethernet, Association, 20090508, http://www.uln-ix.ru/, http://www.uln-ix.ru/partners/, http://lg.uln-ix.ru/, 17, 2650000, 0
+1044, Europe, Russia, Vladivostok, MSK-IX Vladivostok, Active, Ethernet, Commercial, 20080000, http://www.msk-ix.ru/eng/,  http://www.ix.ru/eng/vlv/members/,  http://www.ix.ru/eng/vlv/lookingglass.html, 13, 420000, 457
+534, Europe, Russia, Chelyabinsk, Chelyabinsk Peering Point, Unknown, Ethernet, Association, 0, http://chel-pp.net.ru, http://chel-pp.net.ru/en/peers/, , 12, 3000, 0
+194, Europe, Russia, St. Petersburg, North West Internet Exchange, Defunct, Ethernet, Unknown, 19980000, http://www.rusnet.ru/mpix, http://www.rusnet.ru/mpix/members.htm, , 5, 0, 0
+805, Europe, Russia, St. Petersburg, NW-IX, Unknown, , Unknown, 0, http://net.energo.ru/prer/, http://net.energo.ru/prer/ww9.html, , 0, 0, 0
+1135, Europe, Russia, Ulyanovsk, Simbirsk Internet Exchange, , Layer-3, Commercial, 0, http://simix.net.ru/, http://simix.net.ru/, , 0, 0, 0
+765, Africa, Rwanda, Kigali, Rwanda Internet exchange, Active, , Commercial, 20030000, http://www.rinex.org.rw, http://www.rinex.org.rw/member.html, , 14, 1448859, 983
+1782, Latin America, Saint Lucia, Castries, Saint Lucia IXP, Active, Ethernet, Governmental, 20140600, , , , 0, 0, 89
+1064, Europe, Saudi Arabia, Riyadh, Internet Exchange of Saudi Arabia, Active, Ethernet, Governmental, 20090100, http://www.ix.net.sa/, , , 4, 0, 0
+196, Europe, Saudi Arabia, Riyadh, Saudi Telecommunications Company Internet NOC, Not an exchange, Layer-3, Commercial, 0, , , , 0, 0, 0
+197, Europe, Saudi Arabia, Riyadh, The Internet Services Unit, Not an exchange, , , 19980000, http://www.isu.net.sa/, , , 0, 0, 0
+1350, Europe, Serbia, Belgrade, Serbian Open Exchange, Active, Ethernet, Association, 20100900, http://sox.rs, http://sox.rs/?id=News&lang=en, , 21, 100000000, 0
+1843, Africa, Seychelles, Victoria, Seychelles Internet Exchange Point, Planned, Ethernet, Unknown, 20150205, , , , 0, 0, 0
+1835, Asia-Pacific, Singapore, Singapore, BBIX Singapore, Active, Ethernet, Commercial, 20141001, www.bbix.net, , , 0, 0, 0
+464, Asia-Pacific, Singapore, Singapore, Equinix Singapore IBX, Active, Ethernet, Commercial, 20040426, http://www.equinix.sg/, , , 74, 650000000, 427415
+1915, Asia-Pacific, Singapore, Singapore, MegaPort-IX Singapore, Active, Ethernet, Commercial, 0, https://www.megaport.com, https://www.megaport.com/services/ix-connected-networks, https://lg.megaport.com/, 0, 0, 0
+1272, Asia-Pacific, Singapore, Singapore, Singapore Internet Exchange, Active, Ethernet, Association, 20100607, http://www.sgix.sg/, http://www.sgix.sg/peering-members/, http://services.sgix.sg/mrlg/lg.php, 67, 71390235, 63088
+202, Asia-Pacific, Singapore, Singapore, Singapore Open Exchange, Active, Ethernet, University, 20010800, http://www.sox.net.sg, http://www.sox.net.sg/members.html, , 27, 0, 16776
+200, Asia-Pacific, Singapore, Singapore, Pihana Singapore, Not an exchange, , , 0, , , , 0, 0, 0
+201, Asia-Pacific, Singapore, Singapore, Singapore One Network for Everyone, Not an exchange, ATM, , 0, , , , 0, 0, 0
+203, Asia-Pacific, Singapore, Singapore, Singapore Telecom Internet Exchange, Not an exchange, Layer-3, Unknown, 0, http://www.ix.singtel.com/, , , 0, 0, 0
+987, Latin America, Sint Maarten, Philipsburg, Open Caribbean Internet eXchange, Active, Ethernet, Association, 20081000, http://www.ocix.net, http://www.ocix.net/ocix/index.php?option=com_content&task=view&id=14&Itemid=23, , 8, 1250000, 0
+574, Europe, Slovakia, Bratislava, NIX.SK - exSitelIX, Active, Ethernet, Association, 20050801, http://www.nix.sk, https://www.nix.sk/en/networks, , 36, 9600000, 0
+204, Europe, Slovakia, Bratislava, Slovak Internet Exchange Bratislava, Active, Ethernet, University, 19961000, http://www.six.sk, http://www.six.sk/index.php?page=pripojene_siete, http://www.six.sk/lg.php, 56, 59039807, 0
+1521, Europe, Slovakia, Koice, Slovak Internet Exchange Koice, Active, Ethernet, University, 20080600, http://www.six.sk, http://www.six.sk/index.php?page=siete&city=ke, http://www.six.sk/lgke.php, 4, 273966, 0
+205, Europe, Slovenia, Ljubljana, Slovenian Internet Exchange, Active, Ethernet, University, 19940200, http://www.arnes.si/en/infrastructure/six-internet-exchange.html, http://www.arnes.si/en/infrastructure/six-internet-exchange/membership.html, , 27, 45390000, 0
+206, Africa, South Africa, Cape Town, Cape Town Internet Exchange, Active, Ethernet, Association, 20090700, http://ispa.org.za/inx/cinx-information/, http://www.ispa.org.za/membership/list-of-members, , 180, 3600000, 9288
+1308, Africa, South Africa, Cape Town, NAPAfrica Cape Town, Active, Ethernet, Commercial, 20120000, http://www.napafrica.com, http://www.napafrica.com/live/content.php?Item_ID=228, , 12, 25200000, 10208
+1362, Africa, South Africa, Durban, Durban Internet eXchange, Active, Ethernet, Association, 20120914, http://stats.dinx.net.za, , , 6, 16200, 4090
+1840, Africa, South Africa, Durban, NAPAfrica Durban, Active, Ethernet, Commercial, 20140000, http://www.napafrica.com, http://www.napafrica.com/live/content.php?Item_ID=228, , 0, 1400000, 5449
+209, Africa, South Africa, Johannesburg, Johannesburg Internet Exchange, Active, Ethernet, Association, 19960600, http://www.ispa.org.za/inx/jinx-information, http://www.ispa.org.za/inx/jinx-users, , 65, 19000000, 12303
+1306, Africa, South Africa, Johannesburg, NAPAfrica Johannesburg, Active, Ethernet, Commercial, 20120000, http://www.napafrica.com, http://www.napafrica.com/live/content.php?Item_ID=228, , 259, 80000000, 0
+207, Africa, South Africa, Cape Town, Hub, Defunct, Ethernet, Association, 0, http://hub.org.za, , , 5, 0, 0
+208, Africa, South Africa, Grahamstown, Grahamstown Internet Exchange, Defunct, Ethernet, University, 20050313, http://ginx.org.za/, http://ginx.org.za/participants, , 6, 1857, 30
+210, Africa, South Africa, Johannesburg, South African Internet Exchange, Not an exchange, , , 0, , , , 0, 0, 0
+211, Europe, Spain, Barcelona, Catalunya Neutral Internet Exchange Point, Active, Ethernet, Association, 19990407, http://www.catnix.net, http://www.catnix.net/en/members/, , 26, 6780000, 0
+212, Europe, Spain, Bilbao, Punto Neutro Vasco de Internet, Active, Ethernet, Association, 20020117, http://www.euskonix.net/, http://www.euskonix.net/socios.html, , 7, 1, 0
+213, Europe, Spain, Madrid, Punto Neutro Español de Internet, Active, Ethernet, Association, 19970000, http://www.espanix.net, http://www.espanix.net/esp/peering.htm, , 45, 208000000, 0
+215, Europe, Spain, Madrid, Terremark NAP de las Americas - Madrid, Active, Ethernet, Commercial, 20041000, http://www.terremark.es/data-centers/europe-middle-east-africa/nap-of-madrid/, , , 2, 0, 0
+1865, Europe, Spain, Barcelona, WAPOP Africa Interconnect Exchange, Not an exchange, ATM, Commercial, 20130000, www.afr-ix.com, , , 0, 0, 0
+214, Europe, Spain, Madrid, Madrid Internet Exchange, Unknown, Ethernet, , 0, http://www.mad-ix.net/, , , 9, 16000, 0
+216, Europe, Spain, Madrid, Punto Neutro Español de Internet, Deprecated, Ethernet, Association, 0, http://www.espanix.net, http://www.espanix.net/esp/peering.htm, , 0, 270000000, 0
+217, Europe, Spain, Santiago de Compostela, Punto Neutro de Intercambio de Tráfico de Internet en Galicia, Defunct, Ethernet, Unknown, 20020719, http://www.galnix.net, http://www.galnix.net, , 6, 65000, 0
+219, Asia-Pacific, Sri Lanka, Colombo, Sri Lanka Internet Exchange, Active, Ethernet, Commercial, 20010701, http://www.lankacom.net/our-solutions/web-hosting, , , 20, 0, 0
+218, Asia-Pacific, Sri Lanka, Colombo, Singapore Telecom Internet Exchange, Not an exchange, Layer-3, , 0, , , , 0, 0, 0
+1312, Africa, Sudan, Khartoum, Sudan Internet Exchange Point, Active, , Governmental, 20111000, http://www.sixp.sd, http://www.sixp.sd/brtg.php, http://www.sixp.sd/ssh.php, 7, 16400, 90
+1804, Africa, Swaziland, Mbabane, Mbabane Internet Exchange, Not an exchange, Ethernet, Governmental, 20140410, , , , 3, 0, 0
+220, Africa, Swaziland, Mbabane, Swaziland Internet Exchange, Deprecated, Ethernet, Unknown, 20040600, , , , 3, 256, 0
+864, Europe, Sweden, Gothenburg, Gothenburg Internet Exchange, Active, Ethernet, Association, 20051221, http://www.gix.se/, http://www.gix.se/whois.php, , 15, 0, 0
+222, Europe, Sweden, Gothenburg, Netnod Gothenburg, Active, Ethernet, Association, 19980000, http://www.netnod.se, http://www.netnod.se/connected.shtml, , 11, 10410000, 0
+225, Europe, Sweden, Luleå, Netnod Luleå, Active, Ethernet, Governmental, 20040900, http://www.netnod.se, http://www.netnod.se/connected.shtml, , 6, 208206, 0
+879, Europe, Sweden, Malmö, Internet exchange point of the Oresund Region, Active, Ethernet, Association, 20091014, http://www.ixor.se, http://www.ixor.se/members/, , 24, 48000, 0
+227, Europe, Sweden, Stockholm, Netnod Stockholm, Active, Ethernet, Governmental, 19970000, http://www.netnod.se, http://www.netnod.se/connected.shtml, , 175, 483420000, 0
+228, Europe, Sweden, Stockholm, SOLIX, Active, Ethernet, Commercial, 20011200, http://www.solix.se/, https://apps.db.ripe.net/search/lookup.html?source=ripe&key=193.110.12.0%20-%20193.110.13.255&type=inetnum, , 58, 18400000, 0
+627, Europe, Sweden, Stockholm, Stockholm Internet Exchange, Active, Ethernet, Association, 20070000, http://www.sthix.net, http://www.sthix.net/members.php, , 91, 63190000, 0
+229, Europe, Sweden, Sundsvall, Netnod Sundsvall, Active, Ethernet, Governmental, 20000000, http://www.netnod.se, http://www.netnod.se/connected.shtml, , 13, 7558000, 0
+230, Europe, Sweden, Umeå, NorrNod, Active, Ethernet, Municipal, 19960000, http://www.norrnod.se, http://www.norrnod.se/norrnod/knutpunkt/anslutna.html, , 7, 380000, 0
+1239, Europe, Sweden, Boras, Boras Internet Exchange, , Ethernet, Unknown, 0, http://www.bor-ix.net/, , , 0, 0, 0
+573, Europe, Sweden, Gävle, Gästrikland-Hälsingland Regional Internet Exchange, Unknown, Ethernet, Unknown, 0, http://www.rix-gh.se/, http://www.ripe.net/perl/whois?gh-rix, , 14, 101600, 0
+223, Europe, Sweden, Linköping, Linkoping municipal exchange, Planned, Ethernet, , 20021000, http://www.tekniskaverken.se/tekniskaverken/foretag/bredband/index.html, , , 2, 0, 0
+224, Europe, Sweden, Luleå, PolarIX, Unknown, Ethernet, Unknown, 20020900, http://www.polarix.se/intro/index.asp, , , 0, 0, 0
+226, Europe, Sweden, Malmö, Netnod Malmö, Defunct, Ethernet, Governmental, 20000000, http://www.netnod.se, http://www.netnod.se/connected.shtml, , 19, 24902000, 0
+231, Europe, Switzerland, Geneva, CERN Internet Exchange Point, Active, Ethernet, Association, 19950000, http://www.cixp.ch, http://cixp.web.cern.ch/technical/peering, http://lg.cern.ch/, 44, 1230000, 0
+236, Europe, Switzerland, Zurich, Equinix Zurich, Active, Ethernet, Commercial, 19990000, http://www.equinix.ch/, , , 65, 4600000, 0
+234, Europe, Switzerland, Zurich, SwissIX, Active, Ethernet, Association, 20010309, http://www.swissix.ch/, http://www.swissix.ch/participation/participants/, http://www.swissix.ch/lookinglass.php, 182, 99480000, 98444
+232, Europe, Switzerland, Zurich, MAE-Zurich, Defunct, , , 0, , , , 0, 0, 0
+233, Europe, Switzerland, Zurich, Swiss Internet Exchange, Defunct, , , 0, , , , 0, 0, 0
+235, Europe, Switzerland, Zurich, Telehouse Internet Exchange, Unknown, , Unknown, 19990000, http://www.tix.ch/, , , 0, 0, 0
+237, Asia-Pacific, Taiwan, Taipei, Taipei Internet Exchange (TPIX), Active, Ethernet, Commercial, 20020702, http://www.tpix.net.tw, http://www.tpix.net.tw/mem_list.html, , 22, 37000000, 0
+238, Asia-Pacific, Taiwan, Taipei, Taiwan Internet Exchange, Active, Ethernet, Commercial, 19971200, http://www.twix.net.tw, http://www.twix.net/twix-member.htm, http://www.twix.net/nmsprobe_e.html, 39, 47830000, 50248
+239, Asia-Pacific, Taiwan, Taipei, Taiwan Network Access Point, Active, ATM,Ethernet, Commercial, 20010000, http://www.nap.net.tw, , , 16, 1000000, 0
+241, Asia-Pacific, Taiwan, Taipei, , Unknown, , , 0, , , , 0, 2200000, 0
+892, Asia-Pacific, Taiwan, Taipei, TaipeiGigaPoP, , Ethernet, Unknown, 0, http://www.ascc.sinica.edu.tw/, , , 0, 0, 0
+240, Asia-Pacific, Taiwan, Taipei, TaiwanEP, Unknown, , , 0, , , , 0, 0, 0
+1707, Asia-Pacific, Tajikistan, Dushanbe, Tajik Internet Exchange Point, Defunct, Ethernet, Association, 20050000, , , , 4, 0, 0
+606, Africa, Tanzania, Arusha, Arusha Internet Exchange Point, Active, Ethernet, Association, 20060626, http://www.aixp.or.tz/, , , 6, 400, 82
+242, Africa, Tanzania, Dar es Salaam, Tanzania Internet Exchange, Active, Ethernet, Association, 20030700, http://www.tix.or.tz/, http://www.tix.or.tz/peers.html, , 30, 4590000, 1715
+1912, Africa, Tanzania, Mwanza, Mwanza Internet Exchange Point, Active, Ethernet, Association, 20160601, , , , 0, 0, 0
+1911, Africa, Tanzania, Dodoma, Dodoma Internet Exchange Point, Unknown, Ethernet, Association, 0, , , , 0, 0, 0
+1866, Asia-Pacific, Thailand, Bangkok, Bangkok Internet Exchange Point, Active, Ethernet, Association, 20150209, https://bknix.co.th/en/index.php, https://bknix.co.th/en/index.php?module=service&content=1, https://bknix.co.th/en/index.php?module=service&content=3, 11, 4800000, 0
+244, Asia-Pacific, Thailand, Bangkok, CAT National Internet Exchange, Active, Ethernet, Governmental, 19970900, http://www.cat.net.th/thix-nix/index_eng.html, , , 20, 1700000, 0
+245, Asia-Pacific, Thailand, Bangkok, NECTEC-IIR, Not an exchange, , , 19970000, , , , 0, 0, 0
+246, Asia-Pacific, Thailand, Bangkok, ThaiSarn Public Internet Exchange, Unknown, , Unknown, 0, http://ntl.nectec.or.th/pie/, , , 0, 0, 0
+1829, Asia-Pacific, Thailand, Bankok, BB Connect IX, Not an exchange, Ethernet, Commercial, 20120700, www.bbconnect.co.th, , , 5, 0, 0
+1826, Asia-Pacific, Thailand, Bankok, CS Loxinfo NIX, Not an exchange, Ethernet, Governmental, 20080800, http://www.csloxinfo.com/th/home, , , 7, 0, 0
+1828, Asia-Pacific, Thailand, Bankok, JASTEL IX, Not an exchange, Ethernet, Commercial, 20100100, www.jastel.co.th, , , 11, 0, 0
+1827, Asia-Pacific, Thailand, Bankok, Super Broadband Network IX, Not an exchange, Ethernet, Commercial, 20091000, http://www.sbn.co.th, , , 12, 0, 0
+1831, Asia-Pacific, Thailand, Bankok, Symphony IX, Not an exchange, Ethernet, Commercial, 20131200, www.symphony.net.th, , , 7, 0, 0
+1830, Asia-Pacific, Thailand, Bankok, TCC Technology IX, Not an exchange, Ethernet, Commercial, 20120800, www.tcc-technology.com, , , 10, 0, 0
+1824, Asia-Pacific, Thailand, Bankok, TOT NIX, Not an exchange, Ethernet, Governmental, 20070600, www.tot.co.th/index.php?lang=en, , , 2, 0, 0
+1825, Asia-Pacific, Thailand, Bankok, True International Gateway NIX, Not an exchange, Ethernet, Commercial, 20070700, http://www.trueintergateway.com, , , 17, 0, 0
+1803, Latin America, Trinidad and Tobago, Barataria, Trinidad and Tobago Internet Exchange, Active, Ethernet, Association, 20140418, http://ix.tt, http://ix.tt/membership/founding-members/, , 7, 350000, 97
+1805, Africa, Tunisia, Enfidha, Enfidha Internet Exchange, Active, Ethernet, Commercial, 20130000, , , , 0, 0, 90
+1474, Africa, Tunisia, Tunis, Tunisian Internet Exchange Point, Active, Ethernet, Governmental, 20110000, http://www.ati.tn/TunIXP/, http://www.ati.tn/TunIXP/tunixp4.html, , 15, 98477000, 585071
+1895, Europe, Turkey, Istanbul, DE-CIX Istanbul, Active, Ethernet, Commercial, 20150000, https://www.de-cix.net/products-services/de-cix-istanbul/, , , 10, 0, 0
+1187, Europe, Turkey, Istanbul, Terremark IST-IX, Active, Ethernet, Commercial, 20100000, http://www.terremark.com/data-centers/europe-middle-east-africa/nap-istanbul.aspx, , , 8, 0, 28
+247, Europe, Turkey, Istanbul, Turkish Internet Exchange, Defunct, , Unknown, 19970000, http://www.tix.net, , , 0, 0, 0
+248, Africa, Uganda, Kampala, Uganda Internet Exchange, Active, Ethernet, Association, 20030700, http://www.uixp.co.ug, http://www.uixp.co.ug/index.htm, , 8, 2169815, 0
+897, Europe, Ukraine, Donetsk , Donetsk Internet Exchange, Active, Ethernet, Association, 20011223, http://www.ix.dn.ua/, http://www.ix.dn.ua/networks/index.html, http://www.ix.dn.ua/lg, 12, 1300000, 745
+1868, Europe, Ukraine, Khmelnytskiy, Khmelnytskiy Internet exchange point, Active, Ethernet, Association, 20030809, http://ix.km.ua, http://ix.km.ua/members.html, http://ix.km.ua/cgi-bin/lgv.cgi, 6, 170872, 0
+1240, Europe, Ukraine, Kiev, Digital Telecom Internet Exchange, Active, Ethernet, Commercial, 20090000, http://dtel-ix.net/, http://dtel-ix.net/en/members, http://dtel-ix.net/index.php/en/looking-glass, 121, 420250000, 0
+1588, Europe, Ukraine, Kiev, Giganet Internet Exchange, Active, Ethernet, Association, 20120000, http://giganet.ua, http://giganet.ua/members/, , 89, 520210000, 44580
+249, Europe, Ukraine, Kiev, Ukrainian Internet Exchange, Active, Ethernet, Association, 20000700, http://www.ua-ix.net.ua/eng.phtml, http://www.ua-ix.net.ua/participants_en.phtml, http://lg.ix.net.ua/, 186, 298330000, 35620
+933, Europe, Ukraine, Odessa, Odessa Internet Exchange, Active, Ethernet, Commercial, 20070900, http://www.od-ix.net, http://www.od-ix.net/?page_id=43, http://lg.od-ix.net/, 26, 813130, 0
+970, Europe, Ukraine, , Leontovich 9 IX , Unknown, , Unknown, 20080000, , , , 0, 0, 0
+978, Europe, Ukraine, Kherson, Kherson Internet Exchange, Unknown, Ethernet, Unknown, 20080000, http://www.ix.ks.ua/, , , 8, 0, 0
+250, Europe, Ukraine, Kiev, Ukrtelecom Internet Exchange, Not an exchange, Ethernet, Unknown, 0, http://en.ukrtelecom.ua/services/operators_providers/traffic, , , 0, 0, 0
+979, Europe, Ukraine, Zaporozhye, Zaporozhye Internet Exchange, Unknown, Ethernet, Unknown, 20080000, , , , 0, 0, 0
+1341, Europe, United Arab Emirates, Dubai, UAE-IX, Active, Ethernet, Commercial, 20120224, http://www.uae-ix.net/, http://www.uae-ix.net/customers-partners/customers/, http://lg.uae-ix.net, 50, 42200000, 2438
+251, Europe, United Arab Emirates, Abu Dhabi, Emirates Internet Exchange, Not an exchange, Layer-3, , 0, http://www.emix.ae, , , 0, 0, 0
+252, Europe, United Arab Emirates, Abu Dhabi, Gulf Internet Exchange, Planned, Ethernet, , 0, , , , 0, 0, 0
+1889, Europe, United Kingdom, Brighton, IX Brighton, Active, Ethernet, Association, 20150000, http://ixbrighton.com, http://ixbrighton.com/members/, , 5, 0, 0
+1813, Europe, United Kingdom, Cardiff, IXCardiff by LINX, Active, Ethernet, Association, 20141015, https://www.linx.net/, https://www.linx.net/ix-cardiff/tech-info-help/members-by-ip-asn, https://www.linx.net/tech-info-help/looking-glass, 31, 287037, 0
+1701, Europe, United Kingdom, Edinburgh, IXScotland powered by LINX, Active, Ethernet, Association, 20131000, https://linx.net/service/publicpeering/ixscotland.html, https://linx.net/service/publicpeering/ixscotland.html, https://stats.linx.net/cgi-pub/xlg.pl?run=true&site=IXScotland&query_type=+BGP+Summary&address=&Submit=Submit, 18, 163533, 830
+1232, Europe, United Kingdom, Leeds, Leeds Internet Exchange, Active, Ethernet, Association, 20100920, http://www.ixleeds.net/, http://www.ixleeds.net/content/members.html, http://lg.ixleeds.net/, 16, 900000, 2352
+62, Europe, United Kingdom, London, London Internet Exchange, Active, Ethernet, Association, 19941108, http://www.linx.net, https://www.linx.net/about/member_ipasn.html, https://www.linx.net/pubtools/looking-glass.html, 698, 2603000000, 757539
+64, Europe, United Kingdom, London, London Network Access Point, Active, Ethernet, Association, 19980000, http://www.lonap.net, http://www.lonap.net/currentmembers.shtml, http://www.lonap.net/cgi-bin/mrlg.cgi, 172, 216646565, 89149
+66, Europe, United Kingdom, London, XchangePoint London IPP, Active, Ethernet, Commercial, 20010000, http://www.xchangepoint.net, , , 166, 5300000, 0
+1332, Europe, United Kingdom, Manchester, IXManchester powered by LINX, Active, Ethernet, Association, 20120429, https://www.linx.net/, https://www.linx.net/tech-info-help/members-by-ip-asn, https://www.linx.net/pubtools/looking-glass.html, 72, 25775000, 4695
+198, Europe, United Kingdom, Edinburgh, Scottish Internet Exchange, Defunct, Ethernet, Unknown, 19990900, http://www.scotix.com/, , , 0, 0, 0
+890, Europe, United Kingdom, Edinburgh, UNION IXP, Unknown, Ethernet, Unknown, 0, http://www.uixp.net/, , , 0, 0, 0
+199, Europe, United Kingdom, Edinburgh, WorldIX, Defunct, Ethernet, Unknown, 20000200, http://www.worldix.com, , , 4, 0, 0
+550, Europe, United Kingdom, London, EarthNAP, Not an exchange, Ethernet, Commercial, 20070226, http://www.earthnap.net/, , , 0, 0, 0
+61, Europe, United Kingdom, London, LoNAP/XchangePoint shared interconnect, Defunct, Ethernet, Unknown, 20040000, http://www.xchangepoint.net/ourpartners/LoNAP-XP-iconnect.html, , , 56, 0, 0
+63, Europe, United Kingdom, London, London Internet Providers Exchange, Defunct, Ethernet, Unknown, 20011000, http://www.lipex.net, http://www.lipex.net/peers/, http://www.lipex.net/looking_glass/index.cgi?router=COLLECTOR-LIPEX&command=summary&host=, 46, 108000, 0
+626, Europe, United Kingdom, London, Meridian Gate Internet Exchange, Defunct, Ethernet, Association, 0, http://www.meriex.net, http://www.meriex.net/participants.php, , 20, 0, 0
+532, Europe, United Kingdom, London, Redbus Internet Exchange, Defunct, Layer-3, Commercial, 20040413, http://www.rbiex.net, http://www.rbiex.net/members.rsp, , 23, 0, 0
+531, Europe, United Kingdom, London, SovEx, Defunct, Ethernet, Association, 0, http://www.sovex.net, http://www.sovex.net/index.php?page=participants, , 25, 0, 0
+65, Europe, United Kingdom, London, UK6X, Defunct, , , 0, http://uk6x.net, , , 0, 0, 0
+1611, Europe, United Kingdom, Macclesfield, Edge-IX, Defunct, Ethernet, Unknown, 20130000, http://www.edge-ix.net/, , , 36, 0, 0
+704, Europe, United Kingdom, Manchester, Enlightened Internet Exchange, Defunct, , Commercial, 20050604, , , , 4, 0, 0
+564, Europe, United Kingdom, Manchester, Manchester Commercial Internet Exchange, Unknown, Ethernet, Commercial, 0, http://www.mcix.co.uk, http://www.mcix.co.uk/pp_participants.php, , 14, 400000, 0
+67, Europe, United Kingdom, Manchester, Manchester Network Access Point, Unknown, Ethernet, Unknown, 19970000, http://www.manap.net/, http://www.manap.net/members.php?sort=Company_name, , 56, 1800000, 0
+1608, Europe, United Kingdom, UK, eXpress IX, Planned, Ethernet, Unknown, 0, http://packetexchange.com/services-global-remote-peering.html, , , 0, 0, 0
+909, North America, United States, Albuquerque, New Mexico Internet Exchange, Active, Ethernet, Association, 20080000, http://www.nmix.net/index.html, , , 0, 0, 0
+255, North America, United States, Ashburn, Equinix IBX Ashburn, Active, Ethernet, Commercial, 20021031, http://www.equinix.com/, , , 224, 915000000, 660765
+256, North America, United States, Atlanta, Atlanta Internet Exchange, Active, Ethernet, Association, 20030800, http://www.atlantaix.com, https://www.atlantaix.com/, http://www.atlantaix.com/lg.pl, 121, 410000000, 159498
+259, North America, United States, Atlanta, Equinix Atlanta, Active, Ethernet, Commercial, 20041203, http://www.equinix.com/locations/united-states-colocation/atlanta-data-centers, , , 0, 0, 0
+1873, North America, United States, Atlanta, South East Network Access Point, Active, Ethernet, Association, 20120000, http://www.southeastnap.com, http://www.southeastnap.com/members/, , 7, 0, 0
+1875, North America, United States, Atlanta, TelX Internet Exchange, Active, Ethernet, Commercial, 20070000, http://tie.telx.com/, http://tie.telx.com/participants/, , 121, 395000000, 0
+1795, North America, United States, Bend, Central Oregon Internet eXchange, Active, Ethernet, Association, 20110512, http://www.centraloregonix.org, http://www.centraloregonix.org/members/, , 4, 0, 0
+703, North America, United States, Billings, Yellowstone Regional Internet Exchange, Active, Ethernet, Association, 20030000, http://www.yrix.org, http://www.yrix.org/participants.php, , 8, 0, 0
+1348, North America, United States, Boston, Boston Internet Exchange, Active, Ethernet, Association, 20120409, http://markleygroup.com/Peering, http://markleygroup.com/Peering, , 48, 0, 89404
+1719, North America, United States, Boston, Coresite - Any 2, Active, Ethernet, Commercial, 20130000, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2/ANY2-Peering-Participants, , 0, 0, 0
+266, North America, United States, Boston, Equinix-Boston, Active, Ethernet, Commercial, 20000720, http://www.switchanddata.com/subpages/PAIX_services.asp, , , 0, 0, 0
+1553, North America, United States, Buffalo, Buffalo Niagara International Internet Exchange, Active, Ethernet, Commercial, 20110500, http://www.iixpeering.net/peering/bniix.php, http://www.iixpeering.net/peering/about-members.php, , 8, 0, 0
+1871, North America, United States, Carrolton, CyrusOne, Active, Ethernet, Commercial, 20110000, http://www.cyrusone.com/data-center-technology-features/cyrusone-national-ix-internet-exchange/interconnection-peering-exchange/, , , 0, 0, 0
+1869, North America, United States, Cheyenne, Big Horn Fiber, Active, Ethernet, Commercial, 20130000, http://www.bighornfiber.com, http://www.bighornfiber.com/about-us/participants/, , 12, 0, 0
+1847, North America, United States, Chicago, AMS-IX Chicago, Active, Ethernet, Association, 20141007, https://chi.ams-ix.net, https://chi.ams-ix.net/connected_parties, , 12, 15143000, 92372
+928, North America, United States, Chicago, CoreSite - Any2, Active, Ethernet, Commercial, 20080100, http://www.coresite.com/chicago-data-center.php, http://www.coresite.com/solutions/interconnection/peering-exchanges/any2-internet-peering-exchange/any2-peering-participants, , 7, 5000000, 0
+268, North America, United States, Chicago, Equinix Chicago IBX, Active, Ethernet, Commercial, 20020304, http://peering.equinix.com/, , , 36, 0, 381877
+1555, North America, United States, Chicago, Greater Chicago International Internet Exchange, Active, Ethernet, Commercial, 20121200, http://www.iixpeering.net/peering/gciix.php, http://www.iixpeering.net/peering/about-members.php, , 2, 0, 0
+271, North America, United States, Chicago, STAR TAP, Active, Ethernet, University, 19980000, http://www.startap.net/ENGINEERING/IPPLAN.html, http://www.startap.net/NETWORKS/, , 31, 0, 0
+272, North America, United States, Chicago, StarLight, Active, Ethernet, University, 20010300, http://www.startap.net/starlight/ENGINEERING/engIPadds.html, http://www.startap.net/starlight/NETWORKS/, , 34, 0, 0
+1883, North America, United States, Chicago, United IX Chicago, Active, Ethernet, Commercial, 20140000, https://unitedix.net/, https://unitedix.net/location/chicago/networks, , 18, 0, 0
+278, North America, United States, Dallas, Equinix IBX Dallas, Active, Ethernet, Commercial, 20010615, http://www.equinix.net, , , 0, 0, 0
+282, North America, United States, Dallas, Equinix-Dallas(former PAIX), Active, Ethernet, Commercial, 20020224, http://www.switchanddata.com/Dallas%5Fcolocation/, , , 0, 0, 0
+1206, North America, United States, Dallas, TelX Internet Exchange, Active, Ethernet, Commercial, 20070000, https://tie.telx.com/, https://tie.telx.com/participants/, , 14, 45, 0
+586, North America, United States, Dayton, Dayton Metro Internet Exchange, Active, Ethernet, Association, 20030624, http://www.donet.com/~dmix/, http://www.donet.com/~dmix/, , 4, 0, 0
+1720, North America, United States, Denver, Coresite - Any 2, Active, Ethernet, Commercial, 20130000, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2/ANY2-Peering-Participants, , 32, 0, 0
+1905, North America, United States, Detroit, DET-IX, Active, Ethernet, Association, 20150331, http://www.detroitix.com, http://www.detroitix.com/#section-4, , 17, 21671000, 0
+1876, North America, United States, Duluth, Twin Ports Internet Exchange, Active, Ethernet, Commercial, 20121101, www.tp-ix.net, , , 0, 0, 0
+1267, North America, United States, Guam, Guam Internet Exchange, Active, , Association, 20110000, http://www.gu-ix.net/, http://www.gu-ix.net/members.html, , 3, 1000000, 0
+592, North America, United States, Honolulu, DRFxchange, Active, Ethernet, Commercial, 20070108, http://www.drfortress.com/internet-exchange/drfxchange/, , , 14, 0, 0
+287, North America, United States, Honolulu, Hawaii Internet Exchange, Active, Ethernet, University, 19950700, http://www.hawaii.edu/hix/, http://www.hawaii.edu/hix/Hawaii_Internet_Exchange/Networks.html, , 8, 0, 1130
+288, North America, United States, Houston, Houston Network Access Point, Active, , Commercial, 20100000, http://www.houston-nap.com/index.html, , , 0, 0, 0
+292, North America, United States, Houston, Rice EduPOP, Active, , University, 20010510, , , , 0, 0, 0
+354, North America, United States, Houston, Texas GigaPOP, Active, Ethernet, University, 19970000, http://www.gigapop.gen.tx.us/, , , 0, 0, 0
+1891, North America, United States, Indianapolis, Midwest-IX, Active, Ethernet, Association, 20150000, http://www.midwest-ix.com, http://www.midwest-ix.com/members.html, , 17, 0, 709
+1317, North America, United States, Jacksonville, Jacksonville Internet Exchange, Active, Ethernet, Association, 20120102, http://jxix.org, http://jxix.org/index.php?page=participants, , 9, 0, 184
+630, North America, United States, Kansas City, Kansas City Internet Exchange, Active, Ethernet, Association, 20060000, http://www.kcix.net/, http://www.kcix.net/members.html, , 26, 0, 0
+373, North America, United States, Los Angeles, Any2 California, Active, Ethernet, Commercial, 20051200, http://www.coresite.com/, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2/ANY2-Peering-Participants, , 449, 68000000, 433632
+1870, North America, United States, Los Angeles, CENIC International Internet eXchange, Active, Ethernet, University, 19960000, http://www.ciix.net, http://www.ciix.net/participants/, , 6, 0, 0
+467, North America, United States, Los Angeles, Equinix Los Angeles IBX, Active, Ethernet, Commercial, 20020711, http://www.equinix.com/, , , 0, 0, 196852
+297, North America, United States, Los Angeles, Los Angeles International Internet Exchange, Active, Ethernet, Commercial, 19960000, http://www.laiix.net/, http://www.laiix.net/index.php?core=members.php, , 39, 8800000, 117076
+303, North America, United States, Madison, Madison Internet Exchange, Active, ATM,Ethernet, University, 20000000, http://kb.wisc.edu/ns/page.php?id=6636, http://kb.wisc.edu/ns/page.php?id=6636#Current%20Members, , 21, 0, 0
+1077, North America, United States, Massachusetts, Massachusetts Internet Exchange, Active, , Unknown, 20150514, http://mass-ix.net/, http://mass-ix.net/#participants, , 28, 3400000, 0
+1680, North America, United States, Medford, Southern Oregon Access Exchange, Active, Ethernet, Commercial, 20130000, http://www.soax.org, http://www.soax.org/index.php/members, , 5, 0, 0
+1721, North America, United States, Miami, Coresite - Any 2, Active, Ethernet, Commercial, 20130000, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2/ANY2-Peering-Participants, , 0, 0, 0
+308, North America, United States, Miami, Equinix-Miami, Active, Ethernet, Commercial, 20121203, , , , 0, 0, 0
+307, North America, United States, Miami, NAP of the Americas, Active, Ethernet, Commercial, 20040812, http://www.terremark.com/, , , 78, 250000000, 418018
+1845, North America, United States, Miami, South Florida Internet Exchange, Active, Ethernet, Association, 20140000, http://fl-ix.net, http://www.communityix.org/index.php/about-fl-ix/fl-ix-networks/, , 72, 90000000, 0
+1816, North America, United States, Milwaukee, Milwaukee Internet Exchange, Active, Ethernet, Association, 20110000, www.mkeix.net, http://www.mkeix.net/participants/, , 14, 680000, 0
+1265, North America, United States, Minneapolis, Midwest Internet Cooperative Exchange, Active, Ethernet, Association, 20110111, http://www.micemn.net, http://www.micemn.net/participants.html, , 39, 168030000, 0
+315, North America, United States, New Jersey, MAGPI Gigapop, Active, , University, 20060000, http://www.magpi.org/, , , 0, 0, 0
+1810, North America, United States, New York, AMS-IX New York, Active, Ethernet, Association, 20140417, https://nynj.ams-ix.net/, , , 13, 6492000, 0
+321, North America, United States, New York, Big Apple Peering Exchange, Active, Ethernet, Association, 20010000, http://www.ny6ix.net/, http://www.ny6ix.net/, , 25, 0, 0
+1722, North America, United States, New York, Coresite - Any 2, Active, Ethernet, Commercial, 20130000, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2/ANY2-Peering-Participants, , 0, 0, 0
+1778, North America, United States, New York, DE-CIX New York, Active, Ethernet, Commercial, 20130000, http://nyc.de-cix.net/, http://nyc.de-cix.net/participants/, , 122, 95300000, 331901
+317, North America, United States, New York, Equinix New York IBX, Active, Ethernet, Commercial, 20030311, http://www.equinix.com/, http://www.equinix.com/company/customers, , 0, 0, 0
+323, North America, United States, New York, Equinix-NY(former Paix), Active, Ethernet, Commercial, 20000314, www.equinix.com, , , 0, 0, 151894
+320, North America, United States, New York, New York International Internet Exchange, Active, Ethernet, Commercial, 19960000, http://www.nyiix.net/, http://www.nyiix.net/index.php?core=members.php, , 163, 380000000, 148
+587, North America, United States, New York, Peer 1 Internet Exchange, Active, Ethernet, Commercial, 20040109, http://www.peer1.net/en/otherservices.asp, , , 0, 0, 0
+1149, North America, United States, New York, TelX Internet Exchange, Active, Ethernet, Commercial, 20090000, http://tie.telx.com, http://tie.telx.com/participants/, , 76, 65047500, 148
+1678, North America, United States, North-Virginia, LINX NoVa, Active, Ethernet, Association, 20140300, https://www.linx.net/pubtools/topology.html?setlan=nov, https://www.linx.net/pubtools/member-techlist.html, https://www.linx.net/pubtools/looking-glass.html, 21, 1946000, 0
+1900, North America, United States, Omaha, OmahaIX, Active, Ethernet, Association, 20140100, http://www.omahaix.com, http://www.omahaix.com/?page=participants&v=all, , 15, 23120000, 0
+325, North America, United States, Palo Alto, Equinix- Palo Alto, Active, Ethernet, Commercial, 19941200, http://www.switchanddata.com/subpages/Public_Peering.asp, , , 0, 41000000, 865161
+328, North America, United States, Philadelphia, The Philadelphia Internet Exchange, Active, Ethernet, Commercial, 20130100, http://www.phlix.net/, http://phlix.net/, http://phlix.net/, 3, 0, 0
+1484, North America, United States, Phoenix, Phoenix-IX, Active, Ethernet, Association, 20120901, http://phoenix-ix.net, http://phoenix-ix.net/participants.html, , 44, 11000000, 0
+946, North America, United States, Phoenix, TelX Internet Exchange, Active, Ethernet, Commercial, 20080602, http://tie.telx.com/, http://tie.telx.com/participants/, , 12, 2200000, 0
+330, North America, United States, Pittsburgh, Three Rivers Optical Exchange, Active, , University, 20120529, http://ape.nzix.net/, , , 0, 0, 0
+332, North America, United States, Portland, Northwest Access Exchange, Active, Ethernet, Association, 20021200, http://www.nwax.net, http://nwax.net, https://drive.google.com/file/d/0B-uO-5PpIbrbUXhabXEyX0Y5WWs/edit?usp=sharing, 77, 60000000, 163370
+1878, North America, United States, Reno, Tahoe Internet Exchange , Active, Ethernet, Association, 20140912, http://www.tahoeix.org/, http://www.tahoeix.org/#connect, http://www.tahoeix.org/lg/, 12, 110000, 352
+1723, North America, United States, Reston, Coresite - Any 2 NorthEast, Active, Ethernet, Commercial, 20130000, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2/ANY2-Peering-Participants, , 30, 0, 0
+589, North America, United States, Richardson, North Texas GigaPOP, Active, Ethernet, University, 20040820, http://www.northtexasgigapop.org/, http://www.northtexasgigapop.org/, , 7, 0, 0
+1893, North America, United States, Richmond, Richmond Virginia Internet Exchange, Active, Ethernet, Association, 20150215, http://rva-ix.net, http://rva-ix.net/participants/, , 6, 0, 96
+1872, North America, United States, Salt Lake City, Salt Lake Internet Exchange, Active, Ethernet, Association, 20140000, http://www.slix.net, http://www.slix.net, , 16, 0, 0
+336, North America, United States, San Diego, San Diego Network Access Point, Active, Ethernet, University, 19980200, http://www.sdsc.edu/sdnap/, http://www.sdsc.edu/sdnap/title-members.htm, , 21, 0, 0
+1841, North America, United States, San Francisco, AMS-IX Bay Area, Active, Ethernet, Association, 20140910, https://bay.ams-ix.net, https://bay.ams-ix.net/connected_parties, , 24, 10696700, 0
+337, North America, United States, San Francisco, Equinix San Francisco, Active, , Commercial, 20010700, , , , 0, 0, 0
+369, North America, United States, San Francisco, San Francisco Metropolitan Internet Exchange, Active, Ethernet, Association, 20060500, http://www.sfmix.org/, http://www.sfmix.org/participants, http://server.sfmix.org/cgi-bin/bgplg?cmd=show+ip+bgp+summary&req=, 52, 7040000, 119976
+1724, North America, United States, San Jose, Coresite - Any 2 Northern California, Active, Ethernet, Commercial, 20130000, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2, http://www.coresite.com/solutions/interconnection/Peering-Exchanges/ANY2/ANY2-Peering-Participants, , 50, 0, 0
+339, North America, United States, San Jose, Equinix IBX San Jose, Active, Ethernet, Commercial, 20000525, http://www.equinix.net, , , 37, 0, 0
+344, North America, United States, Seattle, Equinix-Seattle, Active, Ethernet, Commercial, 20000313, hhttp://www.equinix.com/locations/united-states-colocation/seattle-data-centers, x, , 0, 0, 97878
+346, North America, United States, Seattle, Pacific Wave International Peering Exchange, Active, Ethernet, Commercial, 19960000, http://pacificwave.net, http://pacificwave.net/page_id=2/, , 0, 0, 0
+345, North America, United States, Seattle, Seattle Internet Exchange, Active, Ethernet, Association, 19970620, http://www.seattleix.net/, http://www.seattleix.net/participants.htm, , 235, 505100000, 317927
+347, North America, United States, Secaucus, Equinix IBX Secaucus, Active, Ethernet, Commercial, 20000314, http://www.equinix.net, , , 0, 0, 0
+1874, North America, United States, St. George, Southern Utah Peering Regional Network, Active, Ethernet, Commercial, 0, www.suprnet.net, www.suprnet.net, , 11, 0, 0
+357, North America, United States, Vienna, Equinix-VA, Active, Ethernet, Commercial, 20010910, http://www.equinix.com/, , , 0, 0, 0
+253, North America, United States, Albuquerque, IXNM, Unknown, ATM,Ethernet,Frame Relay, Commercial, 20020200, http://www.ixnm.net, , , 18, 1372000, 0
+254, North America, United States, Anchorage , Anchorage Metropolitan Access Point, Unknown, , , 0, , , , 0, 0, 0
+257, North America, United States, Atlanta, Atlanta NAP, Unknown, , , 0, http://www.atlanta-nap.net/, , , 0, 0, 0
+258, North America, United States, Atlanta, MAE-Central, Defunct, ATM, Unknown, 0, http://www.mae.net/fac/mae-central.htm, http://www.mae.net/fac/mae-central-members.htm, , 0, 0, 0
+260, North America, United States, Austin, AUSIX, Defunct, Ethernet, , 0, , , , 0, 0, 0
+261, North America, United States, Austin, Austin Metro Access Point, Defunct, Ethernet, , 0, http://www.fc.net/map/austin/, , , 0, 0, 0
+262, North America, United States, Baltimore, Baltimore-NAP, Unknown, Ethernet, , 0, http://www.baltimore-nap.net/, , , 0, 0, 0
+263, North America, United States, Bend, Central Oregon Exchange, Unknown, , , 0, , , , 0, 0, 0
+657, North America, United States, Berkeley, 6TAP, Not an exchange, Layer-3, Unknown, 0, http://www.6tap.net/, http://www.6tap.net/6tap/6tap-participants.html, , 0, 0, 0
+264, North America, United States, Berkeley, Calren2 North, Unknown, , , 0, , , , 0, 0, 0
+265, North America, United States, Boston, Boston Metropolitan Exchange Point, Defunct, Ethernet, Unknown, 0, http://www.bmxp.net/, http://www.bmxp.net/members.html, , 18, 17740, 0
+267, North America, United States, Chicago, Ameritech Advanced Data Services Network Access Point, Deprecated, , , 0, http://aads.net/index.html, , , 0, 0, 0
+925, North America, United States, Chicago, Chicago Internet Exchange, Unknown, Ethernet, Association, 20080411, http://www.chicagoix.net, http://www.chicagoix.net/?page=members, , 11, 0, 137
+269, North America, United States, Chicago, MAE-Chicago, Defunct, , , 0, , , , 0, 0, 0
+270, North America, United States, Chicago, PacBell ATM Exchange, Defunct, ATM, , 0, , , , 0, 0, 0
+273, North America, United States, Colchester, VermontIX, Defunct, Ethernet, , 0, http://www.hill.com/trc/vix/index.html, , , 0, 0, 0
+274, North America, United States, Columbus, CMH-IX, Defunct, Ethernet, Unknown, 0, http://www.cmh-ix.net/, , , 0, 0, 0
+275, North America, United States, Columbus, Columbus Internet Exchange, Unknown, , Unknown, 0, http://www.cmh-ix.net/, , , 0, 0, 0
+276, North America, United States, Columbus, FiberNAP, Unknown, , , 0, http://www.fibernap.net/, , , 0, 0, 0
+277, North America, United States, Dallas, Dallas/Fort Worth Metropolitan Access Point, Unknown, , , 0, http://www.fc.net/map/dfw/, , , 0, 0, 0
+279, North America, United States, Dallas, Excel Telecom NAP, Unknown, , , 0, , , , 0, 0, 0
+280, North America, United States, Dallas, MAE Central, Defunct, , Unknown, 0, , , , 0, 0, 0
+281, North America, United States, Dallas, MAE-Dallas, Defunct, ATM, , 0, , , , 0, 0, 0
+283, North America, United States, Denver, Denver Internet Exchange, Defunct, Ethernet, Commercial, 0, , , , 0, 0, 0
+285, North America, United States, Denver, Equinix-Denver, Planned, Ethernet, Commercial, 0, , , , 0, 0, 0
+1901, North America, United States, Denver, IX-Denver, Unknown, Ethernet, Association, 0, http://ix-denver.org, , , 0, 0, 0
+284, North America, United States, Denver, Mountain Area Exchange, Defunct, Ethernet, Commercial, 0, http://themax.net/, , , 0, 0, 0
+286, North America, United States, Eugene, Oregon Internet Exchange, Unknown, Ethernet, University, 0, http://darkwing.uoregon.edu/~oregonix/, , , 0, 0, 0
+623, North America, United States, Helena, Northwest Internet Exchange, Unknown, Ethernet, Association, 20060200, http://www.nwix.org, http://www.nwix.org/members.html, , 3, 0, 0
+289, North America, United States, Houston, Houston MAGIE, Unknown, , , 0, , , , 0, 0, 0
+290, North America, United States, Houston, Houston Metropolitan Access Point, Unknown, Ethernet, , 0, http://www.fc.net/map/houston/, , , 0, 0, 0
+291, North America, United States, Houston, MAE-Houston, Defunct, , , 0, , , , 0, 0, 0
+655, North America, United States, Houston, TexasSEGP, Not an exchange, Layer-3, Unknown, 0, http://www.texassegp.org, http://www.texassegp.org/participants/index.php, , 0, 0, 0
+293, North America, United States, Indianapolis, Indianapolis Data Exchange, Unknown, , , 0, http://www.indyx.net/info, , , 0, 0, 0
+294, North America, United States, Los Angeles, 6IIX, Unknown, Ethernet, Commercial, 0, http://www.6iix.net/, , , 0, 0, 0
+295, North America, United States, Los Angeles, Calren2 South, Unknown, , University, 0, , , , 0, 0, 0
+296, North America, United States, Los Angeles, Equinix Los Angeles IBX, Unknown, Ethernet, Commercial, 0, , , , 0, 0, 0
+300, North America, United States, Los Angeles, Equinix-LA(former Paix), Planned, Ethernet, Unknown, 0, , , , 0, 0, 0
+298, North America, United States, Los Angeles, MAE-LA, Defunct, Ethernet, , 0, , , , 0, 0, 0
+299, North America, United States, Los Angeles, Pac Bell Los Angeles Network Access Point, Defunct, ATM, , 0, , , , 0, 0, 0
+301, North America, United States, Los Angeles, Pihana Los Angeles, Not an exchange, , , 0, , , , 0, 0, 0
+302, North America, United States, Louisville, Louisville NAP, Unknown, , Unknown, 0, http://www.louisvillenap.net/, , , 0, 0, 0
+304, North America, United States, Marina del Rey, ISI DMZ/Gigapop, Not an exchange, , , 0, , , , 0, 0, 0
+1144, North America, United States, Medford, Southern Oregon Access Exchange, , Ethernet, Association, 0, http://www.soax.org/, http://www.soax.org/members, , 0, 0, 0
+306, North America, United States, Miami, AMPATH - Florida International University/CIARA, Not an exchange, Ethernet, University, 20060000, http://www.ampath.net/, http://www.ampath.net/peering.php, , 4, 0, 0
+305, North America, United States, Miami, BellSouth Multimedia Internet Exchange, Defunct, , , 0, , , , 0, 0, 0
+309, North America, United States, Minneapolis, Northern Lights GigaPoP, Not an exchange, Layer-3, University, 20000000, http://www.northernlights.gigapop.net, http://www.northernlights.gigapop.net/participants.shtml, , 0, 0, 0
+624, North America, United States, Missoula, Northwest Internet Exchange, Unknown, Ethernet, Association, 20041215, http://www.nwix.org, http://www.nwix.org/members.html, , 2, 0, 0
+310, North America, United States, Moffett Field, AMES-MIX, Defunct, Ethernet, , 0, , , , 0, 0, 0
+311, North America, United States, Moffett Field, MAE-West, Defunct, Ethernet, Unknown, 0, http://www.mae.net/fac/, , , 0, 0, 0
+312, North America, United States, Moffett Field, NGIX-West, Unknown, , Unknown, 19980000, , , , 0, 0, 0
+1907, North America, United States, Montgomery, Montgomery Internet Exchange, Unknown, , Municipal, 0, www.mix-al.net, , , 0, 0, 0
+313, North America, United States, Nashville, Nashville City Net, Unknown, Ethernet, , 0, http://www.nap.nashville.tn.us/, , , 0, 0, 0
+314, North America, United States, Nashville, Nashville NAP, Unknown, , , 0, , , , 0, 0, 0
+316, North America, United States, New York, 6IIX, Unknown, Ethernet, , 0, http://www.6iix.net/, , , 0, 0, 0
+318, North America, United States, New York, MAE-NY, Defunct, , Commercial, 0, , , , 0, 0, 0
+319, North America, United States, New York, MetroIX, Unknown, Ethernet, , 0, http://www.metroix.net/, , , 0, 0, 0
+885, North America, United States, New York, New York City Exchange, , Ethernet, Unknown, 0, , , , 0, 0, 0
+322, North America, United States, New York, NY-RIX, Unknown, Ethernet, , 0, , , , 0, 0, 0
+324, North America, United States, Ohio, OhioEP, Unknown, , , 0, , , , 0, 0, 0
+326, North America, United States, Pennsauken, Sprint NAP, Defunct, , , 0, http://www.merit.edu/nsf.architecture/Sprint/index.html, , , 0, 0, 0
+327, North America, United States, Philadelphia, Equinix-Philly(former Paix), Planned, Ethernet, Unknown, 0, , , , 0, 0, 0
+1846, North America, United States, Philadelphia, Philadelphia Internet Exchange, Unknown, Ethernet, Association, 0, http://phlix.net, , , 0, 0, 0
+1288, North America, United States, Phoenix, Arizona Internet Exchange, Defunct, Ethernet, Association, 20110000, http://arizonaix.net/, http://arizonaix.net/peers.pl, , 7, 118000, 0
+625, North America, United States, Phoenix, Phoenix Internet Exchange, Unknown, Ethernet, Association, 0, http://www.phx-ix.net, , , 0, 0, 0
+329, North America, United States, Phoenix, PhoenixNAP, Defunct, , Unknown, 0, http://www.phoenixnap.net, , , 0, 0, 0
+331, North America, United States, Pittsburgh, Pittsburgh Exchange Point, Unknown, Ethernet, Commercial, 0, http://www.pitx.net/, http://www.pitx.net/members.html, , 7, 7200, 0
+597, North America, United States, Portland, MaineXchangePoint, Unknown, Layer-3, Association, 0, http://www.mainexp.net, , , 0, 0, 0
+1927, North America, United States, Portland, Northern New England Neutral Internet Exchange, Planned, Ethernet, Association, 0, http://www.nnenix.net, http://www.nnenix.net/participants/, , 0, 0, 0
+333, North America, United States, Salt Lake City, Utah Regional Exchange Point, Unknown, , Unknown, 19960423, http://www.utah.rep.net/, http://www.utah.rep.net/people.html, , 13, 9000, 0
+334, North America, United States, San Antonio, San Antonio Metro Access Point, Unknown, , , 0, http://www.fc.net/map/samap/, , , 0, 0, 0
+335, North America, United States, San Diego, Equinix-SD(former Paix), Planned, Ethernet, Unknown, 0, , , , 0, 0, 0
+338, North America, United States, San Francisco, PB-NAP, Defunct, ATM, Commercial, 0, , , , 0, 0, 0
+898, North America, United States, San Jose, KDWEB Exchange, Not an exchange, Ethernet, Unknown, 0, http://www.kd-web.net/, , , 0, 0, 0
+340, North America, United States, San Jose, MAE-West-ATM, Defunct, ATM, Commercial, 0, , , , 0, 0, 0
+341, North America, United States, Santa Clara, 6IIX, Defunct, Ethernet, Unknown, 20010000, http://www.6iix.net/, , , 0, 0, 0
+342, North America, United States, Seattle, NIX, Defunct, Frame Relay, , 0, , , , 0, 0, 0
+343, North America, United States, Seattle, NWnet Gigapop, Unknown, , , 0, , , , 0, 0, 0
+348, North America, United States, Spokane, Eastern Washington Internet Exchange, Unknown, Ethernet, , 0, http://www.dsource.com/ewix/, , , 0, 0, 0
+349, North America, United States, St. Louis, St. Louis Internet Access Consortium, Unknown, , , 0, , , , 0, 0, 0
+350, North America, United States, St. Louis, St. Louis Regional Exchange Point, Defunct, Ethernet, Association, 20060221, http://www.stlrepcollaborative.org, http://www.stlrepcollaborative.org/members.html, , 20, 0, 0
+351, North America, United States, St. Louis, StLouisNAP, Defunct, Ethernet, , 0, , , , 0, 0, 0
+352, North America, United States, St. Louis, StLouIX, Defunct, Ethernet, , 0, http://www.stlouix.net/, , , 0, 0, 0
+353, North America, United States, Takoma Park, Andrew's Basement Exchange, Planned, Ethernet, , 0, , , , 0, 0, 0
+491, North America, United States, Tampa, Tampa Internet Exchange, Unknown, Ethernet, Association, 20050516, http://tampaix.net, http://tampaix.net/participants.shtml, , 4, 0, 0
+884, North America, United States, Tampa, Tampa Internet Exchange, , , Unknown, 0, http://tampix.com, , , 0, 0, 0
+355, North America, United States, Tucson, Tucson Interconnect, Unknown, Ethernet, , 0, http://www.tti.aces.net/, , , 0, 0, 0
+356, North America, United States, Tucson, Tucson Network Access Point, Unknown, Ethernet, , 0, http://www.ttn.rtd.net/, , , 0, 0, 0
+358, North America, United States, Washington, DC, MAE-East, Defunct, Ethernet, Commercial, 19931200, http://www.mae.net/, , , 0, 0, 0
+359, North America, United States, Washington, DC, MAE-East-ATM, Defunct, ATM, Commercial, 19980700, , , , 0, 0, 0
+360, North America, United States, Washington, DC, NeutralNAP, Defunct, , Unknown, 0, , , , 0, 0, 0
+1709, Asia-Pacific, Uzbekistan, Tashkent, Uzbekistan Internet Exchange, Active, Ethernet, Association, 20041224, http://tas-ix.uz/, http://tas-ix.uz/index.php?option=com_content&view=article&id=49&Itemid=55, http://mrlg.tas-ix.uz, 36, 0, 0
+1367, Asia-Pacific, Vanuatu, Port Vila, Vanuatu Internet Exchange, Active, Ethernet, Association, 20130214, http://www.vix.vu/, , , 6, 81900, 52
+361, Asia-Pacific, Viet Nam, Da Nang city, Vietnam National Internet Exchange, Active, Layer-3, Governmental, 20050700, http://www.vnnic.vn/en/dns-vnix/about-vnix-system, http://www.vnnic.vn/en/dns-vnix/vnix-member-isp, , 17, 0, 0
+362, Asia-Pacific, Viet Nam, Hanoi, Vietnam National Internet Exchange, Active, Layer-3, Governmental, 20031108, http://www.vnnic.vn/en/dns-vnix/about-vnix-system, http://www.vnnic.vn/en/dns-vnix/vnix-member-isp, , 17, 24500000, 0
+363, Asia-Pacific, Viet Nam, Ho Chi Minh City, Viet Nam Internet Exchange, Active, Layer-3, Governmental, 20040300, http://www.vnnic.vn/en/dns-vnix/about-vnix-system, http://www.vnnic.vn/en/dns-vnix/vnix-member-isp, , 17, 160000, 0
+547, Africa, Zambia, Lusaka, Zambia Internet Exchange Point, Active, Ethernet, Association, 20060200, http://www.ispa.org.zm, http://www.ispa.org.zm/members.html, , 13, 103000, 0
+364, Africa, Zimbabwe, Harare, Zimbabwe Internet Exchange, Active, Ethernet, Association, 20010700, http://www.zispa.org.zw/zinx.html, , , 5, 0, 0
