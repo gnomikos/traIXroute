@@ -17,7 +17,11 @@ The source code is available in the traIXroute github [repository](https://githu
 
 
 ####IMPORTANT
-In case you run Mac OS X, a software update popup window will appear running the first installation script. You need to install only the command line developer tools by clicking the "Install" button and then agree to the Terms of Service. This process will download and install the Command Line Tools package.
+In case you run Mac OS X, ensure you have installed the Xcode command line developer tools before. To install run:
+
+>$ xcode-select --install
+
+A software update popup window will appear. You need to install only the command line developer tools by clicking the "Install" button and then agree to the Terms of Service. This process will download and install the Command Line Tools package.
 
 If you have problems, please contact George Nomikos (gnomikos [at] ics.forth.gr).
 ##Dependencies
