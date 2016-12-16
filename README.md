@@ -45,7 +45,9 @@ The source code of **traIXroute** is released under the GNU General Public Licen
 Copyright © traIXroute, 2016.
 
 ##Authors
-**traIXroute** was written by Michalis Bamiedakis (mbam [at] ics [dot] forth [dot] gr), Dimitris Mavrommatis (mavromat [at] ics [dot] forth [dot] gr) and George Nomikos (gnomikos [at] ics [dot] forth [dot] gr) from the INternet Security, Privacy, and Intelligence REsearch ([INSPIRE](http://www.inspire.edu.gr/)) Group in the Institute of Computer Science of the Foundation for Research and Technology - Hellas (FORTH). The research was supervised by Prof. Xenofontas Dimitropoulos (fontas [at] ics [dot] forth [dot] gr). 
+**traIXroute** was written by Michalis Bamiedakis (mbam [at] ics [dot] forth [dot] gr), Dimitris Mavrommatis (mavromat [at] ics [dot] forth [dot] gr) and George Nomikos (gnomikos [at] ics [dot] forth [dot] gr) from the INternet Security, Privacy, and Intelligence REsearch ([INSPIRE](http://www.inspire.edu.gr/)) Group in the Institute of Computer Science of the Foundation for Research and Technology - Hellas (FORTH). The research was supervised by Prof. Xenofontas Dimitropoulos (fontas [at] ics [dot] forth [dot] gr).
+
+**Contact Author:** George Nomikos (gnomikos [at] ics [dot] forth [dot] gr)
 
 ##Acknowledgements
 The research that led to **traIXroute** was supported by the European Research Council (ERC) Grant 338402 - The NetVolution Project ([www.netvolution.eu](http://www.netvolution.eu/)).
