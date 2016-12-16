@@ -57,6 +57,7 @@ class handle_ripe():
                 print('Empty measurement returned. Exiting.')
         else:
             print('Ripe measurement not found. Exiting.')
+            print('Check also your RIPE Atlas authentication key in \'config\' file in \"ripe_auth_key\".')
         sys.exit(0)
 
 
