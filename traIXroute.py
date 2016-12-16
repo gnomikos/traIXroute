@@ -138,7 +138,7 @@ class traIXroute():
             temp_point=0
             if not ripe and not import_flag:
                 inputIP=input_list[temp_point].replace(' ','')        
-            # Instead of an IP address, a domain name has been given as destination to send the probe, the domain name is reversed.
+            # Instead of an IP address, a domain name has been given as destination to send the probe.
             string_handle=string_handler.string_handler()
             if not string_handle.is_valid_ip_address(inputIP,'IP'):
                 try:

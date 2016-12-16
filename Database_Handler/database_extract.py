@@ -106,10 +106,8 @@ class database():
         output = traIXroute_output.traIXroute_output()
         lst_modified = output.read_lst_mod(self.mypath+'/Database_Handler/lst_mod.txt',self.mypath)
         db_path=self.mypath + '/Database/'
-      #  if self.outcome:
         self.mypath = self.mypath + '/Database/User/'
-       # else:
-       #     self.mypath = self.mypath + '/Database/Default/'
+
         try:
             with open(self.mypath+'check_update.txt','r') as f:
                 chk_update=f.readline()
