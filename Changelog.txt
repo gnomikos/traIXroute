@@ -1,0 +1,39 @@
+Version 2.1 - December 2016
+
+- Added Remote IXP peering detection based on datasets from "Remote Peering Jedi" project (http://www.inspire.edu.gr/rp/about.html).
+- Fixed bug in installation process.
+- Fixed bug with no public ripe measurements.
+- Fixed bug with importing json file from RIPE Atlas.
+- Fixed bug when applying certain IXP detection rules in IP paths.
+- Fixed syntax of some IXP detection rules.
+
+
+Version 2.0 - October 2016
+
+- Added configuration file.
+- Added "Examples" folder with input samples.
+- Changed the organisation of the tool in folders and classes.
+- Changed format of the commands to fire up traIXroute.
+- Added new commands.
+- Improved the command line parser.
+- Added plenty of comments in the source code.
+- Significantly improved the accuracy of the algorithm to merge IXP information from the PDB and PCH datasets.
+- Fixed crash that could occur when either the IXP long or short name does not exist.
+- Fixed error, informational and activity messages.
+- Significantly improved performance to analyze a bunch of traceroute paths.
+- Added parallelization in various functionalities of the tool.
+- Added direct connection with the RIPE Atlas database.
+- Added a simplified json based format to import generic traceroute paths.
+- Faster loading of the datasets.
+- Improved handling of the files.
+- Improved file export.
+- Fixed several bugs with the file parsing.
+- Significantly improved installation process for both OSX and Linux.
+- Improved tool compatibility among different distributions.
+- Decreased memory usage.
+- Added city and country level information of IXPs.
+
+
+Version 1.0 - May 2016
+
+- First build of traIXroute.
