@@ -37,5 +37,8 @@ $ xcode-select --install
 
 The tool has been tested in Ubuntu 12.04, 14.04 and 16.04 and Mac OS X (>=10.9).
 
-4) The 'config' file contains all the necessary URLs for traIXroute to download all the datasets. There you can also add your RIPE Atlas measurment key. By default, the "num_of_cores" tag is configured to value "-1". This means that traIXroute utilizes all the available cores of the local machine. Otherwise you can select the exact number of cores to make available for the tool.
+4) The 'config' file contains all the necessary URLs for traIXroute to download all the datasets. 
+There you can also add your RIPE Atlas measurment key. By default, the "num_of_cores" tag is configured to value "-1". 
+This means that traIXroute utilizes all the available cores of the local machine. 
+Otherwise you can select the exact number of cores to make available for the tool.
 
