@@ -31,7 +31,7 @@ If you have problems, please contact George Nomikos (gnomikos [at] ics.forth.gr)
 ##Dependencies
 traIXroute has the following dependencies:
 
-[Python 3](https://www.python.org/downloads/)   —  **traIXroute** requires Python 3.4 or newer. <br />
+[Python 3](https://www.python.org/downloads/)   —  **traIXroute** requires Python 3.4 or 3.5. <br />
 [PySubnetTree](https://www.bro.org/downloads/release/pysubnettree-0.24.tar.gz)  —  A Python module for CIDR lookups. <br />
 [Scamper](https://www.caida.org/tools/measurement/scamper/)  —  A tool provided by CAIDA for probing the Internet in parallel, so that bulk data can be collected in a timely fashion. <br />
 [Traceroute](https://en.wikipedia.org/wiki/Traceroute)  —  A diagnostic tool for measuring Internet paths and their per hop delay. <br />
