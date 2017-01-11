@@ -54,5 +54,3 @@ The research that led to **traIXroute** was supported by the European Research C
 
 ## References
 [1]	Augustin, B., Friedman, T. and Teixeira, R., "Multipath tracing with Paris traceroute." *In End-to-End Monitoring Techniques and Services, 2007. Workshop on, pp. 1-8.* IEEE, 2007.
-
-
