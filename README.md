@@ -37,7 +37,7 @@ traIXroute has the following dependencies:
 [Traceroute](https://en.wikipedia.org/wiki/Traceroute)  —  A diagnostic tool for measuring Internet paths and their per hop delay. <br />
 
 ##Documentation
-**traIXroute** is thoroughly documented [here](http://www.inspire.edu.gr/traIXroute/traIXroute_documentation.pdf). The documentation covers the available command line options, how to extend or overwrite the data from PeeringDB and the Packet Clearing House with user-provided data, how to customize or extend traIXroute detection rules, and a diagram of its modules.
+**traIXroute** is thoroughly documented [here](https://github.com/gnomikos/traIXroute/blob/v2.1/Documentation/traIXroutedocumentationv.2.1.pdf). The documentation covers the available command line options, how to extend or overwrite the data from PeeringDB and the Packet Clearing House with user-provided data, how to customize or extend traIXroute detection rules, and a diagram of its modules.
 
 ##Licence
 The source code of **traIXroute** is released under the GNU General Public License, version 3. A copy can be found in the COPYING file.
