@@ -9,7 +9,7 @@ The heuristics used by traIXroute and their evaluation are described in the foll
 
  - G. Nomikos, X. Dimitropoulos. [**“Detecting IXPs in Traceroute Paths Using traIXroute"**](https://labs.ripe.net/Members/george_nomikos/detecting-ixps-in-traceroute-paths-using-traixroute). RIPE Labs, 3 Aug 2016.
 
-**traIXroute enhances for the first time its features interoperating with the [Remote Peering Jedi tool](http://inspire.edu.gr/rp/index.html).**
+**traIXroute enhances for the first time its features interoperating with the [Remote Peering Jedi tool](http://inspire.edu.gr/rp/index.html). For now, only data for DE-CIX (Frankfurt) are included.**
 
 ##Download
 The source code is available in the traIXroute github [repository](https://github.com/gnomikos/traIXroute). You can download it directly from [here](https://github.com/gnomikos/traIXroute). The first version of traIXroute was released in May 2016. 
