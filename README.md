@@ -1,5 +1,5 @@
 [![License](https://img.shields.io/pypi/l/traixroute.svg)](https://github.com/gnomikos/traIXroute/blob/master/LICENSE)
-[![PyPI](https://img.shields.io/pypi/v/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
+[![PyPI](https://img.shields.io/pypi/v/traixroute.svg)](https://pypi.python.org/pypi/exabgp)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
 [![PyPI Status](https://img.shields.io/pypi/status/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
 [![PyPI Wheel](https://img.shields.io/pypi/wheel/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
@@ -13,7 +13,7 @@ The heuristics used and their evaluation are described in the following paper:
 
 * G. Nomikos, X. Dimitropoulos. [**"Detecting IXPs in Traceroute Paths Using traIXroute"**](https://labs.ripe.net/Members/george_nomikos/detecting-ixps-in-traceroute-paths-using-traixroute). RIPE Labs, 3 Aug 2016.
 
-**traIXroute enhances for the first time its features interoperating with the [Remote Peering Jedi tool](http://inspire.edu.gr/rp/index.html). For now, only data for DE-CIX (Frankfurt) are included.**
+**traIXroute enhances for the first time its features interoperating with the [Remote Peering Jedi tool](http://inspire.edu.gr/rp/index.html). For now, only data for DE-CIX (Frankfurt), Any2 (Los Angeles), AMS-IX, France-IX, LINX and MSK-IX are included.**
 
 ## Installation
 The program has been tested on Linux and Mac OS X. Detailed installation instructions can be found in the INSTALL file in the repository. You can install all the necessary packages running:
@@ -63,7 +63,7 @@ If you have problems, please contact George Nomikos (gnomikos [at] ics.forth.gr)
 
 ## Documentation
 
-Documentation can be found [here](https://github.com/gnomikos/traIXroute/blob/v2.1/Documentation/traIXroutedocumentationv.2.1.pdf). The documentation covers the available command line options, how to extend or overwrite the data from PeeringDB and the Packet Clearing House with user-provided data, how to customize or extend detection rules, and a diagram of its modules.
+Documentation can be found [here](https://github.com/gnomikos/traIXroute/). The documentation covers the available command line options, how to extend or overwrite the data from PeeringDB and the Packet Clearing House with user-provided data, how to customize or extend detection rules, and a diagram of its modules.
 
 ## Licence
 
