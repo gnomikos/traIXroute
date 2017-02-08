@@ -1,0 +1,33 @@
+# Copyright (C) 2016 Institute of Computer Science of the Foundation for Research and Technology - Hellas (FORTH)
+# Authors: Michalis Bamiedakis, Dimitris Mavrommatis and George Nomikos
+#
+# Contact Author: George Nomikos
+# Contact Email: gnomikos [at] ics.forth.gr
+#
+# This file is part of traIXroute.
+#
+# traIXroute is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+#
+# traIXroute is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
+
+AS_M0-(IXP_IP and AS_M1)-AS_M1: a               #1
+AS_M0-(IXP_IP and AS_M0)-AS_M1: b               #2
+AS_M0-(IXP_IP and AS_M1)-!AS_M2: a              #3
+AS_M0-(IXP_IP and AS_M1)-AS_M2: a or b          #4
+AS_M0-(IXP_IP and !AS_M)-!AS_M1: a              #5
+!AS_M0-(IXP_IP and !AS_M)-AS_M1: b              #6
+!AS_M0-(IXP_IP and AS_M1)-AS_M2: b              #7
+!AS_M0-(IXP_IP and AS_M1)-!AS_M2: a or b        #8
+(IXP_IP0 and AS_M0)-(IXP_IP0 and AS_M1): a      #9
+(IXP_IP0 and !AS_M)-(IXP_IP0 and !AS_M): a      #10
+(IXP_IP0 and !AS_M)-(IXP_IP1 and !AS_M): a      #11
+*-(IXP_IP and !AS_M): ?                         #12
+(IXP_IP and !AS_M)-*: ?                       #13

@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# Copyright (C) 2016 Institute of Computer Science of the Foundation for Research and Technology - Hellas (FORTH)
+# Authors: Michalis Bamiedakis, Dimitris Mavrommatis and George Nomikos
+#
+# Contact Author: George Nomikos
+# Contact Email: gnomikos [at] ics.forth.gr
+#
+# This file is part of traIXroute.
+#
+# traIXroute is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+#
+# traIXroute is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
+
+path="$(cd "$(dirname "$0")"/.. ; pwd)"
+
+export PYTHONPATH="$path"/lib
+
+for INTERPRETER in "$INTERPRETER" pypy3 python3 python3.3 python3.4 python3.5; do
+        INTERPRETER="$(command -v "$INTERPRETER")" && break
+done
+
+APPLICATION="$("$INTERPRETER" -c "
+import sys
+import os
+path = [os.path.join(_,'traixroute')
+        for _ in sys.path
+        if os.path.isfile('/'.join((_, 'traixroute', 'application.py')))][0]
+print(os.path.join(path,'application.py'))
+def remove (file):
+    try: os.remove(file)
+    except: pass
+")"
+
+exec "$INTERPRETER" "$APPLICATION" "$@"
