@@ -1,5 +1,5 @@
 [![License](https://img.shields.io/pypi/l/traixroute.svg)](https://github.com/gnomikos/traIXroute/blob/master/LICENSE)
-[![PyPI](https://img.shields.io/pypi/v/traixroute.svg)](https://pypi.python.org/pypi/exabgp)
+[![PyPI](https://img.shields.io/pypi/v/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
 [![PyPI Status](https://img.shields.io/pypi/status/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
 [![PyPI Wheel](https://img.shields.io/pypi/wheel/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
