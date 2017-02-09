@@ -1,0 +1,31 @@
+# Copyright (C) 2016 Institute of Computer Science of the Foundation for Research and Technology - Hellas (FORTH)
+# Authors: Michalis Bamiedakis, Dimitris Mavrommatis and George Nomikos
+#
+# Contact Author: George Nomikos
+# Contact Email: gnomikos [at] ics.forth.gr
+#
+# This file is part of traIXroute.
+#
+# traIXroute is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+#
+# traIXroute is distributed in the hope that it will be useful,    
+# but WITHOUT ANY WARRANTY; without even the implied warranty of  
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.  
+
+#-----------------FORMAT----------------
+#For IXP Membership data:
+#IXP-IP,ASN,IXP Long Name,IXP Short Name, IXP city, IXP country
+#8.8.8.8,1234,IXP long name,IXP short name, IXP city, IXP country
+#
+#For IXP Prefixes data:
+#IXP Prefix,IXP Long Name,IXP Short Name, IXP city, IXP country
+#e.g. 176.126.38.0/24,GR-IX,GR-IX, IXP city, IXP country
+#
+#---------------IMPORTANT---------------
+#IXP IPs like A.B.C.0 or A.B.C.255 are skipped.

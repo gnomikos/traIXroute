@@ -1,0 +1,7 @@
+{
+    "peering":{"ix_link":"https://peeringdb.com/api/ix","ixp_pfx_link":"https://peeringdb.com/api/ixpfx","ixplan_link":"https://peeringdb.com/api/ixlan","netixlan_link":"https://peeringdb.com/api/netixlan"},
+    "pch":{"ixp_exchange":"https://prefix.pch.net/applications/ixpdir/download.php?s=exchange","ixp_ips":"https://prefix.pch.net/applications/ixpdir/download.php?s=ix_membership","ixp_subnet":"https://prefix.pch.net/applications/ixpdir/download.php?s=subnet_active"},
+    "caida_log":"http://data.caida.org/datasets/routing/routeviews-prefix2as/pfx2as-creation.log",
+    "ripe_auth_key":"",
+    "num_of_cores":-1
+}

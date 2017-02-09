@@ -1,0 +1,870 @@
+exchange_point_id, short_name, status, version, multicast, mlpa, subnet, participants
+2, NAP CABASE Buenos Aires, Active, IPv6, Unicast, None, 2001:13c7:6001::/64, 5
+2, NAP CABASE Buenos Aires, Active, IPv4, Unicast, None, 200.0.17.0/24, 71
+6, AUSIX, Active, IPv4, , Unknown, 218.100.1.0/24, 7
+8, VIC-IX, Active, IPv4, Unicast, Unknown, 218.100.78.0/24, 49
+8, VIC-IX, Active, IPv6, Unicast, Unknown, 2001:7fa:11:1::/64, 0
+9, WAIX, Active, IPv4, Unicast, Available, 198.32.212.0/24, 82
+9, WAIX, Unknown, IPv6, , Available, , 0
+12, Equinix Sydney, Active, IPv4, Unicast, Available, 202.167.228.0/24, 85
+13, PIPE Brisbane, Active, IPv4, Unicast, Available, 218.100.0.0/24, 36
+13, PIPE Brisbane, Active, IPv6, Unicast, Unknown, 2001:7FA:9::, 0
+14, GraX, Active, IPv4, Unicast, Unknown, 193.105.214.0/24, 16
+14, GraX, Active, IPv6, Unicast, Unknown, 2001:7f8:71::, 16
+15, VIX, Active, IPv6, Unicast, Unknown, 2001:0628:04fe::/64, 74
+15, VIX, Active, IPv4, Unicast, Unknown, 193.203.0.0/24, 124
+15, VIX, Unknown, IPv4, Multicast, Unknown, , 3
+16, BDIX, Active, IPv4, Unicast, Available, 198.32.167.0/24, 31
+17, BNIX, Active, IPv6, , Unknown, 2001:7F8:26::, 32
+17, BNIX, Unknown, IPv4, , Unknown, 194.53.172.0/25, 0
+17, BNIX, Active, IPv4, Unicast, Unknown, 194.53.172.0/24, 57
+19, PTT Belo Horizonte, Active, IPv4, Unicast, Unknown, , 39
+19, PTT Belo Horizonte, Active, IPv6, Unicast, Unknown, 2001:12f8:0:3::/64, 0
+20, PTT Brasília, Active, IPv4, Unicast, Unknown, , 35
+21, PRIX, Active, IPv6, Unicast, Unknown, 2001:12f8:0:4::/64, 37
+21, PRIX, Active, IPv4, Unicast, Unknown, 200.219.140.0/24, 71
+22, PTT Florianópolis, Active, IPv4, Unicast, Unknown, , 35
+29, NAP do Brasil, Active, IPv4, Unicast, None, 200.136.34.0/24, 37
+30, PTTMetro São Paulo, Active, IPv4, Unicast, Available, 187.16.216.0/22, 817
+30, PTTMetro São Paulo, Active, IPv6, Unicast, Available, 2001:12f8:0:0000::/64, 0
+37, OttIX, Active, IPv6, Unicast, Unknown, 2001:478:235::/64, 9
+37, OttIX, Active, IPv4, Unicast, Unknown, 198.32.235.0/24, 14
+39, TORIX, Active, IPv6, Unicast, Unknown, 2001:0504:001A::34:0/111, 0
+39, TORIX, Active, IPv4, Unicast, Unknown, 206.108.34.0/23, 197
+41, NAP Chile, Active, IPv4, Unicast, Unknown, 192.168.173.0/24, 13
+43, BIX, Active, IPv4, Unicast, Unknown, , 11
+49, NAP-Colombia, Active, IPv4, Unicast, Unknown, 206.223.124.0/24, 19
+51, CIX, Active, IPv6, Unicast, Unknown, 2001:7f8:28::/48, 0
+51, CIX, Deprecated, IPv4, Unicast, Unknown, , 0
+51, CIX, Active, IPv4, Unicast, Unknown, 193.192.15.64/26, 29
+52, NAP de Cuba, Active, IPv4, Unicast, Unknown, 200.0.16.0/24, 5
+53, CyIX, Active, IPv4, Unicast, Unknown, , 3
+55, NIX.CZ, Active, IPv6, Unicast, Unknown, 2001:7f8:14::, 97
+55, NIX.CZ, Active, IPv4, Unicast, Unknown, 91.210.16.0/22, 141
+56, DIX, Active, IPv4, Unicast, Unknown, 192.38.7.0/24, 45
+56, DIX, Active, IPv6, Unicast, Unknown, 2001:07F8:001F::/48, 28
+57, NAP AEPROVI Guayaquil, Active, IPv6, , Unknown, 2001:13C7:6F40::/48, 0
+57, NAP AEPROVI Guayaquil, Active, IPv4, Unicast, Mandatory, , 34
+58, NAP AEPROVI Quito, Active, IPv6, , Unknown, 2001:13C7:6F00::/48, 0
+58, NAP AEPROVI Quito, Active, IPv4, Unicast, Mandatory, , 28
+59, CAIX, Unknown, IPv6, , Available, 2001:4300:96::/48, 0
+59, CAIX, Active, IPv4, Unicast, None, 81.21.96.0/24, 7
+62, LINX, Active, IPv4, Unicast, Unknown, 195.66.224.0/22, 698
+62, LINX, Active, IPv4, Unicast, Unknown, 195.66.236.0/22, 0
+62, LINX, Deprecated, IPv4, Unicast, Unknown, 195.66.230.0/24, 0
+62, LINX, Active, IPv6, Unicast, Unknown, 2001:7F8:4::/64, 0
+64, LoNAP, Active, IPv4, Unicast, Unknown, 5.57.80.0/22, 172
+64, LoNAP, Active, IPv6, Unicast, Unknown, 2001:7f8:17::/48, 6
+66, XP-London IXP, Active, IPv6, Unicast, Unknown, 2001:07f8:0001:0001::/64, 5
+66, XP-London IXP, Active, IPv4, Unicast, Unknown, 217.79.160.0/23, 166
+68, TIX, Active, IPv6, , Unknown, 2001:7f8:15::/48, 6
+68, TIX, Unknown, IPv6, , Unknown, , 0
+68, TIX, Active, IPv4, Unicast, Unknown, 212.47.215.0/24, 13
+69, FICIX2, Active, IPv4, Unicast, Unknown, 193.110.224.0/24, 25
+69, FICIX2, Deprecated, IPv4, Unicast, Unknown, 193.110.224.0/24, 0
+69, FICIX2, Deprecated, IPv4, , Unknown, , 0
+69, FICIX2, Active, IPv6, , Unknown, 2001:7f8:7:1::/64, 0
+69, FICIX2, Active, IPv6, Unicast, Unknown, 2001:7f8:7:b::/64, 0
+70, TREX, Active, IPv4, Unicast, Unknown, 195.140.192.0/24, 15
+70, TREX, Active, IPv6, , Unknown, 2001:7f8:1d:4::/64, 0
+71, LyonIX, Active, IPv4, Unicast, Unknown, 77.95.71.0/24, 93
+71, LyonIX, Active, IPv6, Unicast, Unknown, 2001:7f8:47:47::/64, 56
+74, MIXT, Active, IPv4, Unicast, Unknown, , 7
+78, SFINX, Active, IPv4, Unicast, Unknown, 194.68.129.0/24, 95
+78, SFINX, Active, IPv6, , Unknown, 2001:7f8:4e:2::/64, 57
+80, BCIX, Active, IPv6, Unicast, Unknown, 2001:7F8:19:1::/64, 0
+80, BCIX, Unknown, IPv4, , Unknown, , 0
+80, BCIX, Active, IPv4, Unicast, Unknown, 193.178.185.0/24, 80
+81, BLNX/ECIX BER, Active, IPv4, Unicast, Available, 194.9.117.0/24, 155
+81, BLNX/ECIX BER, Active, IPv6, Unicast, Available, 2001:7f8:8:5::/64, 0
+82, ECIX DUS, Active, IPv6, Unicast, Available, 2001:7F8:8::/64, 0
+82, ECIX DUS, Active, IPv4, Unicast, Unknown, 194.146.118.0/24, 97
+83, DE-CIX, Defunct, IPv4, , Unknown, 194.31.232.0/24, 0
+83, DE-CIX, Active, IPv4, Unicast, Unknown, 80.81.192.0/22, 702
+83, DE-CIX, Active, IPv4, Multicast, Unknown, 80.81.200.0/24, 0
+83, DE-CIX, Active, IPv6, Unicast, Unknown, 2001:7f8::/64, 0
+86, INXS-HH, Active, IPv4, Unicast, Unknown, 62.208.162.0/24, 40
+86, INXS-HH, Active, IPv6, Unicast, Unknown, 2001:7f8:2c:2000::/64 , 10
+87, XP-Hamburg IXP, Active, IPv4, Unicast, Unknown, , 2
+88, DE-CIX Hamburg, Active, IPv4, , Unknown, 213.238.34.0/24, 0
+88, DE-CIX Hamburg, Active, IPv4, Unicast, Unknown, 80.81.203.0/24, 38
+89, INXS, Active, IPv6, , Unknown, , 10
+89, INXS, Deprecated, IPv4, Multicast, Unknown, 194.112.112.0/24, 7
+89, INXS, Active, IPv4, Unicast, Unknown, 194.59.190.0/24, 40
+92, N-IX, Active, IPv4, Unicast, Unknown, 195.85.217.0/24, 43
+92, N-IX, Active, IPv6, , Unknown, 2001:7f8:29:1::, 0
+93, GIX, Active, IPv4, Unicast, Unknown, , 17
+94, GR-IX, Deprecated, IPv4, Multicast, Unknown, , 0
+94, GR-IX, Deprecated, IPv6, Unicast, Unknown, , 0
+94, GR-IX, Active, IPv6, Unicast, Unknown, , 0
+94, GR-IX, Active, IPv4, Unicast, None, 195.130.89.0/24, 25
+96, HKIX, Active, IPv4, Unicast, Available, 202.40.160.0/23, 234
+96, HKIX, Active, IPv6, Unicast, Unknown, 2001:7FA:0:1::/64, 0
+99, BIX, Active, IPv6, Unicast, None, , 0
+99, BIX, Active, IPv4, Unicast, None, 193.188.137.0/24, 52
+100, RIX, Active, IPv4, Unicast, Unknown, 193.4.59.0/24, 24
+100, RIX, Active, IPv6, Unicast, Unknown, , 0
+103, NIXI Mumbai, Unknown, IPv6, Unicast, Unknown, , 0
+103, NIXI Mumbai, Active, IPv4, Unicast, Unknown, 180.179.222.68, 50
+104, NIXI Delhi, Unknown, IPv6, Unicast, Unknown, , 0
+104, NIXI Delhi, Active, IPv4, Unicast, Mandatory, 180.179.222.68, 24
+105, NIXI Chennai, Active, IPv4, Unicast, Unknown, 180.179.222.68, 41
+105, NIXI Chennai, Deprecated, IPv4, Unicast, Unknown, , 9
+106, NIXI Kolkotta, Active, IPv4, Unicast, Unknown, 180.179.222.68, 10
+110, IIX, Active, IPv6, Unicast, Unknown, 2001:7FA:2::/64, 0
+110, IIX, Active, IPv4, Unicast, Unknown, 103.28.74.0/23, 99
+114, IIX, Active, IPv6, Unicast, Unknown, , 0
+114, IIX, Active, IPv4, Unicast, Unknown, 218.100.4.0/24, 0
+116, INEX, Active, IPv6, , Unknown, 2001:7f8:18:12:/48, 0
+116, INEX, Deprecated, IPv4, , Unknown, 193.1.208.192/26, 0
+116, INEX, Active, IPv6, Unicast, Unknown, 2001:7f8:18::/48, 51
+116, INEX, Active, IPv4, Unicast, Available, 193.242.111.0/25, 106
+116, INEX, Active, IPv4, Unicast, Unknown, 194.88.240.0/25, 0
+117, IIX, Active, IPv4, Unicast, Mandatory, 192.114.62.0/24, 16
+118, MIX, Planned, IPv4, Multicast, Unknown, , 0
+118, MIX, Active, IPv4, Unicast, Unknown, 217.29.66.0/24, 109
+118, MIX, Active, IPv6, Unicast, Unknown, , 60
+120, NaMeX, Active, IPv4, Unicast, Unknown, 193.201.40.0/24, 53
+120, NaMeX, Active, IPv6, Unicast, Unknown, 2001:7f8:10::/48, 3
+121, TOP-ix, Active, IPv6, , Unknown, 2001:7f8:23:ffff::/64, 0
+121, TOP-ix, Active, IPv4, Unicast, Unknown, 194.116.96.0/24, 85
+123, JPIX Nagoya, Active, IPv4, Unicast, Unknown, , 0
+123, JPIX Nagoya, Active, IPv6, Unicast, Unknown, , 0
+123, JPIX Nagoya, Active, IPv4, Unicast, Unknown, , 11
+124, JPIX Nihonbashi, Active, IPv4, Unicast, Unknown, , 0
+125, JPIX OSAKA, Active, IPv4, Unicast, Unknown, , 11
+126, JPNAP Osaka, Active, IPv4, Unicast, Unknown, , 37
+126, JPNAP Osaka, Active, IPv6, Unicast, Unknown, , 0
+128, NSPIXP-3, Active, IPv4, , Unknown, , 23
+128, NSPIXP-3, Active, IPv6, Unicast, Unknown, 2001:200:0:FE10::/64, 0
+129, JPIX, Active, IPv4, Unicast, Unknown, 210.171.224.0/24, 135
+129, JPIX, Active, IPv6, Unicast, Unknown, 2001:de8:8::/64, 16
+130, JPNAP, Active, IPv4, Unicast, Unknown, , 101
+130, JPNAP, Active, IPv6, Unicast, Unknown, , 10
+134, DIX-IE, Active, IPv4, Unicast, Unknown, 202.249.2.0/24, 85
+135, NSPIXP-6, Active, IPv6, , Unknown, 3ffe:501:0:1800:200:f8ff:fe1f:7490, 51
+137, BBIX, Active, IPv6, Unicast, Unknown, 2001:0DE8:000C::/64, 0
+137, BBIX, Unknown, IPv4, Unicast, Unknown, , 0
+137, BBIX, Active, IPv4, Unicast, Unknown, 218.100.6.0/24, 0
+138, BBIX, Active, IPv6, Unicast, Unknown, 2001:de8:c:2::/48, 0
+138, BBIX, Active, IPv4, Unicast, Unknown, , 0
+139, BBIX, Active, IPv4, Unicast, Unknown, , 0
+141, BBIX Fukuoka, Active, IPv4, Unicast, Unknown, 218.100.6.0/24, 0
+142, Equinix Tokyo, Active, IPv6, Unicast, Unknown, 2001:DE8:5::/64, 0
+142, Equinix Tokyo, Active, IPv4, Unicast, Unknown, 203.190.230.0/25, 0
+143, KIXP, Active, IPv6, Unicast, Unknown, 2001:43f8:0060::/48, 30
+143, KIXP, Active, IPv4, Unicast, Available, 196.223.21.0/24, 30
+144, 6NGIX, Active, IPv6, Unicast, Unknown, , 27
+145, LGDACOM IX, Active, IPv4, Unicast, Unknown, 198.32.209.0/24, 52
+147, KINX, Active, IPv4, Unicast, Unknown, 192.145.251.0/24, 46
+147, KINX, Active, IPv6, Unicast, Unknown, 2001:7FA:8::/64, 0
+155, MIX, Active, IPv4, Unicast, Unknown, , 12
+156, MIXP, Active, IPv4, Unicast, Available, 196.223.0.0/24, 10
+156, MIXP, Unknown, IPv6, Unicast, Available, 2001:43f8:270:d0d0::/64, 0
+157, MIX, Active, IPv4, , Unknown, , 6
+158, MOZIX, Active, IPv4, Unicast, Unknown, 192.168.10.0/24, 17
+159, NPIX, Active, IPv4, Unicast, Available, 198.32.231.0/24, 31
+159, NPIX, Active, IPv6, Unicast, Unknown, 2404:2C00:FFFF:E::/64, 0
+160, AMS-IX, Active, IPv4, Both, Available, 80.249.208.0/21, 783
+160, AMS-IX, Unknown, IPv4, , Unknown, 195.69.144.0/24, 0
+160, AMS-IX, Unknown, IPv4, , Unknown, 195.69.145.0/24, 0
+160, AMS-IX, Deprecated, IPv4, Unicast, Available, 195.69.144.0/22, 0
+160, AMS-IX, Active, IPv6, Unicast, Available, 2001:7f8:1::/64, 0
+160, AMS-IX, Deprecated, IPv4, , Unknown, 193.148.15.0/24, 170
+162, NDIX, Active, IPv4, Unicast, Unknown, 193.108.98.0/24, 21
+163, GN-IX, Active, IPv6, , None, 2001:7f8:31:0, 0
+163, GN-IX, Active, IPv4, , Unknown, 193.111.172.0/24, 51
+164, APE, Active, IPv6, Unicast, Available, 2001:07FA:0004::/48, 8
+164, APE, Active, IPv4, Unicast, Unknown, 192.203.154.0/24, 92
+165, CHIX, Active, IPv6, Unicast, Unknown, 2001:7fa:3:5f44::/64, 0
+165, CHIX, Active, IPv4, Unicast, Available, 218.100.24.0/24, 12
+168, PNIX, Active, IPv4, Unicast, Unknown, 218.100.21.0/24, 4
+171, WIX, Active, IPv6, Unicast, Unknown, 2001:7fa:3:ca07::/64, 12
+171, WIX, Active, IPv4, Unicast, Available, 202.7.0.0/23, 90
+172, NicIX, Active, IPv4, Unicast, Unknown, , 10
+174, NIX1, Deprecated, IPv4, , Unknown, 193.156.120.0/24, 21
+174, NIX1, Active, IPv6, Unicast, Unknown, 2001:7F8:12:1::/64, 40
+174, NIX1, Active, IPv4, Unicast, Unknown, 193.156.90.0/24, 61
+176, Intered Panamá, Active, IPv4, Unicast, Unknown, 200.46.153.8/30, 10
+179, NAP-PY, Active, IPv4, Unicast, Unknown, , 15
+181, NAP Perú, Active, IPv4, Unicast, Unknown, 206.223.130.0/24, 14
+185, WIX, Active, IPv4, , Unknown, 195.85.195.0/24, 42
+186, GIGA-PIX, Active, IPv4, Unicast, Unknown, 193.136.250.0/24, 22
+186, GIGA-PIX, Active, IPv6, Unicast, Unknown, , 2
+189, RoNIX, Active, IPv4, Unicast, Unknown, 217.156.113.0/24, 33
+190, MSK-IX Ekaterinburg, Active, IPv4, Unicast, Unknown, 194.85.107.0/24, 40
+190, MSK-IX Ekaterinburg, Active, IPv6, Unicast, Unknown, 2001:7F8:20:301::107:0, 10
+191, MSK-IX Moscow, Active, IPv4, Unicast, Unknown, 193.232.244.0/24, 397
+191, MSK-IX Moscow, Active, IPv6, Unicast, Unknown, , 0
+192, MSK-IX Novosibirsk, Active, IPv4, Unicast, Unknown, 193.232.87.0/24, 48
+192, MSK-IX Novosibirsk, Active, IPv6, Unicast, Unknown, 2001:7F8:20:401::87:0, 0
+193, MSK-IX Samara, Active, IPv6, Unicast, Unknown, 2001:7F8:20:601::/64, 8
+193, MSK-IX Samara, Active, IPv4, Unicast, None, 193.232.135.0/24, 19
+195, MSK-IX St. Petersburg, Active, IPv6, Unicast, Unknown, 2001:7f8:20:201::177:0, 0
+195, MSK-IX St. Petersburg, Active, IPv4, Unicast, Unknown, 194.85.177.0/24, 84
+202, SOX, Active, IPv4, Unicast, Unknown, 198.32.141.0/24, 27
+202, SOX, Active, IPv6, Unicast, Unknown, 2001:de8:d::/64, 0
+204, SIX Bratislava, Active, IPv6, Unicast, Available, 2001:7F8:2F::/64, 29
+204, SIX Bratislava, Active, IPv4, Unicast, Available, 192.108.148.0/24, 56
+204, SIX Bratislava, Not an exchange, IPv4, Unicast, Unknown, , 0
+205, SIX, Active, IPv6, Unicast, Unknown, , 0
+205, SIX, Active, IPv4, Unicast, Unknown, 193.2.141.0/24, 27
+206, CINX, Active, IPv4, Unicast, Unknown, 196.223.22.0/24, 180
+206, CINX, Active, IPv6, Unicast, Unknown, 2001:43f8:1f1::/64, 0
+209, JINX, Deprecated, IPv4, Unicast, Unknown, 198.32.142.0/24, 57
+209, JINX, Deprecated, IPv6, Unicast, Unknown, 2001:0478:, 3
+209, JINX, Active, IPv4, Unicast, Available, 196.223.14.0/24, 65
+209, JINX, Active, IPv6, Unicast, Available, 2001:43f8:1f0::/64, 0
+211, CATNIX, Active, IPv4, Unicast, Unknown, 213.234.0.0/25, 26
+211, CATNIX, Active, IPv6, , Unknown, , 0
+212, EuskoNIX, Active, IPv4, Unicast, Unknown, , 7
+213, ESPANIX, Active, IPv4, Unicast, Unknown, 193.149.0.0/23, 45
+213, ESPANIX, Active, IPv6, Unicast, Unknown, 2001:7F8:f:1::/64, 0
+215, Terremark NAP Madrid, Active, IPv4, Unicast, None, 193.227.132.0/24, 2
+215, Terremark NAP Madrid, Active, IPv6, Unicast, Unknown, , 0
+219, SLIX, Active, IPv4, Unicast, Unknown, , 20
+222, Netnod Gothenburg, Deprecated, IPv4, Unicast, Unknown, 194.68.135.0/24, 7
+222, Netnod Gothenburg, Active, IPv6, Unicast, Unknown, , 0
+222, Netnod Gothenburg, Active, IPv4, Unicast, Unknown, 194.68.130.0/24, 11
+222, Netnod Gothenburg, Deprecated, IPv4, Unicast, Unknown, 194.68.130.0/24, 7
+225, Netnod Luleå, Active, IPv4, Unicast, Unknown, , 6
+227, Netnod, Active, IPv4, Unicast, Unknown, 195.245.240.0/24, 0
+227, Netnod, Active, IPv6, Unicast, Unknown, 2001:7f8:d:fb::/64, 0
+227, Netnod, Active, IPv4, Unicast, Unknown, 194.68.128.0/24, 41
+227, Netnod, Active, IPv4, Unicast, Unknown, 195.69.119.0/24, 0
+227, Netnod, Active, IPv4, Unicast, Unknown, 194.68.123.0/24, 175
+227, Netnod, Active, IPv6, Unicast, Unknown, 2001:7f8:d:fc::/64, 0
+227, Netnod, Active, IPv6, Unicast, Unknown, 2001:7f8:d:fe::/64, 0
+227, Netnod, Active, IPv6, Unicast, Unknown, 2001:7f8:d:ff::/64, 0
+227, Netnod, Deprecated, IPv4, Unicast, Unknown, 194.68.132.0/24, 25
+228, SOLIX, Planned, IPv6, Unicast, Unknown, , 0
+228, SOLIX, Active, IPv4, Unicast, Unknown, 193.110.12.0/23, 58
+229, Netnod Sundsvall, Active, IPv6, Unicast, Unknown, , 0
+229, Netnod Sundsvall, Active, IPv4, Unicast, Unknown, 194.68.133.0/24, 13
+230, NorrNod, Active, IPv4, Unicast, Unknown, , 7
+231, CIXP, Active, IPv4, Unicast, Unknown, 192.65.185.0/24, 44
+231, CIXP, Active, IPv6, Unicast, Unknown, 2001:7F8:1C:24A::/64, 0
+234, SwissIX, Unknown, IPv4, , Unknown, 194.242.34.0/24, 0
+234, SwissIX, Active, IPv4, Unicast, Unknown, 91.206.52.0/23, 182
+234, SwissIX, Active, IPv6, Unicast, Unknown, 2001:7f8:24::/48, 109
+236, Equinix Zurich, Active, IPv4, , Unknown, 194.42.48.0/24, 65
+236, Equinix Zurich, Active, IPv6, , Unknown, 2001:7f8:c:8235:194:42:48:, 0
+237, TPIX, Active, IPv6, Unicast, Unknown, , 0
+237, TPIX, Active, IPv4, Unicast, Available, 203.163.222.0/24, 22
+238, TWIX, Active, IPv6, Unicast, Unknown, , 2
+238, TWIX, Active, IPv4, Unicast, Unknown, 210.62.255.0/24, 39
+239, TWNAP, Active, IPv4, , Unknown, , 16
+242, TIX, Active, IPv6, Unicast, Available, 2001:43f8::/64, 5
+242, TIX, Active, IPv4, Unicast, Available, 196.223.5.0/25, 30
+244, CAT-THIX, Active, IPv4, Unicast, Unknown, , 20
+248, UIXP, Active, IPv4, Unicast, Available, 196.223.25.0/24, 8
+248, UIXP, Deprecated, IPv4, , Unknown, 194.153.153.0/25, 8
+248, UIXP, Active, IPv6, , Available, 2001:43f8:0130::0/112, 8
+249, UA-IX, Active, IPv4, Unicast, Unknown, 195.35.65.0/24, 186
+255, Equinix Ashburn, Active, IPv4, Unicast, Available, 206.126.236.0/22, 224
+255, Equinix Ashburn, Active, IPv4, , Available, 206.223.115.0/24, 72
+255, Equinix Ashburn, Deprecated, IPv4, Unicast, Unknown, 206.223.137.0/24, 0
+256, AtlantaIX, Active, IPv6, , Available, 2001:478:132::/64, 4
+256, AtlantaIX, Active, IPv4, Unicast, None, 198.32.132.0/24, 121
+259, Equinix-Atlanta, Active, IPv6, Unicast, Unknown, 2001:504:10::/64, 0
+259, Equinix-Atlanta, Active, IPv4, Unicast, Unknown, 198.32.181.0/24, 0
+259, Equinix-Atlanta, Active, IPv4, Unicast, Unknown, 198.32.182.0/24, 0
+259, Equinix-Atlanta, Active, IPv4, Multicast, Unknown, 198.32.183.0/24, 0
+266, Equinix-Boston, Active, IPv4, Unicast, Unknown, 198.32.111.0/24, 0
+266, Equinix-Boston, Active, IPv4, Unicast, Unknown, 198.32.112.0/24, 0
+266, Equinix-Boston, Active, IPv4, Multicast, Unknown, 198.32.113.0/24, 0
+268, Equinix Chicago IBX, Deprecated, IPv4, Unicast, Unknown, 206.223.138.0/24, 0
+268, Equinix Chicago IBX, Active, IPv4, Unicast, Unknown, 206.223.119.0/24, 36
+268, Equinix Chicago IBX, Active, IPv6, Unicast, Unknown, 2001:504:0:4::/64, 0
+271, STAR TAP, Active, IPv4, , Unknown, 206.220.240.0/24, 31
+272, StarLight, Active, IPv4, , Unknown, 206.220.241.0/24, 34
+278, Equinix IBX Dallas, Active, IPv4, , Unknown, 206.223.118.0/24, 0
+282, Equinix-Dallas, Active, IPv4, , Unknown, 198.32.114.0/24, 0
+282, Equinix-Dallas, Active, IPv4, , Unknown, 198.32.116.0/24, 0
+282, Equinix-Dallas, Active, IPv4, , Unknown, 198.32.115.0/24, 0
+282, Equinix-Dallas, Active, IPv4, , Unknown, 206.223.125.0/24, 0
+287, HIX, Active, IPv4, Unicast, Unknown, , 8
+287, HIX, Active, IPv6, Unicast, Unknown, , 0
+288, Compaq-NAP, Active, IPv4, Unicast, Unknown, 198.32.228.0/24, 0
+292, Rice EduPOP, Active, IPv4, , Unknown, 206.223.129.0/24, 0
+297, LAIIX, Active, IPv4, Multicast, None, 198.32.146.0/24, 39
+297, LAIIX, Active, IPv6, Unicast, Unknown, 2001:504:a::/64, 0
+303, MadIX, Active, IPv4, Unicast, Unknown, 144.92.233.224/28, 21
+303, MadIX, Active, IPv6, Unicast, Unknown, , 0
+307, NOTA, Active, IPv6, Unicast, Unknown, 2001:478:124::/48, 0
+307, NOTA, Active, IPv4, Unicast, None, 198.32.124.0/23, 78
+308, Equinix-Miami, Planned, IPv4, Unicast, Unknown, 198.32.101.0/24, 0
+308, Equinix-Miami, Active, IPv4, Multicast, Unknown, 198.32.99.0/24, 0
+308, Equinix-Miami, Planned, IPv4, Unicast, Unknown, 198.32.100.0/24, 0
+315, MAGPI, Active, IPv4, Unicast, Unknown, 198.32.42.0/24, 0
+315, MAGPI, Active, IPv4, , Unknown, 198.32.224.0/24, 0
+317, Equinix NY, Active, IPv4, , Unknown, 206.197.169.0/24, 0
+317, Equinix NY, Active, IPv4, , Unknown, 206.223.131.0/24, 0
+320, NYIIX, Active, IPv6, Unicast, Unknown, 2001:504:1::/64, 0
+320, NYIIX, Active, IPv4, Unicast, None, 198.32.160.0/24, 163
+321, BIG APE, Active, IPv6, Unicast, Unknown, 2001:0458:0026:2::/64, 19
+321, BIG APE, Active, IPv4, Unicast, Unknown, 198.32.238.0/24, 25
+323, Equinix-NY, Active, IPv4, Unicast, Unknown, 198.32.117.0/24, 0
+323, Equinix-NY, Active, IPv4, Unicast, Unknown, 198.32.118.0/24, 0
+323, Equinix-NY, Active, IPv4, Multicast, Unknown, 198.32.119.0/24, 0
+325, Equinix- Palo Alto, Active, IPv6, Unicast, Unknown, 2001:504:d::/64, 0
+325, Equinix- Palo Alto, Active, IPv4, Unicast, Unknown, 198.32.175.0/24, 0
+325, Equinix- Palo Alto, Active, IPv4, , None, 198.32.176.0/24, 0
+325, Equinix- Palo Alto, Active, IPv4, Multicast, Unknown, 198.32.177.0/24, 0
+328, PHLIX, Active, IPv4, Unicast, Available, 206.126.228.0/24, 3
+328, PHLIX, Active, IPv6, Unicast, Available, 2001:504:32:0::/64, 3
+328, PHLIX, Active, IPv6, Multicast, Available, 2001:504:32:1::/64, 3
+328, PHLIX, Active, IPv6, Unicast, Available, 2001:504:32:2::/64, 3
+328, PHLIX, Active, IPv6, Multicast, Available, 2001:504:32:3::/64, 3
+330, 3ROX GigaPOP, Active, IPv4, Unicast, Unknown, , 0
+332, NWAX, Active, IPv4, Unicast, None, 198.32.195.0/24, 77
+332, NWAX, Active, IPv6, Unicast, None, 2001:478:195::/64, 0
+332, NWAX, Unknown, IPv4, Multicast, Unknown, 198.32.196.0/24, 0
+336, SD-NAP, Active, IPv4, Unicast, Unknown, 198.17.46.0/24, 0
+336, SD-NAP, Unknown, IPv4, Unicast, Available, 198.32.238.0/24, 21
+337, Equinix-SF, Active, IPv4, Unicast, Unknown, , 0
+339, Equinix IBX San Jose, Defunct, IPv4, , Unknown, , 0
+339, Equinix IBX San Jose, Active, IPv4, , Unknown, 206.223.116.0/24, 37
+344, Equinix-Seattle, Active, IPv4, Unicast, Unknown, 198.32.135.0/24, 0
+344, Equinix-Seattle, Active, IPv6, Unicast, Unknown, 2001:504:12::/64, 0
+344, Equinix-Seattle, Active, IPv4, Multicast, Unknown, 198.32.133.0/24, 0
+344, Equinix-Seattle, Active, IPv4, Unicast, Unknown, 198.32.134.0/24, 0
+345, SIX, Active, IPv4, Unicast, None, 206.81.80.0/23, 235
+345, SIX, Defunct, IPv6, Unicast, None, 2001:478:180::/64, 0
+345, SIX, Active, IPv6, Unicast, None, 2001:504:16::/64, 0
+345, SIX, Defunct, IPv4, Unicast, None, 198.32.180/24, 0
+346, Pacific Wave, Active, IPv4, Unicast, Unknown, 198.32.170.0/24, 0
+346, Pacific Wave, Active, IPv4, , Unknown, 198.32.171.0/24, 0
+347, Equinix IBX Secaucus, Active, IPv4, Unicast, Unknown, 206.223.117.0/24, 0
+354, Texas GigaPOP, Active, IPv4, Unicast, Unknown, 198.32.236.0/24, 0
+357, Equinix-VA, Active, IPv4, Unicast, Unknown, 198.32.190.0/24, 0
+357, Equinix-VA, Active, IPv4, Unicast, Unknown, 198.32.191.0/24, 0
+357, Equinix-VA, Active, IPv4, Multicast, Unknown, 198.32.192.0/24, 0
+357, Equinix-VA, Active, IPv6, Unicast, Unknown, 2001:504:e::/64, 0
+361, VNIX, Active, IPv6, Unicast, Unknown, , 0
+361, VNIX, Active, IPv4, Unicast, Unknown, , 17
+362, VNIX, Active, IPv4, Unicast, Unknown, 218.100.10.0/24, 17
+362, VNIX, Active, IPv6, Unicast, Unknown, , 13
+363, VNIX, Active, IPv4, Unicast, Unknown, 218.100.14.0/24, 17
+363, VNIX, Active, IPv6, Unicast, Unknown, , 0
+364, ZINX, Active, IPv4, Unicast, Unknown, , 5
+367, BINX, Active, IPv4, Unicast, Mandatory, , 14
+369, SFMIX, Active, IPv4, Unicast, Unknown, 206.197.187.0/24, 52
+369, SFMIX, Active, IPv6, Unicast, Unknown, 2001:504:30::/64, 0
+373, Any2, Active, IPv4, Unicast, None, 206.223.143.0/24, 449
+373, Any2, Active, IPv6, Unicast, Unknown, 2001:504:13::/64, 0
+373, Any2, Unknown, IPv4, , Unknown, , 0
+373, Any2, Active, IPv4, , Available, 206.72.210.0/23, 0
+387, PIPE Adelaide, Active, IPv4, , Available, 218.100.3.0/24, 13
+388, PIPE Hobart, Active, IPv4, Unicast, Available, 218.100.12.0/24, 1
+389, PIPE Melbourne, Active, IPv6, , Unknown, 2001:7FA:E::, 0
+389, PIPE Melbourne, Active, IPv4, Unicast, Available, 218.100.13.0/24, 32
+400, PIPE Canberra, Active, IPv4, , Available, 218.100.19.0/24, 2
+402, PIPE Sydney, Active, IPv4, , Available, 218.100.2.0/24, 173
+402, PIPE Sydney, Active, IPv6, , Unknown, 2001:7FA:B::, 0
+415, PTT Rio de Janeiro, Active, IPv4, Unicast, Unknown, , 108
+415, PTT Rio de Janeiro, Active, IPv6, Unicast, Unknown, 2001:12f8:0:2::/64, 0
+415, PTT Rio de Janeiro, Active, IPv6, Unicast, Unknown, 2001:12f8:0:2::/64, 0
+464, Equinix Singapore, Active, IPv6, Unicast, Unknown, 2001:DE8:4::/64, 0
+464, Equinix Singapore, Active, IPv4, Unicast, None, 202.79.197.0/24, 74
+467, Equinix LA, Deprecated, IPv4, Unicast, Unknown, 206.223.142.0/24, 0
+467, Equinix LA, Active, IPv6, Unicast, Unknown, 2001:504:0:3::/64, 0
+467, Equinix LA, Active, IPv4, , None, 206.223.123.0/24, 0
+479, KINIX, Active, IPv4, Unicast, None, , 9
+504, Marseille Internet Exchange, Active, IPv4, , Unknown, 85.31.223.0/24, 0
+506, TIX, Active, IPv4, Unicast, Unknown, , 31
+508, Fr-IX, Active, IPv4, Unicast, None, , 38
+509, PLIX, Active, IPv6, Unicast, Unknown, 2001:7f8:42::/64, 0
+509, PLIX, Active, IPv4, Unicast, Unknown, 195.182.218.0/23, 278
+516, KRS-IX, Active, IPv6, Unicast, Unknown, , 0
+516, KRS-IX, Active, IPv4, Unicast, Unknown, 217.117.187.0/24, 50
+539, PhOpenIX, Active, IPv4, Unicast, None, 198.32.172.0/24, 27
+546, BurundiX, Active, IPv4, Unicast, Available, 196.223.36.0/24, 1
+547, Zambia IXP, Active, IPv4, , Mandatory, 196.223.2.0/24, 13
+547, Zambia IXP, Active, IPv6, , Mandatory, 2001:43f8:140::/64, 0
+556, KleyRex, Unknown, IPv6, , Unknown, 2001:7f8:33::/48, 0
+556, KleyRex, Active, IPv4, Unicast, Unknown, 193.189.82.0/23, 138
+559, TLLIX, Active, IPv6, , Unknown, , 0
+559, TLLIX, Active, IPv4, , Unknown, 195.137.179.0/24, 17
+572, NL-ix, Active, IPv6, Unicast, Unknown, 2001:7f8:13::/64, 0
+572, NL-ix, Active, IPv4, Unicast, Available, 193.239.116.0/23, 547
+572, NL-ix, Active, IPv4, Multicast, Unknown, 194.246.39.224/27, 0
+574, NIX.SK, Active, IPv4, Unicast, Unknown, 194.30.187.0/24, 36
+583, IX.PR, Active, IPv4, , Available, 134.202.255.0/24, 2
+586, DMIX, Active, IPv4, , Unknown, 206.223.126.0/24, 4
+587, PIX, Active, IPv4, , Unknown, 206.223.127.0/24, 0
+589, North Texas GigaPOP, Active, IPv4, , Unknown, , 7
+592, DRFxchange, Active, IPv4, Unicast, Unknown, 206.197.210.0/24, 14
+593, MEIX, Active, IPv4, , None, 196.223.7.0/24, 10
+601, MyIX, Active, IPv6, Unicast, Unknown, 2001:de8:10::/112, 0
+601, MyIX, Active, IPv4, , Mandatory, 218.100.44.0/24, 23
+606, AIXP, Defunct, IPv4, Unicast, Unknown, 198.32.179.192/27, 0
+606, AIXP, Planned, IPv6, Unicast, Available, 2001:43f8:0:100::/64, 0
+606, AIXP, Defunct, IPv4, Unicast, Unknown, 198.32.179.192/27, 0
+606, AIXP, Active, IPv4, Unicast, Unknown, 196.223.6.0/25, 6
+613, NFX.CZ, Active, IPv4, Unicast, Unknown, 81.201.48.192/26, 19
+616, IXPN - Lagos, Active, IPv4, Unicast, Mandatory, 196.216.148.0/24, 30
+627, STHIX, Active, IPv4, Unicast, None, 194.50.181.128/25, 91
+627, STHIX, Active, IPv6, Unicast, Unknown, 2001:7f8:3e::/48, 0
+629, FNIX6, Active, IPv4, Unicast, None, 195.140.149.128/25, 16
+629, FNIX6, Active, IPv6, , None, 2001:7f8:25:1::, 16
+630, KCIX, Active, IPv4, Unicast, Unknown, 206.51.7.0/25, 26
+630, KCIX, Active, IPv6, Unicast, Unknown, 2001:504:1B:1::/64, 0
+693, BeirutIX, Active, IPv6, Unicast, Available, 2001:7F8:52::/64, 0
+693, BeirutIX, Active, IPv4, Unicast, Available, 198.32.157.0/24, 5
+703, YRIX, Active, IPv4, Unicast, Unknown, , 8
+703, YRIX, Active, IPv6, Unicast, Unknown, , 0
+705, S-IX, Active, IPv4, Unicast, Unknown, 193.138.31.0/24, 22
+705, S-IX, Active, IPv6, Unicast, Unknown, 2001:504:16::/48, 0
+712, EuroGIX, Active, IPv4, Unicast, Available, 185.1.14.0/24, 6
+712, EuroGIX, Active, IPv6, Unicast, Available, 2001:7f8:79::/64, 5
+717, fraNAP, Active, IPv4, Unicast, Unknown, , 10
+723, CIX, Active, IPv4, Unicast, Unknown, , 52
+725, WRIX, Active, IPv4, Unicast, Unknown, , 8
+739, BSIX, Active, IPv4, , Unknown, 198.32.167.0/24, 0
+765, RINEX, Active, IPv4, Unicast, None, 196.223.12.0/24, 14
+767, FIXO, Active, IPv6, Unicast, Unknown, 2001:7f8:41::/48, 0
+767, FIXO, Active, IPv4, Unicast, Unknown, 91.198.176.0/24, 55
+803, R_iX, Active, IPv6, Unicast, Unknown, 2001:7f8:61::/64, 0
+803, R_iX, Active, IPv4, Unicast, Unknown, , 63
+804, InterLAN-IX, Active, IPv4, Unicast, Unknown, 86.104.125.0/24, 56
+834, Equinix Hong Kong, Active, IPv4, , Unknown, 119.27.63.0/24, 0
+834, Equinix Hong Kong, Active, IPv6, Unicast, Unknown, 2001:DE8:7::/64, 0
+864, GIX, Active, IPv4, Unicast, Unknown, 194.165.32.0/24, 15
+879, IXOR, Active, IPv4, Unicast, Unknown, 193.243.183.64/26, 24
+879, IXOR, Active, IPv6, Unicast, Unknown, 2001:7f8:53::/48, 24
+879, IXOR, Deprecated, IPv4, Unicast, Unknown, 193.243.183.64/26, 17
+880, TIX, Active, IPv4, , Unknown, , 7
+894, JPNAP Tokyo II, Active, IPv4, Unicast, Unknown, , 4
+894, JPNAP Tokyo II, Active, IPv6, Unicast, Unknown, , 0
+897, DN-IX, Active, IPv4, Unicast, Available, 193.34.203.0/24, 12
+907, BIX, Active, IPv4, Unicast, Unknown, 218.100.41.0/24, 18
+909, NMIX, Active, IPv4, , Unknown, , 0
+917, PIX, Active, IPv4, Unicast, Unknown, , 82
+918, Thinx IX, Active, IPv6, Unicast, Available, 2001:7f8:60::/48, 61
+918, Thinx IX, Active, IPv4, Unicast, Available, 212.91.0.0/22, 165
+926, LIPTAM, Active, IPv4, , Unknown, , 24
+928, CoreSite - Any2, Active, IPv4, , Unknown, 206.51.43.0/24, 7
+928, CoreSite - Any2, Active, IPv6, , Unknown, 2001:504:13:4:0:0:0:0/64, 4
+932, AO-IXP, Unknown, IPv4, , Unknown, , 0
+932, AO-IXP, Active, IPv4, Unicast, Available, 196.223.1.0/24, 12
+933, OD-IX, Active, IPv4, Unicast, Unknown, 194.107.117.0/24, 26
+946, TIE Phoenix, Active, IPv6, Unicast, Unknown, 2001:478:186::/64, 0
+946, TIE Phoenix, Active, IPv4, Unicast, Available, 198.32.186.0/24	, 12
+982, AIX, Unknown, IPv6, , Unknown, 2001:13c7:6003::/48, 0
+982, AIX, Active, IPv4, Unicast, Unknown, 200.0.18.0/24, 9
+984, NAP del Caribe, Active, IPv4, , Unknown, , 0
+987, OCIX, Active, IPv6, , Unknown, 2001:13c7:6002::/48, 0
+987, OCIX, Active, IPv4, Unicast, Unknown, 200.0.22.0.0/23, 8
+988, AMS-IX Caribbean, Active, IPv4, Unicast, Unknown, 200.0.20.0/24, 13
+1008, ACT-IX, Active, IPv4, Unicast, Unknown, 218.100.59.0/24, 7
+1008, ACT-IX, Active, IPv6, , Unknown, 2001:0DE8:0009::/48, 0
+1018, PTT Salvador, Active, IPv4, Unicast, Unknown, , 49
+1018, PTT Salvador, Active, IPv6, Unicast, Unknown, 2001:12f8:0:8::/64, 0
+1020, NIXI Bangalore, Active, IPv4, Unicast, Unknown, 180.179.222.68, 8
+1021, NIXI Hyderabad, Active, IPv4, Unicast, Unknown, 180.179.222.68, 6
+1022, NIXI Ahmedabad, Active, IPv4, Unicast, Unknown, 180.179.222.68, 3
+1029, Malawi IXP, Active, IPv4, Unicast, Unknown, 172.30.1.0/24, 36
+1044, MSK-IX Vladivostok, Active, IPv4, Unicast, Available, 193.232.136.0/24, 13
+1046, MSK-IX Rostov-on-Don, Active, IPv6, Unicast, Unknown, 2001:7F8:20:501::140:0, 4
+1046, MSK-IX Rostov-on-Don, Active, IPv4, Unicast, Unknown, 193.232.140.0/24, 14
+1052, ECIX HAM, Active, IPv4, , Available, 193.42.155.0/24, 38
+1052, ECIX HAM, Unknown, IPv6, Unicast, Available, 2001:7f8:8:10::/64, 0
+1064, IXSA Riyadh, Active, IPv4, , Unknown, 91.206.135.0/24, 0
+1064, IXSA Riyadh, Active, IPv4, , Available, 91.206.134.0/24, 4
+1065, GulfIX Bahrain, Active, IPv4, Unicast, Available, 195.82.138.0/23, 3
+1065, GulfIX Bahrain, Active, IPv6, , Available, 2001:7f8:4f::/48, 0
+1077, Mass-IX, Active, IPv4, Unicast, Unknown, 206.53.143.0/24, 28
+1077, Mass-IX, Unknown, IPv6, Unicast, Unknown, 2001:504:47::/64, 0
+1088, PTT Londrina, Active, IPv4, Unicast, Unknown, , 27
+1088, PTT Londrina, Active, IPv6, Unicast, Unknown, 2001:12f8:0:7::/64, 0
+1089, PTT Fortaleza, Active, IPv6, Unicast, Unknown, 2001:12f8:0:9::/64, 14
+1089, PTT Fortaleza, Active, IPv4, Unicast, Unknown, , 32
+1092, PTT Porto Alegre, Active, IPv6, Unicast, Available, 2001:12f0:300:1/48, 111
+1092, PTT Porto Alegre, Active, IPv4, Unicast, Available, 200.219.143.0/24, 141
+1097, Equinix Paris, Active, IPv4, Unicast, Unknown, 195.42.144.0/23, 315
+1097, Equinix Paris, Active, IPv6, Unicast, Available, 2001:7F8:43::/64, 315
+1105, CNIX, Active, IPv4, Unicast, Unknown, 91.213.73.0/24, 14
+1108, eXchange West, Active, IPv6, , Available, 2001:7f8:4d::/48, 0
+1108, eXchange West, Active, IPv4, Unicast, Available, 195.60.82.64/26, 5
+1124, France-IX, Active, IPv6, Unicast, Available, 2001:7f8:54::/64, 183
+1124, France-IX, Active, IPv4, Unicast, Available, 37.49.236.0/23, 299
+1128, NAP VSIX IPv4, Active, IPv4, Unicast, None, 95.140.128.0/23, 32
+1128, NAP VSIX IPv4, Active, IPv6, Unicast, Unknown, 2001:7f8:5f:ffff::/64, 0
+1132, FVG-IX, Active, IPv4, Unicast, Unknown, 82.193.63.0/24, 11
+1134, ULN-IX, Active, IPv4, Unicast, Unknown, 185.1.19.0/26, 17
+1134, ULN-IX, Active, IPv6, Unicast, Unknown, 2001:7F8:7D::/64, 6
+1137, BIX.BG, Active, IPv4, Unicast, Available, 193.169.198.0/23, 66
+1149, TIE New York, Active, IPv4, Unicast, Unknown, 206.126.115.0/24, 76
+1149, TIE New York, Active, IPv6, , Unknown, 2001:504:17:115::/64, 0
+1187, IST-IX, Active, IPv4, , Unknown, 198.32.120.0/24, 8
+1187, IST-IX, Active, IPv6, Unicast, Unknown, , 0
+1194, Balkan-IX, Active, IPv4, Unicast, Unknown, 217.174.157.0/24, 20
+1194, Balkan-IX, Active, IPv4, Unicast, Unknown, 185.1.30.0/24, 41
+1194, Balkan-IX, Active, IPv6, Unicast, Unknown, 2001:7f8:8e::11/118, 6
+1198, NAP CABASE Neuquén, Active, IPv4, Unicast, Unknown, 200.0.19.0/24, 17
+1198, NAP CABASE Neuquén, Active, IPv6, Unicast, Unknown, 2001:13c7:6007::/48, 0
+1199, PTT Campinas, Active, IPv4, Unicast, Unknown, , 36
+1199, PTT Campinas, Active, IPv6, Unicast, Unknown, , 19
+1200, PTT Recife, Active, IPv6, Unicast, Unknown, 2001:12f8:0:10::/64, 0
+1200, PTT Recife, Active, IPv4, Unicast, Unknown, , 24
+1206, TIE Dallas, Active, IPv6, Unicast, Available, 2001:504:17:114::/64, 14
+1206, TIE Dallas, Active, IPv4, Unicast, Available, 206.126.114.0/24	, 7
+1223, MSK-IX Kazan, Active, IPv4, Unicast, Unknown, 194.190.119.0/24, 10
+1223, MSK-IX Kazan, Active, IPv6, , Unknown, 2001:7f8:20:801::119:0, 5
+1225, AAIX, Active, IPv6, Unicast, Unknown, 2001:7f8:4a::/48, 0
+1225, AAIX, Active, IPv4, Unicast, Unknown, 193.37.144.0/24, 12
+1230, Touix, Active, IPv4, , Unknown, 91.213.236.0/24, 11
+1232, IXLeeds, Active, IPv6, Unicast, Unknown, 2001:7F8:67:0::/64, 12
+1232, IXLeeds, Active, IPv4, Unicast, Unknown, 91.234.18.0/24, 2
+1232, IXLeeds, Active, IPv6, Unicast, Unknown, 2001:7F8:67:9::/64, 1
+1232, IXLeeds, Active, IPv4, Unicast, Unknown, 91.217.231.0/24, 16
+1233, MiNAP, Active, IPv6, Unicast, Unknown, 2A01:658:FFFF::/48, 0
+1233, MiNAP, Active, IPv4, Unicast, Unknown, 92.60.70.0/24, 15
+1234, LU-CIX, Active, IPv6, , Unknown, 2001:7F8:4C::/48, 16
+1234, LU-CIX, Active, IPv4, Unicast, Unknown, 188.93.170.0/23, 71
+1236, SMILE, Active, IPv6, Unicast, Unknown, , 0
+1236, SMILE, Active, IPv4, Unicast, Available, 195.246.227.0/24, 29
+1238, LIX - Poland, Active, IPv4, Unicast, Unknown, , 17
+1240, DTEL-IX, Active, IPv6, Both, Unknown, 2001:7f8:63::/48, 40
+1240, DTEL-IX, Unknown, IPv4, Both, Unknown, , 0
+1240, DTEL-IX, Active, IPv4, Unicast, Unknown, 193.25.180.255/23, 121
+1241, Crimea-IX, Active, IPv4, Unicast, Unknown, 193.34.200.0/24, 21
+1241, Crimea-IX, Planned, IPv6, Unicast, Unknown, , 0
+1263, MCIX, Deprecated, IPv4, Unicast, Unknown, 119.110.115.0/24, 0
+1263, MCIX, Deprecated, IPv4, Unicast, Unknown, 119.110.118.0/24, 0
+1263, MCIX, Active, IPv6, Unicast, Unknown, 2404:c000:4004::/64, 0
+1263, MCIX, Deprecated, IPv4, Unicast, Unknown, 119.110.116.0/23, 0
+1263, MCIX, Active, IPv4, Unicast, Unknown, 119.110.117.0/24, 70
+1264, HIX, Active, IPv4, Unicast, Available, 218.100.56.0/24, 2
+1264, HIX, Active, IPv6, Unicast, Available, 2001:7fa:3:b0df::/48, 2
+1265, MICE, Active, IPv6, , Available, 2607:fe10:ffff, 25
+1265, MICE, Active, IPv4, Unicast, Available, 69.147.218.0/24, 39
+1267, GU-IX, Active, IPv4, Unicast, Unknown, 202.128.12.0/26, 3
+1267, GU-IX, Active, IPv6, Unicast, Unknown, , 0
+1269, DataIX, Active, IPv4, Unicast, Unknown, , 40
+1270, DataIX Moscow, Active, IPv4, Unicast, Unknown, , 39
+1271, DE-CIX Munich, Active, IPv4, Unicast, Unknown, , 27
+1272, SGIX, Active, IPv4, Unicast, Available, 103.16.102.0/23, 67
+1272, SGIX, Active, IPv6, Unicast, Available, 2001:de8:12:100::/64, 11
+1275, PTT Campina Grande, Active, IPv6, Unicast, Unknown, 2001:12f8:0:12::/64, 0
+1275, PTT Campina Grande, Active, IPv4, Unicast, Unknown, , 17
+1276, PTT Goiânia, Active, IPv4, Unicast, Unknown, , 23
+1283, LANIC, Active, IPv4, , Unknown, 172.16.96.0/24, 7
+1283, LANIC, Active, IPv4, , Unknown, 172.16.97.0/24, 0
+1285, ZPIX, Active, IPv4, , Available, 218.100.85.0/24, 4
+1297, GREX, Active, IPv6, Unicast, Available, 2001:1808:1:1::/64, 0
+1297, GREX, Active, IPv4, Unicast, None, 206.126.224/24, 6
+1306, NAPAfrica, Active, IPv6, Unicast, Unknown, , 0
+1306, NAPAfrica, Active, IPv4, Unicast, Unknown, , 259
+1308, NAPAfrica, Active, IPv6, Unicast, Unknown, 2001:43F8:6D1::/64, 0
+1308, NAPAfrica, Active, IPv4, Unicast, Unknown, 196.10.140.0/24, 12
+1312, SIXP, Active, IPv4, Unicast, Mandatory, , 7
+1316, MBIX, Active, IPv4, Unicast, Unknown, 206.72.208.0/24, 22
+1316, MBIX, Active, IPv6, Unicast, Unknown, 2001:504:26::/64, 21
+1317, JXIX, Active, IPv4, Unicast, Unknown, 206.123.7.0/24, 9
+1319, ASM-IX HK, Active, IPv6, , Available, 2001:df0:296::/64, 0
+1319, ASM-IX HK, Active, IPv4, Unicast, Available, 103.247.139.0/24, 28
+1332, IXManchester, Active, IPv4, Unicast, Unknown, 195.66.244.0/24, 72
+1332, IXManchester, Active, IPv6, Unicast, Unknown, 2001:7f8:4:2::/64, 0
+1341, UAE-IX, Active, IPv6, Unicast, Unknown, 2001:7f8:73::/64, 9
+1341, UAE-IX, Active, IPv4, Unicast, Available, 185.1.8.0/24, 50
+1348, Boston IX, Active, IPv4, Unicast, None, 206.108.236.0/24, 48
+1348, Boston IX, Active, IPv6, Unicast, None, 2001:504:24:1::/64, 48
+1350, SOX, Active, IPv4, Unicast, Unknown, , 21
+1350, SOX, Active, IPv6, Unicast, Unknown, , 0
+1362, DINX, Active, IPv4, Unicast, Unknown, 196.223.30.0/24, 6
+1362, DINX, Unknown, IPv6, , Available, 2001:43f8:01f2::/64, 0
+1364, DANIX, Active, IPv4, Unicast, Unknown, 10.1.2.0/24, 6
+1365, RTIX, Active, IPv4, Unicast, Unknown, 213.184.52.0/24, 7
+1365, RTIX, Active, IPv6, , Unknown, 2001:7F8:50:1::/64, 7
+1367, VIX, Active, IPv6, Unicast, Available, 2001:dec:0:1::/64, 0
+1367, VIX, Active, IPv4, Unicast, Available, 103.25.229.0/24, 6
+1373, GrenoblIX, Active, IPv4, Unicast, Unknown, 77.95.71.0/24, 7
+1383, Saratov-IX, Active, IPv4, , Unknown, , 12
+1384, MSK-IX Stavropol, Active, IPv4, Unicast, Unknown, 194.85.177.0/24, 8
+1384, MSK-IX Stavropol, Active, IPv6, Unicast, Unknown, , 0
+1385, Balcan-IX, Active, IPv4, Unicast, Unknown, 80.97.248.0/24, 24
+1403, NAP CABASE Bahía Blanca, Active, IPv6, Unicast, Unknown, 2001:13c7:6009::/48, 0
+1403, NAP CABASE Bahía Blanca, Active, IPv4, Unicast, Unknown, 200.14.37.0 /24, 15
+1404, NAP CABASE Córdoba, Active, IPv6, Unicast, Unknown, 2001:13C7:600E::/64, 0
+1404, NAP CABASE Córdoba, Active, IPv4, Unicast, Unknown, 200.14.75.0/24, 22
+1405, NAP CABASE De la Costa, Active, IPv4, Unicast, Unknown, 200.14.39.0 /24, 8
+1405, NAP CABASE De la Costa, Active, IPv6, Unicast, Unknown, 2001:13c7:600c::/48, 0
+1406, NAP CABASE La Plata, Active, IPv6, Unicast, Unknown, 2001:13c7:6011::/48, 0
+1406, NAP CABASE La Plata, Active, IPv4, Unicast, Unknown, 200.115.81.0 /24, 13
+1407, NAP CABASE Mar del Plata, Unknown, IPv4, Unicast, Unknown, 2001:13c7:6012::/48, 0
+1407, NAP CABASE Mar del Plata, Active, IPv4, Unicast, Unknown, 200.115.82.0 /24, 10
+1408, NAP CABASE Mendoza, Active, IPv6, Unicast, Unknown, 2001:13c7:600b::/48, 0
+1408, NAP CABASE Mendoza, Active, IPv4, Unicast, Unknown, 200.14.38.0 /24, 13
+1409, NAP CABASE Rosario, Active, IPv6, Unicast, Unknown, 2001:13c7:6008::/48, 0
+1409, NAP CABASE Rosario, Active, IPv4, Unicast, Unknown, 200.13.83.0 /24, 17
+1410, NAP CABASE Santa Fe, Active, IPv6, Unicast, Unknown, 2001:13c7:600d::/48, 0
+1410, NAP CABASE Santa Fe, Active, IPv4, Unicast, Unknown, 200.14.74.0 /24, 6
+1440, PTT Belém, Active, IPv6, Unicast, Unknown, 2001:12f8:0:18::/64, 0
+1440, PTT Belém, Active, IPv4, Unicast, Unknown, , 16
+1441, PTT Caxias do Sul, Active, IPv6, Unicast, Unknown, 2001:12f8:0:20::/64, 0
+1441, PTT Caxias do Sul, Active, IPv4, Unicast, Unknown, , 5
+1442, PTT Manaus, Active, IPv6, Unicast, Unknown, 2001:12f8:0:21::/64, 0
+1442, PTT Manaus, Active, IPv4, Unicast, Unknown, , 10
+1443, PTT Natal, Active, IPv4, Unicast, Unknown, , 14
+1444, PTT São José dos Campos, Active, IPv4, Unicast, Unknown, , 13
+1444, PTT São José dos Campos, Active, IPv6, Unicast, Unknown, 2001:12f8:0:15::/64, 0
+1445, PTT São José do Rio Preto, Active, IPv4, Unicast, Unknown, , 11
+1445, PTT São José do Rio Preto, Active, IPv6, Unicast, Unknown, 2001:12f8:0:22::/64, 0
+1446, PTT Vitória, Active, IPv6, Unicast, Unknown, 2001:12f8:0:17::/64, 0
+1446, PTT Vitória, Active, IPv4, Unicast, Unknown, , 25
+1461, YYCIX, Active, IPv4, Unicast, None, 206.126.225.0/24, 25
+1461, YYCIX, Active, IPv6, Unicast, Unknown, 2001:504:2f::/64, 2
+1472, QLD-IX, Active, IPv6, , Unknown, 2001:7fa:11:2::/64, 0
+1472, QLD-IX, Active, IPv4, Unicast, Unknown, 218.100.78.0/24, 30
+1473, SA-IX, Active, IPv4, Unicast, Available, 218.100.54.0/25, 12
+1473, SA-IX, Active, IPv6, , Available, 2001:7fa:11:3::/64, 0
+1474, TunIXP Tunis, Deprecated, IPv4, Unicast, Unknown, 193.95.96.0/24, 9
+1474, TunIXP Tunis, Deprecated, IPv4, Unicast, Unknown, 193.95.19.0/24, 5
+1474, TunIXP Tunis, Deprecated, IPv4, Unicast, Unknown, 193.95.66.0/24, 1
+1474, TunIXP Tunis, Active, IPv4, Unicast, Unknown, 41.231.21.0/24, 15
+1474, TunIXP Tunis, Deprecated, IPv4, Unicast, Unknown, 193.95.0.0/24, 0
+1474, TunIXP Tunis, Active, IPv6, Unicast, Unknown, 2001:4350:3000:1::/64, 0
+1474, TunIXP Tunis, Deprecated, IPv4, Unicast, Unknown, 193.95.1.0/24, 0
+1484, Phoenix-IX, Active, IPv4, Unicast, Available, 206.41.105.0/24, 44
+1484, Phoenix-IX, Active, IPv6, Unicast, Available, 2001:504:3B::/64, 0
+1484, Phoenix-IX, Active, IPv6, Unicast, Available, 2001:504:3B:1::/64, 4
+1484, Phoenix-IX, Deprecated, IPv4, Unicast, Available, 208.157.218.0/24, 0
+1484, Phoenix-IX, Deprecated, IPv6, Unicast, Available, 2607:F8B8:FFF1:6566, 41
+1499, ARMIX, Active, IPv4, Unicast, Unknown, 91.218.4.0/24, 9
+1506, NIX2, Active, IPv6, , Unknown, 2001:7F8:12:2::/64, 15
+1506, NIX2, Active, IPv4, Unicast, Unknown, 193.156.120.0/24, 61
+1507, BIX, Active, IPv4, Unicast, Unknown, 193.156.125.0/24, 12
+1507, BIX, Active, IPv6, , Unknown, 2001:7F8:12:4::/64, 3
+1508, TRDIX, Active, IPv6, , Unknown, 2001:7F8:12:3::/64, 3
+1508, TRDIX, Active, IPv4, Unicast, Unknown, 193.156.93.0/24, 12
+1515, FICIX3, Active, IPv4, Unicast, Unknown, 193.110.225.0/24, 29
+1515, FICIX3, Active, IPv6, , Unknown, 2001:7f8:7:c::/64, 0
+1515, FICIX3, Active, IPv6, , Unknown, 2001:7f8:7:2::/64, 0
+1516, FICIX1, Active, IPv6, , Unknown, 2001:7f8:7:a::/64, 0
+1516, FICIX1, Active, IPv4, Unicast, Unknown, 193.110.226.0/24, 23
+1516, FICIX1, Active, IPv6, , Unknown, 2001:7f8:7::/64, 0
+1521, SIX Koice, Active, IPv4, Unicast, Unknown, 192.108.145.0/24, 4
+1526, HTN-CIX, Active, IPv6, Unicast, Unknown, , 0
+1526, HTN-CIX, Active, IPv4, Unicast, Unknown, , 9
+1530, IX-LAPAZ, Active, IPv4, Both, Available, 200.75.174.0/24, 4
+1540, WPGIX, Active, IPv6, Unicast, Available, 2001:504:2c::/116, 5
+1540, WPGIX, Active, IPv4, Unicast, Available, 206.126.109.0/24, 25
+1541, CG-IX, Active, IPv4, Unicast, Unknown, , 7
+1546, NEX-IX, Active, IPv4, Unicast, Unknown, 218.100.72.0/23, 22
+1546, NEX-IX, Active, IPv6, Unicast, Unknown, 2001:df0:b1:72::/63, 22
+1549, IIX JI, Active, IPv4, , Unknown, , 11
+1549, IIX JI, Active, IPv6, Unicast, Unknown, , 0
+1550, Open IXP, Active, IPv4, Unicast, Unknown, 218.100.27.0/24, 673
+1550, Open IXP, Active, IPv6, , Unknown, 2001:7fa:f::/48, 8
+1550, Open IXP, Active, IPv4, Unicast, Unknown, 103.22.232.0/24, 8
+1550, Open IXP, Active, IPv4, Unicast, Unknown, 218.100.36.0/24, 0
+1550, Open IXP, Active, IPv4, Unicast, Unknown, 103.22.233.0/22, 0
+1553, BNIIX, Active, IPv4, , Unknown, 206.130.61.0/24, 8
+1553, BNIIX, Active, IPv6, , Unknown, 2001:504:20:81::/64, 8
+1555, GCIIX, Active, IPv6, , Unknown, 2001:504:22:30::/64, 2
+1555, GCIIX, Active, IPv4, , Unknown, 206.123.30.0/24, 2
+1576, LITIX, Active, IPv6, Unicast, Unknown, , 0
+1576, LITIX, Active, IPv4, Unicast, Unknown, , 5
+1585, NSW-IX, Active, IPv4, Unicast, Available, 218.100.52.0/24, 148
+1585, NSW-IX, Active, IPv6, Unicast, Available, 2001:7FA:11:4::/64, 148
+1588, Giganet, Active, IPv6, Unicast, Unknown, 2001:7f8:6c::/64, 0
+1588, Giganet, Active, IPv4, Unicast, Unknown, 91.245.221.0/24, 89
+1616, QIX, Active, IPv6, Unicast, Unknown, 2001:504:2d::18:0/111, 27
+1616, QIX, Active, IPv4, Unicast, Available, 198.179.18.0/24, 48
+1623, NetIX, Active, IPv6, Unicast, Available, 2001:67c:29f0::/64, 53
+1623, NetIX, Active, IPv4, Unicast, Available, 193.218.0.0/24, 91
+1636, TPIX, Active, IPv6, , Unknown, 2001:7f8:27::/48, 0
+1636, TPIX, Active, IPv4, Unicast, Available, 195.149.232.0/23, 131
+1645, KIX, Active, IPv4, Unicast, Unknown, , 11
+1645, KIX, Active, IPv6, Unicast, Unknown, , 0
+1656, France-IX Marseille, Active, IPv4, Unicast, Unknown, 37.249.232.0/26, 299
+1656, France-IX Marseille, Active, IPv6, Unicast, Unknown, , 0
+1658, FR-IX 75, Active, IPv6, Unicast, Available, 2001:7f8:59:0:75::/96, 4
+1658, FR-IX 75, Active, IPv4, Unicast, Available, 91.216.67.0/24, 13
+1663, ECIX Frankfurt, Active, IPv6, Unicast, Unknown, 2001:7f8:8:20::/64, 8
+1663, ECIX Frankfurt, Active, IPv4, Unicast, Unknown, 62.69.146.0/23, 155
+1667, OCIX Düsseldorf, Active, IPv4, Unicast, Unknown, 194.54.92.0/25, 30
+1667, OCIX Düsseldorf, Active, IPv6, , Unknown, 7f8:3a:e201::/64, 6
+1669, AlbertaIX, Active, IPv4, Unicast, Available, 206.130.0.0/24, 3
+1669, AlbertaIX, Active, IPv6, Unicast, Available, 2001:504:2b::/64, 3
+1670, OCIX Frankfurt, Active, IPv4, Unicast, Unknown, 194.54.93.0/25, 30
+1670, OCIX Frankfurt, Active, IPv6, , Unknown, 7f8:3a:e202::/64, 5
+1678, LINX NoVa, Active, IPv6, Unicast, Unknown, 2001:504:31::/64, 0
+1678, LINX NoVa, Active, IPv4, Unicast, Available, 206.55.196.0.23, 21
+1680, SOAX, Active, IPv6, , Unknown, , 0
+1680, SOAX, Active, IPv4, , Unknown, , 5
+1693, Halifax IXP, Active, IPv4, Unicast, Available, 206.130.15.0/24, 12
+1693, Halifax IXP, Active, IPv6, Unicast, Available, 2001:504:37:10::/64, 12
+1701, IXScotland, Active, IPv4, Unicast, Unknown, 195.66.246.0/23, 18
+1702, KOSIX, Active, IPv4, Unicast, Unknown, , 4
+1709, TAS-IX, Active, IPv4, , Unknown, , 36
+1719, Coresite - Any 2, Active, IPv6, Unicast, Available, 2001:504:13:7::/64, 0
+1719, Coresite - Any 2, Active, IPv4, , Available, 206.51.42.0/24, 0
+1720, Coresite - Any 2, Active, IPv6, , Available, 2605:6C00:303:303::/64, 0
+1720, Coresite - Any 2, Active, IPv4, , Available, 206.51.46.0/24, 32
+1721, Coresite - Any 2, Active, IPv4, , Available, 206.51.44.0/24, 0
+1721, Coresite - Any 2, Active, IPv6, Unicast, Available, 2001:504:13:5::/64, 0
+1722, Coresite - Any 2, Active, IPv4, , Available, 206.51.45.0/24, 0
+1722, Coresite - Any 2, Active, IPv6, Unicast, Available, 2001:504:13:6::/64, 0
+1723, Coresite - Any 2, Active, IPv4, , Available, 206.51.40.0/24, 30
+1723, Coresite - Any 2, Active, IPv6, Unicast, Available, 2001:504:13:1::/64, 0
+1724, Coresite - Any 2, Active, IPv4, , Available, 206.51.41.0/24, 50
+1724, Coresite - Any 2, Active, IPv6, Unicast, Available, 2001:504:13:3::/64, 0
+1758, Peering.cz, Active, IPv4, Unicast, Available, 91.213.211.0/24, 91
+1758, Peering.cz, Active, IPv6, Unicast, Available, 2001:7f8:7f::/64, 0
+1778, DE-CIX NYC, Active, IPv4, Unicast, Unknown, , 122
+1778, DE-CIX NYC, Active, IPv6, Unicast, Unknown, , 0
+1781, COMIX, Active, IPv6, Multicast, Available, 2001:7f8:d:200::/48, 0
+1781, COMIX, Active, IPv4, Both, Available, 195.69.117.0/24, 40
+1782, SLiX, Active, IPv4, Unicast, Unknown, , 0
+1783, PIX, Active, IPv4, Unicast, Available, 185.1.1.0/24, 9
+1784, WHKIX, Active, IPv4, Unicast, None, 196.223.35.0/24, 5
+1789, PIT Bolivia, Planned, IPv6, Unicast, Unknown, 2801:14:c000::/48, 6
+1789, PIT Bolivia, Active, IPv4, Unicast, Unknown, 179.0.30/24, 6
+1790, REUNIX, Active, IPv4, Both, Unknown, 194.57.253.128/27, 10
+1792, Guyanix, Active, IPv4, Unicast, Unknown, , 0
+1795, COIX, Active, IPv4, Unicast, Unknown, 206.197.131.11/24, 4
+1801, CIVIX, Active, IPv4, Unicast, None, 196.223.4.0/24, 6
+1801, CIVIX, Active, IPv6, Unicast, None, 2001:db8::/64, 6
+1802, VANIX, Active, IPv4, Unicast, Unknown, 206.41.104.0/24, 54
+1802, VANIX, Active, IPv6, Unicast, Unknown, 2001:504:39::/64	, 54
+1803, TTIX, Active, IPv4, Unicast, Unknown, 181.188.0.240/28, 7
+1805, TuniXP Enfidha, Active, IPv6, Unicast, Unknown, 2001:4350:3001::/64, 0
+1805, TuniXP Enfidha, Active, IPv4, Unicast, Unknown, 41.231.34.0/26, 0
+1806, IXP Costa Rica, Active, IPv4, Unicast, Available, 200.107.83.128/25, 21
+1806, IXP Costa Rica, Active, IPv6, Unicast, Available, 2801:1d:a000:1::/64, 0
+1807, PTT Cuiabá, Active, IPv6, Unicast, Unknown, , 10
+1807, PTT Cuiabá, Active, IPv4, Unicast, Unknown, , 13
+1808, PTT Lajeado, Active, IPv4, Unicast, Unknown, , 13
+1808, PTT Lajeado, Active, IPv6, Unicast, Unknown, , 0
+1809, PTT Central Paulista , Active, IPv4, Unicast, Unknown, 187.16.200.0/24, 4
+1810, AMS-IX New York, Active, IPv4, Unicast, Unknown, , 13
+1810, AMS-IX New York, Active, IPv6, Unicast, Unknown, , 0
+1811, SIXP, Active, IPv4, Unicast, Available, 196.223.34.0/24, 14
+1813, IXCardiff, Active, IPv6, Unicast, Unknown, , 0
+1813, IXCardiff, Active, IPv4, Unicast, Unknown, , 31
+1814, JAIXP, Active, IPv4, Unicast, None, 206.41.107.0/24, 0
+1814, JAIXP, Active, IPv6, Unicast, None, 2001:504:3E::/64, 0
+1815, OuestIX, Active, IPv4, Unicast, Unknown, , 10
+1816, MKEIX, Active, IPv4, Unicast, None, 204.107.122.0/25, 14
+1816, MKEIX, Active, IPv6, Unicast, None, 2001:19e0:ffff::/64, 8
+1820, NAP CABASE Posadas, Active, IPv6, Unicast, Unknown, 2001:13c7:6013::/48, 0
+1820, NAP CABASE Posadas, Active, IPv4, Unicast, Unknown, 200.115.83.0 /24 , 12
+1822, NAP CABASE Bariloche, Active, IPv4, Unicast, Unknown, , 6
+1823, NAP CABASE Puerto Madryn, Active, IPv4, Unicast, Unknown, 200.115.84.0 /24, 7
+1832, PTT Curitiba, Active, IPv4, Unicast, Available, , 71
+1832, PTT Curitiba, Active, IPv6, Unicast, Unknown, , 0
+1833, PTT Maringa, Active, IPv4, Unicast, Available, , 25
+1833, PTT Maringa, Active, IPv6, Unicast, Unknown, , 0
+1835, BBIX, Active, IPv4, Unicast, Unknown, , 0
+1835, BBIX, Active, IPv6, Unicast, Unknown, , 0
+1836, BBIX, Active, IPv4, Unicast, Unknown, , 0
+1836, BBIX, Active, IPv6, Unicast, Unknown, , 0
+1837, NicIX, Active, IPv6, Unicast, Unknown, , 0
+1837, NicIX, Active, IPv4, Unicast, Available, , 3
+1838, Benin IX, Active, IPv4, Unicast, Available, 196.223.40/24, 6
+1839, BFIX, Active, IPv4, Unicast, Unknown, 196.13.207.128/26, 8
+1840, NAPAfrica, Active, IPv4, Unicast, Available, , 0
+1841, AMS-IX Bay Area, Active, IPv4, Unicast, Available, , 24
+1841, AMS-IX Bay Area, Active, IPv6, Unicast, Available, , 10
+1842, Mumbai CH, Active, IPv4, Unicast, Available, 103.27.170.0/24, 53
+1844, CCIT, Active, IPv4, Unicast, Available, 201.131.204.0/26, 10
+1844, CCIT, Active, IPv6, Unicast, Unknown, 2806:239::/64, 0
+1845, FL-IX, Active, IPv4, Unicast, Unknown, , 72
+1845, FL-IX, Unknown, IPv6, Unicast, Unknown, , 0
+1847, AMS-IX Chicago, Active, IPv4, Unicast, Unknown, , 12
+1848, ANGONIX, Active, IPv4, Unicast, Available, 196.11.234.0/24, 16
+1848, ANGONIX, Active, IPv6, Unicast, Available, 2001:43f8:09d0::/48, 0
+1849, ALB-IX, Active, IPv4, Unicast, Available, , 8
+1853, Content-IX, Active, IPv6, Unicast, Unknown, , 0
+1853, Content-IX, Active, IPv4, Unicast, Unknown, , 10
+1854, Lillix, Active, IPv4, Unicast, Unknown, , 12
+1854, Lillix, Active, IPv6, Unicast, Unknown, , 0
+1855, BREM-IX, Active, IPv4, Unicast, Unknown, , 10
+1855, BREM-IX, Active, IPv6, Unicast, Unknown, , 0
+1856, DO-IX, Active, IPv4, Unicast, Unknown, , 8
+1856, DO-IX, Active, IPv6, Unicast, Unknown, , 0
+1857, Echigo-IX, Active, IPv4, Unicast, Unknown, , 5
+1857, Echigo-IX, Active, IPv6, Unicast, Unknown, , 0
+1859, Rheintal IX, Active, IPv4, Unicast, Unknown, 91.232.229.0/24, 12
+1859, Rheintal IX, Active, IPv6, Unicast, Unknown, 2001:7f8:66::/64, 12
+1860, DataIX Ufa, Active, IPv4, Unicast, Unknown, , 237
+1860, DataIX Ufa, Active, IPv6, Unicast, Unknown, , 0
+1861, DataIX Novosibirsk, Active, IPv4, Unicast, Unknown, , 0
+1861, DataIX Novosibirsk, Active, IPv6, Unicast, Unknown, , 0
+1862, DataIX Khabarovsk, Active, IPv6, Unicast, Unknown, , 0
+1862, DataIX Khabarovsk, Active, IPv4, Unicast, Unknown, , 237
+1863, OMSK-IX, Active, IPv4, Unicast, Available, , 15
+1863, OMSK-IX, Unknown, IPv6, Unicast, Unknown, , 0
+1864, Pirix, Active, IPv4, Unicast, Available, , 50
+1864, Pirix, Unknown, IPv6, Unicast, Unknown, , 0
+1866, BKNIX, Active, IPv4, Unicast, Unknown, , 11
+1866, BKNIX, Planned, IPv6, Unicast, Unknown, , 0
+1867, Sea-IX, Active, IPv4, Unicast, Available, 91.240.225.0/24, 39
+1868, KM-IX, Active, IPv4, Unicast, Unknown, 193.201.116.128/26, 6
+1868, KM-IX, Active, IPv6, Unicast, Unknown, 2001:67c:5e8::/48, 0
+1869, Big Horn Fiber, Active, IPv4, Unicast, Unknown, , 12
+1870, CIIX, Active, IPv4, Both, Unknown, 198.32.146.0/24, 6
+1870, CIIX, Active, IPv6, Unicast, Unknown, 2001:504:a::a500::/48, 2
+1871, CyrusOne, Active, IPv4, Unicast, Unknown, , 0
+1872, SLIX, Active, IPv4, Unicast, Unknown, 204.228.158.0/24, 16
+1872, SLIX, Active, IPv6, Unicast, Unknown, 2607:fa18:1:f00::/64, 12
+1873, SNAP, Active, IPv4, Unicast, Unknown, , 7
+1874, SUPrnet, Active, IPv4, Unicast, Unknown, 209.33.201.176/28, 11
+1874, SUPrnet, Active, IPv6, Unicast, Unknown, 2604:2C00:FFFF:FFF0::/64, 8
+1875, TIE Atlanta, Active, IPv4, Unicast, Available, 198.32.132.0./24, 121
+1875, TIE Atlanta, Active, IPv6, Unicast, Available, 2001:478:132::/48, 121
+1876, TP-IX, Active, IPv4, Both, Available, 206.223.125.0/24, 0
+1876, TP-IX, Active, IPv6, Both, Available, 2001:504:29::/48, 0
+1878, TahoeIX , Active, IPv6, Unicast, Unknown, 2001:504:3F::/64, 10
+1878, TahoeIX , Active, IPv4, Unicast, Unknown, 206.41.109.0/24, 12
+1879, MegaPort-IX Auckland, Active, IPv4, Unicast, Available, 43.243.22.0/23, 4
+1879, MegaPort-IX Auckland, Active, IPv6, Unicast, Available, 2001:dea:0:40::/64, 4
+1880, AKL-IX, Active, IPv4, Unicast, Unknown, , 0
+1880, AKL-IX, Active, IPv6, Unicast, Unknown, , 0
+1881, MGIX, Active, IPv4, Unicast, None, 196.223.41.0/24, 6
+1881, MGIX, Planned, IPv6, Unicast, Unknown, 2001:43f8:a10::/64, 6
+1883, ChIX, Active, IPv4, Unicast, Unknown, 206.41.110.0/24, 18
+1883, ChIX, Active, IPv6, Unicast, Unknown, 2001:504:41:110::/64, 6
+1884, IXPN - Abuja, Active, IPv4, Unicast, Mandatory, 196.216.150/24, 4
+1887, Gab-IX, Active, IPv4, Unicast, Unknown, , 4
+1889, IX Brighton, Active, IPv4, Unicast, Available, , 5
+1890, DE-CIX Sicily Hub, Active, IPv4, Unicast, Unknown, , 0
+1891, Midwest-IX, Active, IPv4, Unicast, Available, 206.53.139.0/24, 17
+1891, Midwest-IX, Active, IPv6, Unicast, Available, 2001:504:45:f3e8::0/64, 17
+1892, T-CIX, Active, IPv4, Unicast, Available, 185.1.40.0/24, 20
+1892, T-CIX, Active, IPv6, Unicast, Available, 2001:7F8:98::/64, 0
+1893, RVA-IX, Active, IPv4, Unicast, Available, 206.53.137.0/24, 6
+1893, RVA-IX, Active, IPv6, Unicast, Available, 2001:504:44::/64, 1
+1894, DE-CIX Marseille, Active, IPv4, Unicast, Unknown, , 0
+1894, DE-CIX Marseille, Planned, IPv6, Unicast, Unknown, , 0
+1895, DE-CIX Istanbul, Active, IPv4, Unicast, Unknown, , 10
+1895, DE-CIX Istanbul, Active, IPv6, Unicast, Unknown, , 10
+1896, SAIX, Active, IPv4, Unicast, Available, 185.1.43.0/24, 22
+1896, SAIX, Active, IPv6, Unicast, Available, 2001:7f8:11::0/64, 17
+1897, LIXP, Active, IPv4, Unicast, None, 196.223.44.0/24, 6
+1898, PNG-IXP, Active, IPv4, Unicast, Unknown, 202.165.202.187, 5
+1900, OmahaIX, Active, IPv4, Unicast, Available, 206.126.235.0/26, 15
+1900, OmahaIX, Active, IPv6, Unicast, Available, 2001:504:33::0/64, 0
+1902, Tehran IX, Active, IPv4, Unicast, None, , 24
+1903, IXP-HN, , , , , , 
+1905, DET-IX, Active, IPv4, Unicast, Unknown, 209.124.52.0/24, 17
+1905, DET-IX, Active, IPv6, Unicast, Unknown, 2067:f790:100::0/64, 13
+1906, CNX, Active, IPv4, Unicast, Available, 103.7.144.0/24, 24
+1906, CNX, Active, IPv6, Unicast, Available, 2001:DE8:1D::/48, 7
+1912, Mwanza IXP, Active, IPv4, Unicast, Available, 196.60.0.0/24, 0
+1913, CHN IX, Active, IPv4, Unicast, Unknown, , 2
+1914, UP-IXP, Active, IPv4, Unicast, Unknown, 185.1.54.0/24, 13
+1914, UP-IXP, Active, IPv4, Unicast, Unknown, 2001:7f8:95::/48, 0
+1915, MegaPort-IX Singapore, , , , , , 
+1916, MegaPort-IX Sydney, , , , , , 
+1918, BIXP, Active, IPv4, Unicast, None, 10.31.2.0/24, 0
+1919, DE-CIX Dusseldorf, Active, IPv4, Unicast, Unknown, , 3
+1920, QIXP, Active, IPv4, Unicast, None, 185.154.168.0/23, 4
+1924, MSA-IX, Active, IPv4, Unicast, Available, 196.60.2.0/24, 3
+1924, MSA-IX, Unknown, IPv6, Unicast, Available, 2001:43f8:c0::/48, 0
+1925, LIXP, Active, IPv4, Unicast, Unknown, 196.223.24.0/24, 0
+1926, CNIX, Active, IPv6, Unicast, Unknown, 2404:E780:F872:A::/64, 0
+1926, CNIX, Active, IPv4, Unicast, Unknown, 103.216.40.0/23, 1
