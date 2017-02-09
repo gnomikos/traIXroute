@@ -1,5 +1,5 @@
 [![License](https://img.shields.io/pypi/l/traixroute.svg)](https://github.com/gnomikos/traIXroute/blob/master/LICENSE)
-[![PyPI](https://img.shields.io/pypi/v/traixroute.svg)](https://pypi.python.org/pypi/exabgp)
+[![PyPI](https://img.shields.io/pypi/v/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
 [![PyPI Status](https://img.shields.io/pypi/status/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
 [![PyPI Wheel](https://img.shields.io/pypi/wheel/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
@@ -18,7 +18,7 @@ The heuristics used and their evaluation are described in the following paper:
 ## Installation
 The program has been tested on Linux and Mac OS X. Detailed installation instructions can be found in the INSTALL file in the repository. You can install all the necessary packages running:
 
-The latest version is available on [`pypi`](https://pypi.python.org/pypi), the Python Package Index:
+The latest version is available on [`pypi`](https://pypi.python.org/pypi/traixroute), the Python Package Index:
 
 ```sh
 $ pip3 install traixroute
