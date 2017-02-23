@@ -29,18 +29,17 @@ $ traixroute --help
 It is also possible to download the latest archive from github:
 
 ```sh
-$ curl -L https://github.com/gnomikos/traIXroute/archive/v2.1.tar.gz | tar zx
-$ sh traIXroute-2.1/setup/install.sh
-$ ./traIXroute-2.1/bin/traixroute
+$ curl -L https://github.com/gnomikos/traIXroute/archive/v2.1.1.tar.gz | tar zx
+$ sh traIXroute-2.1.1/setup/install.sh
+$ ./traIXroute-2.1.1/bin/traixroute
 ```
 
-If using `git`, for production deployment, please use the `2.1` branch:
+If using `git`:
 
 ```sh
 $ git clone https://github.com/gnomikos/traIXroute.git
-$ git checkout 2.1
-$ sh traIXroute-2.1/setup/install.sh
-$ ./traIXroute-2.1/bin/traixroute
+$ sh traIXroute/setup/install.sh
+$ ./traIXroute/bin/traixroute
 ```
 
 ## IMPORTANT
