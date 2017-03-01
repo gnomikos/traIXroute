@@ -1,2 +1,5 @@
 venv/
 __pycache__/
+build/
+dist/
+lib/traixroute.egg-info/
