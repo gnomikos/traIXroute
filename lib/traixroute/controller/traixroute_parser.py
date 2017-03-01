@@ -28,7 +28,7 @@ from collections import defaultdict
 
 class traixroute_parser():
 
-    def __init__(self):
+    def __init__(self, ver):
         # self.inputIP: The destination IP or FQDN to send the probe.
         self.inputIP = ''
         # self.outputfile: The output file name in which all the results will
@@ -41,6 +41,8 @@ class traixroute_parser():
         self.arguments = ''
         # self.flags: A dictionary containing the user input flags.
         self.flags = defaultdict(bool)
+
+        self.version = ver
 
     def __str__(self):
         ss = 'InputIP: ' + str(self.inputIP) + '\n'
@@ -77,6 +79,8 @@ class traixroute_parser():
                             help='Exports the database to distinct files, the ixp_prefixes.txt and ixp_membership.txt.')
         parser.add_argument('-o', '--output', action='store', nargs=1, type=str,
                             help='Specifies the output file name to redirect the traIXroute results.')
+
+        parser.add_argument('-v', '--version', action='version', version='current version of traixroute: '+self.version)
 
         group_0 = parser_probe.add_mutually_exclusive_group(required=True)
         group_0.add_argument('-dest', '--destination', nargs='+', action='store',

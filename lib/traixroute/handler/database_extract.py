@@ -40,10 +40,10 @@ class database():
         The initialization of the tool.
         Inputs: 
             a) traixroute_parser: Dictionary that contains the user input flags.
-            b) config: Dictionary that contains the config file. 
-            c) outcome: True if the files were updated successfully False, otherwise.
-            d) TODO
-            e) TODO
+            b) downloader: Downloader class to download the database.
+            c) config: Dictionary that contains the config file. 
+            d) outcome: True if the files were updated successfully False, otherwise.
+            e) libpath: absolute path to the library folder.
         '''
 
         # self.final_ixp2asn: A dictionary with {IXP IP}=[ASN].

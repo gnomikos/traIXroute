@@ -44,26 +44,32 @@ import xmlrpc.client
 
 
 class traIXroute():
+
     '''
-    This is the core module of the tool. It orchestrates all the modules to detect and identify if and between which hops in a traceroute path an IXP crossing occurs.
+    This is the core module of the tool.
+    It orchestrates all the modules to detect and identify if and between
+    which hops in a traceroute path an IXP crossing occurs.
     '''
 
     def __init__(self):
-        self.version = '2.1.1rc5'
+        self.version = '2.1.1rc7'
+
+    def check_version(self):
+        try:
+            pypi = xmlrpc.client.ServerProxy('https://pypi.python.org/pypi')
+            version = pypi.package_releases('traixroute')
+            if version[0] != self.version:
+                print('new version is available: %s' % (version[0]))
+        except:
+            pass
 
     def main(self):
         '''
         The main function which calls all the other traIXroute modules.
         '''
 
-        try:
-            pypi = xmlrpc.client.ServerProxy('https://pypi.python.org/pypi')
-            version = pypi.package_releases('traixroute')
-            if version[0] != self.version:
-                print(
-                    'New version available: %s\n' % (version[0]))
-        except:
-            pass
+        if '-v' in sys.argv or '--version' in sys.argv:
+            self.check_version()
 
         def signal_handler(signal, frame):
             print('\nClosing Files')
@@ -91,13 +97,17 @@ class traIXroute():
         if not os.path.exists(homepath + '/configuration'):
             copy_tree(libpath + '/configuration', homepath + '/configuration')
 
-        for config_file in ['additional_info.txt', 'config', 'delimeters.txt', 'expressions.txt', 'rules.txt']:
+        for config_file in ['additional_info.txt',
+                            'config',
+                            'delimeters.txt',
+                            'expressions.txt',
+                            'rules.txt']:
             if not os.path.exists(homepath + '/configuration/' + config_file):
                 copyfile(libpath + '/configuration/' + config_file,
                          homepath + '/configuration/' + config_file,)
         exact_time = datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
 
-        traixparser = traixroute_parser.traixroute_parser()
+        traixparser = traixroute_parser.traixroute_parser(self.version)
         traixparser.parse_input()
 
         inputIP = traixparser.inputIP
@@ -131,13 +141,29 @@ class traIXroute():
         num_ips = 0
 
         # Calls the download module if needed.
-        check_db = os.path.exists(libpath + '/database')
-        check_user_db = os.path.exists(homepath + '/database/') and os.path.exists(homepath + '/database/PCH') and os.path.exists(
-            homepath + '/database/PDB') and os.path.exists(homepath + '/database/RouteViews')
-        check_default_db = os.path.exists(libpath + '/database/Default') and os.path.exists(libpath + '/database/Default/RouteViews') and os.path.exists(
-            libpath + '/database/Default/PDB') and os.path.exists(libpath + '/database/Default/PCH')
+        check_db = (
+            os.path.exists(libpath + '/database')
+        )
+
+        check_user_db = (
+            os.path.exists(homepath + '/database/') and
+            os.path.exists(homepath + '/database/PCH') and
+            os.path.exists(homepath + '/database/PDB') and
+            os.path.exists(homepath + '/database/RouteViews')
+        )
+
+        check_default_db = (
+            os.path.exists(libpath + '/database/Default') and
+            os.path.exists(libpath + '/database/Default/RouteViews') and
+            os.path.exists(libpath + '/database/Default/PDB') and
+            os.path.exists(libpath + '/database/Default/PCH')
+        )
+
         outcome = True
-        if traixparser.flags['update'] or ((not check_db or not check_user_db) and (useTraIXroute or merge_flag)):
+        if traixparser.flags['update'] or (
+                (not check_db or not check_user_db) and
+                (useTraIXroute or merge_flag)):
+
             if not check_db:
                 traixparser.flags['update'] = True
                 print('Database not found.\nUpdating the database...')
@@ -306,7 +332,7 @@ class traIXroute():
     def stats_extract(self, fp_stats, num_ips, rules, final_rules_hit, time):
         '''
         Writes various statistics to the stats.txt file.
-        Input: 
+        Input:
             a) fp_stats: The file pointer to write.
             b) num_ips: The number of IPs to send probes.
             c) rules: The rules that detected IXP crossing links.
@@ -317,34 +343,21 @@ class traIXroute():
         num_hits = sum(final_rules_hit)
         if num_ips > 0:
             temp = num_hits / num_ips
-            data = 'traIXroute stats from ' + time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S") + ' \nNumber of IXP hits:' + \
-                str(num_hits) + ' Number of traIXroutes:' + \
-                str(num_ips) + ' IXP hit ratio:' + str(temp) + '\n'
-            data = data + 'Number of hits per rule:\n'
+            data = 'traIXroute stats from ' + time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S") + \
+                ' \nNumber of IXP hits:' + str(num_hits) + \
+                ' Number of traIXroutes:' + str(num_ips) + \
+                ' IXP hit ratio:' + str(temp) + '\n' + \
+                'Number of hits per rule:\n'
             for myi in range(0, len(rules)):
                 if num_hits > 0:
                     temp = final_rules_hit[myi] / num_hits
-                    data = data + 'Rule ' + str(myi + 1) + ': Times encountered:' + str(
+                    data += 'Rule ' + str(myi + 1) + ': Times encountered:' + str(
                         final_rules_hit[myi]) + ' Encounter Percentage:' + str(temp) + '\n'
                 else:
-                    data = data + 'Rule ' + \
+                    data += 'Rule ' + \
                         str(myi + 1) + \
                         ': Times encountered:0 Encounter Percentage:0\n'
             fp_stats.write(data)
-
-    def check_db(self, path):
-        '''
-        Checks if the json files that form the database are included in the directory path.
-        Input:
-            a) path: The directory path to check.
-        Output:
-            a) True if all the files exist, False otherwise. 
-        '''
-
-        if os.path.isfile(path + '/IXPIP2ASN.json') and os.path.isfile(path + '/trIX_subnet2name.json') and os.path.isfile(path + '/asn_memb.json') and os.path.isfile(path + '/sub2country.json') and os.path.isfile(path + '/routeviews.json') and os.path.isfile(path + '/ix.json') and os.path.isfile(path + '/ixlan.json') and os.path.isfile(path + '/ixp_exchange.csv') and os.path.isfile(path + '/ixpfx.json') and os.path.isfile(path + '/ixp_membership.csv') and os.path.isfile(path + '/ixp_subnets.csv') and os.path.isfile(path + '/netixlan.json') and os.path.isfile(path + '/netixlan.json'):
-            return True
-        else:
-            return False
 
 
 def run_traixroute():
