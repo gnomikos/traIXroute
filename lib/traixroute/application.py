@@ -52,7 +52,7 @@ class traIXroute():
     '''
 
     def __init__(self):
-        self.version = '2.1.1rc8'
+        self.version = '2.1.1rc9'
 
     def check_version(self):
         try:
