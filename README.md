@@ -23,6 +23,7 @@ The latest version is available on [`pypi`](https://pypi.python.org/pypi/traixro
 ```sh
 $ pip3 install traixroute
 $ scamper-install (To enable probes using scamper)
+$ traixroute (To build the configuration files in the home directory)
 $ traixroute --help
 ```
 
