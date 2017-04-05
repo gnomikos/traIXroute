@@ -1,3 +1,6 @@
+Beta Version 2.2 - April 2017 (Ongoing)
+- Added in the IXP membership data the short name of an IXP as  long name entry when the long name does not exist and vice versa.
+
 Version 2.1.1 - February 2017
 
 - Added support for installation with pip.

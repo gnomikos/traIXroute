@@ -156,10 +156,17 @@ class peering_handle():
         for node in json_names:
             [long_name, short_name] = handle_string.clean_long_short(
                 node['name_long'], node['name'])
+
+            if long_name == '':
+                long_name = short_name
+            elif short_name == '':
+                short_name = long_name
+
             if (len(long_name) > len(short_name)):
                 names_dict[node['id']] = [long_name, short_name]
             else:
                 names_dict[node['id']] = [short_name, long_name]
+
             country = re.sub('([^\s\w]|_)+', ' ', node['country'].strip())
             country = ' '.join(self.unique_list(country.split()))
             country = re.sub(' +', ' ', country)

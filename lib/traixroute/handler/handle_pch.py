@@ -157,6 +157,10 @@ class pch_handle():
                                 IXP_cc[ips] = IXP_region[mykey]
                                 [long_name, short_name] = handled_string.clean_long_short(
                                     long_mem[mykey], temp_string[1])
+                                if long_name == '':
+                                    long_name = short_name
+                                elif short_name == '':
+                                    short_name = long_name
                                 if len(long_name) > len(short_name):
                                     subnets[ips] = [[long_name, short_name]]
                                 else:

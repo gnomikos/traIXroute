@@ -325,9 +325,19 @@ class string_handler():
                 elif lname2_lname1:
                     d3 = [lname2, d3[1]]
 
+
         if flag:
+            for i in range(len(d3)):
+                if d3[i][0] == '':
+                    d3[i][0] = d3[i][1]
+                elif d3[i][1] == '':
+                    d3[i][1] = d3[i][0]
             return d3
         else:
+            if d3[0] == '':
+                d3[0] = d3[1]
+            elif d3[1] == '':
+                d3[1] = d3[0]
             return [d3]
 
     def shortinlong(self, sname, lname):
