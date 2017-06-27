@@ -180,9 +180,16 @@ class handle_json():
         # Select the first IP from the list and set as info the rtt.
         for hop in trace['result']:
             if hop['hop'] != 255:
-                if 'from' in hop['result'][0]:
+                if 'error' in hop.keys():
+                    current_trace.append('*')
+                    current_info.append("error: " + hop['error'])
+                elif 'from' in hop['result'][0]:
                     current_trace.append(hop['result'][0]['from'])
-                    current_info.append(str(hop['result'][0]['rtt']) + ' ms')
+                    if 'rtt' in hop['result'][0].keys():
+                        current_info.append(
+                            str(round(hop['result'][0]['rtt'], 3)) + ' ms')
+                    else:
+                        current_info.append('- ms')
                 else:
                     current_trace.append('*')
                     current_info.append('')

@@ -662,14 +662,17 @@ class traixroute_output():
     def buildJsonRipe(self, entry, asn_list):
         for hop in entry['result']:
             if hop['hop'] != 255:
-                for hop_entry in hop['result']:
-                    hop_entry['result'] = {}
-                    if 'from' in hop_entry:
-                        hop_entry['result']['asn'] = asn_list[hop['hop'] - 1]
-                        hop['result'] = hop_entry
-                        break
-                if isinstance(hop['result'], list):
-                    hop['result'] = hop['result'][0]
+                try:
+                    for hop_entry in hop['result']:
+                        hop_entry['result'] = {}
+                        if 'from' in hop_entry:
+                            hop_entry['result']['asn'] = asn_list[hop['hop'] - 1]
+                            hop['result'] = hop_entry
+                            break
+                    if isinstance(hop['result'], list):
+                        hop['result'] = hop['result'][0]
+                except KeyError:
+                    pass
             else:
                 del hop['hop']
         self.measurement_json.update(entry)
