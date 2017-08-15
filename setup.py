@@ -23,7 +23,7 @@ def packages(lib):
 
 setup(
     name="traixroute",
-    version="2.2-beta",
+    version="2.2",
     description='A tool that detects if and where a traceroute path crosses an IXP fabric.',
     long_description=long_description,
     package_dir={'': 'lib'},
@@ -47,7 +47,7 @@ setup(
                       ],
     packages=packages('lib'),
     package_data={'': ['*.txt', '*.json',
-                       '*.csv', 'routeviews', 'config']},
+                       '*.csv', 'config', 'RouteViews/routeviews']},
     author="Michalis Bamiedakis, Dimitris Mavrommatis and George Nomikos",
     author_email="gnomikos@ics.forth.gr",
     keywords="traIXroute Internet Exchange Points crossing traceroute ripe atlas",
