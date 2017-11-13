@@ -44,6 +44,15 @@ class detection_rules():
         self.asmt = []
         # remote_peering: An instance of the remote peering class.
         self.remote_peering = remote_peering()
+        
+        
+    def load_files(self, filename):
+        try:
+            with open(filename) as f:
+                return [line.strip() for line in f.readlines()]
+        except:
+            print(filename + ' not found. Exiting.')
+            sys.exit(0)
 
     def rules_extract(self, mypath):
         '''
@@ -51,6 +60,7 @@ class detection_rules():
         Input: 
             a) file: The file that contains the rules.
         '''
+        
         file = '/configuration/rules.txt'
         try:
             f = open(mypath + '/configuration/rules.txt', 'r')
@@ -59,9 +69,9 @@ class detection_rules():
             sys.exit(0)
         [delimeters1, expressions] = self.load_syntax_rules(
             'configuration/expressions.txt', 'configuration/delimeters.txt', mypath)
-        rules = f.read()
-        rules = rules.split('\n')
-
+            
+        rules = [line.strip() for line in f.readlines()]
+        
         for i in range(0, len(rules)):
             temp = (rules[i].split('#'))
             temp[0] = temp[0].replace(' ', '')
@@ -118,8 +128,7 @@ class detection_rules():
                           ' not included. Expected an IXP_IP in ' + temp[0] + '.')
                     flag = False
                 if flag:
-                    node = temp[1]
-                    node = node.replace(' ', '')
+                    node = temp[1].replace(' ', '')
                     if 'a' != node and 'b' != node and 'aorb' != node and 'aandb' != node and '?' != node:
                         flag = False
                         print('-->Rule' + (str(i + 1)) +
@@ -154,7 +163,7 @@ class detection_rules():
         self.remote_peering.rp_database = db_extract.remote_peering
 
         num = 1
-        self.rule_hits = [0 for x in range(0, len(self.rules))]
+        self.rule_hits = [0] * len(self.rules)
         temp_path_asn = []
         for node in path_asn:
             if node != 'AS*':
@@ -225,7 +234,7 @@ class detection_rules():
                                         else:
                                             output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short,
                                                                 cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree)
-                                        num = num + 1
+                                        num += 1
 
     def check_rules(self, path, rule, path_asn, path_cur, ixp_long, ixp_short, asn2names, encounter_type):
         '''                      
@@ -247,8 +256,6 @@ class detection_rules():
         for i in range(0, len(rule)):
             if len(path_asn) > path_cur + i - 1:
                 if ('IXP_IP' in rule[i] and '!AS_M' in rule[i]) and 'IXP prefix' not in encounter_type[path_cur + i - 1] and 'IXP IP' not in encounter_type[path_cur + i - 1]:
-                    # if 'IXP_IP' in rule[i] and '!AS_M' in rule[i] and 'IXP
-                    # prefix' not in encounter_type[path_cur+i-1]:
                     return False
                 elif 'IXP_IP' in rule[i] and 'AS_M' in rule[i] and '!' not in rule[i] and 'IXP IP' not in encounter_type[path_cur + i - 1]:
                     return False
@@ -270,7 +277,7 @@ class detection_rules():
             if '!AS_M' in expression and 'and' not in expression and path_cur != current:
                # Finds the path_asn in the routeview path_asn dict. If not, an
                # assessment is not possible.
-                check = check + 1
+                check += 1
                 if path_asn[current] == '*' and encounter_type[current] != 'IXP prefix':
                     return False
 
@@ -296,7 +303,7 @@ class detection_rules():
             elif 'AS_M' in expression and 'and' not in expression and path_cur != current:
                 if path_asn[current] == '*' and encounter_type[current] != 'IXP prefix':
                     return False
-                check = check + 1
+                check += 1
                 flag = False
 
                 if encounter_type[path_cur] == 'IXP IP' or encounter_type[path_cur] == 'IXP prefix':
@@ -339,7 +346,7 @@ class detection_rules():
                     return False
 
         if len(rule) > 2 and len(path_asn) > current + 1:
-            check = check + 1
+            check += 1
             if not self.check_edges(rule, path_asn, current, 'AS_M', ixp_long, ixp_short):
                 return False
             elif not self.check_edges(rule, path_asn, current, 'IXP_IP', ixp_long, ixp_short):
@@ -361,7 +368,7 @@ class detection_rules():
         Output: 
             True if the condition is satisfied, False otherwise.
         '''
-
+        
         [final1, final2] = self.find_numbers(rule, str_to_chk, current, False)
 
         if final1 == '' or final2 == '':
@@ -392,7 +399,7 @@ class detection_rules():
         Output:
             True if the condition is satisfied, False otherwise.
         '''
-
+        
         if len(rule) > i + 1 and len(path_asn) > current + 1:
 
             [final1, final2] = self.find_numbers(
@@ -418,7 +425,7 @@ class detection_rules():
         Output:
             True if the condition is satisfied, False otherwise.
         '''
-
+        
         string_handle = string_handler.string_handler()
         if len(rule) > i + 1 and len(ixp_long) > current + 1:
             [final1, final2] = self.find_numbers(
@@ -441,6 +448,7 @@ class detection_rules():
         Output:
             True if a string number can be converted to an integer, False otherwise.
         '''
+        
         try:
             int(myint)
             return True
@@ -458,7 +466,7 @@ class detection_rules():
         Output:
             a) final1,final2: The concatenated numbers of the keywords.
         '''
-
+        
         final1 = ''
         final2 = ''
         if consecutive:
@@ -466,13 +474,11 @@ class detection_rules():
         else:
             j = i + 2
         try:
-            final1 = rule[i].split(str_to_chk)[1]
-            final1 = final1[:1]
-            final2 = rule[j].split(str_to_chk)[1]
-            final2 = final2[:1]
+            final1 = rule[i].split(str_to_chk)[1][:1]
+            final2 = rule[j].split(str_to_chk)[1][:1]
         except:
             pass
-
+        
         return (final1, final2)
 
     def load_syntax_rules(self, filename1, filename2, mypath):
@@ -487,51 +493,21 @@ class detection_rules():
             b) expressions: A list containing the allowed keywords. 
         '''
 
-        try:
-            file_ex = open(mypath + '/' + filename1)
-        except:
-            print(filename1 + ' was not found. Exiting.')
-            sys.exit(0)
-        try:
-            file_del = open(mypath + '/' + filename2)
-        except:
-            print(filename2 + ' was not found. Exiting.')
-            sys.exit(0)
+        expression_dump = self.load_files(mypath + '/' + filename1)
+        delimiter_dump  = self.load_files(mypath + '/' + filename2)
 
-        candidate_delimeters = []
-        delimeters1 = []
-        delimeter_dump = file_del.read().split('\n')
-        file_del.close()
-
-        for del_node in delimeter_dump:
-            del_node = del_node.split('#')[0]
-            if del_node != '':
-                candidate_delimeters.append(del_node)
-
-        if len(candidate_delimeters) != 1:
+        candidate_delimiters = [del_node.split('#')[0] for del_node in delimiter_dump if del_node.split('#')[0]]
+        if len(candidate_delimiters) != 1:
             print('Expected one line of delimeters in ' +
                   filename2 + '. Exiting.')
             sys.exit(0)
+            
+        delimiters = [node for node in candidate_delimiters[0].split(',')]
+        expressions = [ex_node.split('#')[0] for ex_node in expression_dump if ex_node.split('#')[0]]
+       
+        return (delimiters, expressions)
 
-        priority1 = candidate_delimeters[0].split(',')
-        for node in priority1:
-            delimeters1.append(node)
-
-        expression_dump = file_ex.read().split('\n')
-        file_ex.close()
-        candidate_expression = []
-        for ex_node in expression_dump:
-            ex_node = ex_node.split('#')[0]
-            if ex_node != '':
-                candidate_expression.append(ex_node)
-
-        expressions = []
-        for node in candidate_expression:
-            expressions.append(node)
-
-        return (delimeters1, expressions)
-
-    def check_syntax_rules(self, cur_expression, expressions, delimeter1):
+    def check_syntax_rules(self, cur_expression, expressions, delimiter):
         '''
         Validates a condition set in the rule.
         Input:
@@ -542,17 +518,10 @@ class detection_rules():
             a) True if the expression is valid, False otherwise.
         '''
 
-        split_expression = cur_expression
-        for node in delimeter1:
-            split_expression = split_expression.replace(node, 'cut')
+        for node in delimiter:
+            cur_expression = cur_expression.replace(node, 'cut')
 
-        split_expression = split_expression.split('cut')
-
-        for node in split_expression:
-            flag = True
-            for node2 in expressions:
-                if node == node2:
-                    flag = False
-            if flag:
+        for node in cur_expression.split('cut'):
+            if node not in expressions:
                 return False
         return True

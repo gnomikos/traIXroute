@@ -117,9 +117,8 @@ class traixroute_output():
         if db_print:
             print(tmp)
         try:
-            f = open(mypath + 'db.txt', 'w')
-            f.write(tmp)
-            f.close()
+            with open(mypath + 'db.txt', 'w') as f:
+                f.write(tmp)
         except:
             print('Could not open db.txt file. Exiting.')
             sys.exit(0)
@@ -142,32 +141,33 @@ class traixroute_output():
         unsure = path_info_extract.unsure
         asn_print = traIXparser.flags['asn']
         dns_print = traIXparser.flags['dns']
+        size = len(ip_path)
 
         # Makes dns queries.
         if dns_print:
-            dns = [ip_path[i] for i in range(0, len(ip_path))]
-            for i in range(0, len(ip_path)):
+            dns = [ip_path[i] for i in range(0, size)]
+            for i in range(0, size):
                 if ip_path[i] != '*':
                     try:
                         dns[i] = socket.gethostbyaddr(ip_path[i])[0]
                     except:
                         pass
         else:
-            dns = ['' for i in range(0, len(ip_path))]
+            dns = [''] * size
 
         # The minimum space between the printed strings.
         defaultstep = 3
 
         # The numbers to be printed in front of each line.
-        numbers = [str(x) + ')' for x in range(1, len(ip_path) + 1)]
+        numbers = [str(x) + ')' for x in range(1, size + 1)]
 
         # Fix indents for printing.
         maxlenas = 0
         maxlennum = 0
-        gra_path = ['*' for x in range(0, len(ip_path))]
-        gra_asn = ['' for x in range(0, len(ip_path))]
+        gra_path = ['*'] * size
+        gra_asn = [''] * size
 
-        for i in range(0, len(ip_path)):
+        for i in range(0, size):
             temp = len('AS' + asn_list[i])
             if temp > maxlenas:
                 maxlenas = temp
@@ -175,7 +175,7 @@ class traixroute_output():
             if temp > maxlennum:
                 maxlennum = temp
 
-        for i in range(0, len(ip_path)):
+        for i in range(0, size):
             gra_path[i] = self.polish_output(
                 numbers[i], maxlennum + defaultstep)
             if asn_print:
@@ -187,7 +187,7 @@ class traixroute_output():
 
         # Prints the output and saves it to a file.
         print_data = ''
-        for i in range(0, len(ip_path)):
+        for i in range(0, size):
             if ixp_short_names[i] == ['No Short Name'] and ixp_long_names[i] == ['No Long Name']:
                 if asn_print:
                     temp_print = gra_path[i] + gra_asn[i] + dns[i] + \
@@ -304,9 +304,9 @@ class traixroute_output():
         if print_rule:
             rule = 'Rule: ' + str(j + 1) + ' --- '
 
-        gra_asn = ['' for x in cur_path_asn]
-        ixp_string = ['' for x in cur_ixp_short]
-        ixp_dict = [{} for x in cur_ixp_short]
+        gra_asn = [''] * len(cur_path_asn)
+        ixp_string = [''] * len(cur_ixp_short)
+        ixp_dict = [{}] * len(cur_ixp_short)
 
         for pointer in range(0, len(ixp_string)):
             if len(ixp_short) > i + pointer - 1:
@@ -494,8 +494,8 @@ class traixroute_output():
             unknown_hop['crossing'].append(crossing)
 
         if temp_print != '' and temp_print not in self.ixp_hops:
-            self.ixp_hops += temp_print
-
+            self.ixp_hops = self.ixp_hops.join(temp_print)
+        
         if remote_peering is not None:
             remote_data = remote_peering.find_and_print(
                 path[i - 1:i + 2], asm_a)
@@ -538,7 +538,7 @@ class traixroute_output():
             self.measurement_json['remote_peering'].append(remote_crossing)
         if unknown_hop != None:
             self.measurement_json['possible_ixp_crossings'].append(unknown_hop)
-
+        
     def print_args(self, classic, search, arguments, from_ripe, from_import):
         '''
         Prints the arguments of traceroute
@@ -550,35 +550,32 @@ class traixroute_output():
             e) from_import: Flag when importing from json file.
         '''
 
-        try:
-            # Remove the key argument from printing.
-            if 'key' in arguments:
-                del arguments['key']
+        # Remove the key argument from printing.
+        if 'key' in arguments:
+            del arguments['key']
 
-            if classic and search:
-                if arguments != '':
-                    print('traIXroute using scamper with "' +
-                          arguments + '" options.')
-                else:
-                    print('traIXroute using scamper with default options.')
-            elif search and not (from_ripe or from_import):
-                if arguments != '':
-                    print('traIXroute using traceroute with "' +
-                          arguments + '" options.')
-                else:
-                    print('traIXroute using traceroute with default options.')
-            elif from_ripe == 1:
-                print(
-                    'Run traIXroute fetching results from ripe measurement:', arguments)
-            elif from_ripe == 2:
-                print('Creating a new measurement at RIPE Atlas:', arguments)
-            elif from_import == 1:
-                print(
-                    'Run traIXroute from a file with traIXroute json format:', arguments)
-            elif from_import == 2:
-                print('Run traIXroute from a file with ripe json format:', arguments)
-        except:
-            pass
+        if classic and search:
+            if arguments != '':
+                print('traIXroute using scamper with "' +
+                      arguments + '" options.')
+            else:
+                print('traIXroute using scamper with default options.')
+        elif search and not (from_ripe or from_import):
+            if arguments != '':
+                print('traIXroute using traceroute with "' +
+                      arguments + '" options.')
+            else:
+                print('traIXroute using traceroute with default options.')
+        elif from_ripe == 1:
+            print(
+                'Run traIXroute fetching results from ripe measurement:', arguments)
+        elif from_ripe == 2:
+            print('Creating a new measurement at RIPE Atlas:', arguments)
+        elif from_import == 1:
+            print(
+                'Run traIXroute from a file with traIXroute json format:', arguments)
+        elif from_import == 2:
+            print('Run traIXroute from a file with ripe json format:', arguments)
 
     def print_pr_db_stats(self, filepath):
         '''
@@ -588,13 +585,10 @@ class traixroute_output():
         '''
 
         try:
-            f = open(filepath, 'r')
-            data = f.read()
-            print(data)
-            f.close
+            with open(filepath, 'r') as f:
+                print(f.read())
         except:
             print('Could not open db.txt.')
-            pass
 
     def read_lst_mod(self, filename, fname2):
         '''
@@ -607,17 +601,11 @@ class traixroute_output():
             b) True if the file has not been modified, False otherwise.
         '''
 
-        try:
-            additional_lst_mod = ctime(os.path.getmtime(
-                fname2))
-            f = open(filename, 'r')
+        additional_lst_mod = ctime(os.path.getmtime(fname2))
+        with open(filename, 'r') as f:
             data = f.read()
-            data = data.split('\n')
-            data = data[0]
-            if data == additional_lst_mod:
+            if data.split('\n')[0] == additional_lst_mod:
                 return True
-        except:
-            pass
 
         self.write_lst_mod(filename, additional_lst_mod)
         return False
@@ -631,8 +619,8 @@ class traixroute_output():
         '''
 
         try:
-            f = open(filename, 'w')
-            f.write(data)
+            with open(filename, 'w') as f:
+                f.write(data)
         except:
             print('Could not write to lst_mod.txt. Exiting')
             sys.exit(0)
@@ -660,19 +648,18 @@ class traixroute_output():
         self.measurement_json['result'] = result
 
     def buildJsonRipe(self, entry, asn_list):
+        '''
+        Builds the structure of the json file when having ripe atlas measurement as input.
+        Input:
+            a) entry: The ripe atlas measurement object
+            b) asn_list: The ASNs for each hop.
+        '''
         for hop in entry['result']:
             if hop['hop'] != 255:
                 try:
-                    for hop_entry in hop['result']:
-                        hop_entry['result'] = {}
-                        if 'from' in hop_entry:
-                            hop_entry['result']['asn'] = asn_list[hop['hop'] - 1]
-                            hop['result'] = hop_entry
-                            break
-                    if isinstance(hop['result'], list):
-                        hop['result'] = hop['result'][0]
+                    hop['asn'] = asn_list[hop['hop'] - 1]
                 except KeyError:
                     pass
             else:
-                del hop['hop']
+                hop['asn'] = '*'
         self.measurement_json.update(entry)
