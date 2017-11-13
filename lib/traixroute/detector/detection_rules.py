@@ -59,76 +59,90 @@ class detection_rules():
         except:
             print(file + ' does not exist. Exiting.')
             sys.exit(0)
-        [delimeters1, expressions] = self.load_syntax_rules(
+        [delimiters, expressions] = self.load_syntax_rules(
             'configuration/expressions.txt', 'configuration/delimeters.txt', mypath)
-            
-        for i in range(0, len(rules)):
-            temp = (rules[i].split('#'))
+        
+        general_flag = True   
+        for i,item in enumerate(rules):
+            temp = item.split('#')
             temp[0] = temp[0].replace(' ', '')
             if temp[0] != '':
-                rules[i] = temp[0]
                 flag = True
-                temp = (rules[i].split(':'))
+                temp = (temp[0].split(':'))
                 if len(temp) != 2:
-                    print('-->Rule in line ' + (str(i + 1)) +
-                          'not included. Expected one condition and one assessment part respectively.')
                     flag = False
+                    general_flag = False
+                    print('-->Error with rule in line ' + (str(i + 1)) +
+                          'not included. Expected one condition and one assessment part respectively.')
+                    
                 array = temp[0].split('-')
-
                 for node in array:
                     if len(array) > 3:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected a maximum rule length of 3.')
                     elif len(array) < 2:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected a minimum rule length of 2.')
                     elif '(' in node and ')' not in node:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected \')\' at the end of ' + node + '.')
                     elif '(' in node and 'and' not in node:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected 1 \'and\' at the middle of ' + node + '.')
                     elif ')' in node and '(' not in node:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected one \'(\' at the beginning of ' + node + '.')
                     elif node.count('(') > 1:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected only 1 \'(\' at the beginning of ' + node + '.')
                     elif node.count(')') > 1:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected only 1 \')\' at the end of ' + node + '.')
+                        
                     node = node.replace('(', '')
                     node = node.replace(')', '')
-                    flag2 = self.check_syntax_rules(
-                        node, expressions, delimeters1)
-                    if not flag2:
-                        print('-->Rule ' + (str(i + 1)) +
-                              ' not included. Wrong syntax in ' + node + '.')
+                    if not self.check_syntax_rules(node, expressions, delimiters):
                         flag = False
-
-                if 'IXP_IP' not in temp[0] and flag:
-                    print('-->Rule ' + (str(i + 1)) +
-                          ' not included. Expected an IXP_IP in ' + temp[0] + '.')
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
+                              ' not included. Wrong syntax in ' + node + '.')
+                if 'IXP_IP' not in temp[0]:
                     flag = False
-                if flag:
+                    general_flag = False
+                    print('-->Error with rule in line ' + (str(i + 1)) +
+                          ' not included. Expected an IXP_IP in ' + temp[0] + '.')
+                elif flag:
                     node = temp[1].replace(' ', '')
                     if 'a' != node and 'b' != node and 'aorb' != node and 'aandb' != node and '?' != node:
                         flag = False
-                        print('-->Rule' + (str(i + 1)) +
-                              'not included. Expected a valid assessment.')
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
+                              ' not included. Expected a valid assessment.')
+                
                 if flag:
                     self.rules.append(array)
                     self.remote_peering.check_rule(array, len(self.rules) - 1)
                     self.asmt.append(temp[1])
-        output = traixroute_output.traixroute_output()
-        output.print_rules_number(self.rules, file)
+                    
+        if general_flag:
+            output = traixroute_output.traixroute_output()
+            output.print_rules_number(self.rules, file)
+        else:
+            sys.exit(0)
 
     def resolve_path(self, path, output, path_info_extract, db_extract, traIXparser):
         '''
