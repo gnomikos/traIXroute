@@ -144,17 +144,15 @@ class traixroute_output():
         size = len(ip_path)
 
         # Makes dns queries.
+        dns = [''] * size
         if dns_print:
-            dns = [ip_path[i] for i in range(0, size)]
-            for i in range(0, size):
-                if ip_path[i] != '*':
+            for i,item in enumerate(ip_path):
+                if item != '*':
                     try:
-                        dns[i] = socket.gethostbyaddr(ip_path[i])[0]
+                        dns[i] = socket.gethostbyaddr(item)[0]
                     except:
-                        pass
-        else:
-            dns = [''] * size
-
+                        dns[i] = item
+        
         # The minimum space between the printed strings.
         defaultstep = 3
 
@@ -198,14 +196,12 @@ class traixroute_output():
             else:
                 base_ixp_print = '('
                 for ixp in range(0, len(ixp_short_names[i])):
-                    if ixp > 0:
+                    if ixp:
                         base_ixp_print = base_ixp_print + ','
                     if ixp_short_names[i][ixp] != '':
-                        base_ixp_print = base_ixp_print + \
-                            ixp_short_names[i][ixp]
+                        base_ixp_print = base_ixp_print + ixp_short_names[i][ixp]
                     else:
-                        base_ixp_print = base_ixp_print + \
-                            ixp_long_names[i][ixp]
+                        base_ixp_print = base_ixp_print + ixp_long_names[i][ixp]
                 base_ixp_print = base_ixp_print + ')'
                 temp_print = gra_path[i] + unsure[i] + base_ixp_print + '->' + gra_asn[
                     i] + dns[i] + ' ' + '(' + ip_path[i] + ')' + ' ' + mytime[i]
@@ -297,6 +293,7 @@ class traixroute_output():
             m) cc_tree: SubnetTree that contains Subnets to [country,city].
             n) remote_peering: A flag to indicate a potential IXP crossing link based on remote peering connectivity.
         '''
+        
         ixp_crossing = None
         unknown_hop = None
         remote_crossing = None
