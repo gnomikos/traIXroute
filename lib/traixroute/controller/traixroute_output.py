@@ -638,10 +638,11 @@ class traixroute_output():
         })
         result = []
         hop = 1
-        for ip in ip_path:
+        for i in range(0,len(ip_path)):
             result.append(
                 {'hop': hop, 'result': [{'from': ip_path[hop - 1], 'asn': asn_list[hop - 1], 'rtt': delays[hop - 1]}]})
             hop += 1
+        
         self.measurement_json['result'] = result
 
     def buildJsonRipe(self, entry, asn_list):
