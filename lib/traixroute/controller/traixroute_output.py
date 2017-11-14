@@ -629,6 +629,7 @@ class traixroute_output():
             a) ip_path: Contains the IPs of all the hops in order.
             b) delays: Contains all the delays of the hops in order.
         '''
+        
         self.measurement_json.update({
             'af': 4,
             'dst_addr': dst_ip,
@@ -636,12 +637,11 @@ class traixroute_output():
             'type': 'traceroute',
             'timestamp': time.time()
         })
+        
         result = []
-        hop = 1
-        for i in range(0,len(ip_path)):
+        for i,ip in enumerate(ip_path):
             result.append(
-                {'hop': hop, 'result': [{'from': ip_path[hop - 1], 'asn': asn_list[hop - 1], 'rtt': delays[hop - 1]}]})
-            hop += 1
+                {'hop': i+1, 'result': [{'from': ip, 'asn': asn_list[i], 'rtt': delays[i]}]})
         
         self.measurement_json['result'] = result
 
