@@ -155,7 +155,8 @@ class detection_rules():
             e) db_extract: The database_extract class.
             f) traIXparser: The traIXparser class.           
         '''
-
+        
+        num = 1
         path_asn = path_info_extract.asn_list
         encounter_type = path_info_extract.type_vector
         ixp_long = path_info_extract.ixp_long_names
@@ -165,24 +166,24 @@ class detection_rules():
         print_rule = traIXparser.flags['rule']
         cc_tree = db_extract.cc_tree
         self.remote_peering.rp_database = db_extract.remote_peering
-
-        num = 1
         self.rule_hits = [0] * len(self.rules)
+        
+        
         temp_path_asn = []
         for node in path_asn:
             if node != 'AS*':
                 temp_path_asn.append(node)
             else:
                 temp_path_asn.append('*')
-
-        for i,item in enumerate(path):
+        
+        for i in range(1, len(path)):
             asn_list1 = path_asn[i - 1].split('_')
             asn_list3 = path_asn[i].split('_')
             if len(path) > i + 1:
                 asn_list2 = path_asn[i + 1].split('_')
             else:
                 asn_list2 = '*'
-
+                
             for asn1 in asn_list1:
                 # In case of MOAS, all the possible AS paths are checked for
                 # IXP crossing.
