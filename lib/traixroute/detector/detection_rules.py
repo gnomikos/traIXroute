@@ -131,7 +131,7 @@ class detection_rules():
                         flag = False
                         general_flag = False
                         print('-->Error with rule in line ' + (str(i + 1)) +
-                              ' not included. Expected a valid assessment.')
+                              ' not included. Expected a valid assessment (e.g., a, b, a or b, a and b).')
                 
                 if flag:
                     self.rules.append(array)
@@ -175,7 +175,7 @@ class detection_rules():
             else:
                 temp_path_asn.append('*')
 
-        for i in range(1, len(path)):
+        for i,item in enumerate(path):
             asn_list1 = path_asn[i - 1].split('_')
             asn_list3 = path_asn[i].split('_')
             if len(path) > i + 1:
@@ -192,9 +192,9 @@ class detection_rules():
                         temp_path_asn[i] = asn3
                         if len(path_asn) > i + 1:
                             temp_path_asn[i + 1] = asn2
-                        for j in range(0, len(self.rules)):
-
-                            cur_rule = self.rules[j]
+                        
+                        for j,item_rule in enumerate(self.rules):
+                            cur_rule = item_rule
                             cur_asmt = self.asmt[j]
 
                             # Check if the condition part of a candidate rule
@@ -217,6 +217,7 @@ class detection_rules():
 
                                 set_ixp_short = list(itertools.product(*temp_ixp_short))
                                 set_ixp_long = list(itertools.product(*temp_ixp_long))
+                                
                                 for ixp in range(0, len(set_ixp_short)):
                                     cur_ixp_long = list(set_ixp_long[ixp])
                                     cur_ixp_short = list(set_ixp_short[ixp])
@@ -228,11 +229,9 @@ class detection_rules():
 
                                         if self.remote_peering.rule_hit(j):
                                             self.remote_peering.temp_index = j
-                                            output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn,
-                                                                path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, self.remote_peering)
+                                            output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn,path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, self.remote_peering)
                                         else:
-                                            output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short,
-                                                                cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree)
+                                            output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short,cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree)
                                         num += 1
 
     def check_rules(self, path, rule, path_asn, path_cur, ixp_long, ixp_short, asn2names, encounter_type):
