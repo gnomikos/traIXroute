@@ -9,9 +9,6 @@ Version 2.2 - June 2017
 - Fixed bug when some RIPE Atlas measurements fields are missing from the results.
 - Added missing short/long IXP names in the IXP membership data under some circumstances.
 
-Beta Version 2.2 - April 2017 (Ongoing)
-- Added missing short/long IXP names in the IXP membership data under some circumstances.
-
 Version 2.1.1 - February 2017
 - Added support for installation with pip.
 - Changed the directory hierarchy and structure of the repository.
