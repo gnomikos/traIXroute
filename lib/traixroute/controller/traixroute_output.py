@@ -491,7 +491,7 @@ class traixroute_output():
             unknown_hop['crossing'].append(crossing)
 
         if temp_print != '' and temp_print not in self.ixp_hops:
-            self.ixp_hops = self.ixp_hops.join(temp_print)
+            self.ixp_hops += temp_print
         
         if remote_peering is not None:
             remote_data = remote_peering.find_and_print(
