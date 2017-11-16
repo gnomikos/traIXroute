@@ -27,7 +27,6 @@ from traixroute.detector import *
 from traixroute.handler import database_extract, handle_ripe, handle_json
 from traixroute.controller import *
 from multiprocessing import cpu_count
-from multiprocessing import Pool
 import concurrent.futures
 import sys
 import getopt
@@ -39,6 +38,7 @@ import ujson
 import signal
 import itertools
 import threading
+import math
 from distutils.dir_util import copy_tree
 from shutil import copyfile
 import xmlrpc.client
@@ -304,9 +304,10 @@ class traIXroute():
                 return rule_hits, json_obj
             
             json_data = []
-            size_of_sublist = 500
-            sublisted_data = (input_list[x:x+size_of_sublist] for x in range(0, len(input_list), size_of_sublist))
-            with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+            size_of_biglist = len(input_list)
+            size_of_sublist = math.ceil(max(size_of_biglist,config["num_of_cores"])/min(size_of_biglist,config["num_of_cores"]))
+            sublisted_data = (input_list[x:x+size_of_sublist] for x in range(0, size_of_biglist, size_of_sublist))
+            with concurrent.futures.ThreadPoolExecutor(max_workers=config["num_of_cores"]) as executor:
                 for rule_hits, json_obj in executor.map(analyze_measurement, sublisted_data):
                     json_data.append(json_obj)
                     final_rules_hit = [x + y for x, y in zip(final_rules_hit, rule_hits)]
