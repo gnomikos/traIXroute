@@ -46,14 +46,14 @@ class traixroute_output():
         self.remote_hops = ''
         self.unknown_hops = ''
 
-    def flush(self, fp):
+    def flush(self,fp):
         '''
          Prints the data and flushes them to a file.
          Input:
             a) fp: The pointer to the file to write the data.
             a) fp_json: The pointer to the json file to write the data.
         '''
-
+        
         output = self.measurement_info
         if self.ixp_hops != '':
             output += 'IXP hops:\n' + self.ixp_hops
