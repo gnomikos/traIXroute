@@ -325,7 +325,6 @@ class string_handler():
                 elif lname2_lname1:
                     d3 = [lname2, d3[1]]
 
-
         if flag:
             for i in range(len(d3)):
                 if d3[i][0] == '':

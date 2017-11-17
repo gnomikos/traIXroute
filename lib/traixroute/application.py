@@ -39,6 +39,7 @@ import signal
 import itertools
 import threading
 import math
+import copy
 from distutils.dir_util import copy_tree
 from shutil import copyfile
 import xmlrpc.client
@@ -59,7 +60,7 @@ class traIXroute():
         pypi = xmlrpc.client.ServerProxy('https://pypi.python.org/pypi')
         version = pypi.package_releases('traixroute')
         if version[0] != self.version:
-            print('new version is available: %s' % (version[0]))
+            print('New version is available: %s' % (version[0]))
     
     def main(self):
         '''
@@ -113,15 +114,14 @@ class traIXroute():
         arguments       = traixparser.arguments
         useTraIXroute   = traixparser.flags['useTraiXroute']
         merge_flag      = traixparser.flags['merge']
-        asn_print       = traixparser.flags['asn']
         print_rule      = traixparser.flags['rule']
-        dns_print       = traixparser.flags['dns']
         db_print        = traixparser.flags['db']
         path_print      = traixparser.flags['silent']
         ripe            = traixparser.flags['ripe']
         selected_tool   = traixparser.flags['tracetool']
         import_flag     = traixparser.flags['import']
         enable_stats    = traixparser.flags['stats']
+        dns_print       = traixparser.flags['dns']
 
         json_handle = handle_json.handle_json()
         [config, config_flag] = json_handle.import_IXP_dict(
@@ -231,11 +231,6 @@ class traIXroute():
 
             myinput = trace_tool.trace_tool()
 
-        # Step 1: Construct the database.
-        # Step 2: Send probe.
-        # Step 3: Analyse traceroute path to apply detection rules and infer
-        # IXP crossing links.
-
         # Extract info from the database folder.
         if useTraIXroute or merge_flag:
             db_extract = database_extract.database(
@@ -262,20 +257,21 @@ class traIXroute():
 
             def analyze_measurement(entries):
                 json_obj = []
+                db_extract_copy = copy.copy(db_extract)
                 for index,entry in enumerate(entries):
                     output = traixroute_output.traixroute_output(path_print)
                     if import_flag == 1:
                         [ip_path, delays_path, dst_ip, src_ip,
                             info] = json_handle.export_trace_from_file(entry)
-                        output.print_traIXroute_dest(dst_ip, src_ip, info)
+                        output.print_traIXroute_dest(dns_print,dst_ip, src_ip, info)
                     elif import_flag == 2:
                         [ip_path, delays_path, dst_ip, src_ip,
                             info] = json_handle.export_trace_from_ripe_file(entry)
-                        output.print_traIXroute_dest(dst_ip, src_ip, info)
+                        output.print_traIXroute_dest(dns_print,dst_ip, src_ip, info)
                     elif ripe == 1:
                         [src_ip, dst_ip, ip_path,
                             delays_path] = ripe_m.return_path(entry)
-                        output.print_traIXroute_dest(dst_ip, src_ip)
+                        output.print_traIXroute_dest(dns_print,dst_ip, src_ip)
                     else:
                         src_ip = ''
                         dst_ip = entry.replace(' ', '')
@@ -286,9 +282,9 @@ class traIXroute():
                     if len(ip_path):
                         # IP path info extraction and print.
                         path_info_extract = path_info_extraction.path_info_extraction()
-                        path_info_extract.path_info_extraction(db_extract, ip_path)
+                        path_info_extract.path_info_extraction(db_extract_copy, ip_path)
                         output.print_path_info(ip_path,  delays_path, path_info_extract, traixparser)
-                        rule_hits = detection_rules_node.resolve_path(ip_path, output, path_info_extract, db_extract, traixparser)
+                        rule_hits = detection_rules_node.resolve_path(ip_path, output, path_info_extract, db_extract_copy, traixparser)
                          
                         if import_flag == 2 or ripe == 1:
                             output.buildJsonRipe(entry, path_info_extract.asn_list)

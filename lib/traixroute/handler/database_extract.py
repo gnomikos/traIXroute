@@ -123,6 +123,7 @@ class database():
         if (lst_modified and not chk_update and not self.merge_flag) or not self.outcome:
             print("Loading from Database.")
             results = []
+            
             with concurrent.futures.ThreadPoolExecutor(max_workers=self.config["num_of_cores"]) as executor:
                 results.append(executor.submit(
                     json_handle.import_IXP_dict, self.homepath + '/database/Merged/IXPIP2ASN.json'))
@@ -272,37 +273,37 @@ class database():
             b) d2: The dictionary with the IXP subnets-to-IXP names from the database (after merging pch and peeringdb).
         '''
 
-        filename = open(self.homepath + '/ixp_prefixes.txt', 'w')
-        output = ''
-        number = 0
-        for key in d1.keys():
-            output = output + str(number) + ', ' + '+' + ', ' + key
-            if key in self.subTree:
-                for IXP in self.subTree[key]:
-                    output = output + ', ' + IXP[1] + ', ' + IXP[0]
-                if key in self.cc_tree:
-                    output = output + ', ' + \
-                        self.cc_tree[key][1] + ', ' + self.cc_tree[key][0]
-                output = output + '\n'
-                number = number + 1
-        for key in d2.keys():
-
-            if key not in d1.keys():
+        with open(self.homepath + '/ixp_prefixes.txt', 'w') as filename:
+            output = ''
+            number = 0
+            for key in d1.keys():
+                output = output + str(number) + ', ' + '+' + ', ' + key
                 if key in self.subTree:
-                    if len(self.subTree[key]) > 1:
-                        output = output + str(number) + ', ' + '?' + ', ' + key
-                    else:
-                        output = output + str(number) + ', ' + '!' + ', ' + key
                     for IXP in self.subTree[key]:
                         output = output + ', ' + IXP[1] + ', ' + IXP[0]
                     if key in self.cc_tree:
                         output = output + ', ' + \
-                            self.cc_tree[key][0] + ', ' + self.cc_tree[key][1]
+                            self.cc_tree[key][1] + ', ' + self.cc_tree[key][0]
+                    output = output + '\n'
+                    number += 1
+                    
+            for key in d2.keys():
+                if key not in d1.keys():
+                    if key in self.subTree:
+                        if len(self.subTree[key]) > 1:
+                            output = output + str(number) + ', ' + '?' + ', ' + key
+                        else:
+                            output = output + str(number) + ', ' + '!' + ', ' + key
+                        for IXP in self.subTree[key]:
+                            output = output + ', ' + IXP[1] + ', ' + IXP[0]
+                        if key in self.cc_tree:
+                            output = output + ', ' + \
+                                self.cc_tree[key][0] + ', ' + self.cc_tree[key][1]
 
-                output = output + '\n'
-                number = number + 1
-        filename.write(output)
-        filename.close()
+                    output = output + '\n'
+                    number += 1
+                    
+            filename.write(output)
 
     def ips_to_file(self, additional_ip2asn, additional_ip2name, merged_ixp2asn):
         '''
@@ -313,45 +314,43 @@ class database():
             c) merged_ixp2asn: The merged dictionary with IXP IP-to-ASN from peeringdb and pch.
         '''
 
-        filename = open(self.homepath + '/ixp_membership.txt', 'w')
-        output = ''
-        number = 0
-        add_keys = additional_ip2asn.keys()
-        for key in add_keys:
-            if key in self.subTree:
-                output = output + str(number) + ', ' + '+' + ', ' + key
-                for node in additional_ip2asn[key]:
-                    output = output + ', AS' + node
-                for IXP in self.subTree[key]:
-                    output = output + ', ' + IXP[1] + ', ' + IXP[0]
-                if key in self.cc_tree:
-                    output = output + ', ' + \
-                        self.cc_tree[key][1] + ', ' + self.cc_tree[key][0]
-                output = output + '\n'
-                number = number + 1
-
-        merged_keys = merged_ixp2asn.keys()
-
-        for key in merged_keys:
-            if key not in add_keys and key in self.subTree:
-                if len(self.subTree[key]) > 1:
-                    output = output + str(number) + ', ' + '?' + ', ' + key
-                else:
-                    output = output + str(number) + ', ' + '!' + ', ' + key
-                for node in merged_ixp2asn[key]:
-                    output = output + ', AS' + node
-
+        with open(self.homepath + '/ixp_membership.txt', 'w') as filename:
+            output = ''
+            number = 0
+            add_keys = additional_ip2asn.keys()
+            for key in add_keys:
+                if key in self.subTree:
+                    output = output + str(number) + ', ' + '+' + ', ' + key
+                    for node in additional_ip2asn[key]:
+                        output = output + ', AS' + node
                     for IXP in self.subTree[key]:
                         output = output + ', ' + IXP[1] + ', ' + IXP[0]
+                    if key in self.cc_tree:
+                        output = output + ', ' + \
+                            self.cc_tree[key][1] + ', ' + self.cc_tree[key][0]
+                    output = output + '\n'
+                    number += 1
 
-                if key in self.cc_tree:
-                    output = output + ', ' + \
-                        self.cc_tree[key][0] + ', ' + self.cc_tree[key][1]
-                output = output + '\n'
-                number = number + 1
-        filename.write(output)
-        filename.close()
+            merged_keys = merged_ixp2asn.keys()
+            for key in merged_keys:
+                if key not in add_keys and key in self.subTree:
+                    if len(self.subTree[key]) > 1:
+                        output = output + str(number) + ', ' + '?' + ', ' + key
+                    else:
+                        output = output + str(number) + ', ' + '!' + ', ' + key
+                    for node in merged_ixp2asn[key]:
+                        output = output + ', AS' + node
 
+                        for IXP in self.subTree[key]:
+                            output = output + ', ' + IXP[1] + ', ' + IXP[0]
+
+                    if key in self.cc_tree:
+                        output = output + ', ' + \
+                            self.cc_tree[key][0] + ', ' + self.cc_tree[key][1]
+                    output = output + '\n'
+                    number += 1
+                    
+            filename.write(output)
 
 # Dictionary that contains country names to country codes.
 country2cc = {

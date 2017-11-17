@@ -213,36 +213,40 @@ class traixroute_output():
 
         self.measurement_info += print_data
 
-    def print_traIXroute_dest(self, dst_ip, src_ip='', info=''):
+    def print_traIXroute_dest(self, dns_print, dst_ip, src_ip='', info=''):
         '''
         Prints traIXroute destination.
         Input:
+            a) dns_print: Flag to enable resolving IP or FQDN.
             a) dst_ip: The destination IP/FQDN to probe.
             b) src_ip: The IP that issued the probe (optional).
             c) info: Traceroute path description.
         '''
-
+    
         string_handle = string_handler.string_handler()
         dns_name = '*'
         output_IP = '*'
         if string_handle.is_valid_ip_address(dst_ip, 'IP'):
-            try:
-                dns_name = socket.gethostbyaddr(dst_ip)[0]
-            except:
-                pass
+            if dns_print:
+                try:
+                    dns_name = socket.gethostbyaddr(dst_ip)[0]
+                except:
+                    pass
             output_IP = dst_ip
         else:
-            try:
-                output_IP = socket.gethostbyname(dst_ip)
-            except:
-                pass
+            if dns_print:
+                try:
+                    output_IP = socket.gethostbyname(dst_ip)
+                except:
+                    pass
             dns_name = dst_ip
         if src_ip != '':
             origin_dns = '*'
-            try:
-                origin_dns = socket.gethostbyaddr(src_ip)[0]
-            except:
-                pass
+            if dns_print:
+                try:
+                    origin_dns = socket.gethostbyaddr(src_ip)[0]
+                except:
+                    pass
             src_ip = ' from ' + origin_dns + ' (' + src_ip + ')'
 
         print_data = 'traIXroute' + src_ip + ' to ' + \
