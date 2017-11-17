@@ -56,16 +56,14 @@ class path_info_extraction():
         Subnet_tree = db_extract.subTree
         Route_tree = db_extract.asn_routeviews
 
-        self.asn_list = ['*' for x in range(0, len(ip_path))]
-        self.ixp_long_names = [['No Long Name']
-                               for x in range(0, len(ip_path))]
-        self.ixp_short_names = [['No Short Name']
-                                for x in range(0, len(ip_path))]
-        self.type_vector = ['Unresolved' for x in range(0, len(ip_path))]
-        self.unsure = ['' for x in range(0, len(ip_path))]
+        path_length = len(ip_path)
+        self.asn_list = ['*'] * path_length
+        self.ixp_long_names = [['No Long Name']] * path_length
+        self.ixp_short_names = [['No Short Name']] * path_length
+        self.type_vector = ['Unresolved'] * path_length
+        self.unsure = [''] * path_length
 
-        for i in range(0, len(ip_path)):
-            path_cur = ip_path[i]
+        for i,path_cur in enumerate(ip_path):
 
             # If there is an IXP hit.
             if path_cur in ip2asn and path_cur in Subnet_tree:

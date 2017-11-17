@@ -36,8 +36,6 @@ class detection_rules():
 
     def __init__(self):
 
-        # rule_hits: a list of the number of hits for each rule
-        self.rule_hits = []
         # rules: A list of the condition parts of the rules.
         self.rules = []
         # asmt: A list of the assessment parts of the rules.
@@ -166,8 +164,7 @@ class detection_rules():
         print_rule = traIXparser.flags['rule']
         cc_tree = db_extract.cc_tree
         self.remote_peering.rp_database = db_extract.remote_peering
-        self.rule_hits = [0] * len(self.rules)
-        
+        rule_hits = [0] * len(self.rules)
         
         temp_path_asn = []
         for node in path_asn:
@@ -226,14 +223,14 @@ class detection_rules():
                                         cur_path, cur_rule, cur_path_asn, current_hop, cur_ixp_long, cur_ixp_short, asn2names, cur_encounter_type)
                                     if rule_check:
                                         if cur_asmt != '?':
-                                            self.rule_hits[j] = self.rule_hits[j] + 1
-
+                                            rule_hits[j] += 1
                                         if self.remote_peering.rule_hit(j):
                                             self.remote_peering.temp_index = j
                                             output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn,path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, self.remote_peering)
                                         else:
                                             output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short,cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree)
                                         num += 1
+        return rule_hits
 
     def check_rules(self, path, rule, path_asn, path_cur, ixp_long, ixp_short, asn2names, encounter_type):
         '''                      

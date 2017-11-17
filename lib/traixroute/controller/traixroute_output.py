@@ -34,17 +34,20 @@ class traixroute_output():
     Handles all the outputs.
     '''
 
-    def __init__(self):
+    def __init__(self,path_print_disable=False):
+        
+        self.path_print_disable = path_print_disable
+    
         self.measurement_json = {
             'ixp_crossings': [],
             'remote_peering': [],
             'possible_ixp_crossings': []
         }
 
-        self.measurement_info = ''
-        self.ixp_hops = ''
-        self.remote_hops = ''
-        self.unknown_hops = ''
+        self.measurement_info   = ''
+        self.ixp_hops           = ''
+        self.remote_hops        = ''
+        self.unknown_hops       = ''
 
     def flush(self,fp):
         '''
@@ -62,7 +65,7 @@ class traixroute_output():
         if self.unknown_hops != '':
             output += 'Possible IXP hops:\n' + self.unknown_hops
 
-        print(output)
+        if not self.path_print_disable: print(output)
         fp.write(output)
 
         if len(self.measurement_json['ixp_crossings']) == 0:

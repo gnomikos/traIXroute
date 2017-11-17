@@ -107,20 +107,21 @@ class traIXroute():
 
         traixparser = traixroute_parser.traixroute_parser(self.version)
         traixparser.parse_input()
-
-        inputIP = traixparser.inputIP
-        outputfile = traixparser.outputfile
-        inputfile = traixparser.inputfile
-        arguments = traixparser.arguments
-        useTraIXroute = traixparser.flags['useTraiXroute']
-        merge_flag = traixparser.flags['merge']
-        asn_print = traixparser.flags['asn']
-        print_rule = traixparser.flags['rule']
-        dns_print = traixparser.flags['dns']
-        db_print = traixparser.flags['db']
-        ripe = traixparser.flags['ripe']
-        selected_tool = traixparser.flags['tracetool']
-        import_flag = traixparser.flags['import']
+        inputIP         = traixparser.inputIP
+        outputfile      = traixparser.outputfile
+        inputfile       = traixparser.inputfile
+        arguments       = traixparser.arguments
+        useTraIXroute   = traixparser.flags['useTraiXroute']
+        merge_flag      = traixparser.flags['merge']
+        asn_print       = traixparser.flags['asn']
+        print_rule      = traixparser.flags['rule']
+        dns_print       = traixparser.flags['dns']
+        db_print        = traixparser.flags['db']
+        path_print      = traixparser.flags['silent']
+        ripe            = traixparser.flags['ripe']
+        selected_tool   = traixparser.flags['tracetool']
+        import_flag     = traixparser.flags['import']
+        enable_stats    = traixparser.flags['stats']
 
         json_handle = handle_json.handle_json()
         [config, config_flag] = json_handle.import_IXP_dict(
@@ -226,8 +227,7 @@ class traIXroute():
             detection_rules_node = detection_rules.detection_rules()
             detection_rules_node.rules_extract(homepath)
 
-            final_rules_hit = [0 for x in range(
-                0, len(detection_rules_node.rules))]
+            if enable_stats: final_rules_hit = [0] * len(detection_rules_node.rules)
 
             myinput = trace_tool.trace_tool()
 
@@ -255,7 +255,7 @@ class traIXroute():
             try:
                 fp = open(outputfile + '.txt', 'w')
                 fp_json = open(outputfile + '.json', 'w')
-                fp_stats = open(outputfile + '.stats', 'w')
+                if enable_stats: fp_stats = open(outputfile + '.stats', 'w')
             except:
                 print('Could not open outputfile. Exiting.')
                 sys.exit(0)
@@ -263,7 +263,7 @@ class traIXroute():
             def analyze_measurement(entries):
                 json_obj = []
                 for index,entry in enumerate(entries):
-                    output = traixroute_output.traixroute_output()
+                    output = traixroute_output.traixroute_output(path_print)
                     if import_flag == 1:
                         [ip_path, delays_path, dst_ip, src_ip,
                             info] = json_handle.export_trace_from_file(entry)
@@ -282,22 +282,21 @@ class traIXroute():
                         output.print_traIXroute_dest(dst_ip)
                         [ip_path, delays_path] = myinput.trace_call(
                             dst_ip, selected_tool, arguments)
-                    rule_hits = [0 for x in detection_rules_node.rules]
                     
                     if len(ip_path):
                         # IP path info extraction and print.
                         path_info_extract = path_info_extraction.path_info_extraction()
                         path_info_extract.path_info_extraction(db_extract, ip_path)
                         output.print_path_info(ip_path,  delays_path, path_info_extract, traixparser)
-                        detection_rules_node.resolve_path(
-                            ip_path, output, path_info_extract, db_extract, traixparser)
-                        rule_hits = detection_rules_node.rule_hits
-
+                        rule_hits = detection_rules_node.resolve_path(ip_path, output, path_info_extract, db_extract, traixparser)
+                         
                         if import_flag == 2 or ripe == 1:
                             output.buildJsonRipe(entry, path_info_extract.asn_list)
                         else:
                             output.buildJson(
                                 ip_path, delays_path, dst_ip, src_ip, path_info_extract.asn_list)
+                    else:
+                        rule_hits = [0] * len(detection_rules_node.rules)
 
                     json_obj.append(output.flush(fp))
 
@@ -308,19 +307,22 @@ class traIXroute():
             size_of_sublist = math.ceil(max(size_of_biglist,config["num_of_cores"])/min(size_of_biglist,config["num_of_cores"]))
             sublisted_data = (input_list[x:x+size_of_sublist] for x in range(0, size_of_biglist, size_of_sublist))
             with concurrent.futures.ThreadPoolExecutor(max_workers=config["num_of_cores"]) as executor:
-                for rule_hits, json_obj in executor.map(analyze_measurement, sublisted_data):
+                for rule_hits, json_obj in executor.map(analyze_measurement,sublisted_data):
+                
                     json_data.append(json_obj)
-                    final_rules_hit = [x + y for x, y in zip(final_rules_hit, rule_hits)]
-                    num_ips += 1
+                    if enable_stats: 
+                        final_rules_hit = [x + y for x, y in zip(final_rules_hit, rule_hits)]
+                        num_ips += 1
             
             #Extracting statistics.
-            self.stats_extract(
-                fp_stats, num_ips, detection_rules_node.rules, final_rules_hit, exact_time)
+            if enable_stats:
+                self.stats_extract(fp_stats, num_ips, detection_rules_node.rules, final_rules_hit, exact_time)
+            
             ujson.dump(itertools.chain.from_iterable(json_data), fp_json, indent=1)
 
             fp.close()
             fp_json.close()
-            fp_stats.close()
+            if enable_stats: fp_stats.close()
 
     def stats_extract(self, fp_stats, num_ips, rules, final_rules_hit, time):
         '''
@@ -336,16 +338,16 @@ class traIXroute():
         num_hits = sum(final_rules_hit)
         if num_ips:
             temp = num_hits / num_ips
-            data = 'traIXroute stats from ' + time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S") + \
-                ' \nNumber of IXP hits:' + str(num_hits) + \
-                ' Number of traIXroutes:' + str(num_ips) + \
-                ' IXP hit ratio:' + str(temp) + '\n' + \
+            data = 'traIXroute stats from ' + time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S") + '\n' +\
+                'Number of IXP hits: ' + str(num_hits) + '\n' +\
+                'Number of traIXroutes: ' + str(num_ips) + '\n' +\
+                'IXP hit ratio: ' + str(temp) + '\n' + \
                 'Number of hits per rule:\n'
             for myi in range(0, len(rules)):
                 if num_hits > 0:
                     temp = final_rules_hit[myi] / num_hits
-                    data += 'Rule ' + str(myi + 1) + ': Times encountered:' + str(
-                        final_rules_hit[myi]) + ' Encounter Percentage:' + str(temp) + '\n'
+                    data += 'Rule ' + str(myi + 1) + ': Times encountered: ' + str(
+                        final_rules_hit[myi]) + ' - Encounter Percentage: ' + str(temp) + '\n'
                 else:
                     data += 'Rule ' + str(myi + 1) + ': Times encountered:0 Encounter Percentage:0\n'
             fp_stats.write(data)

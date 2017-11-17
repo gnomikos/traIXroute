@@ -41,16 +41,17 @@ class traixroute_parser():
         self.arguments = ''
         # self.flags: A dictionary containing the user input flags.
         self.flags = defaultdict(bool)
-
+        # self.version: The running version of traIXroute.
         self.version = ver
 
+
     def __str__(self):
-        ss = 'InputIP: ' + str(self.inputIP) + '\n'
-        ss += 'outputfile: ' + str(self.outputfile) + '\n'
-        ss += 'inputfile: ' + str(self.inputfile) + '\n'
-        ss += 'arguments: ' + str(self.arguments) + '\n'
+        ss  = 'InputIP: '       + str(self.inputIP)     + '\n'
+        ss += 'outputfile: '    + str(self.outputfile)  + '\n'
+        ss += 'inputfile: '     + str(self.inputfile)   + '\n'
+        ss += 'arguments: '     + str(self.arguments)   + '\n'
         for v in self.flags:
-            ss += str(v) + ': ' + str(self.flags[v]) + '\n'
+            ss += str(v) + ': ' + str(self.flags[v])    + '\n'
         return ss
 
     def parse_input(self):
@@ -65,6 +66,10 @@ class traixroute_parser():
         parser_ripe = subparsers.add_parser('ripe', help='ripe --help')
         parser_import = subparsers.add_parser('import', help='import --help')
 
+        parser.add_argument('-stats', '--enable-stats', action='store_true',
+                            help='Enables logging IXP crossing related information.')
+        parser.add_argument('-silent', '--silence-path-print', action='store_true',
+                            help='Enables printing the analyzed traceroute paths with their IXP crossing links.')
         parser.add_argument('-dns', '--enable-dns-print', action='store_true',
                             help='Enables printing the domain name of each IP hop in the traceroute path.')
         parser.add_argument('-asn', '--enable-asn-print', action='store_true',
@@ -132,47 +137,53 @@ class traixroute_parser():
         elif (options.subparser_name == 'ripe'):
             if (options.request is not None):
                 self.arguments = options.request[0]
-                self.flags['ripe'] = 1
+                self.flags['ripe']          = 1
                 self.flags['useTraiXroute'] = True
-                self.flags['showSourceIP'] = True
+                self.flags['showSourceIP']  = True
             elif (options.create is not None):
                 self.arguments = []
                 self.arguments.append(options.create[0])
                 self.arguments.append(options.create[1])
-                self.flags['ripe'] = 2
+                self.flags['ripe']          = 2
                 self.flags['useTraiXroute'] = True
-                self.flags['showSourceIP'] = True
+                self.flags['showSourceIP']  = True
         elif (options.subparser_name == 'import'):
             if (options.parse_json is not None):
                 self.arguments = str(options.parse_json[0])
-                self.flags['import'] = 1
+                self.flags['import']        = 1
                 self.flags['useTraiXroute'] = True
-                self.flags['showSourceIP'] = True
+                self.flags['showSourceIP']  = True
             elif (options.parse_ripe_json is not None):
                 self.arguments = str(options.parse_ripe_json[0])
-                self.flags['import'] = 2
+                self.flags['import']        = 2
                 self.flags['useTraiXroute'] = True
-                self.flags['showSourceIP'] = True
+                self.flags['showSourceIP']  = True
 
         if options.output:
             self.outputfile = options.output[0]
             if self.outputfile[-1] == '/':
                 self.outputfile += 'output'
-
+        
+        if options.enable_stats:
+            self.flags['stats']  = True
+        
+        if options.silence_path_print:
+            self.flags['silent'] = True
+        
         if options.update:
             self.flags['update'] = True
 
         if options.merge:
-            self.flags['merge'] = True
+            self.flags['merge']  = True
 
         if options.enable_dns_print:
-            self.flags['dns'] = True
+            self.flags['dns']    = True
 
         if options.enable_asn_print:
-            self.flags['asn'] = True
+            self.flags['asn']    = True
 
         if options.store_database:
-            self.flags['db'] = True
+            self.flags['db']     = True
 
         if options.enable_rule_print:
-            self.flags['rule'] = True
+            self.flags['rule']   = True
