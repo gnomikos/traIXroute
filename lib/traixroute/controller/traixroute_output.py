@@ -218,9 +218,9 @@ class traixroute_output():
         Prints traIXroute destination.
         Input:
             a) dns_print: Flag to enable resolving IP or FQDN.
-            a) dst_ip: The destination IP/FQDN to probe.
-            b) src_ip: The IP that issued the probe (optional).
-            c) info: Traceroute path description.
+            b) dst_ip: The destination IP/FQDN to probe.
+            c) src_ip: The IP that issued the probe (optional).
+            d) info: Traceroute path description.
         '''
     
         string_handle = string_handler.string_handler()
@@ -602,7 +602,7 @@ class traixroute_output():
             a) filename: The lst_mod.txt file.
             b) mypath: The path to traIXroute folder.
         Output:
-            b) True if the file has not been modified, False otherwise.
+            a) True if the file has not been modified, False otherwise.
         '''
 
         additional_lst_mod = ctime(os.path.getmtime(fname2))

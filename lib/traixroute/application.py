@@ -256,6 +256,15 @@ class traIXroute():
                 sys.exit(0)
 
             def analyze_measurement(entries):
+            '''
+            Takes over the total path analysis of a path.
+            Input:
+                a) entries: A list with traceroute paths.
+            Output:
+                a) rule_hits: Stats about which of the rules have been satisfied.
+                b) json_obj: Contains the path result in json format.
+            '''
+                
                 json_obj = []
                 db_extract_copy = copy.copy(db_extract)
                 for index,entry in enumerate(entries):
@@ -298,6 +307,7 @@ class traIXroute():
 
                 return rule_hits, json_obj
             
+            # Load balancing over threads.
             json_data = []
             size_of_biglist = len(input_list)
             size_of_sublist = math.ceil(max(size_of_biglist,config["num_of_cores"])/min(size_of_biglist,config["num_of_cores"]))
