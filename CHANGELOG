@@ -5,6 +5,7 @@ Version 2.3 (Beta) - November 2017
 - Changed to keep the total initial format of a RIPE Atlas traceroute measurement in the json output.
 - Fixed bug with IP hops when importing a RIPE Atlas traceroute measurement json file.
 - Fixed bug when measuring traceroute path stats.
+- Fixed bug with dns flag.
 - Added two new commands -silent and -stats.
 
 Version 2.2 - June 2017
