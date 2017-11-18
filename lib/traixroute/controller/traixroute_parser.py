@@ -54,12 +54,13 @@ class traixroute_parser():
         self.version = ver
 
     def __str__(self):
-        ss  = 'InputIP: '       + str(self.inputIP)             + '\n'
-        ss += 'outputfile_txt: '+ str(self.outputfile_txt)      + '\n'
-        ss += 'inputfile: '     + str(self.inputfile)           + '\n'
-        ss += 'arguments: '     + str(self.arguments)           + '\n'
+        ss  = 'InputIP: '        + str(self.inputIP)             + '\n'
+        ss += 'outputfile_txt: ' + str(self.outputfile_txt)      + '\n'
+        ss += 'outputfile_json: '+ str(self.outputfile_json)     + '\n'
+        ss += 'inputfile: '      + str(self.inputfile)           + '\n'
+        ss += 'arguments: '      + str(self.arguments)           + '\n'
         for v in self.flags:
-            ss += str(v) + ': ' + str(self.flags[v])            + '\n'
+            ss += str(v) + ': '  + str(self.flags[v])            + '\n'
         return ss
 
     def parse_input(self):
