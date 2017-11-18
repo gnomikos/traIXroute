@@ -256,14 +256,14 @@ class traIXroute():
                 sys.exit(0)
 
             def analyze_measurement(entries):
-            '''
-            Takes over the total path analysis of a path.
-            Input:
-                a) entries: A list with traceroute paths.
-            Output:
-                a) rule_hits: Stats about which of the rules have been satisfied.
-                b) json_obj: Contains the path result in json format.
-            '''
+                '''
+                Takes over the total path analysis of a path.
+                Input:
+                    a) entries: A list with traceroute paths.
+                Output:
+                    a) rule_hits: Stats about which of the rules have been satisfied.
+                    b) json_obj: Contains the path result in json format.
+                '''
                 
                 json_obj = []
                 db_extract_copy = copy.copy(db_extract)
