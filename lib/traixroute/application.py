@@ -72,15 +72,15 @@ class traIXroute():
 
         def signal_handler(signal, frame):
             print('\nClosing Files')
-            if fp is not None:
-                fp.close()
+            if fp_txt is not None:
+                fp_txt.close()
             if fp_json is not None:
                 fp_json.close()
             if fp_stats is not None:
                 fp_stats.close()
             sys.exit(0)
 
-        fp = None
+        fp_txt = None
         fp_json = None
         fp_stats = None
         signal.signal(signal.SIGINT, signal_handler)
@@ -89,6 +89,9 @@ class traIXroute():
         libpath = os.path.dirname(os.path.realpath(__file__))
         homepath = os.path.expanduser('~') + '/traixroute'
 
+        if not os.path.exists(homepath + '/output'):
+            os.makedirs(homepath + '/output')
+            
         if not os.path.exists(homepath):
             os.makedirs(homepath)
             copy_tree(libpath + '/configuration', homepath + '/configuration')
@@ -109,7 +112,8 @@ class traIXroute():
         traixparser = traixroute_parser.traixroute_parser(self.version)
         traixparser.parse_input()
         inputIP         = traixparser.inputIP
-        outputfile      = traixparser.outputfile
+        outputfile_txt  = traixparser.outputfile_txt
+        outputfile_json = traixparser.outputfile_json
         inputfile       = traixparser.inputfile
         arguments       = traixparser.arguments
         useTraIXroute   = traixparser.flags['useTraiXroute']
@@ -209,6 +213,7 @@ class traIXroute():
             temp_point = 0
             if not ripe and not import_flag:
                 inputIP = input_list[temp_point].replace(' ', '')
+                
             # Instead of an IP address, a domain name has been given as
             # destination to send the probe.
             string_handle = string_handler.string_handler()
@@ -242,18 +247,22 @@ class traIXroute():
             output.print_args(selected_tool, useTraIXroute,
                               arguments, ripe, import_flag)
 
-            if outputfile == '':
-                outputfile = homepath + '/output/output_' + exact_time
-                if not os.path.exists(homepath + '/output'):
-                    os.makedirs(homepath + '/output')
-
-            try:
-                fp = open(outputfile + '.txt', 'w')
-                fp_json = open(outputfile + '.json', 'w')
-                if enable_stats: fp_stats = open(outputfile + '.stats', 'w')
-            except:
-                print('Could not open outputfile. Exiting.')
-                sys.exit(0)
+            def openfile(filename):
+                try:
+                     fp_local = open(filename, 'w')
+                except:
+                    print('Could not open', filename, 'Exiting.')
+                    sys.exit(0)
+            
+                return fp_local
+           
+            # Set output file names.
+            if traixparser.flags['outputfile_txt']:
+                filename = outputfile_txt + '.txt' if outputfile_txt else homepath + '/output/output_' + exact_time + '.txt'
+                fp_txt = openfile(filename)
+            if traixparser.flags['outputfile_json']:
+                filename = outputfile_json + '.json' if outputfile_json else homepath + '/output/output_' + exact_time + '.json'
+                fp_json = openfile(filename)
 
             def analyze_measurement(entries):
                 '''
@@ -268,23 +277,27 @@ class traIXroute():
                 json_obj = []
                 db_extract_copy = copy.copy(db_extract)
                 for index,entry in enumerate(entries):
-                    output = traixroute_output.traixroute_output(path_print)
+                    output = traixroute_output.traixroute_output()
                     if import_flag == 1:
                         [ip_path, delays_path, dst_ip, src_ip,
                             info] = json_handle.export_trace_from_file(entry)
-                        output.print_traIXroute_dest(dns_print,dst_ip, src_ip, info)
+                        if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
+                            output.print_traIXroute_dest(dns_print,dst_ip, src_ip, info)
                     elif import_flag == 2:
                         [ip_path, delays_path, dst_ip, src_ip,
                             info] = json_handle.export_trace_from_ripe_file(entry)
-                        output.print_traIXroute_dest(dns_print,dst_ip, src_ip, info)
+                        if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
+                            output.print_traIXroute_dest(dns_print,dst_ip, src_ip, info)
                     elif ripe == 1:
                         [src_ip, dst_ip, ip_path,
                             delays_path] = ripe_m.return_path(entry)
-                        output.print_traIXroute_dest(dns_print,dst_ip, src_ip)
+                        if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
+                            output.print_traIXroute_dest(dns_print,dst_ip, src_ip)
                     else:
                         src_ip = ''
                         dst_ip = entry.replace(' ', '')
-                        output.print_traIXroute_dest(dst_ip)
+                        if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
+                            output.print_traIXroute_dest(dst_ip)
                         [ip_path, delays_path] = myinput.trace_call(
                             dst_ip, selected_tool, arguments)
                     
@@ -292,7 +305,10 @@ class traIXroute():
                         # IP path info extraction and print.
                         path_info_extract = path_info_extraction.path_info_extraction()
                         path_info_extract.path_info_extraction(db_extract_copy, ip_path)
-                        output.print_path_info(ip_path,  delays_path, path_info_extract, traixparser)
+                        
+                        if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
+                            output.print_path_info(ip_path, delays_path, path_info_extract, traixparser)
+                            
                         rule_hits = detection_rules_node.resolve_path(ip_path, output, path_info_extract, db_extract_copy, traixparser)
                          
                         if import_flag == 2 or ripe == 1:
@@ -303,38 +319,39 @@ class traIXroute():
                     else:
                         rule_hits = [0] * len(detection_rules_node.rules)
 
-                    json_obj.append(output.flush(fp))
+                    json_obj.append(output.flush(fp_txt, traixparser))
 
                 return rule_hits, json_obj
             
             # Load balancing over threads.
             json_data = []
             size_of_biglist = len(input_list)
-            size_of_sublist = math.ceil(max(size_of_biglist,config["num_of_cores"])/min(size_of_biglist,config["num_of_cores"]))
+            size_of_sublist = math.ceil(max(size_of_biglist,config["num_of_cores"])/min(size_of_biglist, config["num_of_cores"]))
             sublisted_data = (input_list[x:x+size_of_sublist] for x in range(0, size_of_biglist, size_of_sublist))
             with concurrent.futures.ThreadPoolExecutor(max_workers=config["num_of_cores"]) as executor:
-                for rule_hits, json_obj in executor.map(analyze_measurement,sublisted_data):
+                for rule_hits, json_obj in executor.map(analyze_measurement, sublisted_data):
                 
                     json_data.append(json_obj)
                     if enable_stats: 
                         final_rules_hit = [x + y for x, y in zip(final_rules_hit, rule_hits)]
                         num_ips += 1
             
+            if traixparser.flags['outputfile_json']:
+                ujson.dump(itertools.chain.from_iterable(json_data), fp_json, indent=1)
+                fp_json.close()
+                
+            if traixparser.flags['outputfile_txt']:
+                fp_txt.close()
+                
             #Extracting statistics.
             if enable_stats:
-                self.stats_extract(fp_stats, num_ips, detection_rules_node.rules, final_rules_hit, exact_time)
-            
-            ujson.dump(itertools.chain.from_iterable(json_data), fp_json, indent=1)
+                self.stats_extract(homepath, num_ips, detection_rules_node.rules, final_rules_hit, exact_time)
 
-            fp.close()
-            fp_json.close()
-            if enable_stats: fp_stats.close()
-
-    def stats_extract(self, fp_stats, num_ips, rules, final_rules_hit, time):
+    def stats_extract(self, homepath, num_ips, rules, final_rules_hit, time):
         '''
         Writes various statistics to the stats.txt file.
         Input:
-            a) fp_stats: The file pointer to write.
+            a) homepath: The home directory path of traIXroute.
             b) num_ips: The number of IPs to send probes.
             c) rules: The rules that detected IXP crossing links.
             d) funal_rules_hit: The number of "hits" for each rule.
@@ -342,23 +359,24 @@ class traIXroute():
         '''
 
         num_hits = sum(final_rules_hit)
+        
         if num_ips:
-            temp = num_hits / num_ips
-            data = 'traIXroute stats from ' + time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S") + '\n' +\
-                'Number of IXP hits: ' + str(num_hits) + '\n' +\
-                'Number of traIXroutes: ' + str(num_ips) + '\n' +\
-                'IXP hit ratio: ' + str(temp) + '\n' + \
-                'Number of hits per rule:\n'
-            for myi in range(0, len(rules)):
-                if num_hits > 0:
-                    temp = final_rules_hit[myi] / num_hits
-                    data += 'Rule ' + str(myi + 1) + ': Times encountered: ' + str(
-                        final_rules_hit[myi]) + ' - Encounter Percentage: ' + str(temp) + '\n'
-                else:
-                    data += 'Rule ' + str(myi + 1) + ': Times encountered:0 Encounter Percentage:0\n'
-            fp_stats.write(data)
-
-
+            with open(homepath+'/output/output_' + time + '.stats', 'w') as fp_stats:
+                temp = num_hits / num_ips
+                data = 'traIXroute stats from ' + time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S") + '\n' +\
+                    'Number of IXP hits: ' + str(num_hits) + '\n' +\
+                    'Number of traIXroutes: ' + str(num_ips) + '\n' +\
+                    'IXP hit ratio: ' + str(temp) + '\n' + \
+                    'Number of hits per rule:\n'
+                for myi in range(0, len(rules)):
+                    if num_hits > 0:
+                        temp = final_rules_hit[myi] / num_hits
+                        data += 'Rule ' + str(myi + 1) + ': Times encountered: ' + str(
+                            final_rules_hit[myi]) + ' - Encounter Percentage: ' + str(temp) + '\n'
+                    else:
+                        data += 'Rule ' + str(myi + 1) + ': Times encountered:0 Encounter Percentage:0\n'
+                fp_stats.write(data)
+            
 def run_traixroute():
     traIXroute_module = traIXroute()
     traIXroute_module.main()

@@ -34,10 +34,8 @@ class traixroute_output():
     Handles all the outputs.
     '''
 
-    def __init__(self,path_print_disable=False):
+    def __init__(self):
         
-        self.path_print_disable = path_print_disable
-    
         self.measurement_json = {
             'ixp_crossings': [],
             'remote_peering': [],
@@ -49,12 +47,11 @@ class traixroute_output():
         self.remote_hops        = ''
         self.unknown_hops       = ''
 
-    def flush(self,fp):
+    def flush(self,fp,traixparser):
         '''
          Prints the data and flushes them to a file.
          Input:
-            a) fp: The pointer to the file to write the data.
-            a) fp_json: The pointer to the json file to write the data.
+            a) fp: The file pointer to write the data.
         '''
         
         output = self.measurement_info
@@ -65,8 +62,8 @@ class traixroute_output():
         if self.unknown_hops != '':
             output += 'Possible IXP hops:\n' + self.unknown_hops
 
-        if not self.path_print_disable: print(output)
-        fp.write(output)
+        if not traixparser.flags['silent']      : print(output)
+        if traixparser.flags['outputfile_txt']  : fp.write(output)
 
         if len(self.measurement_json['ixp_crossings']) == 0:
             del self.measurement_json['ixp_crossings']
@@ -577,9 +574,9 @@ class traixroute_output():
             print('Creating a new measurement at RIPE Atlas:', arguments)
         elif from_import == 1:
             print(
-                'Run traIXroute from a file with traIXroute json format:', arguments)
+                'Run traIXroute from file with traIXroute json format:', arguments)
         elif from_import == 2:
-            print('Run traIXroute from a file with ripe json format:', arguments)
+            print('Run traIXroute from file with ripe json format:', arguments)
 
     def print_pr_db_stats(self, filepath):
         '''

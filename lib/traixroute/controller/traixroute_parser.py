@@ -31,27 +31,35 @@ class traixroute_parser():
     def __init__(self, ver):
         # self.inputIP: The destination IP or FQDN to send the probe.
         self.inputIP = ''
-        # self.outputfile: The output file name in which all the results will
+        
+        # self.outputfile_txt: The .txt output file name in which all the results will
         # be redirected to.
-        self.outputfile = ''
+        self.outputfile_txt = ''
+        
+        # self.outputfile_json: The .json output file name in which all the results will
+        # be redirected to.
+        self.outputfile_json = ''
+        
         # self.inputfile: The file name with the list of the destination IP
         # addresses/FQDNs to send the probes.
         self.inputfile = ''
+        
         # self.arguments: traIXroute arguments.
         self.arguments = ''
+        
         # self.flags: A dictionary containing the user input flags.
         self.flags = defaultdict(bool)
+        
         # self.version: The running version of traIXroute.
         self.version = ver
 
-
     def __str__(self):
-        ss  = 'InputIP: '       + str(self.inputIP)     + '\n'
-        ss += 'outputfile: '    + str(self.outputfile)  + '\n'
-        ss += 'inputfile: '     + str(self.inputfile)   + '\n'
-        ss += 'arguments: '     + str(self.arguments)   + '\n'
+        ss  = 'InputIP: '       + str(self.inputIP)             + '\n'
+        ss += 'outputfile_txt: '+ str(self.outputfile_txt)      + '\n'
+        ss += 'inputfile: '     + str(self.inputfile)           + '\n'
+        ss += 'arguments: '     + str(self.arguments)           + '\n'
         for v in self.flags:
-            ss += str(v) + ': ' + str(self.flags[v])    + '\n'
+            ss += str(v) + ': ' + str(self.flags[v])            + '\n'
         return ss
 
     def parse_input(self):
@@ -81,10 +89,11 @@ class traixroute_parser():
         parser.add_argument('-u', '--update', action='store_true',
                             help='Updates the database with up-to-date datasets.')
         parser.add_argument('-m', '--merge', action='store_true',
-                            help='Exports the database to distinct files, the ixp_prefixes.txt and ixp_membership.txt.')
-        parser.add_argument('-o', '--output', action='store', nargs=1, type=str,
-                            help='Specifies the output file name to redirect the traIXroute results.')
-
+                            help='Exports the database to distinct files, the ixp_prefixes.txt and  ixp_membership.txt.')
+        parser.add_argument('-otxt', '--output-txt', default='disabled', nargs='?', type=str,
+                            help='Enables to export data in .txt file and (optional) specifies the output file name to redirect the traIXroute results.')
+        parser.add_argument('-ojson', '--output-json', default='disabled', nargs='?', type=str,
+                            help='Enables to export data in .json file and (optional) specifies the output file name to redirect the traIXroute results.')                    
         parser.add_argument('-v', '--version', action='version', version='current version of traixroute: '+self.version)
 
         group_0 = parser_probe.add_mutually_exclusive_group(required=True)
@@ -147,6 +156,8 @@ class traixroute_parser():
                 self.flags['ripe']          = 2
                 self.flags['useTraiXroute'] = True
                 self.flags['showSourceIP']  = True
+
+        # Parameterize arguments from subparser probe                
         elif (options.subparser_name == 'import'):
             if (options.parse_json is not None):
                 self.arguments = str(options.parse_json[0])
@@ -159,10 +170,15 @@ class traixroute_parser():
                 self.flags['useTraiXroute'] = True
                 self.flags['showSourceIP']  = True
 
-        if options.output:
-            self.outputfile = options.output[0]
-            if self.outputfile[-1] == '/':
-                self.outputfile += 'output'
+        if not options.output_txt or options.output_txt != 'disabled':
+            if options.output_txt: 
+                self.outputfile_txt = options.output_txt
+            self.flags['outputfile_txt'] = True
+        
+        if not options.output_json or options.output_json != 'disabled':
+            if options.output_json:
+                self.outputfile_json = options.output_json 
+            self.flags['outputfile_json'] = True
         
         if options.enable_stats:
             self.flags['stats']  = True
