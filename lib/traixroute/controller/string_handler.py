@@ -63,11 +63,11 @@ class string_handler():
               if ipaddress.IPv4Network(address):
                 return True
             except ValueError as e:
-              print('Error with prefix:', address, e)
+              print('Error with prefix:', address, '-', e)
             except ipaddress.AddressValueError as e:
-              print('Error with prefix:', address, e)
+              print('Error with prefix:', address, '-', e)
             except ipaddress.NetmaskValueError as e:
-              print('Error with prefix:', address, e)
+              print('Error with prefix:', address, '-', e)
               
         return False
 
