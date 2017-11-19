@@ -158,7 +158,7 @@ class traixroute_parser():
                 self.flags['useTraiXroute'] = True
                 self.flags['showSourceIP']  = True
 
-        # Parameterize arguments from subparser probe                
+        # Parameterize arguments from subparser import                
         elif (options.subparser_name == 'import'):
             if (options.parse_json is not None):
                 self.arguments = str(options.parse_json[0])

@@ -191,12 +191,17 @@ class traIXroute():
                     'One or more files are missing from the default database. Exiting.')
                 sys.exit(0)
 
+        # Extract info from the database folder.
+        if useTraIXroute or merge_flag:
+            db_extract = database_extract.database(
+                traixparser, downloader, config, outcome, libpath)
+            db_extract.dbextract()
+            
         if useTraIXroute:
             if import_flag:
                 [input_list, flag] = json_handle.import_IXP_dict(arguments)
                 if flag:
-                    print(
-                        arguments + ' file not found or has invalid json format. Exiting.')
+                    print(arguments + ' file not found or has invalid json format. Exiting.')
                     sys.exit(0)
             elif ripe == 1:
                 ripe_m = handle_ripe.handle_ripe(config)
@@ -204,58 +209,50 @@ class traIXroute():
             elif ripe == 2:
                 ripe_m = handle_ripe.handle_ripe(config)
                 input_list = ripe_m.create_measurement(arguments)
-            elif inputfile != '':
-                with open(inputfile, 'r') as f:
-                    input_list = f.read().split('\n')             
-            else:
-                input_list = inputIP.split(',')
-            input_list = list(filter(('').__ne__, input_list))
-            temp_point = 0
-            if not ripe and not import_flag:
-                inputIP = input_list[temp_point].replace(' ', '')
+            elif inputfile or inputIP:
+                if inputfile:
+                    with open(inputfile, 'r') as f:
+                        input_list = f.read().split('\n')             
+                elif inputIP:
+                    input_list = inputIP.split(',')
+             
+                input_list = list(filter(('').__ne__, input_list))
                 
-            # Instead of an IP address, a domain name has been given as
-            # destination to send the probe.
-            string_handle = string_handler.string_handler()
-            if not string_handle.is_valid_ip_address(inputIP, 'IP'):
-                try:
-                    IP_name = socket.gethostbyname(inputIP)
-                except:
-                    print(
-                        'Wrong input IP address format.\nExpected an IPv4 format or a valid url.')
-                    sys.exit(0)
-            elif not string_handle.check_input_ip(inputIP):
-                print(
-                    'Wrong input IP address format.\nExpected an IPv4 format or a valid url.')
-                sys.exit(0)
-
-            detection_rules_node = detection_rules.detection_rules()
-            detection_rules_node.rules_extract(homepath)
-
-            if enable_stats: final_rules_hit = [0] * len(detection_rules_node.rules)
-
-            myinput = trace_tool.trace_tool()
-
-        # Extract info from the database folder.
-        if useTraIXroute or merge_flag:
-            db_extract = database_extract.database(
-                traixparser, downloader, config, outcome, libpath)
-            db_extract.dbextract()
+                # Check IP or FQDN format consistency for the given destinations.
+                string_handle = string_handler.string_handler()
+                for inputIP in input_list:
+                    if not string_handle.is_valid_ip_address(inputIP, 'IP'):
+                        try:
+                            IP_name = socket.gethostbyname(inputIP)
+                        except:
+                            print(
+                                'Wrong input IP address format.\nExpected an IPv4 format or a valid url.')
+                            sys.exit(0)
+                    elif not string_handle.check_input_ip(inputIP):
+                        print(
+                            'Wrong input IP address format.\nExpected an IPv4 format or a valid url.')
+                        sys.exit(0)
 
         if useTraIXroute:
+        
+            # Detection rules import.
+            detection_rules_node = detection_rules.detection_rules()
+            detection_rules_node.rules_extract(homepath)
+            
+            # Stats structure initialization.
+            if enable_stats: final_rules_hit = [0] * len(detection_rules_node.rules)
+        
             output = traixroute_output.traixroute_output()
             output.print_args(selected_tool, useTraIXroute,
                               arguments, ripe, import_flag)
 
             def openfile(filename):
                 try:
-                     fp_local = open(filename, 'w')
+                     return open(filename, 'w')
                 except:
                     print('Could not open', filename, 'Exiting.')
                     sys.exit(0)
             
-                return fp_local
-           
             # Set output file names.
             if traixparser.flags['outputfile_txt']:
                 filename = outputfile_txt + '.txt' if outputfile_txt else homepath + '/output/output_' + exact_time + '.txt'
@@ -282,22 +279,24 @@ class traIXroute():
                         [ip_path, delays_path, dst_ip, src_ip,
                             info] = json_handle.export_trace_from_file(entry)
                         if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
-                            output.print_traIXroute_dest(dns_print,dst_ip, src_ip, info)
+                            output.print_traIXroute_dest(dns_print, dst_ip, src_ip, info)
                     elif import_flag == 2:
                         [ip_path, delays_path, dst_ip, src_ip,
                             info] = json_handle.export_trace_from_ripe_file(entry)
                         if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
-                            output.print_traIXroute_dest(dns_print,dst_ip, src_ip, info)
+                            output.print_traIXroute_dest(dns_print, dst_ip, src_ip, info)
                     elif ripe == 1:
                         [src_ip, dst_ip, ip_path,
                             delays_path] = ripe_m.return_path(entry)
                         if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
-                            output.print_traIXroute_dest(dns_print,dst_ip, src_ip)
+                            output.print_traIXroute_dest(dns_print, dst_ip, src_ip)
                     else:
                         src_ip = ''
                         dst_ip = entry.replace(' ', '')
+                        myinput = trace_tool.trace_tool()
+                        
                         if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
-                            output.print_traIXroute_dest(dst_ip)
+                            output.print_traIXroute_dest(dns_print, dst_ip)
                         [ip_path, delays_path] = myinput.trace_call(
                             dst_ip, selected_tool, arguments)
                     

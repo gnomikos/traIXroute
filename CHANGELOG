@@ -7,6 +7,7 @@ Version 2.3 (Beta) - November 2017
 - Fixed bug with IP hops when importing a RIPE Atlas traceroute measurement json file.
 - Fixed bug when measuring traceroute path stats.
 - Fixed bug with dns flag.
+- Fixed bug when checking the validity of IP/FQDN format for each destination.
 - Replaced command -o with -otxt and -ojson.
 - Added new commands -silent and -stats.
 

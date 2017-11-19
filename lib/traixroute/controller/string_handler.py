@@ -23,6 +23,7 @@
 import re
 import socket
 import difflib
+import ipaddress
 
 
 class string_handler():
@@ -48,39 +49,26 @@ class string_handler():
         if address is None or address == '' or address == '\n':
             return False
 
-        splitted = address.split('.')
-        network = address.split('/')
-
         # For IP handling.
-        if kind == 'IP' and len(splitted) > 3:
+        if kind == 'IP':
             try:
-                for node in splitted:
-                    if int(node) > 255 or int(node) < 0:
-                        return False
-
-                if splitted[-1] != '0' and splitted[-1] != '255':
-                    return True
-            except:
+                socket.inet_aton(address)
+                return True
+            except socket.error as e:
                 return False
-
+            
         # For Subnet Handling.
-        elif kind == 'Subnet' and len(splitted) > 3 and len(network) > 1:
+        elif kind == 'Subnet':
             try:
-                for node in network[0].split('.'):
-                    if int(node) > 255 or int(node) < 0:
-                        print("Error in subnet format.")
-                        return False
-            except:
-                return False
-
-            try:
-                mask = int(network[1])
-                if (mask < 32) or (mask == 32 and network[0].split('.')[-1] != '0'):
-                    return True
-            except:
-                print("Error in subnet mask:", address)
-                return False
-
+              if ipaddress.IPv4Network(address):
+                return True
+            except ValueError as e:
+              print('Error with prefix:', address, e)
+            except ipaddress.AddressValueError as e:
+              print('Error with prefix:', address, e)
+            except ipaddress.NetmaskValueError as e:
+              print('Error with prefix:', address, e)
+              
         return False
 
     def subnetcheck(self, string, mask):
