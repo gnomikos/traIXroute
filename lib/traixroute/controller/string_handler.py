@@ -43,33 +43,33 @@ class string_handler():
         '''
 
         if(kind != 'IP' and kind != 'Subnet'):
-            print("Error in argument kind. Give \"IP\" or \"Subnet\".")
+            print("Wrong argument kind. Give \"IP\" or \"Subnet\".")
             return False
 
-        if address is None or address == '' or address == '\n':
+        if not address or address == '\n':
             return False
-
-        # For IP handling.
-        if kind == 'IP':
-            try:
-                socket.inet_aton(address)
-                return True
-            except socket.error as e:
-                return False
-            
-        # For Subnet Handling.
-        elif kind == 'Subnet':
-            try:
-              if ipaddress.IPv4Network(address):
-                return True
-            except ValueError as e:
-              print('Error with prefix:', address, '-', e)
-            except ipaddress.AddressValueError as e:
-              print('Error with prefix:', address, '-', e)
-            except ipaddress.NetmaskValueError as e:
-              print('Error with prefix:', address, '-', e)
-              
-        return False
+        else:
+            # For IP handling.
+            if kind == 'IP':
+                try:
+                    socket.inet_aton(address)
+                    return True
+                except socket.error as e:
+                    return False
+                
+            # For Subnet Handling.
+            elif kind == 'Subnet':
+                try:
+                    if ipaddress.IPv4Network(address):
+                        return True
+                except ValueError as e:
+                    print('Error with prefix:', address, '-', e)
+                except ipaddress.AddressValueError as e:
+                    print('Error with prefix:', address, '-', e)
+                except ipaddress.NetmaskValueError as e:
+                    print('Error with prefix:', address, '-', e)
+                  
+                    return False
 
     def subnetcheck(self, string, mask):
         '''
