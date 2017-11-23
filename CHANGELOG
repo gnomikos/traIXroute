@@ -1,6 +1,6 @@
 Version 2.3 (Beta) - November 2017
 - Many performance improvements, optimizations and code polishes.
-- Added comments.
+- Added more inline comments.
 - Fixed error messages in case of bad format in detection rules.
 - Fixed bug when a RIPE atlas traceroute measurement returns an error message.
 - Changed to keep the total initial format of a RIPE Atlas traceroute measurement in the json output.

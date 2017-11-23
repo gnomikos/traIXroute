@@ -603,10 +603,11 @@ class traixroute_output():
         '''
 
         additional_lst_mod = ctime(os.path.getmtime(fname2))
-        with open(filename, 'r') as f:
-            data = f.read()
-            if data.split('\n')[0] == additional_lst_mod:
-                return True
+        if (os.path.isfile(filename)):
+            with open(filename, 'r') as f:
+                data = f.read()
+                if data.split('\n')[0] == additional_lst_mod:
+                    return True
 
         self.write_lst_mod(filename, additional_lst_mod)
         return False
