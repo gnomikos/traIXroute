@@ -55,6 +55,7 @@ class traIXroute():
 
     def __init__(self):
         self.version = '2.3'
+        self.traixparser = traixroute_parser.traixroute_parser(self.version)
 
     def check_version(self):
         pypi = xmlrpc.client.ServerProxy('https://pypi.python.org/pypi')
@@ -66,6 +67,23 @@ class traIXroute():
         '''
         The main function which calls all the other traIXroute modules.
         '''
+        
+        self.traixparser.parse_input()
+        inputIP         = self.traixparser.inputIP
+        outputfile_txt  = self.traixparser.outputfile_txt
+        outputfile_json = self.traixparser.outputfile_json
+        inputfile       = self.traixparser.inputfile
+        arguments       = self.traixparser.arguments
+        useTraIXroute   = self.traixparser.flags['useTraiXroute']
+        merge_flag      = self.traixparser.flags['merge']
+        print_rule      = self.traixparser.flags['rule']
+        db_print        = self.traixparser.flags['db']
+        path_print      = self.traixparser.flags['silent']
+        ripe            = self.traixparser.flags['ripe']
+        selected_tool   = self.traixparser.flags['tracetool']
+        import_flag     = self.traixparser.flags['import']
+        enable_stats    = self.traixparser.flags['stats']
+        dns_print       = self.traixparser.flags['dns']
 
         if '-v' in sys.argv or '--version' in sys.argv:
             self.check_version()
@@ -109,24 +127,6 @@ class traIXroute():
                          homepath + '/configuration/' + config_file,)
         exact_time = datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
 
-        traixparser = traixroute_parser.traixroute_parser(self.version)
-        traixparser.parse_input()
-        inputIP         = traixparser.inputIP
-        outputfile_txt  = traixparser.outputfile_txt
-        outputfile_json = traixparser.outputfile_json
-        inputfile       = traixparser.inputfile
-        arguments       = traixparser.arguments
-        useTraIXroute   = traixparser.flags['useTraiXroute']
-        merge_flag      = traixparser.flags['merge']
-        print_rule      = traixparser.flags['rule']
-        db_print        = traixparser.flags['db']
-        path_print      = traixparser.flags['silent']
-        ripe            = traixparser.flags['ripe']
-        selected_tool   = traixparser.flags['tracetool']
-        import_flag     = traixparser.flags['import']
-        enable_stats    = traixparser.flags['stats']
-        dns_print       = traixparser.flags['dns']
-
         json_handle = handle_json.handle_json()
         [config, config_flag] = json_handle.import_IXP_dict(
             homepath + '/configuration/config')
@@ -163,15 +163,15 @@ class traIXroute():
         )
 
         outcome = True
-        if traixparser.flags['update'] or (
+        if self.traixparser.flags['update'] or (
                 (not check_db or not check_user_db) and
                 (useTraIXroute or merge_flag)):
             if not check_db:
-                traixparser.flags['update'] = True
+                self.traixparser.flags['update'] = True
                 print('Database not found.\nUpdating the database...')
                 os.makedirs(libpath + '/database')
             elif not check_user_db:
-                traixparser.flags['update'] = True
+                self.traixparser.flags['update'] = True
                 print('Dataset files are missing.\nUpdating the database...')
                 if not os.path.exists(homepath + '/database'):
                     os.makedirs(homepath + '/database')
@@ -194,7 +194,7 @@ class traIXroute():
         # Extract info from the database folder.
         if useTraIXroute or merge_flag:
             db_extract = database_extract.database(
-                traixparser, downloader, config, outcome, libpath)
+                self.traixparser, downloader, config, outcome, libpath)
             db_extract.dbextract()
             
         if useTraIXroute:
@@ -254,10 +254,10 @@ class traIXroute():
                     sys.exit(0)
             
             # Set output file names.
-            if traixparser.flags['outputfile_txt']:
+            if self.traixparser.flags['outputfile_txt']:
                 filename = outputfile_txt + '.txt' if outputfile_txt else homepath + '/output/output_' + exact_time + '.txt'
                 fp_txt = openfile(filename)
-            if traixparser.flags['outputfile_json']:
+            if self.traixparser.flags['outputfile_json']:
                 filename = outputfile_json + '.json' if outputfile_json else homepath + '/output/output_' + exact_time + '.json'
                 fp_json = openfile(filename)
 
@@ -278,17 +278,17 @@ class traIXroute():
                     if import_flag == 1:
                         [ip_path, delays_path, dst_ip, src_ip,
                             info] = json_handle.export_trace_from_file(entry)
-                        if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
+                        if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
                             output.print_traIXroute_dest(dns_print, dst_ip, src_ip, info)
                     elif import_flag == 2:
                         [ip_path, delays_path, dst_ip, src_ip,
                             info] = json_handle.export_trace_from_ripe_file(entry)
-                        if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
+                        if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
                             output.print_traIXroute_dest(dns_print, dst_ip, src_ip, info)
                     elif ripe == 1:
                         [src_ip, dst_ip, ip_path,
                             delays_path] = ripe_m.return_path(entry)
-                        if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
+                        if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
                             output.print_traIXroute_dest(dns_print, dst_ip, src_ip)
                     else:
                         src_ip = ''
@@ -305,10 +305,10 @@ class traIXroute():
                         path_info_extract = path_info_extraction.path_info_extraction()
                         path_info_extract.path_info_extraction(db_extract_copy, ip_path)
                         
-                        if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
-                            output.print_path_info(ip_path, delays_path, path_info_extract, traixparser)
+                        if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
+                            output.print_path_info(ip_path, delays_path, path_info_extract, self.traixparser)
                             
-                        rule_hits = detection_rules_node.resolve_path(ip_path, output, path_info_extract, db_extract_copy, traixparser)
+                        rule_hits = detection_rules_node.resolve_path(ip_path, output, path_info_extract, db_extract_copy, self.traixparser)
                          
                         if import_flag == 2 or ripe == 1:
                             output.buildJsonRipe(entry, path_info_extract.asn_list)
@@ -318,7 +318,7 @@ class traIXroute():
                     else:
                         rule_hits = [0] * len(detection_rules_node.rules)
 
-                    json_obj.append(output.flush(fp_txt, traixparser))
+                    json_obj.append(output.flush(fp_txt, self.traixparser))
 
                 return rule_hits, json_obj
             
@@ -335,11 +335,11 @@ class traIXroute():
                         final_rules_hit = [x + y for x, y in zip(final_rules_hit, rule_hits)]
                         num_ips += 1
             
-            if traixparser.flags['outputfile_json']:
+            if self.traixparser.flags['outputfile_json']:
                 ujson.dump(itertools.chain.from_iterable(json_data), fp_json, indent=1)
                 fp_json.close()
                 
-            if traixparser.flags['outputfile_txt']:
+            if self.traixparser.flags['outputfile_txt']:
                 fp_txt.close()
                 
             #Extracting statistics.
