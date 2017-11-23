@@ -261,11 +261,11 @@ class traIXroute():
                 filename = outputfile_json + '.json' if outputfile_json else homepath + '/output/output_' + exact_time + '.json'
                 fp_json = openfile(filename)
 
-            def analyze_measurement(entries):
+            def analyze_measurement(indexes):
                 '''
                 Takes over the total path analysis of a path.
                 Input:
-                    a) entries: A list with traceroute paths.
+                    a) indexes: Indexes to analyze a part of the total list with traceroute paths.
                 Output:
                     a) rule_hits: Stats about which of the rules have been satisfied.
                     b) json_obj: Contains the path result in json format.
@@ -273,7 +273,7 @@ class traIXroute():
                 
                 json_obj = []
                 db_extract_copy = copy.copy(db_extract)
-                for index,entry in enumerate(entries):
+                for index,entry in enumerate(input_list[indexes[0]:indexes[1]]):
                     output = traixroute_output.traixroute_output()
                     if import_flag == 1:
                         [ip_path, delays_path, dst_ip, src_ip,
@@ -326,7 +326,7 @@ class traIXroute():
             json_data = []
             size_of_biglist = len(input_list)
             size_of_sublist = math.ceil(max(size_of_biglist,config["num_of_cores"])/min(size_of_biglist, config["num_of_cores"]))
-            sublisted_data = (input_list[x:x+size_of_sublist] for x in range(0, size_of_biglist, size_of_sublist))
+            sublisted_data = [[x,x+size_of_sublist] for x in range(0, size_of_biglist, size_of_sublist)]
             with concurrent.futures.ThreadPoolExecutor(max_workers=config["num_of_cores"]) as executor:
                 for rule_hits, json_obj in executor.map(analyze_measurement, sublisted_data):
                 
