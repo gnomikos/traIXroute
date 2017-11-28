@@ -23,7 +23,7 @@ def packages(lib):
 
 setup(
     name="traixroute",
-    version="2.2",
+    version="2.3",
     description='A tool that detects if and where a traceroute path crosses an IXP fabric.',
     long_description=long_description,
     package_dir={'': 'lib'},
