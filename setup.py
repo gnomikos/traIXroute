@@ -24,7 +24,7 @@ def packages(lib):
 setup(
     name="traixroute",
     version="2.3",
-    description='A tool that detects if and where a traceroute path crosses an IXP fabric.',
+    description='A tool that detects at which hop in a traceroute path an IXP fabric has been crossed.',
     long_description=long_description,
     package_dir={'': 'lib'},
     install_requires=['setuptools',
