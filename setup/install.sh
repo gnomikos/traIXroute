@@ -63,8 +63,7 @@ if [ $OS = 'Darwin' ]; then
 # Install dependencies for Linux.
 elif [ $OS = 'Linux' ]; then
     echo 'Installing dependencies for Linux.'
-    sudo apt-get update
-    sudo apt-get install g++ gcc python3 python3-setuptools python3-dev traceroute python3-pip libssl-dev libffi-dev -y
+    apt-get install g++ gcc python3 python3-setuptools python3-dev traceroute python3-pip libssl-dev libffi-dev -y
     additional
 
 # Not supported OS.
