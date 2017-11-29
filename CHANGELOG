@@ -10,6 +10,7 @@ Version 2.3 (Beta) - November 2017
 - Fixed bug when checking the validity of IP/FQDN format for each destination.
 - Replaced command -o with -otxt and -ojson.
 - Added new commands -silent and -stats.
+- Fixed bug when installing the tool without using pip.
 
 Version 2.2 - June 2017
 - Fixed bug when some RIPE Atlas measurements fields are missing from the results.
