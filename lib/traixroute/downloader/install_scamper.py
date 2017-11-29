@@ -27,12 +27,14 @@ from urllib.request import urlretrieve
 
 def main():
     mypath = os.path.expanduser("~")
+    version = 'scamper-cvs-20170822'
 
     #--------------------SCAMPER---------------------------
     # Download Scamper
     try:
         urlretrieve(
-            'https://www.caida.org/tools/measurement/scamper/code/scamper-cvs-20141211d.tar.gz', mypath + '/scamper.tar')
+            'https://www.caida.org/tools/measurement/scamper/code/'+version+'.tar.gz', mypath + '/scamper.tar')
+        print('Scamper has been downloaded successfully.')
     except:
         print('Scamper has not been downloaded. Exiting.')
         sys.exit(0)
@@ -41,19 +43,20 @@ def main():
     try:
         subprocess.call('tar -xvzf ' + mypath +
                         '/scamper.tar -C' + mypath, shell=True)
+        print('Scamper has been unzipped successfully.')
     except:
         print('Scamper has not been unzipped. Exiting.')
         sys.exit(0)
 
     # Install Scamper
-    if os.path.exists(mypath + '/scamper-cvs-20141211d'):
-        os.chdir(mypath + '/scamper-cvs-20141211d')
+    if os.path.exists(mypath + '/' + version):
+        os.chdir(mypath + '/' + version)
         subprocess.call('./configure', shell=True)
         subprocess.call('make', shell=True)
         subprocess.call('make install', shell=True)
 
         os.chdir(mypath)
-        shutil.rmtree(mypath + '/scamper-cvs-20141211d')
+        shutil.rmtree(mypath + '/' + version)
         os.remove(mypath + '/scamper.tar')
 
         print('Scamper has been installed successfully.')
