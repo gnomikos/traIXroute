@@ -295,7 +295,7 @@ class traIXroute():
                         dst_ip = entry.replace(' ', '')
                         myinput = trace_tool.trace_tool()
                         
-                        if traixparser.flags['outputfile_txt'] or not traixparser.flags['silent']:
+                        if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
                             output.print_traIXroute_dest(dns_print, dst_ip)
                         [ip_path, delays_path] = myinput.trace_call(
                             dst_ip, selected_tool, arguments)

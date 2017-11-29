@@ -106,7 +106,7 @@ class traixroute_parser():
         group_1 = parser_probe.add_mutually_exclusive_group(required=True)
         group_1.add_argument('-t', '--traceroute', nargs='*', action='store', type=str,
                              help='Calls traIXroute with traceroute and (optional) traceroute arguments.')
-        group_1.add_argument('-s', '--scamper', nargs='*', action='store', type=str,
+        group_1.add_argument('-sc', '--scamper', nargs='*', action='store', type=str,
                              help='Calls traIXroute with scamper and (optional) scamper arguments.')
 
         group_2 = parser_ripe.add_mutually_exclusive_group(required=True)

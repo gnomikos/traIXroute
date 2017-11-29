@@ -11,6 +11,7 @@ Version 2.3 (Beta) - November 2017
 - Replaced command -o with -otxt and -ojson.
 - Added new commands -silent and -stats.
 - Fixed bug when installing the tool without using pip.
+- Updated scamper version.
 
 Version 2.2 - June 2017
 - Fixed bug when some RIPE Atlas measurements fields are missing from the results.
