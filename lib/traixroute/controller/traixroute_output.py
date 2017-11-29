@@ -609,8 +609,9 @@ class traixroute_output():
                 if data.split('\n')[0] == additional_lst_mod:
                     return True
 
-        self.write_lst_mod(filename, additional_lst_mod)
-        return False
+        else:
+            self.write_lst_mod(filename, additional_lst_mod)
+            return False
 
     def write_lst_mod(self, filename, data):
         '''
