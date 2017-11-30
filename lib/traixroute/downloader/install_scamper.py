@@ -27,7 +27,7 @@ from urllib.request import urlretrieve
 
 def main():
     mypath = os.path.expanduser("~")
-    version = 'scamper-cvs-20170822'
+    version = 'scamper-cvs-20141211g'
 
     #--------------------SCAMPER---------------------------
     # Download Scamper
@@ -52,6 +52,7 @@ def main():
     if os.path.exists(mypath + '/' + version):
         os.chdir(mypath + '/' + version)
         subprocess.call('./configure', shell=True)
+        subprocess.call('make clean', shell=True)
         subprocess.call('make', shell=True)
         subprocess.call('make install', shell=True)
 
