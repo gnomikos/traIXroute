@@ -24,13 +24,13 @@ OS=$(uname)
 cur_dir=$(dirname $0)
 
 additional(){
-    if ! hash scamper 2>/dev/null; then
-        sudo python3 $cur_dir/../lib/traixroute/downloader/install_scamper.py
-    fi
 
     sudo pip3 install --upgrade pip
     sudo pip3 install --upgrade -r $cur_dir/requirements.txt
     
+    if ! hash scamper 2>/dev/null; then
+        sudo python3 $cur_dir/../lib/traixroute/downloader/install_scamper.py
+    fi
 
 # Install dependencies for OS X.
 if [ $OS = 'Darwin' ]; then
