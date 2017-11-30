@@ -31,6 +31,7 @@ additional(){
     if ! hash scamper 2>/dev/null; then
         sudo python3 $cur_dir/../lib/traixroute/downloader/install_scamper.py
     fi
+}
 
 # Install dependencies for OS X.
 if [ $OS = 'Darwin' ]; then
