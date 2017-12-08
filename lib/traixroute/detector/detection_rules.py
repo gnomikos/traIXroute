@@ -155,25 +155,24 @@ class detection_rules():
         '''
         
         num = 1
-        path_asn = path_info_extract.asn_list
-        encounter_type = path_info_extract.type_vector
-        ixp_long = path_info_extract.ixp_long_names
-        ixp_short = path_info_extract.ixp_short_names
-        asn2names = db_extract.asnmemb
+        rule_hits = [0] * len(self.rules)
         asn_print = traIXparser.flags['asn']
         print_rule = traIXparser.flags['rule']
+        # asn2names : Contains the total IXP membership info for each ASN.
+        # asn2names: {'ASN': [IXP long name, IXP short name ]}
+        asn2names = db_extract.asnmemb
         cc_tree = db_extract.cc_tree
         self.remote_peering.rp_database = db_extract.remote_peering
-        rule_hits = [0] * len(self.rules)
         
-        temp_path_asn = []
-        for node in path_asn:
-            if node != 'AS*':
-                temp_path_asn.append(node)
-            else:
-                temp_path_asn.append('*')
+        # Info related to the candidate traceroute path.
+        path_asn = path_info_extract.asn_list
+        temp_path_asn = [''] * len(path_asn)
+        encounter_type = path_info_extract.type_vector
+        ixp_ip_indices = path_info_extract.ixp_ip_indices
+        ixp_long = path_info_extract.ixp_long_names
+        ixp_short = path_info_extract.ixp_short_names
         
-        for i in range(1, len(path)):
+        for i in ixp_ip_indices:
             asn_list1 = path_asn[i - 1].split('_')
             asn_list3 = path_asn[i].split('_')
             if len(path) > i + 1:
@@ -194,42 +193,44 @@ class detection_rules():
                         for j,item_rule in enumerate(self.rules):
                             cur_rule = item_rule
                             cur_asmt = self.asmt[j]
+#                            print('cur_rule',cur_rule)
 
                             # Check if the condition part of a candidate rule
                             # is satisfied in order to proceed with the
                             # assessment part.
-                            if len(cur_rule):
-                                current_hop = 1
-                                if i < len(path) - 1:
-                                    cur_path_asn = temp_path_asn[i - 1:i + 2]
-                                    temp_ixp_long = ixp_long[i - 1:i + 2]
-                                    temp_ixp_short = ixp_short[i - 1:i + 2]
-                                    cur_encounter_type = encounter_type[i - 1:i + 2]
-                                    cur_path = path[i - 1:i + 2]
-                                else:
-                                    cur_path_asn = temp_path_asn[i - 1:i + 1]
-                                    temp_ixp_long = ixp_long[i - 1:i + 1]
-                                    temp_ixp_short = ixp_short[i - 1:i + 1]
-                                    cur_encounter_type = encounter_type[i - 1:i + 1]
-                                    cur_path = path[i - 1:i + 1]
-
-                                set_ixp_short = list(itertools.product(*temp_ixp_short))
-                                set_ixp_long = list(itertools.product(*temp_ixp_long))
-                                
-                                for ixp in range(0, len(set_ixp_short)):
-                                    cur_ixp_long = list(set_ixp_long[ixp])
-                                    cur_ixp_short = list(set_ixp_short[ixp])
-                                    rule_check = self.check_rules(
-                                        cur_path, cur_rule, cur_path_asn, current_hop, cur_ixp_long, cur_ixp_short, asn2names, cur_encounter_type)
-                                    if rule_check:
-                                        if cur_asmt != '?':
-                                            rule_hits[j] += 1
-                                        if self.remote_peering.rule_hit(j):
-                                            self.remote_peering.temp_index = j
-                                            output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn,path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, self.remote_peering)
-                                        else:
-                                            output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short,cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree)
-                                        num += 1
+                            current_hop = 1
+                            if i < len(path) - 1:
+                                cur_path_asn = temp_path_asn[i - 1:i + 2]
+                                temp_ixp_long = ixp_long[i - 1:i + 2]
+                                temp_ixp_short = ixp_short[i - 1:i + 2]
+                                cur_encounter_type = encounter_type[i - 1:i + 2]
+                                cur_path = path[i - 1:i + 2]
+                            else:
+                                cur_path_asn = temp_path_asn[i - 1:i + 1]
+                                temp_ixp_long = ixp_long[i - 1:i + 1]
+                                temp_ixp_short = ixp_short[i - 1:i + 1]
+                                cur_encounter_type = encounter_type[i - 1:i + 1]
+                                cur_path = path[i - 1:i + 1]
+#                            print('cur_path',cur_path)
+#                            print('cur_path_asn',cur_path_asn)
+                            
+                            set_ixp_short = list(itertools.product(*temp_ixp_short))
+                            set_ixp_long = list(itertools.product(*temp_ixp_long))
+                            
+                            for ixp in range(0, len(set_ixp_short)):
+                                cur_ixp_long = list(set_ixp_long[ixp])
+                                cur_ixp_short = list(set_ixp_short[ixp])
+                                rule_check = self.check_rules(
+                                    cur_path, cur_rule, cur_path_asn, current_hop, cur_ixp_long, cur_ixp_short, asn2names, cur_encounter_type)
+                                if rule_check:
+                                    if cur_asmt != '?':
+                                        rule_hits[j] += 1
+                                    if self.remote_peering.rule_hit(j):
+                                        self.remote_peering.temp_index = j
+                                        output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn,path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, self.remote_peering)
+                                    else:
+                                        output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short,cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree)
+                                    num += 1
         return rule_hits
 
     def check_rules(self, path, rule, path_asn, path_cur, ixp_long, ixp_short, asn2names, encounter_type):

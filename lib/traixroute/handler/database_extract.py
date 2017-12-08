@@ -26,6 +26,7 @@ from os import remove, makedirs
 from os.path import exists
 import SubnetTree
 import concurrent.futures
+from multiprocessing import cpu_count
 import sys
 
 
@@ -81,11 +82,9 @@ class database():
         self.reserved_names = 'reservedIPs.txt'
         # self.config: Contains the config file dictionary.
         self.config = config
-        # self.mypath: The directory path of the traIXroute folder.
+
         self.outcome = outcome
-
         self.downloader = downloader
-
         self.homepath = downloader.getDestinationPath()
         self.libpath = libpath
 
@@ -124,7 +123,7 @@ class database():
             print("Loading from Database.")
             results = []
             
-            with concurrent.futures.ThreadPoolExecutor(max_workers=self.config["num_of_cores"]) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
                 results.append(executor.submit(
                     json_handle.import_IXP_dict, self.homepath + '/database/Merged/IXPIP2ASN.json'))
                 results.append(executor.submit(

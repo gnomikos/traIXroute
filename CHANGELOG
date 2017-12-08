@@ -12,6 +12,7 @@ Version 2.3 (Beta) - November 2017
 - Added new commands -silent and -stats.
 - Fixed bug when installing the tool without using pip.
 - Updated scamper version.
+- Tool supports two new modes (-process, -thread), performance (using processes) and conservative mode (using threads) respectively.
 
 Version 2.2 - June 2017
 - Fixed bug when some RIPE Atlas measurements fields are missing from the results.

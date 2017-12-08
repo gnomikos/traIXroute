@@ -36,6 +36,8 @@ class path_info_extraction():
         # self.type_vector: A list with the detected types (IXP IP, Prefix,
         # Normal IP) in the IP path.
         self.type_vector = []
+        # self.ixp_ip_indices : A list with the hops of IXP IPs in traceroute path
+        self.ixp_ip_indices = []
         # self.ixp_long_names: A list with the IXP long names in the IP path.
         self.ixp_long_names = []
         # self.ixp_short_names: A list with the IXP short names in the IP path.
@@ -74,6 +76,7 @@ class path_info_extraction():
 
                 # It also searches for the IXP long/short name in the database.
                 self.type_vector[i] = 'IXP IP'
+                self.ixp_ip_indices.append(i)
                 temp = Subnet_tree[path_cur]
                 self.ixp_long_names[i] = []
                 self.ixp_short_names[i] = []
@@ -91,6 +94,7 @@ class path_info_extraction():
                     self.ixp_long_names[i].append(IXP[0])
                     self.ixp_short_names[i].append(IXP[1])
                 self.type_vector[i] = 'IXP prefix'
+                self.ixp_ip_indices.append(i)
 
             # Else for the normal IPs, it finds the ASN using the routeviews
             # dataset.

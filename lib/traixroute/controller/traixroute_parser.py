@@ -96,6 +96,10 @@ class traixroute_parser():
         parser.add_argument('-ojson', '--output-json', default='disabled', nargs='?', type=str,
                             help='Enables to export data in .json file and (optional) specifies the output file name to redirect the traIXroute results.')                    
         parser.add_argument('-v', '--version', action='version', version='current version of traixroute: '+self.version)
+        parser_mode = parser.add_mutually_exclusive_group(required=True)
+        parser_mode.add_argument('-thread', action='store_true',help='Enables threads for parallel analysis. This mode is more conservative in terms of performance and is recommended in case of memory limitations.')
+        parser_mode.add_argument('-process', action='store_true', help='Enables processes for parallel analysis. This mode is quite memory hungry to maximize the analysis performance.')
+        
 
         group_0 = parser_probe.add_mutually_exclusive_group(required=True)
         group_0.add_argument('-dest', '--destination', nargs='+', action='store',
@@ -180,6 +184,11 @@ class traixroute_parser():
             if options.output_json:
                 self.outputfile_json = options.output_json 
             self.flags['outputfile_json'] = True
+        
+        if options.thread:
+            self.flags['mode'] = 'thread'
+        elif options.process:
+            self.flags['mode'] = 'process'
         
         if options.enable_stats:
             self.flags['stats']  = True

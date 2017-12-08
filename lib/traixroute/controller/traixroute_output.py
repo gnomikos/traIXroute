@@ -23,8 +23,9 @@
 import os
 import socket
 import sys
-import json
+import ujson
 import time
+import itertools
 from traixroute.controller import string_handler
 from time import ctime
 
@@ -46,25 +47,24 @@ class traixroute_output():
         self.ixp_hops           = ''
         self.remote_hops        = ''
         self.unknown_hops       = ''
+        # A list with all the analyzed paths to export to json file
+        self.json_obj = []  
+        # A list with all the analyzed paths to export to .txt file
+        self.txt_obj  = []   
 
-    def flush(self,fp,traixparser):
+    def flush(self, traixparser):
         '''
-         Prints the data and flushes them to a file.
-         Input:
-            a) fp: The file pointer to write the data.
+        Prints the data and flushes them to a file.
         '''
         
+        # Complements content output.
         output = self.measurement_info
         if self.ixp_hops != '':
-            output += 'IXP hops:\n' + self.ixp_hops
+            output += 'IXP hops:\n'          + self.ixp_hops
         if self.remote_hops != '':
-            output += 'Remote Peering:\n' + self.remote_hops
+            output += 'Remote Peering:\n'    + self.remote_hops
         if self.unknown_hops != '':
             output += 'Possible IXP hops:\n' + self.unknown_hops
-
-        if not traixparser.flags['silent']      : print(output)
-        if traixparser.flags['outputfile_txt']  : fp.write(output)
-
         if len(self.measurement_json['ixp_crossings']) == 0:
             del self.measurement_json['ixp_crossings']
         if len(self.measurement_json['remote_peering']) == 0:
@@ -72,7 +72,20 @@ class traixroute_output():
         if len(self.measurement_json['possible_ixp_crossings']) == 0:
             del self.measurement_json['possible_ixp_crossings']
 
-        return self.measurement_json
+        # SupplementS the relative output lists.
+        if not traixparser.flags['silent']      : print(output)
+        if traixparser.flags['outputfile_txt']  : self.txt_obj.append(output)
+        if traixparser.flags['outputfile_json'] : self.json_obj.append(self.measurement_json)
+
+        self.measurement_info   = ''
+        self.ixp_hops           = ''
+        self.remote_hops        = ''
+        self.unknown_hops       = ''
+        self.measurement_json = {
+            'ixp_crossings': [],
+            'remote_peering': [],
+            'possible_ixp_crossings': []
+        }
 
     def print_db_stats(self, peering_ixp2asn, peering_sub2name, pch_ixp2asn, pch_sub2name, final_ixp2asn, final_sub2name, dirty_ips, additional_ip2asn, additional_subnet2name, lenreserved, db_print, mypath):
         '''
@@ -608,6 +621,7 @@ class traixroute_output():
                 data = f.read()
                 if data.split('\n')[0] == additional_lst_mod:
                     return True
+
         else:
             self.write_lst_mod(filename, additional_lst_mod)
             return False
@@ -666,3 +680,30 @@ class traixroute_output():
             else:
                 hop['asn'] = '*'
         self.measurement_json.update(entry)
+        
+    def export_results_to_files(self, json_data, txt_data, traixparser, homepath, exact_time):
+        '''
+        Exports the total results to .txt/.json files.
+        Input:
+            a) json_data: Contains all the analyzed traceroute paths to be exported in json format.
+            b) txt_data: Contains all the analyzed traceroute paths to be exported in raw txt format.
+            c) traixparser: The instance of parser to identify if necessary arguments have been enabled.
+            d) homepath: The directory path of the exported files.
+            e) exact_time: The starting time of tool.
+        '''
+    
+        if traixparser.flags['outputfile_json']:
+            outputfile_json = traixparser.outputfile_json
+            filename = outputfile_json + '.json' if outputfile_json else homepath + '/output/output_' + exact_time + '.json'
+            
+            with open(filename, 'w') as f:
+                ujson.dump(itertools.chain.from_iterable(json_data), f, indent=1)
+            
+        if traixparser.flags['outputfile_txt']:
+            outputfile_txt  = traixparser.outputfile_txt
+            filename = outputfile_txt + '.txt' if outputfile_txt else homepath + '/output/output_' + exact_time + '.txt'
+            
+            with open(filename, 'w') as f:
+                for entry in txt_data:
+                    for subentry in entry:
+                        f.write(subentry)
