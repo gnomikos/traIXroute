@@ -28,6 +28,7 @@ import time
 import itertools
 from traixroute.controller import string_handler
 from time import ctime
+import datetime
 
 
 class traixroute_output():
@@ -707,3 +708,34 @@ class traixroute_output():
                 for entry in txt_data:
                     for subentry in entry:
                         f.write(subentry)
+
+    def stats_extract(self, homepath, num_ips, rules, final_rules_hit, time):
+            '''
+            Writes various statistics to the stats.txt file.
+            Input:
+                a) homepath: The home directory path of traIXroute.
+                b) num_ips: The number of IPs to send probes.
+                c) rules: The rules that detected IXP crossing links.
+                d) funal_rules_hit: The number of "hits" for each rule.
+                e) time: The starting timestamp of traIXroute.
+            '''
+
+            num_hits = sum(final_rules_hit)
+            
+            if num_ips:
+                with open(homepath+'/output/output_' + time + '.stats', 'w') as fp_stats:
+                    temp = num_hits / num_ips
+                    data = 'traIXroute stats from ' + time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S") + '\n' +\
+                        'Number of IXP hits: ' + str(num_hits) + '\n' +\
+                        'Number of traIXroutes: ' + str(num_ips) + '\n' +\
+                        'IXP hit ratio: ' + str(temp) + '\n' + \
+                        'Number of hits per rule:\n'
+                    for myi in range(0, len(rules)):
+                        if num_hits > 0:
+                            temp = final_rules_hit[myi] / num_hits
+                            data += 'Rule ' + str(myi + 1) + ': Times encountered: ' + str(
+                                final_rules_hit[myi]) + ' - Encounter Percentage: ' + str(temp) + '\n'
+                        else:
+                            data += 'Rule ' + str(myi + 1) + ': Times encountered:0 Encounter Percentage:0\n'
+                    fp_stats.write(data)
+
