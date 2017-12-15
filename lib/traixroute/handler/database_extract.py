@@ -24,10 +24,10 @@ from traixroute.handler import handle_json, handle_pch, handle_pdb, handle_ripe,
 from traixroute.controller import traixroute_output, traixroute_parser
 from os import remove, makedirs
 from os.path import exists
-import SubnetTree
-import concurrent.futures
 from multiprocessing import cpu_count
 import sys
+import SubnetTree
+import concurrent.futures
 
 
 class database():
@@ -108,10 +108,9 @@ class database():
         # Imports the reserved IPs.
         reserved = handle_complementary.reserved_handle()
         reserved.reserved_extract()
-
-        self.reserved_sub_tree = reserved.reserved_sub_tree
-        reserved_list = reserved.reserved_list
-        lenreserved = reserved.lenreserved
+        self.reserved_sub_tree  = reserved.reserved_sub_tree
+        reserved_list           = reserved.reserved_list
+        lenreserved             = reserved.lenreserved
 
         # Extracts the ASNs from routeviews file
         asn_hand = handle_complementary.asn_handle(
@@ -139,12 +138,12 @@ class database():
                 flag = flag or item.result()[1]
 
             if not flag:
-                self.final_ixp2asn = results[0].result()[0]
-                self.final_sub2name = results[1].result()[0]
-                self.asnmemb = results[2].result()[0]
-                final_subnet2country = results[3].result()[0]
-                self.asn_routeviews = self.dict2tree(results[4].result()[0])
-                self.subTree = self.dict2tree(self.final_sub2name)
+                self.final_ixp2asn      = results[0].result()[0]
+                self.final_sub2name     = results[1].result()[0]
+                self.asnmemb            = results[2].result()[0]
+                final_subnet2country    = results[3].result()[0]
+                self.asn_routeviews     = self.dict2tree(results[4].result()[0])
+                self.subTree            = self.dict2tree(self.final_sub2name)
                 if self.print_db:
                     output.print_pr_db_stats(self.homepath + '/db.txt')
 
@@ -158,23 +157,21 @@ class database():
             else:
                 print("Loading from database.")
 
-            user_imports = handle_complementary.extract_additional_info()
-            pch = handle_pch.pch_handle(
-                self.downloader, self.libpath)
-            peeringdb = handle_pdb.peering_handle(
-                self.downloader, self.libpath)
-            dict_merge = dict_merger.dict_merger()
-            asn_hand_info = handle_complementary.asn_memb_info()
+            user_imports    = handle_complementary.extract_additional_info()
+            pch             = handle_pch.pch_handle(self.downloader, self.libpath)
+            peeringdb       = handle_pdb.peering_handle(self.downloader, self.libpath)
+            dict_merge      = dict_merger.dict_merger()
+            asn_hand_info   = handle_complementary.asn_memb_info()
 
             user_imports.extract_additional_info(self.homepath)
-            additional_ip2asn = user_imports.IXP_dict
-            additional_subnet2name = user_imports.Subnet
-            additional_info_tree = user_imports.additional_info_tree
-            additional_info_help_tree = user_imports.additional_info_help_tree
-            additional_pfx2cc = user_imports.pfx2cc
+            additional_ip2asn           = user_imports.IXP_dict
+            additional_subnet2name      = user_imports.Subnet
+            additional_info_tree        = user_imports.additional_info_tree
+            additional_info_help_tree   = user_imports.additional_info_help_tree
+            additional_pfx2cc           = user_imports.pfx2cc
 
             results = []
-            with concurrent.futures.ThreadPoolExecutor(max_workers=self.config["num_of_cores"]) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
                 results.append(executor.submit(
                     asn_hand.routeviews_extract, self.reserved_sub_tree))
                 results.append(executor.submit(peeringdb.peering_handle_main,
@@ -182,28 +179,26 @@ class database():
                 results.append(executor.submit(
                     pch.pch_handle_main, self.reserved_sub_tree, additional_info_tree, country2cc))
 
-            self.asn_routeviews = results[0].result()[0]
-            routeviews_dict = results[0].result()[1]
+            self.asn_routeviews     = results[0].result()[0]
+            routeviews_dict         = results[0].result()[1]
 
-            peering_subnet2name = results[1].result()[0]
-            peering_ip2asn = results[1].result()[1]
-            peering_subnet2country = results[1].result()[2]
+            peering_subnet2name     = results[1].result()[0]
+            peering_ip2asn          = results[1].result()[1]
+            peering_subnet2country  = results[1].result()[2]
 
-            pch_subnet2names = results[2].result()[0]
-            pch_ixp2asn = results[2].result()[1]
-            pch_subnet2country = results[2].result()[2]
+            pch_subnet2names        = results[2].result()[0]
+            pch_ixp2asn             = results[2].result()[1]
+            pch_subnet2country      = results[2].result()[2]
 
-            len_pch_ixp2asn = len(pch_ixp2asn)
-            len_peering_ip2asn = len(peering_ip2asn)
-            len_pch_subnet2names = len(pch_subnet2names)
+            len_pch_ixp2asn         = len(pch_ixp2asn)
+            len_peering_ip2asn      = len(peering_ip2asn)
+            len_pch_subnet2names    = len(pch_subnet2names)
             len_peering_subnet2name = len(peering_subnet2name)
 
             # Merges the dictionaries from pch, peeringdb and the
             # additional_info file.
-            final_subnet2country = dict_merge.merge_cc(
-                peering_subnet2country, pch_subnet2country)
-            merged_sub2name = dict_merge.merge_keys2names(
-                pch_subnet2names, peering_subnet2name)
+            final_subnet2country = dict_merge.merge_cc(peering_subnet2country, pch_subnet2country)
+            merged_sub2name = dict_merge.merge_keys2names(pch_subnet2names, peering_subnet2name)
 
             [self.subTree, self.final_sub2name, help_tree] = Sub_hand.Subnet_tree(
                 merged_sub2name, additional_info_help_tree, self.reserved_sub_tree, final_subnet2country)
@@ -221,7 +216,7 @@ class database():
                 self.final_ixp2asn, self.subTree)
             if not exists(self.homepath + '/database/Merged'):
                 makedirs(self.homepath + '/database/Merged')
-            with concurrent.futures.ThreadPoolExecutor(max_workers=self.config["num_of_cores"]) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
                 executor.submit(json_handle.export_IXP_dict,
                                 self.asnmemb, self.homepath + '/database/Merged/asn_memb.json')
                 executor.submit(json_handle.export_IXP_dict, routeviews_dict,
@@ -275,7 +270,7 @@ class database():
         with open(self.homepath + '/ixp_prefixes.txt', 'w') as filename:
             output = ''
             number = 0
-            for key in d1.keys():
+            for key in d1:
                 output = output + str(number) + ', ' + '+' + ', ' + key
                 if key in self.subTree:
                     for IXP in self.subTree[key]:
@@ -286,8 +281,8 @@ class database():
                     output = output + '\n'
                     number += 1
                     
-            for key in d2.keys():
-                if key not in d1.keys():
+            for key in d2:
+                if key not in d1:
                     if key in self.subTree:
                         if len(self.subTree[key]) > 1:
                             output = output + str(number) + ', ' + '?' + ', ' + key
@@ -316,8 +311,7 @@ class database():
         with open(self.homepath + '/ixp_membership.txt', 'w') as filename:
             output = ''
             number = 0
-            add_keys = additional_ip2asn.keys()
-            for key in add_keys:
+            for key in additional_ip2asn:
                 if key in self.subTree:
                     output = output + str(number) + ', ' + '+' + ', ' + key
                     for node in additional_ip2asn[key]:
@@ -330,19 +324,16 @@ class database():
                     output = output + '\n'
                     number += 1
 
-            merged_keys = merged_ixp2asn.keys()
-            for key in merged_keys:
-                if key not in add_keys and key in self.subTree:
+            for key in merged_ixp2asn:
+                if key not in additional_ip2asn and key in self.subTree:
                     if len(self.subTree[key]) > 1:
                         output = output + str(number) + ', ' + '?' + ', ' + key
                     else:
                         output = output + str(number) + ', ' + '!' + ', ' + key
                     for node in merged_ixp2asn[key]:
                         output = output + ', AS' + node
-
                         for IXP in self.subTree[key]:
                             output = output + ', ' + IXP[1] + ', ' + IXP[0]
-
                     if key in self.cc_tree:
                         output = output + ', ' + \
                             self.cc_tree[key][0] + ', ' + self.cc_tree[key][1]

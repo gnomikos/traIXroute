@@ -20,14 +20,17 @@
 # You should have received a copy of the GNU General Public License
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
-from traixroute.tracetools import *
-from traixroute.pathinfo import *
-from traixroute.downloader import *
-from traixroute.detector import *
-from traixroute.handler import database_extract, handle_ripe, handle_json
-from traixroute.controller import *
-from multiprocessing import cpu_count
-from multiprocessing import Manager
+from traixroute.handler     import database_extract, handle_ripe, handle_json
+from distutils.dir_util     import copy_tree
+from shutil                 import copyfile
+from multiprocessing        import cpu_count
+from multiprocessing        import Manager
+from traixroute.tracetools  import *
+from traixroute.pathinfo    import *
+from traixroute.downloader  import *
+from traixroute.detector    import *
+from traixroute.controller  import *
+from stat                   import *
 import concurrent.futures
 import sys
 import getopt
@@ -36,11 +39,8 @@ import datetime
 import socket
 import SubnetTree
 import ujson
-import signal
 import threading
 import math
-from distutils.dir_util import copy_tree
-from shutil import copyfile
 import xmlrpc.client
 
 
@@ -64,18 +64,23 @@ class traIXroute():
         self.input_list     = None
         self.manager        = None
         self.db_extract     = None
+        self.enable_stats   = None
+        self.exact_time     = None
+        self.ripe           = None
+        self.selected_tool  = None
         self.traixparser    = traixroute_parser.traixroute_parser(self.version)
         self.detection_rules= detection_rules.detection_rules()
+        self.json_handle = handle_json.handle_json()
 
     def analyze_measurement(self, indexes):
 
-        print('traIXroute process with id', os.getpid(),'has just started.')
         json_handle_local = handle_json.handle_json()
         output = traixroute_output.traixroute_output()
         
         if self.mode == 'thread':
             db_extract = self.db_extract
         else:
+            print('traIXroute process with id', os.getpid(),'has just started.')
             db_extract = database_extract.database(self.traixparser, self.downloader, self.config, self.outcome, self.libpath)
             db_extract.dbextract()
         
@@ -91,7 +96,7 @@ class traIXroute():
                     info] = json_handle_local.export_trace_from_ripe_file(entry)
                 if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
                     output.print_traIXroute_dest(self.dns_print, dst_ip, src_ip, info)
-            elif ripe == 1:
+            elif self.ripe == 1:
                 [src_ip, dst_ip, ip_path,
                     delays_path] = ripe_m.return_path(entry)
                 if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
@@ -104,7 +109,7 @@ class traIXroute():
                 if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
                     output.print_traIXroute_dest(self.dns_print, dst_ip)
                 [ip_path, delays_path] = myinput.trace_call(
-                    dst_ip, selected_tool, arguments)
+                    dst_ip, self.selected_tool, self.arguments)
             
             if len(ip_path):
                 # IP path info extraction and print.
@@ -116,7 +121,7 @@ class traIXroute():
                     
                 rule_hits = self.detection_rules.resolve_path(ip_path, output, path_info_extract, db_extract, self.traixparser)
                  
-                if self.import_flag == 2 or ripe == 1:
+                if self.import_flag == 2 or self.ripe == 1:
                     output.buildJsonRipe(entry, path_info_extract.asn_list)
                 else:
                     output.buildJson(
@@ -141,26 +146,22 @@ class traIXroute():
         
         # Calls the parser to analyze the command line arguments.
         self.traixparser.parse_input()
-        inputIP         = self.traixparser.inputIP
-        inputfile       = self.traixparser.inputfile
-        arguments       = self.traixparser.arguments
-        useTraIXroute   = self.traixparser.flags['useTraiXroute']
-        merge_flag      = self.traixparser.flags['merge']
-        print_rule      = self.traixparser.flags['rule']
-        db_print        = self.traixparser.flags['db']
-        path_print      = self.traixparser.flags['silent']
-        ripe            = self.traixparser.flags['ripe']
-        selected_tool   = self.traixparser.flags['tracetool']
-        self.import_flag= self.traixparser.flags['import']
-        enable_stats    = self.traixparser.flags['stats']
-        self.dns_print  = self.traixparser.flags['dns']
-        self.mode       = self.traixparser.flags['mode']
-        self.libpath    = os.path.dirname(os.path.realpath(__file__))
-
-        json_handle = handle_json.handle_json()
-        exact_time = datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
-        
-        num_ips = 0        
+        inputIP             = self.traixparser.inputIP
+        inputfile           = self.traixparser.inputfile
+        self.arguments           = self.traixparser.arguments
+        useTraIXroute       = self.traixparser.flags['useTraiXroute']
+        merge_flag          = self.traixparser.flags['merge']
+        print_rule          = self.traixparser.flags['rule']
+        db_print            = self.traixparser.flags['db']
+        path_print          = self.traixparser.flags['silent']
+        self.ripe           = self.traixparser.flags['ripe']
+        self.selected_tool  = self.traixparser.flags['tracetool']
+        import_is_dir       = self.traixparser.flags['import_is_dir']
+        self.import_flag    = self.traixparser.flags['import']
+        self.enable_stats   = self.traixparser.flags['stats']
+        self.dns_print      = self.traixparser.flags['dns']
+        self.mode           = self.traixparser.flags['mode']
+        self.libpath        = os.path.dirname(os.path.realpath(__file__))
         
         if '-v' in sys.argv or '--version' in sys.argv:
             self.check_version()
@@ -186,7 +187,7 @@ class traIXroute():
                 copyfile(libpath + '/configuration/' + config_file,
                          homepath + '/configuration/' + config_file,)
         
-        [self.config, config_flag] = json_handle.import_IXP_dict(
+        [self.config, config_flag] = self.json_handle.import_IXP_dict(
             homepath + '/configuration/config')
         if config_flag:
             print("Detected problem in the config file. Exiting.")
@@ -261,17 +262,29 @@ class traIXroute():
                     self.traixparser.flags['merge'] = False
             
         if useTraIXroute:
+        
+            # Detection rules import.
+            self.detection_rules.rules_extract(homepath)
+            
             if self.import_flag:
-                [input_list, flag] = json_handle.import_IXP_dict(arguments)
-                if flag:
-                    print(arguments + ' file not found or has invalid json format. Exiting.')
-                    sys.exit(0)
-            elif ripe == 1:
+                # Find all the files in the given directory
+                if import_is_dir:
+                    self.dir_walk(homepath, useTraIXroute, self.arguments, self.traixroute_core)
+                # Analyze the given file.
+                else:
+                    [input_list, flag] = self.json_handle.import_IXP_dict(self.arguments)
+                    if flag:
+                        print('WARNING:', self.arguments + ' file not found or has invalid json format. Exiting.')
+                        sys.exit(0)
+                    self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments)    
+            elif self.ripe == 1:
                 ripe_m = handle_ripe.handle_ripe(self.config)
-                input_list = ripe_m.get_measurement(arguments)
-            elif ripe == 2:
+                input_list = ripe_m.get_measurement(self.arguments)
+                self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments)
+            elif self.ripe == 2:
                 ripe_m = handle_ripe.handle_ripe(self.config)
-                input_list = ripe_m.create_measurement(arguments)
+                input_list = ripe_m.create_measurement(self.arguments)
+                self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments)
             elif inputfile or inputIP:
                 if inputfile:
                     with open(inputfile, 'r') as f:
@@ -295,52 +308,71 @@ class traIXroute():
                         print(
                             'Wrong input IP address format.\nExpected an IPv4 format or a valid url.')
                         sys.exit(0)
-
-        if useTraIXroute:
-        
-            # Detection rules import.
-            self.detection_rules.rules_extract(homepath)
-            
-            # Stats structure initialization.
-            if enable_stats: final_rules_hit = [0] * len(self.detection_rules.rules)
-        
-            output = traixroute_output.traixroute_output()
-            output.print_args(selected_tool, useTraIXroute, arguments, ripe, 
-                self.import_flag)
-
-            # Load balancing over Threads or Processes based on the selected mode.
-            with Manager() as manager:
-            
-                if self.mode == 'process':
-                    self.input_list = manager.list(input_list)
-                    del input_list
+                self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments)
+    
+    def dir_walk(self, homepath, useTraIXroute, root_path, callback):
+        for filename in os.listdir(root_path):
+            pathname = os.path.join(root_path, filename)
+            mode = os.stat(pathname)[ST_MODE]
+            if S_ISDIR(mode):
+                # It's a directory
+                self.dir_walk(homepath, useTraIXroute, pathname, callback)
+            elif S_ISREG(mode):
+                # It's a file
+                [input_list, flag] = self.json_handle.import_IXP_dict(pathname)
+                if flag:
+                    print('WARNING:', pathname + ' file not found or has invalid json format. Exiting.')
                 else:
-                    self.input_list = input_list
-                   
-                size_of_biglist = len(self.input_list)
-                size_of_sublist = math.ceil(max(size_of_biglist,self.config["num_of_cores"])/min(size_of_biglist, self.config["num_of_cores"]))
-                sublisted_data = [[x,x+size_of_sublist] for x in range(0, size_of_biglist, size_of_sublist)]
-                
-                json_data = []
-                txt_data  = []
-                
-                with concurrent.futures.ProcessPoolExecutor(max_workers=self.config["num_of_cores"]) \
-                if self.mode == 'process' else \
-                concurrent.futures.ThreadPoolExecutor(max_workers=self.config["num_of_cores"]) \
-                as executor:
-                    for [rule_hits, json_obj, txt_obj] in executor.map(self.analyze_measurement, sublisted_data):
-                        if self.traixparser.flags['outputfile_json']: json_data.append(json_obj)
-                        if self.traixparser.flags['outputfile_txt']: txt_data.append(txt_obj)
-                        
-                        if enable_stats: 
-                            final_rules_hit = [x + y for x, y in zip(final_rules_hit, rule_hits)]
-                            num_ips += 1
-                            
-            output.export_results_to_files(json_data, txt_data, self.traixparser, homepath, exact_time)
+                    callback(homepath, input_list, useTraIXroute, pathname)
+            else:
+                # Unknown file type
+                print ('WARNING:', 'skipping', pathname)
+    
+    def traixroute_core(self, homepath, input_list, useTraIXroute, arguments):
+        num_ips = 0
+        
+        # Set the starting time
+        self.exact_time = datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
+    
+        # Stats structure initialization.
+        if self.enable_stats: final_rules_hit = [0] * len(self.detection_rules.rules)
+    
+        output = traixroute_output.traixroute_output()
+        output.print_args(self.selected_tool, useTraIXroute, arguments, self.ripe, self.import_flag)
+
+        # Load balancing over Threads or Processes based on the selected mode.
+        with Manager() as manager:
+        
+            if self.mode == 'process':
+                self.input_list = manager.list(input_list)
+                del input_list
+            else:
+                self.input_list = input_list
+               
+            size_of_biglist = len(self.input_list)
+            size_of_sublist = math.ceil(max(size_of_biglist,self.config["num_of_cores"])/min(size_of_biglist, self.config["num_of_cores"]))
+            sublisted_data = [[x,x+size_of_sublist] for x in range(0, size_of_biglist, size_of_sublist)]
             
-            # Extracting statistics.
-            if enable_stats:
-                output.stats_extract(homepath, num_ips, self.detection_rules.rules, final_rules_hit, exact_time)
+            json_data = []
+            txt_data  = []
+            
+            with concurrent.futures.ProcessPoolExecutor(max_workers=self.config["num_of_cores"]) \
+            if self.mode == 'process' else \
+            concurrent.futures.ThreadPoolExecutor(max_workers=self.config["num_of_cores"]) \
+            as executor:
+                for [rule_hits, json_obj, txt_obj] in executor.map(self.analyze_measurement, sublisted_data):
+                    if self.traixparser.flags['outputfile_json']: json_data.append(json_obj)
+                    if self.traixparser.flags['outputfile_txt']: txt_data.append(txt_obj)
+                    
+                    if self.enable_stats: 
+                        final_rules_hit = [x + y for x, y in zip(final_rules_hit, rule_hits)]
+                        num_ips += 1
+                        
+        output.export_results_to_files(json_data, txt_data, self.traixparser, homepath, arguments, self.exact_time)
+        
+        # Extracting statistics.
+        if self.enable_stats and num_ips>0:
+            output.stats_extract(homepath, num_ips, self.detection_rules.rules, final_rules_hit, self.exact_time, self.traixparser, arguments)
             
 def run_traixroute():
     traIXroute_module = traIXroute()

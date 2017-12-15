@@ -23,6 +23,7 @@
 import argparse
 import sys
 import ujson
+import os
 from collections import defaultdict
 
 
@@ -124,7 +125,7 @@ class traixroute_parser():
                              help='Imports a list of traceroute paths from a traIXroute format (json based) file to detect IXP crossing links. For example see Examples/test.json.')
         group_3.add_argument('-ripejson', '--parse-ripe-json', nargs=1, action='store', type=str,
                              help='Imports a list of traceroute paths from a ripe json format file to detect IXP crossing links.')
-
+        
         options = parser.parse_args()
 
         # Parameterize arguments from subparser probe
@@ -169,12 +170,14 @@ class traixroute_parser():
                 self.flags['import']        = 1
                 self.flags['useTraiXroute'] = True
                 self.flags['showSourceIP']  = True
+                self.flags['import_is_dir'] = True if os.path.isdir(self.arguments) else False
             elif (options.parse_ripe_json is not None):
                 self.arguments = str(options.parse_ripe_json[0])
                 self.flags['import']        = 2
                 self.flags['useTraiXroute'] = True
                 self.flags['showSourceIP']  = True
-
+                self.flags['import_is_dir'] = True if os.path.isdir(self.arguments) else False
+              
         if not options.output_txt or options.output_txt != 'disabled':
             if options.output_txt: 
                 self.outputfile_txt = options.output_txt

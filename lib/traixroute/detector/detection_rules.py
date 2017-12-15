@@ -138,7 +138,7 @@ class detection_rules():
                     
         if general_flag:
             output = traixroute_output.traixroute_output()
-            output.print_rules_number(self.rules, file)
+            output.print_rules_number(self.rules, mypath+file)
         else:
             sys.exit(0)
 

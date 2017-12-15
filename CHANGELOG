@@ -12,7 +12,9 @@ Version 2.3 (Beta) - November 2017
 - Added new commands -silent and -stats.
 - Fixed bug when installing the tool without using pip.
 - Updated scamper version.
-- Tool supports two new modes (-process, -thread), performance (using processes) and conservative mode (using threads) respectively.
+- Added two new modes, -process for performance (using processes) and -thread for conservative mode (using threads) respectively.
+- Added support for multiple file analysis specifying the directory path instead of the file name.
+- Added more flexibility to the output file names.
 
 Version 2.2 - June 2017
 - Fixed bug when some RIPE Atlas measurements fields are missing from the results.

@@ -20,14 +20,15 @@
 # You should have received a copy of the GNU General Public License
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
+from traixroute.controller import string_handler
+from time import ctime
 import os
 import socket
 import sys
 import ujson
 import time
 import itertools
-from traixroute.controller import string_handler
-from time import ctime
+import ntpath
 import datetime
 
 
@@ -290,7 +291,7 @@ class traixroute_output():
         '''
 
         print("Imported", len(final_rules),
-              "IXP Detection Rules from", file + ".")
+              "IXP detection rules from", file + ".")
 
     def print_result(self, asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, remote_peering=None):
         '''
@@ -681,35 +682,42 @@ class traixroute_output():
             else:
                 hop['asn'] = '*'
         self.measurement_json.update(entry)
-        
-    def export_results_to_files(self, json_data, txt_data, traixparser, homepath, exact_time):
+     
+    def get_filename_from_path(self, path):
+        head, tail = ntpath.split(path)
+        return tail or ntpath.basename(head)
+           
+    def export_results_to_files(self, json_data, txt_data, traixparser, homepath, arguments, exact_time):
         '''
         Exports the total results to .txt/.json files.
         Input:
             a) json_data: Contains all the analyzed traceroute paths to be exported in json format.
             b) txt_data: Contains all the analyzed traceroute paths to be exported in raw txt format.
             c) traixparser: The instance of parser to identify if necessary arguments have been enabled.
-            d) homepath: The directory path of the exported files.
-            e) exact_time: The starting time of tool.
+            d) homepath: The home directory path of traIXroute.
+            e) arguments: The absolute path of the traceroute path file.
         '''
     
+        file_name = self.get_filename_from_path(arguments)
         if traixparser.flags['outputfile_json']:
             outputfile_json = traixparser.outputfile_json
-            filename = outputfile_json + '.json' if outputfile_json else homepath + '/output/output_' + exact_time + '.json'
-            
+            filename = outputfile_json + file_name if outputfile_json else homepath + '/output/output_json_' + (file_name if file_name else exact_time)
+                
             with open(filename, 'w') as f:
                 ujson.dump(itertools.chain.from_iterable(json_data), f, indent=1)
+                print('Results in json format have been exported:', filename)
             
         if traixparser.flags['outputfile_txt']:
             outputfile_txt  = traixparser.outputfile_txt
-            filename = outputfile_txt + '.txt' if outputfile_txt else homepath + '/output/output_' + exact_time + '.txt'
+            filename = outputfile_txt + file_name if outputfile_txt else homepath + '/output/output_txt_' + (file_name if file_name else exact_time)
             
             with open(filename, 'w') as f:
                 for entry in txt_data:
                     for subentry in entry:
                         f.write(subentry)
+                print('Results have been exported:', filename)
 
-    def stats_extract(self, homepath, num_ips, rules, final_rules_hit, time):
+    def stats_extract(self, homepath, num_ips, rules, final_rules_hit, exact_time, traixparser, arguments):
             '''
             Writes various statistics to the stats.txt file.
             Input:
@@ -717,25 +725,29 @@ class traixroute_output():
                 b) num_ips: The number of IPs to send probes.
                 c) rules: The rules that detected IXP crossing links.
                 d) funal_rules_hit: The number of "hits" for each rule.
-                e) time: The starting timestamp of traIXroute.
+                e) exact_time: The starting timestamp of traIXroute.
+                f) traixparser: The instance of parser to identify if necessary arguments have been enabled.
+                g) arguments: The absolute path of the traceroute path file.
             '''
 
+            file_name = self.get_filename_from_path(arguments)
+            filename = homepath+'/output/output_stats_' + (file_name if file_name else exact_time)
+                        
             num_hits = sum(final_rules_hit)
+            with open(filename, 'w') as fp_stats:
+                temp = num_hits / num_ips
+                data = 'traIXroute stats from ' + exact_time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S")                                + '\n'  +\
+                    'Number of IXP hits: ' + str(num_hits)      + '\n'  +\
+                    'Number of traIXroutes: ' + str(num_ips)    + '\n'  +\
+                    'IXP hit ratio: ' + str(temp)               + '\n'  +\
+                    'Number of hits per rule:\n'
+                for myi in range(0, len(rules)):
+                    if num_hits > 0:
+                        temp = final_rules_hit[myi] / num_hits
+                        data += 'Rule ' + str(myi + 1) + ': Times encountered: ' + str(
+                            final_rules_hit[myi]) + ' - Encounter Percentage: ' + str(temp) + '\n'
+                    else:
+                        data += 'Rule ' + str(myi + 1) + ': Times encountered:0 Encounter Percentage:0\n'
+                fp_stats.write(data)
+            print('Stats have been exported:', filename)
             
-            if num_ips:
-                with open(homepath+'/output/output_' + time + '.stats', 'w') as fp_stats:
-                    temp = num_hits / num_ips
-                    data = 'traIXroute stats from ' + time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S") + '\n' +\
-                        'Number of IXP hits: ' + str(num_hits) + '\n' +\
-                        'Number of traIXroutes: ' + str(num_ips) + '\n' +\
-                        'IXP hit ratio: ' + str(temp) + '\n' + \
-                        'Number of hits per rule:\n'
-                    for myi in range(0, len(rules)):
-                        if num_hits > 0:
-                            temp = final_rules_hit[myi] / num_hits
-                            data += 'Rule ' + str(myi + 1) + ': Times encountered: ' + str(
-                                final_rules_hit[myi]) + ' - Encounter Percentage: ' + str(temp) + '\n'
-                        else:
-                            data += 'Rule ' + str(myi + 1) + ': Times encountered:0 Encounter Percentage:0\n'
-                    fp_stats.write(data)
-

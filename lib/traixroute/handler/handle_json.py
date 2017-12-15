@@ -58,7 +58,6 @@ class handle_json():
             with open(filename, 'r') as fp:
                 data = ujson.load(fp)
         except:
-            print(filename, 'not found.')
             flag = True
         return data, flag
 
