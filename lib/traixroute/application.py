@@ -173,10 +173,10 @@ class traIXroute():
             
         if not os.path.exists(homepath):
             os.makedirs(homepath)
-            copy_tree(libpath + '/configuration', homepath + '/configuration')
+            copy_tree(self.libpath + '/configuration', homepath + '/configuration')
 
         if not os.path.exists(homepath + '/configuration'):
-            copy_tree(libpath + '/configuration', homepath + '/configuration')
+            copy_tree(self.libpath + '/configuration', homepath + '/configuration')
 
         for config_file in ['additional_info.txt',
                             'config',
@@ -184,7 +184,7 @@ class traIXroute():
                             'expressions.txt',
                             'rules.txt']:
             if not os.path.exists(homepath + '/configuration/' + config_file):
-                copyfile(libpath + '/configuration/' + config_file,
+                copyfile(self.libpath + '/configuration/' + config_file,
                          homepath + '/configuration/' + config_file,)
         
         [self.config, config_flag] = self.json_handle.import_IXP_dict(
@@ -226,7 +226,7 @@ class traIXroute():
             if not check_db:
                 self.traixparser.flags['update'] = True
                 print('Database not found.\nUpdating the database...')
-                os.makedirs(libpath + '/database')
+                os.makedirs(self.libpath + '/database')
             elif not check_user_db:
                 self.traixparser.flags['update'] = True
                 print('Dataset files are missing.\nUpdating the database...')
