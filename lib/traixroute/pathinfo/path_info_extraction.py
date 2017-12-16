@@ -54,9 +54,9 @@ class path_info_extraction():
             b) ip_path: The IP path.
         '''
 
-        ip2asn = db_extract.final_ixp2asn
+        ip2asn      = db_extract.final_ixp2asn
         Subnet_tree = db_extract.subTree
-        Route_tree = db_extract.asn_routeviews
+        prefix2asn  = db_extract.asn_routeviews
 
         path_length = len(ip_path)
         self.asn_list = ['*'] * path_length
@@ -98,6 +98,6 @@ class path_info_extraction():
 
             # Else for the normal IPs, it finds the ASN using the routeviews
             # dataset.
-            elif path_cur in Route_tree:
-                self.asn_list[i] = Route_tree[path_cur]
+            elif path_cur in prefix2asn:
+                self.asn_list[i] = prefix2asn[path_cur]
                 self.type_vector[i] = 'Normal IP'

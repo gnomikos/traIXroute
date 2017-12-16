@@ -57,6 +57,7 @@ class traixroute_output():
     def flush(self, traixparser):
         '''
         Prints the data and flushes them to a file.
+            a) traixparser: The instance of parser that specifies which of the traIXroute command line arguments have been enabled.
         '''
         
         # Complements content output.
@@ -225,7 +226,7 @@ class traixroute_output():
 
         self.measurement_info += print_data
 
-    def print_traIXroute_dest(self, dns_print, dst_ip, src_ip='', info=''):
+    def print_traIXroute_dest(self, traixparser, db_extract, dns_print, dst_ip, src_ip='', info=''):
         '''
         Prints traIXroute destination.
         Input:
@@ -236,6 +237,7 @@ class traixroute_output():
         '''
     
         string_handle = string_handler.string_handler()
+        print_data = 'traIXroute'
         dns_name = '*'
         output_IP = '*'
         if string_handle.is_valid_ip_address(dst_ip, 'IP'):
@@ -259,12 +261,23 @@ class traixroute_output():
                     origin_dns = socket.gethostbyaddr(src_ip)[0]
                 except:
                     pass
-            src_ip = ' from ' + origin_dns + ' (' + src_ip + ')'
+            print_data += ' from ' + origin_dns + ' (' + src_ip + ')'
 
-        print_data = 'traIXroute' + src_ip + ' to ' + \
-            dns_name + ' (' + output_IP + ').'
+        if traixparser.flags['asn']:
+            if src_ip in db_extract.asn_routeviews:
+                print_data += ' AS'+db_extract.asn_routeviews[src_ip]
+            elif src_ip:
+                print_data += ' AS*'
+        
+        print_data += ' to ' +  dns_name + ' (' + output_IP + ')'
+        if traixparser.flags['asn']:
+            if output_IP in db_extract.asn_routeviews:
+                print_data += ' AS'+db_extract.asn_routeviews[output_IP]
+            else:
+                print_data += ' AS*'
+           
         if info != '':
-            print_data = print_data + ' info: ' + info
+            print_data += ' info: ' + info
 
         self.measurement_info += print_data + '\n'
 
@@ -666,13 +679,22 @@ class traixroute_output():
         
         self.measurement_json['result'] = result
 
-    def buildJsonRipe(self, entry, asn_list):
+    def buildJsonRipe(self, entry, asn_list, db_extract):
         '''
         Builds the structure of the json file when having ripe atlas measurement as input.
         Input:
-            a) entry: The ripe atlas measurement object
-            b) asn_list: The ASNs for each hop.
+            a) entry:       The ripe atlas measurement object
+            b) asn_list:    The ASNs for each hop.
+            c) db_extract:  The database instance containing the total IXP/AS related information.
+            d) traixparser: The instance of parser that specifies which of the traIXroute command line arguments have been enabled.
         '''
+        
+        # Add ASN for the public source/dest IP of the traceroute path.
+        if entry['from'] in db_extract.asn_routeviews:
+            entry['from_asn'] = db_extract.asn_routeviews[entry['from']]
+        if entry['dst_addr'] in db_extract.asn_routeviews:
+            entry['dst_addr_asn'] = db_extract.asn_routeviews[entry['dst_addr']] 
+        
         for hop in entry['result']:
             if hop['hop'] != 255:
                 try:

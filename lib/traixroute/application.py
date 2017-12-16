@@ -90,27 +90,27 @@ class traIXroute():
                 [ip_path, delays_path, dst_ip, src_ip,
                     info] = json_handle_local.export_trace_from_file(entry)
                 if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
-                    output.print_traIXroute_dest(self.dns_print, dst_ip, src_ip, info)
+                    output.print_traIXroute_dest(self.traixparser, db_extract, self.dns_print, dst_ip, src_ip, info)
             elif self.import_flag == 2:
                 [ip_path, delays_path, dst_ip, src_ip,
                     info] = json_handle_local.export_trace_from_ripe_file(entry)
                 if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
-                    output.print_traIXroute_dest(self.dns_print, dst_ip, src_ip, info)
+                    output.print_traIXroute_dest(self.traixparser, db_extract, self.dns_print, dst_ip, src_ip, info)
             elif self.ripe == 1:
                 [src_ip, dst_ip, ip_path,
                     delays_path] = ripe_m.return_path(entry)
                 if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
-                    output.print_traIXroute_dest(self.dns_print, dst_ip, src_ip)
+                    output.print_traIXroute_dest(self.traixparser, db_extract, self.dns_print, dst_ip, src_ip)
             else:
                 src_ip = ''
                 dst_ip = entry.replace(' ', '')
                 myinput = trace_tool.trace_tool()
                 
                 if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
-                    output.print_traIXroute_dest(self.dns_print, dst_ip)
+                    output.print_traIXroute_dest(self.traixparser, db_extract, self.dns_print, dst_ip)
                 [ip_path, delays_path] = myinput.trace_call(
                     dst_ip, self.selected_tool, self.arguments)
-            
+
             if len(ip_path):
                 # IP path info extraction and print.
                 path_info_extract = path_info_extraction.path_info_extraction()
@@ -122,7 +122,7 @@ class traIXroute():
                 rule_hits = self.detection_rules.resolve_path(ip_path, output, path_info_extract, db_extract, self.traixparser)
                  
                 if self.import_flag == 2 or self.ripe == 1:
-                    output.buildJsonRipe(entry, path_info_extract.asn_list)
+                    output.buildJsonRipe(entry, path_info_extract.asn_list, db_extract)
                 else:
                     output.buildJson(
                         ip_path, delays_path, dst_ip, src_ip, path_info_extract.asn_list)
@@ -148,7 +148,7 @@ class traIXroute():
         self.traixparser.parse_input()
         inputIP             = self.traixparser.inputIP
         inputfile           = self.traixparser.inputfile
-        self.arguments           = self.traixparser.arguments
+        self.arguments      = self.traixparser.arguments
         useTraIXroute       = self.traixparser.flags['useTraiXroute']
         merge_flag          = self.traixparser.flags['merge']
         print_rule          = self.traixparser.flags['rule']
