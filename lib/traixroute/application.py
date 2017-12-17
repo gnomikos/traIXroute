@@ -42,6 +42,8 @@ import ujson
 import threading
 import math
 import xmlrpc.client
+import resource
+import gc
 
 
 class traIXroute():
@@ -72,6 +74,9 @@ class traIXroute():
         self.detection_rules= detection_rules.detection_rules()
         self.json_handle = handle_json.handle_json()
 
+    def mem(self):
+        print('Memory usage         : % 2.2f MB' % round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0,1))
+        
     def analyze_measurement(self, indexes):
 
         json_handle_local = handle_json.handle_json()
@@ -324,6 +329,8 @@ class traIXroute():
                     print('WARNING:', pathname + ' file not found or has invalid json format. Exiting.')
                 else:
                     callback(homepath, input_list, useTraIXroute, pathname)
+                del input_list
+                gc.collect()
             else:
                 # Unknown file type
                 print ('WARNING:', 'skipping', pathname)
@@ -373,7 +380,9 @@ class traIXroute():
         # Extracting statistics.
         if self.enable_stats and num_ips>0:
             output.stats_extract(homepath, num_ips, self.detection_rules.rules, final_rules_hit, self.exact_time, self.traixparser, arguments)
-            
+        
+        del self.input_list, manager
+        
 def run_traixroute():
     traIXroute_module = traIXroute()
     traIXroute_module.main()
