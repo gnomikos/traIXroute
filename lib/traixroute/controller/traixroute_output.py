@@ -726,7 +726,7 @@ class traixroute_output():
             filename = outputfile_json + file_name if outputfile_json else homepath + '/output/output_json_' + (file_name if file_name else exact_time)
                 
             with open(filename, 'w') as f:
-                ujson.dump(itertools.chain.from_iterable(json_data), f, indent=1)
+                ujson.dump(itertools.chain.from_iterable(json_data), f)
                 print('Results in json format have been exported:', filename)
             
         if traixparser.flags['outputfile_txt']:
