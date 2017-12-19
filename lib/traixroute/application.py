@@ -24,7 +24,6 @@ from traixroute.handler     import database_extract, handle_ripe, handle_json
 from distutils.dir_util     import copy_tree
 from shutil                 import copyfile
 from multiprocessing        import cpu_count
-from multiprocessing        import Manager
 from traixroute.tracetools  import *
 from traixroute.pathinfo    import *
 from traixroute.downloader  import *
@@ -43,7 +42,6 @@ import threading
 import math
 import xmlrpc.client
 import resource
-import gc
 
 
 class traIXroute():
@@ -64,7 +62,6 @@ class traIXroute():
         self.import_flag    = None
         self.dns_print      = None
         self.input_list     = None
-        self.manager        = None
         self.db_extract     = None
         self.enable_stats   = None
         self.exact_time     = None
@@ -72,11 +69,8 @@ class traIXroute():
         self.selected_tool  = None
         self.traixparser    = traixroute_parser.traixroute_parser(self.version)
         self.detection_rules= detection_rules.detection_rules()
-        self.json_handle = handle_json.handle_json()
+        self.json_handle    = handle_json.handle_json()
 
-    def mem(self):
-        print('Memory usage         : % 2.2f MB' % round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0,1))
-        
     def analyze_measurement(self, indexes):
 
         json_handle_local = handle_json.handle_json()
@@ -136,6 +130,7 @@ class traIXroute():
             
             output.flush(self.traixparser)
         
+        del db_extract
         return [rule_hits, output.json_obj, output.txt_obj]
 
     def check_version(self):
@@ -316,7 +311,7 @@ class traIXroute():
                 self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments)
     
     def dir_walk(self, homepath, useTraIXroute, root_path, callback):
-        for filename in os.listdir(root_path):
+        for filename in sorted(os.listdir(root_path)):
             pathname = os.path.join(root_path, filename)
             mode = os.stat(pathname)[ST_MODE]
             if S_ISDIR(mode):
@@ -329,14 +324,17 @@ class traIXroute():
                     print('WARNING:', pathname + ' file not found or has invalid json format. Exiting.')
                 else:
                     callback(homepath, input_list, useTraIXroute, pathname)
-                del input_list
-                gc.collect()
+                    del input_list[:]
             else:
                 # Unknown file type
                 print ('WARNING:', 'skipping', pathname)
     
     def traixroute_core(self, homepath, input_list, useTraIXroute, arguments):
+    
+        json_data = []
+        txt_data  = []
         num_ips = 0
+        self.input_list = input_list
         
         # Set the starting time
         self.exact_time = datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
@@ -348,40 +346,29 @@ class traIXroute():
         output.print_args(self.selected_tool, useTraIXroute, arguments, self.ripe, self.import_flag)
 
         # Load balancing over Threads or Processes based on the selected mode.
-        with Manager() as manager:
+        size_of_biglist = len(self.input_list)
+        size_of_sublist = math.ceil(max(size_of_biglist,self.config["num_of_cores"])/min(size_of_biglist, self.config["num_of_cores"]))
+        sublisted_data = [[x,x+size_of_sublist] for x in range(0, size_of_biglist, size_of_sublist)]
         
-            if self.mode == 'process':
-                self.input_list = manager.list(input_list)
-                del input_list
-            else:
-                self.input_list = input_list
-               
-            size_of_biglist = len(self.input_list)
-            size_of_sublist = math.ceil(max(size_of_biglist,self.config["num_of_cores"])/min(size_of_biglist, self.config["num_of_cores"]))
-            sublisted_data = [[x,x+size_of_sublist] for x in range(0, size_of_biglist, size_of_sublist)]
+        with concurrent.futures.ProcessPoolExecutor(max_workers=self.config["num_of_cores"]) \
+        if self.mode == 'process' else \
+        concurrent.futures.ThreadPoolExecutor(max_workers=self.config["num_of_cores"]) \
+        as executor:
+            for [rule_hits, json_obj, txt_obj] in executor.map(self.analyze_measurement, sublisted_data):
+                if self.traixparser.flags['outputfile_json']: json_data.append(json_obj)
+                if self.traixparser.flags['outputfile_txt']: txt_data.append(txt_obj)
+                
+                if self.enable_stats: 
+                    final_rules_hit = [x + y for x , y in zip(final_rules_hit, rule_hits)]
+                    num_ips += 1
             
-            json_data = []
-            txt_data  = []
-            
-            with concurrent.futures.ProcessPoolExecutor(max_workers=self.config["num_of_cores"]) \
-            if self.mode == 'process' else \
-            concurrent.futures.ThreadPoolExecutor(max_workers=self.config["num_of_cores"]) \
-            as executor:
-                for [rule_hits, json_obj, txt_obj] in executor.map(self.analyze_measurement, sublisted_data):
-                    if self.traixparser.flags['outputfile_json']: json_data.append(json_obj)
-                    if self.traixparser.flags['outputfile_txt']: txt_data.append(txt_obj)
-                    
-                    if self.enable_stats: 
-                        final_rules_hit = [x + y for x, y in zip(final_rules_hit, rule_hits)]
-                        num_ips += 1
-                        
         output.export_results_to_files(json_data, txt_data, self.traixparser, homepath, arguments, self.exact_time)
         
         # Extracting statistics.
         if self.enable_stats and num_ips>0:
             output.stats_extract(homepath, num_ips, self.detection_rules.rules, final_rules_hit, self.exact_time, self.traixparser, arguments)
         
-        del self.input_list, manager
+        del self.input_list[:], self.input_list, json_data[:], txt_data[:]
         
 def run_traixroute():
     traIXroute_module = traIXroute()
