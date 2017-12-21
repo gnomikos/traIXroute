@@ -123,8 +123,8 @@ class traixroute_output():
             str(pch_sub2name) + ' IXP Subnets from PCH.\n'
         tmp = tmp + 'Extracted ' + \
             str(len(final_ixp2asn)) + \
-            ' no dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
-        tmp = tmp + 'Extracted ' + \
+            ' (no) dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
+        tmp = tmp + 'Detected ' + \
             str(dirty_ips) + \
             ' dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
         tmp = tmp + 'Extracted ' + \

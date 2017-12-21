@@ -24,6 +24,7 @@ from traixroute.handler     import database_extract, handle_ripe, handle_json
 from distutils.dir_util     import copy_tree
 from shutil                 import copyfile
 from multiprocessing        import cpu_count
+from multiprocessing        import Manager
 from traixroute.tracetools  import *
 from traixroute.pathinfo    import *
 from traixroute.downloader  import *
@@ -130,7 +131,11 @@ class traIXroute():
             
             output.flush(self.traixparser)
         
-        del db_extract
+        # Empty database instance.
+        if self.mode == 'process':
+            db_extract.clean()
+            del db_extract
+        
         return [rule_hits, output.json_obj, output.txt_obj]
 
     def check_version(self):
@@ -258,33 +263,34 @@ class traIXroute():
             else:
                 if merge_flag:
                     db_extract.dbextract()
+                    db_extract.clean()
                     # To avoid merging again when processes are used.
                     self.traixparser.flags['merge'] = False
             
         if useTraIXroute:
-        
             # Detection rules import.
             self.detection_rules.rules_extract(homepath)
+            manager = Manager()
             
             if self.import_flag:
                 # Find all the files in the given directory
                 if import_is_dir:
-                    self.dir_walk(homepath, useTraIXroute, self.arguments, self.traixroute_core)
+                    self.dir_walk(homepath, useTraIXroute, self.arguments, manager, self.traixroute_core)
                 # Analyze the given file.
                 else:
                     [input_list, flag] = self.json_handle.import_IXP_dict(self.arguments)
                     if flag:
                         print('WARNING:', self.arguments + ' file not found or has invalid json format. Exiting.')
                         sys.exit(0)
-                    self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments)    
+                    self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments, manager)    
             elif self.ripe == 1:
                 ripe_m = handle_ripe.handle_ripe(self.config)
                 input_list = ripe_m.get_measurement(self.arguments)
-                self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments)
+                self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments, manager)
             elif self.ripe == 2:
                 ripe_m = handle_ripe.handle_ripe(self.config)
                 input_list = ripe_m.create_measurement(self.arguments)
-                self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments)
+                self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments, manager)
             elif inputfile or inputIP:
                 if inputfile:
                     with open(inputfile, 'r') as f:
@@ -308,9 +314,13 @@ class traIXroute():
                         print(
                             'Wrong input IP address format.\nExpected an IPv4 format or a valid url.')
                         sys.exit(0)
-                self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments)
+                self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments, manager)
+        
+        # Empty database. In case of using threads only one database instance is used.       
+        if self.mode == 'thread':
+            self.db_extract.clean()
     
-    def dir_walk(self, homepath, useTraIXroute, root_path, callback):
+    def dir_walk(self, homepath, useTraIXroute, root_path, manager, callback):
         for filename in sorted(os.listdir(root_path)):
             pathname = os.path.join(root_path, filename)
             mode = os.stat(pathname)[ST_MODE]
@@ -323,18 +333,21 @@ class traIXroute():
                 if flag:
                     print('WARNING:', pathname + ' file not found or has invalid json format. Exiting.')
                 else:
-                    callback(homepath, input_list, useTraIXroute, pathname)
-                    del input_list[:]
+                    callback(homepath, input_list, useTraIXroute, pathname, manager)
             else:
                 # Unknown file type
                 print ('WARNING:', 'skipping', pathname)
     
-    def traixroute_core(self, homepath, input_list, useTraIXroute, arguments):
+    def traixroute_core(self, homepath, input_list, useTraIXroute, arguments, manager):
     
         json_data = []
         txt_data  = []
         num_ips = 0
-        self.input_list = input_list
+        if self.mode == 'process':
+            self.input_list = manager.list(input_list)
+            del input_list[:], input_list
+        else:
+            self.input_list = input_list
         
         # Set the starting time
         self.exact_time = datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
@@ -368,7 +381,7 @@ class traIXroute():
         if self.enable_stats and num_ips>0:
             output.stats_extract(homepath, num_ips, self.detection_rules.rules, final_rules_hit, self.exact_time, self.traixparser, arguments)
         
-        del self.input_list[:], self.input_list, json_data[:], txt_data[:]
+        del self.input_list[:], json_data[:], txt_data[:]
         
 def run_traixroute():
     traIXroute_module = traIXroute()

@@ -88,6 +88,16 @@ class database():
         self.homepath = downloader.getDestinationPath()
         self.libpath = libpath
 
+    def clean(self):
+        self.final_ixp2asn.clear()
+        self.final_sub2name.clear()
+        self.remote_peering.clear()
+        self.reserved_sub_tree = None
+        self.asnmemb           = None
+        self.asn_routeviews    = None
+        self.subTree           = None
+        self.cc_tree           = None
+    
     def dbextract(self):
         ''' 
         Handles all the methods to extract information from the databases.
@@ -110,7 +120,6 @@ class database():
         reserved.reserved_extract()
         self.reserved_sub_tree  = reserved.reserved_sub_tree
         reserved_list           = reserved.reserved_list
-        lenreserved             = reserved.lenreserved
 
         # Extracts the ASNs from routeviews file
         asn_hand = handle_complementary.asn_handle(
@@ -229,7 +238,7 @@ class database():
                                 self.homepath + '/database/Merged/sub2country.json')
 
             output.print_db_stats(len_peering_ip2asn, len_peering_subnet2name, len_pch_ixp2asn, len_pch_subnet2names, self.final_ixp2asn,
-                                  self.final_sub2name, dirty_count, additional_ip2asn, additional_subnet2name, lenreserved, self.print_db, self.homepath + '/')
+                                  self.final_sub2name, dirty_count, additional_ip2asn, additional_subnet2name, len(reserved_list), self.print_db, self.homepath + '/')
 
         # Adds country and city related information of IXPs
         self.cc_tree = self.dict2tree(final_subnet2country)

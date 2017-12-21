@@ -1,5 +1,5 @@
-Version 2.3 (Beta) - November 2017
-- Many performance improvements, optimizations and code polishes.
+Version 2.3 (Beta) - December 2017
+- Plenty of performance improvements, optimizations and code polishes.
 - Added more inline comments.
 - Fixed error messages in case of bad format in detection rules.
 - Fixed bug when a RIPE atlas traceroute measurement returns an error message.
@@ -15,6 +15,7 @@ Version 2.3 (Beta) - November 2017
 - Added two new modes, -process for performance (using processes) and -thread for conservative mode (using threads) respectively.
 - Added support for multiple file analysis specifying the directory path instead of the file name.
 - Added more flexibility to the output file names.
+- Fixed bug with dataset merging.
 
 Version 2.2 - June 2017
 - Fixed bug when some RIPE Atlas measurements fields are missing from the results.

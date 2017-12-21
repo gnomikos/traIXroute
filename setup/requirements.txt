@@ -4,7 +4,7 @@ idna==2.1
 pyasn1==0.1.9
 pycparser==2.14
 pyOpenSSL==17.4.0
-pysubnettree==0.23
+pysubnettree==0.26
 python-dateutil==2.5.3
 pytz==2016.6.1
 requests==2.11.1
