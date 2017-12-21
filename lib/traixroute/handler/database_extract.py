@@ -199,11 +199,6 @@ class database():
             pch_ixp2asn             = results[2].result()[1]
             pch_subnet2country      = results[2].result()[2]
 
-            len_pch_ixp2asn         = len(pch_ixp2asn)
-            len_peering_ip2asn      = len(peering_ip2asn)
-            len_pch_subnet2names    = len(pch_subnet2names)
-            len_peering_subnet2name = len(peering_subnet2name)
-
             # Merges the dictionaries from pch, peeringdb and the
             # additional_info file.
             final_subnet2country = dict_merge.merge_cc(peering_subnet2country, pch_subnet2country)
@@ -237,7 +232,7 @@ class database():
                 executor.submit(json_handle.export_IXP_dict, final_subnet2country,
                                 self.homepath + '/database/Merged/sub2country.json')
 
-            output.print_db_stats(len_peering_ip2asn, len_peering_subnet2name, len_pch_ixp2asn, len_pch_subnet2names, self.final_ixp2asn,
+            output.print_db_stats(len(peering_ip2asn), len(peering_subnet2name), len(pch_ixp2asn), len(pch_subnet2names), self.final_ixp2asn,
                                   self.final_sub2name, dirty_count, additional_ip2asn, additional_subnet2name, len(reserved_list), self.print_db, self.homepath + '/')
 
         # Adds country and city related information of IXPs
