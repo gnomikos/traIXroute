@@ -205,23 +205,6 @@ class string_handler():
 
         return(final)
 
-    def check_input_ip(self, IP):
-        '''
-        Checks the format of an IP address.
-        Input:
-            a) IP: The IP to be checked.
-        Ouput: 
-            a) True if the IP has a valid form, False otherwise.
-        '''
-
-        temp = IP.split('.')
-        if len(temp) > 4:
-            return False
-        for node in temp:
-            if len(node) > 1 and node[0] == '0':
-                return False
-        return True
-
     def sub_prefix_check(self, prefix, tree):
         '''
         Checks if a given prefix/subprefix is in the SubnetTree.

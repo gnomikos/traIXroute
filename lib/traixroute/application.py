@@ -310,10 +310,6 @@ class traIXroute():
                             print(
                                 'Wrong input IP address format.\nExpected an IPv4 format or a valid url.')
                             sys.exit(0)
-                    elif not string_handle.check_input_ip(inputIP):
-                        print(
-                            'Wrong input IP address format.\nExpected an IPv4 format or a valid url.')
-                        sys.exit(0)
                 self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments, manager)
         
         # Empty database. In case of using threads only one database instance is used.       

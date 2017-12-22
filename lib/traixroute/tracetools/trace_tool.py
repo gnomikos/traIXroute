@@ -54,10 +54,6 @@ class trace_tool():
                 print('--> ' + IP_name +
                       ' has wrong address format. Expected an IPv4 format or a valid url.')
                 return [], []
-        elif not string_handle.check_input_ip(IP_name):
-            print('--> ' + IP_name +
-                  ' has wrong address format. Expected an IPv4 format or a valid url.')
-            return [], []
 
         if classic:
             [route, mytime] = self.scamper_call(IP_name, arguments)
