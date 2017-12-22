@@ -8,7 +8,7 @@ pysubnettree==0.26
 python-dateutil==2.5.3
 pytz==2016.6.1
 requests==2.11.1
-ripe.atlas.cousteau==1.2
+ripe.atlas.cousteau==1.4
 ripe.atlas.sagan==1.1.11
 six==1.10.0
 socketIO-client==0.7.0
