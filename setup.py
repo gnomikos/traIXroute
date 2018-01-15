@@ -4,8 +4,8 @@ from distutils.util import get_platform
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-with open('README.rst') as f:
-    long_description = f.read()
+# with open('README.rst') as f:
+#    long_description = f.read()
 
 def packages(lib):
     def dirs(*path):
