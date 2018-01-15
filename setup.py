@@ -25,7 +25,7 @@ setup(
     name="traixroute",
     version="2.2",
     description='A tool that detects if and where a traceroute path crosses an IXP fabric.',
-    long_description=long_description,
+    # long_description=long_description,
     package_dir={'': 'lib'},
     install_requires=['setuptools',
                       'cffi==1.7.0',
