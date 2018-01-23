@@ -726,7 +726,16 @@ class traixroute_output():
             filename = outputfile_json + file_name if outputfile_json else homepath + '/output/output_json_' + (file_name if file_name else exact_time)
                 
             with open(filename, 'w') as f:
-                ujson.dump(itertools.chain.from_iterable(json_data), f)
+                size_list = len(json_data)
+                counter = 1
+                f.write('[\n')
+                for entry in itertools.chain.from_iterable(json_data):
+                    f.write(ujson.dumps(entry))
+                    # Checking for the last element.
+                    if counter < size_list:
+                        f.write('\n,\n')
+                    counter+=1    
+                f.write('\n]')
                 print('Results in json format have been exported:', filename)
             
         if traixparser.flags['outputfile_txt']:
