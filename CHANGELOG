@@ -16,6 +16,7 @@ Version 2.3 (Beta) - December 2017
 - Added support for multiple file analysis specifying the directory path instead of the file name.
 - Added more flexibility to the output file names.
 - Fixed bug with dataset merging.
+- Improved output json format.
 
 Version 2.2 - June 2017
 - Fixed bug when some RIPE Atlas measurements fields are missing from the results.

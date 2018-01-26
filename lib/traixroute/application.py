@@ -68,6 +68,7 @@ class traIXroute():
         self.exact_time     = None
         self.ripe           = None
         self.selected_tool  = None
+        self.ripe_handle    = None
         self.traixparser    = traixroute_parser.traixroute_parser(self.version)
         self.detection_rules= detection_rules.detection_rules()
         self.json_handle    = handle_json.handle_json()
@@ -98,7 +99,7 @@ class traIXroute():
                     output.print_traIXroute_dest(self.traixparser, db_extract, self.dns_print, dst_ip, src_ip, info)
             elif self.ripe == 1:
                 [src_ip, dst_ip, ip_path,
-                    delays_path] = ripe_m.return_path(entry)
+                    delays_path] = self.ripe_handle.return_path(entry)
                 if self.traixparser.flags['outputfile_txt'] or not self.traixparser.flags['silent']:
                     output.print_traIXroute_dest(self.traixparser, db_extract, self.dns_print, dst_ip, src_ip)
             else:
@@ -192,8 +193,7 @@ class traIXroute():
                 copyfile(self.libpath + '/configuration/' + config_file,
                          homepath + '/configuration/' + config_file,)
         
-        [self.config, config_flag] = self.json_handle.import_IXP_dict(
-            homepath + '/configuration/config')
+        [self.config, config_flag] = self.json_handle.import_IXP_dict(homepath + '/configuration/config')
         if config_flag:
             print("Detected problem in the config file. Exiting.")
             sys.exit(0)
@@ -283,14 +283,18 @@ class traIXroute():
                         print('WARNING:', self.arguments + ' file not found or has invalid json format. Exiting.')
                         sys.exit(0)
                     self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments, manager)    
+            
+            # Case: when a ripe atlas measurement is fetched to be analyzed.
             elif self.ripe == 1:
-                ripe_m = handle_ripe.handle_ripe(self.config)
-                input_list = ripe_m.get_measurement(self.arguments)
+                self.ripe_handle = handle_ripe.handle_ripe(self.config)
+                input_list = self.ripe_handle.get_measurement(self.arguments)
                 self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments, manager)
+            # Case: when a ripe atlas measurement is created and then it is fetched to be analyzed.
             elif self.ripe == 2:
-                ripe_m = handle_ripe.handle_ripe(self.config)
-                input_list = ripe_m.create_measurement(self.arguments)
+                self.ripe_handle = handle_ripe.handle_ripe(self.config)
+                input_list = self.ripe_handle.create_measurement(self.arguments)
                 self.traixroute_core(homepath, input_list, useTraIXroute, self.arguments, manager)
+            
             elif inputfile or inputIP:
                 if inputfile:
                     with open(inputfile, 'r') as f:
@@ -316,6 +320,7 @@ class traIXroute():
         if self.mode == 'thread':
             self.db_extract.clean()
     
+    # Finds all the files in directories and subdirectories when a directory has been given as input.
     def dir_walk(self, homepath, useTraIXroute, root_path, manager, callback):
         for filename in sorted(os.listdir(root_path)):
             pathname = os.path.join(root_path, filename)
@@ -370,7 +375,7 @@ class traIXroute():
                 if self.enable_stats: 
                     final_rules_hit = [x + y for x , y in zip(final_rules_hit, rule_hits)]
                     num_ips += 1
-            
+        
         output.export_results_to_files(json_data, txt_data, self.traixparser, homepath, arguments, self.exact_time)
         
         # Extracting statistics.

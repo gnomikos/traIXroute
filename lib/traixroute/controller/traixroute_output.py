@@ -720,7 +720,9 @@ class traixroute_output():
             e) arguments: The absolute path of the traceroute path file.
         '''
     
-        file_name = self.get_filename_from_path(arguments)
+        # Discriminating the case when we have as input ripe altas measurements directly from RIPE's database or local files.
+        file_name = self.get_filename_from_path(arguments) if not traixparser.flags['ripe'] else 'msm_id_' + str(arguments['msm_id'])
+        
         if traixparser.flags['outputfile_json']:
             outputfile_json = traixparser.outputfile_json
             filename = outputfile_json + file_name if outputfile_json else homepath + '/output/output_json_' + (file_name if file_name else exact_time)
