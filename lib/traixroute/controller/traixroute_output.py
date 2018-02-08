@@ -747,7 +747,7 @@ class traixroute_output():
             with open(filename, 'w') as f:
                 for entry in txt_data:
                     for subentry in entry:
-                        f.write(subentry)
+                        f.write(subentry+'\n')
                 print('Results have been exported:', filename)
 
     def stats_extract(self, homepath, num_ips, rules, final_rules_hit, exact_time, traixparser, arguments):
