@@ -218,7 +218,7 @@ class pch_handle():
                 continue
             temp_string = line.split(',')
             if len(temp_string) > 6:
-                if handled_string.string_comparison(temp_string[5], 'Active'):
+                if handled_string.string_comparison(temp_string[6], 'Active'):
                     ixpip2long[temp_string[0]] = temp_string[4]
                     country = re.sub('([^\s\w]|_)+', ' ',
                                      temp_string[2].strip())
@@ -232,7 +232,6 @@ class pch_handle():
                         IXP_region[temp_string[0]] = country2cc[country], city
                     except KeyError:
                         IXP_region[temp_string[0]] = country, city
-
         return (ixpip2long, IXP_region)
 
     def file_opener(self, filename, option):
