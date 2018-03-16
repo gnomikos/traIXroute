@@ -166,18 +166,13 @@ class peering_handle():
                 names_dict[node['id']] = [long_name, short_name]
             else:
                 names_dict[node['id']] = [short_name, long_name]
-
-            country = re.sub('([^\s\w]|_)+', ' ', node['country'].strip())
-            country = ' '.join(self.unique_list(country.split()))
-            country = re.sub(' +', ' ', country)
-
-            city = re.sub('([^\s\w]|_)+', ' ', node['city'].strip())
-            city = ' '.join(self.unique_list(city.split()))
-            city = re.sub(' +', ' ', city)
-            try:
-                region_dict[node['id']] = [country2cc[country], city]
-            except KeyError:
-                region_dict[node['id']] = [country, city]
+            
+            # Country Code
+            country = handle_string.format_country_city(node['country'])
+            # City Name
+            city    = handle_string.format_country_city(node['city'])
+            
+            region_dict[node['id']] = [country, city]
 
         return (names_dict, region_dict)
 
@@ -261,5 +256,3 @@ class peering_handle():
 
         return ixp_to_asn
 
-    def unique_list(self, l):
-        return list(set(l))

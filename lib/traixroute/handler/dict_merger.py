@@ -166,6 +166,8 @@ class dict_merger():
         
         for k in small:
             if k in big:
+                # Compare countries and cities between the two dictionaries
+                # example entries of dicts {'198.32.118.0/24': ['US', 'New York']}
                 mytuple = self.assign_countries(
                     small[k][0], big[k][0], small[k][1], big[k][1])
                 if mytuple != []:
@@ -178,13 +180,12 @@ class dict_merger():
 
     def assign_countries(self, country1, country2, city1, city2):
         '''
-        Takes as inputs countries and cities retrieved by PCH and PeeringDB assigned to a certain prefix and
-        selects the countries and the cities to keep.
+        Takes as inputs countries and cities retrieved by PCH and PeeringDB assigned to a certain prefix and selects the countries and the cities to keep.
         Input:
             a) country1,country2: The country names assigned to an IXP Prefix (from pch and peeringDB).
             b) city1,city2: The city names assigned to an IXP Prefix (from pch and peeringDB).
         Output:
-            a) d3: The [country,city] list after merging.
+            a) The [country,city] list after merging.
         '''
 
         string_handle = string_handler.string_handler()
@@ -196,21 +197,21 @@ class dict_merger():
             country = country1
         elif country1 == '' and country2 != '':
             country = country2
-
         elif country1 != '' and country2 == '':
             country = country1
+        # Both countries are different
+        if country == '':
+            country = country1 + '//' + country2
+            
 
         # Comparing IXP cities.
         if string_handle.string_comparison(city1, city2):
             city = city2
         elif city1 == '' and city2 != '':
             city = city2
-
         elif city1 != '' and city2 == '':
             city = city1
-        d3 = []
-        if country == '':
-            country = country1 + '//' + country2
+        # Both cities are different 
         if city == '':
             if string_handle.shortinlong(city1, city2):
                 city = city2
@@ -218,7 +219,6 @@ class dict_merger():
                 city = city1
             else:
                 city = city1 + '//' + city2
-        if country != '' and country != '':
-            d3 = [country, city]
-
-        return d3
+                
+        return [country, city] if country != '' and country != '' else []
+        

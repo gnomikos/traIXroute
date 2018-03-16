@@ -206,31 +206,31 @@ class pch_handle():
             a) ixpip2long: A dictionary with {keyid}=[IXP long name].
             b) IXP_region: A dictionary with {keyid}=[IXP country, IXP city].
         '''
-
+#317, North America, United States, New York, Equinix New York IBX, Equinix NY, Active, Ethernet, Commercial, 20030311, https://www.equinix.com/, https://www.equinix.com/resources/, , 66, 0, 0
+        
+        handle_string = string_handler.string_handler()
         doc = self.file_opener(self.filename_excha, 2)
         ixpip2long = {}
         IXP_region = {}
-        flag = True
-        handled_string = string_handler.string_handler()
+        
+        # Skip the first line of the file.
+        next(doc)
         for line in doc:
-            if flag:
-                flag = False
-                continue
-            temp_string = line.split(',')
+            temp_string = [item.strip() for item in line.split(', ')]
+            
             if len(temp_string) > 6:
-                if handled_string.string_comparison(temp_string[6], 'Active'):
+                if handle_string.string_comparison(temp_string[6], 'Active'):
+                    # IXP long name
                     ixpip2long[temp_string[0]] = temp_string[4]
-                    country = re.sub('([^\s\w]|_)+', ' ',
-                                     temp_string[2].strip())
-                    country = ' '.join(self.unique_list(country.split(' ')))
-                    country = re.sub(' +', ' ', country)
-
-                    city = re.sub('([^\s\w]|_)+', ' ', temp_string[3].strip())
-                    city = ' '.join(self.unique_list(city.split(' ')))
-                    city = re.sub(' +', ' ', city)
+                    # Country name
+                    country = handle_string.format_country_city(temp_string[2])
+                    # City name
+                    city = handle_string.format_country_city(temp_string[3])
+                    
                     try:
                         IXP_region[temp_string[0]] = country2cc[country], city
                     except KeyError:
+                        print('Warning, update your CCs for:', country)
                         IXP_region[temp_string[0]] = country, city
         return (ixpip2long, IXP_region)
 
@@ -265,6 +265,3 @@ class pch_handle():
                 sys.exit(0)
 
         return doc
-
-    def unique_list(self, l):
-        return list(set(l))

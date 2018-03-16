@@ -238,6 +238,7 @@ class string_handler():
         tmp_sname2 = self.concat_nums(sname2)
         tmp_lname1 = self.concat_nums(lname1)
         tmp_lname2 = self.concat_nums(lname2)
+        
         sname1_lname2 = self.shortinlong(tmp_sname1, tmp_lname2)
         sname2_lname1 = self.shortinlong(tmp_sname2, tmp_lname1)
         sname1_sname2 = self.shortinlong(tmp_sname1, tmp_sname2)
@@ -391,3 +392,9 @@ class string_handler():
         short_name = re.sub(' +', ' ', short_name)
 
         return long_name, short_name
+        
+    def format_country_city(self, entry):
+        entry = re.split('/|,|&', entry.strip())
+        
+        return '|'.join([item.strip() for item in entry])
+        

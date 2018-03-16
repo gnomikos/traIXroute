@@ -238,8 +238,7 @@ class database():
         # Adds country and city related information of IXPs
         self.cc_tree = self.dict2tree(final_subnet2country)
         # Imports the remote peering datasets
-        self.remote_peering = handle_remote.handle_remote(self.homepath,
-                                                          self.libpath).handle_import(json_handle)
+        self.remote_peering = handle_remote.handle_remote(self.homepath, self.libpath).handle_import(json_handle)
 
         if self.merge_flag:
             self.subs_to_file(additional_subnet2name,
@@ -374,6 +373,7 @@ country2cc = {
     'Bermuda': 'BM',
     'Bhutan': 'BT',
     'Bolivia, Plurinational State of': 'BO',
+    'Bolivia': 'BO',
     'Bonaire, Sint Eustatius and Saba': 'BQ',
     'Bosnia and Herzegovina': 'BA',
     'Botswana': 'BW',
@@ -398,6 +398,7 @@ country2cc = {
     'Colombia': 'CO',
     'Comoros': 'KM',
     'Congo': 'CG',
+    'Republic of Congo': 'CG',
     'Congo, the Democratic Republic of the': 'CD',
     'Cook Islands': 'CK',
     'Costa Rica': 'CR',
@@ -409,6 +410,7 @@ country2cc = {
     'Czech Republic': 'CZ',
     "Côte d'Ivoire": 'CI',
     "Cote D'Ivoire": 'CI',
+    'Democratic Republic of Congo': 'CD',
     'Denmark': 'DK',
     'Djibouti': 'DJ',
     'Dominica': 'DM',
@@ -455,6 +457,7 @@ country2cc = {
     'India': 'IN',
     'Indonesia': 'ID',
     'Iran, Islamic Republic of': 'IR',
+    'Iran': 'IR',
     'Iraq': 'IQ',
     'Ireland': 'IE',
     'Isle of Man': 'IM',
@@ -469,9 +472,11 @@ country2cc = {
     'Kiribati': 'KI',
     "Korea, Democratic People's Republic of": 'KP',
     'Korea, Republic of': 'KR',
+    'Kosovo': 'XK',
     'Kuwait': 'KW',
     'Kyrgyzstan': 'KG',
     "Lao People's Democratic Republic": 'LA',
+    'Laos': 'LA',
     'Latvia': 'LV',
     'Lebanon': 'LB',
     'Lesotho': 'LS',
@@ -554,11 +559,13 @@ country2cc = {
     'Sierra Leone': 'SL',
     'Singapore': 'SG',
     'Sint Maarten (Dutch part)': 'SX',
+    'Sint Maarten': 'SX',
     'Slovakia': 'SK',
     'Slovenia': 'SI',
     'Solomon Islands': 'SB',
     'Somalia': 'SO',
     'South Africa': 'ZA',
+    'South Korea': 'KR',
     'South Georgia and the South Sandwich Islands': 'GS',
     'South Sudan': 'SS',
     'Spain': 'ES',
