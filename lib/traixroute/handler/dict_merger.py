@@ -220,5 +220,5 @@ class dict_merger():
             else:
                 city = city1 + '//' + city2
                 
-        return [country, city] if country != '' and country != '' else []
+        return [country, city] if country != '' and city != '' else []
         
