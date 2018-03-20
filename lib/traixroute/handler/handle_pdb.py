@@ -169,6 +169,7 @@ class peering_handle():
             
             # Country Code
             country = handle_string.format_country_city(node['country'])
+            country = country2cc[country] if country in country2cc else country
             # City Name
             city    = handle_string.format_country_city(node['city'])
             

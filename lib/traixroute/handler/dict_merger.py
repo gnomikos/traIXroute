@@ -202,7 +202,6 @@ class dict_merger():
         # Both countries are different
         if country == '':
             country = country1 + '//' + country2
-            
 
         # Comparing IXP cities.
         if string_handle.string_comparison(city1, city2):

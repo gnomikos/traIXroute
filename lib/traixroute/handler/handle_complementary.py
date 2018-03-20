@@ -80,8 +80,8 @@ class asn_handle():
             myip = handler.extract_ip(temp[0], 'IP')
             if len(myip):
                 if handler.is_valid_ip_address(myip[0] + '/' + temp[1], 'Subnet'):
-                    if not handler.sub_prefix_check(myip[0] + '/' + str(temp[1]), reserved_sub_tree):
-                        Stree[myip[0] + '/' + temp[1]] = temp[2]
+                    if not handler.sub_prefix_check(myip[0] + '/' + temp[1], reserved_sub_tree):
+                        Stree[myip[0] + '/' + temp[1]]     = temp[2]
                         temp_dict[myip[0] + '/' + temp[1]] = temp[2]
 
         f.close()
