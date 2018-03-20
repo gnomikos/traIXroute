@@ -27,9 +27,9 @@ It is also possible to download the latest archive from github:
 
 ::
 
-$ curl -L https://github.com/gnomikos/traIXroute/archive/v2.2.tar.gz | tar zx
-$ sh traIXroute-2.2/setup/install.sh
-$ ./traIXroute-2.2/bin/traixroute
+$ curl -L https://github.com/gnomikos/traIXroute/archive/v2.3.tar.gz | tar zx
+$ sh traIXroute-2.3/setup/install.sh
+$ ./traIXroute-2.3/bin/traixroute
 
 If using `git`:
 
