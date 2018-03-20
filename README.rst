@@ -53,7 +53,7 @@ If you have problems, please contact George Nomikos (gnomikos [at] ics.forth.gr)
 
 Dependencies
 ------------
-- `Python 3 <https://www.python.org/downloads/>`_ —  ``traIXroute`` requires Python 3.4 3.5 or greater.
+- `Python 3 <https://www.python.org/downloads/>`_ —  ``traIXroute`` requires Python 3.5 or greater.
 - `Scamper <https://www.caida.org/tools/measurement/scamper/>`_ — A tool provided by CAIDA for probing the Internet in parallel, so that bulk data can be collected in a timely fashion. 
 - `Traceroute <https://en.wikipedia.org/wiki/Traceroute>`_ — A diagnostic tool for measuring Internet paths and their per hop delay.
 - `Click here for other dependencies. <https://github.com/gnomikos/traIXroute/blob/v2.3/setup/requirements.txt>`_
