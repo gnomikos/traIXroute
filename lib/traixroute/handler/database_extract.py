@@ -211,11 +211,13 @@ class database():
             [self.subTree, self.final_sub2name, final_subnet2country] = dict_merge.include_additional(
                 self.final_sub2name, self.subTree, additional_subnet2name, final_subnet2country, additional_pfx2cc, help_tree)
 
+            # Merging PDB & PCH IXP memberhip data.
             [merged_ixp2asn, dirty_count] = dict_merge.merge_ixp2asns(
                 pch_ixp2asn, peering_ip2asn, True, self.subTree)
-
+            # Merging PCB & PCH with additional data.
             self.final_ixp2asn = dict_merge.merge_ixp2asns(
                 additional_ip2asn, merged_ixp2asn, False, self.subTree, replace=True)
+            
             self.asnmemb = asn_hand_info.asn_memb(
                 self.final_ixp2asn, self.subTree)
             if not exists(self.homepath + '/database/Merged'):

@@ -192,33 +192,34 @@ class peering_handle():
         '''
 
         handler = string_handler.string_handler()
-        pfxs_dict = {}
-        i = 0
         temp_subnet_tree = SubnetTree.SubnetTree()
+        pfxs_dict = {}
         subnet2region = {}
+        
         for node in json_pfx:
-            subnet = handler.extract_ip(node['prefix'], 'Subnet')
-            for s in subnet:
-                if handler.is_valid_ip_address(s, 'Subnet'):
-                    ixpfx = s
+            for subnet in handler.extract_ip(node['prefix'], 'Subnet'):
+                if handler.is_valid_ip_address(subnet, 'Subnet'):
+                    
                     ixlan_id = node['ixlan_id']
-                    if ixlan_id in ixlan_dict.keys():
+                    if ixlan_id in ixlan_dict:
                         ix_id = ixlan_dict[ixlan_id]
-                        if ix_id in id_to_names.keys() and s not in pfxs_dict:
+                        
+                        # Checking if there exists IXP name for the given prefix and if the candidate IXP prefix is already inside the dictionary that aggregates the PDB prefixes
+                        if ix_id in id_to_names and subnet not in pfxs_dict:
                             if id_to_names != ['', '']:
-                                pfxs_dict[s] = [id_to_names[ix_id]]
+                                pfxs_dict[subnet] = [id_to_names[ix_id]]
                             else:
                                 continue
-                            temp_subnet_tree[s] = [id_to_names[ix_id]]
-                            subnet2region[s] = region_dict[ix_id]
-                        elif s in pfx_dict:
+                            temp_subnet_tree[subnet]    = [id_to_names[ix_id]]
+                            subnet2region[subnet]       = region_dict[ix_id]
+                        
+                        elif subnet in pfx_dict:
                             assign_tuple = []
-                            for IXP in pfx_dict:
+                            for IXP in pfx_dict[subnet]:
                                 assign_tuple = assign_tuple + \
-                                    handler.assign_names(IXP[1], id_to_names[ix_id][
-                                                         1], IXP[0], id_to_names[ix_id][0])
-                            pfxs_dict[s] = assign_tuple
-                            subnet2regions[s] = region_dict[ix_id]
+                                    handler.assign_names(IXP[1], id_to_names[ix_id][1], IXP[0], id_to_names[ix_id][0])
+                            pfxs_dict[subnet]       = assign_tuple
+                            subnet2regions[subnet]  = region_dict[ix_id]
 
         return (pfxs_dict, temp_subnet_tree, subnet2region)
 

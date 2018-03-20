@@ -24,7 +24,7 @@ import re
 import socket
 import difflib
 import ipaddress
-
+from fuzzywuzzy import fuzz
 
 class string_handler():
     '''
@@ -122,7 +122,7 @@ class string_handler():
         elif kind == 'IP':
             return re.findall(r'[0-9]+(?:\.[0-9]+){3}', string)
         else:
-            print('Wrong argument type!')
+            print('Wrong argument type when extracting IP or Subnet.')
 
     def string_removal(self, string):
         '''
@@ -145,10 +145,10 @@ class string_handler():
 
         return (string)
 
-    def string_comparison(self, string1, string2, prob=0.80):
+    def string_comparison(self, string1, string2, prob_difflib = 0.80, prob_leven = 74):
         '''
         A function which compares the similarity of two strings.
-        This function has been configured with a similarity factor (true_ratio) equals to 0.8
+        This function has been configured with a similarity factors (true_ratio) after manual tuning.
         Input: 
             a) string1, string2: The two strings to be compared.
             b) prob: The similarity threshold.
@@ -158,13 +158,17 @@ class string_handler():
 
         string1 = self.string_removal(string1)
         string2 = self.string_removal(string2)
-        true_ratio = difflib.SequenceMatcher(None, string1, string2).ratio()
+        ratio_diff = difflib.SequenceMatcher(None, string1, string2).ratio()
+        ratio_leven = fuzz.WRatio(string1, string2)
+        
         if string1 == '' or string2 == '':
             return False
-        if true_ratio > prob:
+        
+        if ratio_diff > prob_difflib or ratio_leven > prob_leven:
             return True
         else:
             return False
+        
 
     # TODO: Change this function for IPv6
     def clean_ip(self, IP, kind):
@@ -238,7 +242,8 @@ class string_handler():
         tmp_sname2 = self.concat_nums(sname2)
         tmp_lname1 = self.concat_nums(lname1)
         tmp_lname2 = self.concat_nums(lname2)
-        
+
+        # Check if IXP names are substrings of each other.        
         sname1_lname2 = self.shortinlong(tmp_sname1, tmp_lname2)
         sname2_lname1 = self.shortinlong(tmp_sname2, tmp_lname1)
         sname1_sname2 = self.shortinlong(tmp_sname1, tmp_sname2)
@@ -247,19 +252,20 @@ class string_handler():
         lname2_lname1 = self.shortinlong(tmp_lname2, tmp_lname1)
 
         if self.string_comparison(tmp_lname1, tmp_lname2):
-            d3[0] = lname1
+            d3[0] = lname1 if len(lname1) > len(lname2) else lname2
         elif tmp_lname1 == '' and tmp_lname2 != '':
             d3[0] = lname2
         elif tmp_lname1 != '' and tmp_lname2 == '':
             d3[0] = lname1
 
         if self.string_comparison(tmp_sname1, tmp_sname2):
-            d3[1] = sname1
+            d3[1] = sname1 if len(sname1) > len(sname2) else sname2
         elif tmp_sname1 == '' and tmp_sname2 != '':
             d3[1] = sname2
         elif tmp_sname1 != '' and tmp_sname2 == '':
             d3[1] = sname1
-
+            
+        # Comparing IXP names checking if the first IXP name is substring of the second IXP name and vice versa.
         if d3[1] == '' and d3[0] == '':
             if (sname1_lname2):
                 d3 = [lname2, sname1]
@@ -347,16 +353,15 @@ class string_handler():
             a) new_String: The IXP name with the concatenated numbers.
         '''
 
-        temp_string = string.split()
-        new_string = ""
+        new_string = ''
 
-        for word in temp_string:
+        for word in string.split():
             if self.is_int(word):
                 new_string = new_string + word
             else:
-                new_string = new_string + " " + word
+                new_string = new_string + ' ' + word
 
-        return new_string
+        return new_string.strip()
 
     def is_int(self, myint):
         '''

@@ -17,7 +17,9 @@ Version 2.3 (Beta) - December 2017
 - Added more flexibility to the output file names.
 - Fixed bug with dataset merging.
 - Improved output json format.
-- Fixed bug when formatting IXP countries and cities. 
+- Fixed bug when formatting IXP countries and cities.
+- Fixed bug when merging IXP prefixes/subprefixes with different IXP names.
+- Added Levenshtein distance as metric to compare IXP names.
 
 Version 2.2 - June 2017
 - Fixed bug when some RIPE Atlas measurements fields are missing from the results.

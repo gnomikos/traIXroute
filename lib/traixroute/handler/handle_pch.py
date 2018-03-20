@@ -139,11 +139,10 @@ class pch_handle():
         IXP_cc = {}
         subnets = {}
         Subnet_names = SubnetTree.SubnetTree()
-        flag = True
+        
+        # Skip the first line of the file.
+        next(doc)
         for line in doc:
-            if flag:
-                flag = False
-                continue
             temp_string = line.split(',')
             if len(temp_string) > 5:
                 mykey = temp_string[0]
@@ -152,7 +151,7 @@ class pch_handle():
                 for ips in myip:
                     ips = handled_string.clean_ip(ips, 'Subnet')
                     if ips != '' and handled_string.string_comparison(temp_string[2], 'Active'):
-                        if handled_string.is_valid_ip_address(ips, 'Subnet') and ips not in subnets.keys():
+                        if handled_string.is_valid_ip_address(ips, 'Subnet') and ips not in subnets:
                             if mykey in long_mem.keys():
                                 IXP_cc[ips] = IXP_region[mykey]
                                 [long_name, short_name] = handled_string.clean_long_short(
@@ -167,15 +166,14 @@ class pch_handle():
                                     subnets[ips] = [[short_name, long_name]]
 
                             elif temp_string[1] != '':
-                                [long_name, short_name] = handled_string.clean_long_short("", temp_string[
-                                                                                          1])
+                                [long_name, short_name] = handled_string.clean_long_short("", temp_string[1])
                                 if len(short_name) < len(long_name):
                                     subnets[ips] = [['', short_name]]
                                 else:
                                     subnets[ips] = [['', long_name]]
                             else:
                                 continue
-                        elif ips in subnets.keys():
+                        elif ips in subnets:
                             IXP_cc[ips] = IXP_region[mykey]
                             [long_name, short_name] = handled_string.clean_long_short(
                                 long_mem[mykey], temp_string[1])

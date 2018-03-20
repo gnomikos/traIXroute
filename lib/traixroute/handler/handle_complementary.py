@@ -79,7 +79,7 @@ class asn_handle():
             temp = line.split()
             myip = handler.extract_ip(temp[0], 'IP')
             if len(myip):
-                if handler.is_valid_ip_address(myip[0] + '/' + str(temp[1]), 'Subnet'):
+                if handler.is_valid_ip_address(myip[0] + '/' + temp[1], 'Subnet'):
                     if not handler.sub_prefix_check(myip[0] + '/' + str(temp[1]), reserved_sub_tree):
                         Stree[myip[0] + '/' + temp[1]] = temp[2]
                         temp_dict[myip[0] + '/' + temp[1]] = temp[2]
@@ -163,43 +163,42 @@ class Subnet_handle():
         '''
         Returns a Subnet Tree containing all the IXP subnets.
         Input:
-            a) Sub: A dictionary with {Subnet}=[IXP long name,IXP short name].
+            a) Sub: A dictionary with {Subnet}=[IXP long name,IXP short name] after merging datasets.
             b) additional_tree: a Subnet Tree containing all the user {IXP Subnet}=IXP Subnet.
             c) reserved_sub_tree: A SubnetTree containing the reserved Subnets.
             d) final_subnet2country: A dictionary with {Subnet}=[country,city].
         Output:
-            a) Stree: A Subnet Tree with the IXP Subnets.
+            a) Stree: A Subnet Tree with the IXP names.
             b) Sub: A dictionary with {Subnet}=[IXP long name,IXP short name].
-            c) help_tree: a Tree with IXP Subnets.
+            c) help_tree: A Subnet Tree with IXP Subnets.
         '''
 
         Stree = SubnetTree.SubnetTree()
         help_tree = SubnetTree.SubnetTree()
         handle_string = string_handler.string_handler()
-
-        # subnet_keys: A sorted list of prefixes based on subnet mask.
-        subnet_keys = []
-        for i in Sub:
-            subnet_keys.append(i.split('/'))
-        subnet_keys = sorted(subnet_keys, key=lambda x: x[1])
-
-        for entry in subnet_keys:
-            subnet = entry[0] + '/' + entry[1]
+        
+        for subnet in sorted(Sub):
             check = handle_string.sub_prefix_check(subnet, help_tree)
-
+            
             # If a subprefix does not exist and it is not a reserved prefix.
             if not check and not handle_string.sub_prefix_check(subnet, additional_tree) and not handle_string.sub_prefix_check(subnet, reserved_sub_tree):
                 Stree[subnet] = Sub[subnet]
                 help_tree[subnet] = subnet
             # If a subprefix exists.
             elif check:
+                # Keep initial tuple to find the corresponding prefix in order to keep only prefix in the last step.
+                initial_tuple = Stree[subnet]
+                # Find the prefix that maps to the initial tuple in order to keep the prefix, update the IXP names and delete subprefix in the last step.
+                prefix = [temp_subnet for temp_subnet, temp_ixp_name in Sub.items() if temp_ixp_name == initial_tuple][0]
+                
+                # Gather the IXP names of existing subprefixes in the Subnet Tree.
                 assign_tuple = []
                 for IXP1 in Stree[subnet]:
                     for IXP2 in Sub[subnet]:
-                        assign_tuple = assign_tuple + \
-                            handle_string.assign_names(
+                        assign_tuple = assign_tuple + handle_string.assign_names(
                                 IXP1[1], IXP2[1], IXP1[0], IXP2[0])
-                # Deletes similar IXP names assigned to the same prefixes.
+                
+                # Delete similar IXP names assigned to the same prefixes.
                 deleted = []
                 for i in range(0, len(assign_tuple) - 1):
                     for j in range(i + 1, len(assign_tuple)):
@@ -209,16 +208,22 @@ class Subnet_handle():
                 for node in deleted:
                     del assign_tuple[node]
 
-                if (assign_tuple == Stree[subnet]):
+                # Delete Subprefixes when there are Prefixes with same IXP names.
+                if assign_tuple == Stree[subnet]:
                     Sub.pop(subnet)
                     final_subnet2country.pop(subnet)
+                # Keep Prefixes (as dirty) and delete Subprefixes with different IXP names.
                 else:
-                    Stree[subnet]     = assign_tuple
-                    Sub[subnet]       = assign_tuple
-                    help_tree[subnet] = subnet
+                    # Update prefix with the new IXP names
+                    Stree[prefix]     = assign_tuple
+                    Sub[prefix]       = assign_tuple
+                    # Delete subprefix
+                    Sub.pop(subnet)
+                    final_subnet2country.pop(subnet)
             else:
                 Sub.pop(subnet)
                 final_subnet2country.pop(subnet)
+        
         return Stree, Sub, help_tree
 
     def exclude_reserved_subpref(self, subTree, final_sub2name, reserved_list, final_subnet2country):
@@ -306,15 +311,15 @@ class extract_additional_info():
                     if handles.is_valid_ip_address(IXP, 'Subnet') and IXP == line_split[0]:
                         if len(line_split) == 5:
 
-                            ixp_full_name = line_split[1]
-                            ixp_short_name = line_split[2]
-                            city = line_split[3]
-                            country = line_split[4]
+                            ixp_full_name   = line_split[1]
+                            ixp_short_name  = line_split[2]
+                            city            = line_split[3]
+                            country         = line_split[4]
                             if IXP not in self.Subnet.keys():
-                                self.additional_info_tree[IXP] = [ixp_full_name, ixp_short_name]
+                                self.additional_info_tree[IXP]      = [ixp_full_name, ixp_short_name]
                                 self.additional_info_help_tree[IXP] = IXP
-                                self.Subnet[IXP] = [ixp_full_name, ixp_short_name]
-                                self.pfx2cc[IXP] = [country, city]
+                                self.Subnet[IXP]                    = [ixp_full_name, ixp_short_name]
+                                self.pfx2cc[IXP]                    = [country, city]
                             else:
                                 print(
                                     'additional_info.txt: Multiple similar IXP Prefixes detected. Exiting.')
