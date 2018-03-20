@@ -1,4 +1,4 @@
-Version 2.3 (Beta) - December 2017
+Version 2.3 - March 2018
 - Plenty of performance improvements, optimizations and code polishes.
 - Added more inline comments.
 - Fixed error messages in case of bad format in detection rules.
