@@ -1,8 +1,3 @@
-[![License](https://img.shields.io/pypi/l/traixroute.svg)](https://github.com/gnomikos/traIXroute/blob/master/LICENSE)
-[![PyPI](https://img.shields.io/pypi/v/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
-[![PyPI Status](https://img.shields.io/pypi/status/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
-[![PyPI Wheel](https://img.shields.io/pypi/wheel/traixroute.svg)](https://pypi.python.org/pypi/traixroute)
 ## Introduction
 
 [traIXroute](https://github.com/gnomikos/traIXroute) is a tool that detects if and where a traceroute path crosses an IXP fabric. It uses multiple criteria to verify IXP crossings in the light of replies from third-party interfaces or inaccuracies in the available data about IP addresses assigned to IXPs. These discrepancies mislead simple heuristics based solely on the IP address prefixes allocated to IXPs. The detection uses data from  PeeringDB, Packet Clearing House and RouteViews. In addition, **traIXroute** uses in the background the standard  [traceroute](https://en.wikipedia.org/wiki/Traceroute) tool or the [scamper](https://www.caida.org/tools/measurement/scamper/) tool, which implements the Paris traceroute technique to deal with inaccurate paths due to load balancers [1]. It is open source under GPLv3. 
@@ -56,10 +51,10 @@ If you have problems, please contact George Nomikos (gnomikos [at] ics.forth.gr)
 
 ## Dependencies
 
-* [Python 3](https://www.python.org/downloads/)   —  **traIXroute** requires Python 3.4 or 3.5.
-* [PySubnetTree](https://www.bro.org/downloads/release/pysubnettree-0.24.tar.gz)  —  A Python module for CIDR lookups.
+* [Python 3](https://www.python.org/downloads/)   —  **traIXroute** requires Python 3.5 or greater.
 * [Scamper](https://www.caida.org/tools/measurement/scamper/)  —  A tool provided by CAIDA for probing the Internet in parallel, so that bulk data can be collected in a timely fashion.
 * [Traceroute](https://en.wikipedia.org/wiki/Traceroute)  —  A diagnostic tool for measuring Internet paths and their per hop delay.
+* [Click here for other dependencies.](https://github.com/gnomikos/traIXroute/blob/v2.3/setup/requirements.txt)
 
 ## Documentation
 
