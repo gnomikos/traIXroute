@@ -302,7 +302,7 @@ class extract_additional_info():
                     if line == '':
                         continue
 
-                    line_split = line.split(',')
+                    line_split = [line.strip() for line in line.split(',')]
 
                     IXP = handles.extract_ip(line, 'Subnet')
                     IXP = IXP[0] if len(IXP) else ''
@@ -313,8 +313,9 @@ class extract_additional_info():
 
                             ixp_full_name   = line_split[1]
                             ixp_short_name  = line_split[2]
-                            city            = line_split[3]
-                            country         = line_split[4]
+                            country         = line_split[3]
+                            city            = line_split[4]
+                            
                             if IXP not in self.Subnet.keys():
                                 self.additional_info_tree[IXP]      = [ixp_full_name, ixp_short_name]
                                 self.additional_info_help_tree[IXP] = IXP
@@ -343,8 +344,9 @@ class extract_additional_info():
                             asn             = line_split[1]
                             ixp_full_name   = line_split[2]
                             ixp_short_name  = line_split[3]
-                            city            = line_split[4]
-                            country         = line_split[5]
+                            country         = line_split[4]
+                            city            = line_split[5]
+                            
                             if handles.is_valid_ip_address(IXP, 'IP') and IXP == line_split[0]:
                                 if IXP not in self.IXP_dict:
                                     self.IXP_dict[IXP]       = [asn]
