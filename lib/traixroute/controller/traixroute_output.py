@@ -240,7 +240,7 @@ class traixroute_output():
         print_data = 'traIXroute'
         dns_name = '*'
         output_IP = '*'
-        if string_handle.is_valid_ip_address(dst_ip, 'IP'):
+        if string_handle.is_valid_ip_address(dst_ip, 'IP', 'CLI'):
             if dns_print:
                 try:
                     dns_name = socket.gethostbyaddr(dst_ip)[0]

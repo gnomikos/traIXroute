@@ -24,6 +24,7 @@ import re
 import socket
 import difflib
 import ipaddress
+import netaddr
 from fuzzywuzzy import fuzz
 
 class string_handler():
@@ -32,7 +33,7 @@ class string_handler():
     '''
 
     # TODO: Change this function for IPv6
-    def is_valid_ip_address(self, address, kind):
+    def is_valid_ip_address(self, address, kind, dataset):
         '''
         Determines if the given string is in valid IP/Subnet form.
         Input: 
@@ -41,7 +42,7 @@ class string_handler():
         Output:
             a) True if the form is valid, False otherwise.
         '''
-
+    
         if(kind != 'IP' and kind != 'Subnet'):
             print("Wrong argument kind. Give \"IP\" or \"Subnet\".")
             return False
@@ -55,6 +56,7 @@ class string_handler():
                     socket.inet_aton(address)
                     return True
                 except socket.error as e:
+                    print('From',dataset,'error with IP:', address, '-', e)
                     return False
                 
             # For Subnet Handling.
@@ -63,38 +65,13 @@ class string_handler():
                     if ipaddress.IPv4Network(address):
                         return True
                 except ValueError as e:
-                    print('Error with prefix:', address, '-', e)
+                    print('From',dataset,'error with prefix:', address, '-', e)
                 except ipaddress.AddressValueError as e:
-                    print('Error with prefix:', address, '-', e)
+                    print('From',dataset,'error with prefix:', address, '-', e)
                 except ipaddress.NetmaskValueError as e:
-                    print('Error with prefix:', address, '-', e)
-                  
-                    return False
+                    print('From',dataset,'error with prefix:', address, '-', e)
 
-    def subnetcheck(self, string, mask):
-        '''
-        Converts wrong formatted subnets to valid prefixes:
-            A.B.C/24 -> A.B.C.0/24
-            A.B/16 -> A.B.0.0/16
-            A/8 -> A.0.0.0/8
-        Inputs:
-            a) string: The subnet.
-            b) mask: The mask of the subnet.
-        Output:
-            a) The valid subnet.
-        '''
-
-        subnet_dict = {'8': '.0.0.0', '16': '.0.0', '24': '.0'}
-        try:
-            int_mask = int(mask)
-        except:
-            return []
-        if mask not in subnet_dict:
-            return []
-        else:
-            ip = re.findall(
-                r'[0-9]+(?:\.[0-9]+){3}/[0-9]+', string + subnet_dict[mask] + '/' + mask)
-            return ip
+                return False
 
     # TODO: Change this function for IPv6
     def extract_ip(self, string, kind):
@@ -116,7 +93,7 @@ class string_handler():
                 temp_string[1] = temp_string[1].strip('.')
                 ip = re.findall(
                     r'[0-9]+(?:\.[0-9]+){3}/[0-9]+', temp_string[0] + '/' + temp_string[1])
-                return self.subnetcheck(temp_string[0], temp_string[1]) if not ip else ip
+                return ip
             else:
                 return []
         elif kind == 'IP':
@@ -181,33 +158,10 @@ class string_handler():
             a) final: The "cleaned" IP address.
         '''
 
-        temp = IP
         if kind == 'Subnet':
-            splitted = IP.split('/')
-            if len(splitted) > 1:
-                temp = IP.split('/')[0]
-            else:
-                return ''
-
-        final = ''
-        for node in temp.split('.'):
-            part = ''
-            i = -1
-            for i in range(0, len(node) - 1):
-                if node[i] != '0':
-                    part = part + node[i]
-                    break
-            for j in range(i + 1, len(node)):
-                part = part + node[j]
-            if len(node) == 1:
-                part = node[0]
-            final = final + part + '.'
-        if final[-1] == '.':
-            final = final[:-1]
-        if kind == 'Subnet':
-            final = final + '/' + splitted[1]
-
-        return(final)
+            return str(netaddr.IPNetwork(IP).cidr)
+        else:
+            return str(netaddr.IPNetwork(IP).cidr).split('/')[0]
 
     def sub_prefix_check(self, prefix, tree):
         '''

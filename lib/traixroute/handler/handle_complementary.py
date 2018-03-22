@@ -79,7 +79,7 @@ class asn_handle():
             temp = line.split()
             myip = handler.extract_ip(temp[0], 'IP')
             if len(myip):
-                if handler.is_valid_ip_address(myip[0] + '/' + temp[1], 'Subnet'):
+                if handler.is_valid_ip_address(myip[0] + '/' + temp[1], 'Subnet', 'RouteViews'):
                     if not handler.sub_prefix_check(myip[0] + '/' + temp[1], reserved_sub_tree):
                         Stree[myip[0] + '/' + temp[1]]     = temp[2]
                         temp_dict[myip[0] + '/' + temp[1]] = temp[2]
@@ -308,7 +308,7 @@ class extract_additional_info():
                     IXP = IXP[0] if len(IXP) else ''
                     
                     # Imports only IXP Subnets with valid format.
-                    if handles.is_valid_ip_address(IXP, 'Subnet') and IXP == line_split[0]:
+                    if handles.is_valid_ip_address(IXP, 'Subnet', 'Additional') and IXP == line_split[0]:
                         if len(line_split) == 5:
 
                             ixp_full_name   = line_split[1]
@@ -347,7 +347,7 @@ class extract_additional_info():
                             country         = line_split[4]
                             city            = line_split[5]
                             
-                            if handles.is_valid_ip_address(IXP, 'IP') and IXP == line_split[0]:
+                            if handles.is_valid_ip_address(IXP, 'IP', 'Additional') and IXP == line_split[0]:
                                 if IXP not in self.IXP_dict:
                                     self.IXP_dict[IXP]       = [asn]
                                     self.Subnet[IXP + '/32'] = [ixp_short_name, ixp_full_name]

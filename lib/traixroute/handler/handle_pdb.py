@@ -199,7 +199,9 @@ class peering_handle():
         
         for node in json_pfx:
             for subnet in handler.extract_ip(node['prefix'], 'Subnet'):
-                if handler.is_valid_ip_address(subnet, 'Subnet'):
+                
+                subnet = handler.clean_ip(subnet, 'Subnet')
+                if handler.is_valid_ip_address(subnet, 'Subnet', 'PDB'):
                     
                     ixlan_id = node['ixlan_id']
                     if ixlan_id in ixlan_dict:
@@ -221,7 +223,7 @@ class peering_handle():
                                     handler.assign_names(IXP[1], id_to_names[ix_id][1], IXP[0], id_to_names[ix_id][0])
                             pfxs_dict[subnet]       = assign_tuple
                             subnet2regions[subnet]  = region_dict[ix_id]
-
+        
         return (pfxs_dict, temp_subnet_tree, subnet2region)
 
     def extract_ip(self, json_ip, temp_subnet_tree, add_subnet_tree, reserved_tree):
@@ -248,7 +250,9 @@ class peering_handle():
             ips = handler.extract_ip(temp, 'IP')
 
             for ixpip in ips:
-                if handler.is_valid_ip_address(ixpip, 'IP'):
+            
+                ixpip = handler.clean_ip(ixpip, 'IP')
+                if handler.is_valid_ip_address(ixpip, 'IP', 'PDB'):
                     if (ixpip not in ixp_to_asn.keys() and ixpip not in dumped_ixps and ixpip not in reserved_tree and ixpip in temp_subnet_tree):
                         ixp_to_asn[ixpip] = [str(node['asn'])]
                     elif ixpip in ixp_to_asn.keys():
