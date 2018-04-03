@@ -224,7 +224,6 @@ class Subnet_handle():
                 Sub.pop(subnet)
                 final_subnet2country.pop(subnet)
         
-        print('Subnet_tree',len(Sub))
         return Stree, Sub, help_tree
 
     def exclude_reserved_subpref(self, subTree, final_sub2name, reserved_list, final_subnet2country):
@@ -259,11 +258,6 @@ class extract_additional_info():
 
         # IXP_dict: A dictionary with {IXP IP}=[ASN].
         self.ixp_ip2asn = {}
-        # IXP_dict: A dictionary with {IXP IP}=[IXP short name, IXP long name].
-        self.ixp_ip2names = {}
-        # IXP_dict: A dictionary with {IXP IP}=[CC, city].
-        self.ixp_ip2cc = {}
-        
         # Subnet: A dictionary with {Subnet}=[IXP long name,IXP short name].
         self.Subnet = {}
         # additional_info_tree: A Subnet Tree containing all the IXP subnets

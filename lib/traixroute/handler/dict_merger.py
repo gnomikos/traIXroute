@@ -88,7 +88,7 @@ class dict_merger():
         for pfx in additional_subnet2name:
             # Include and/or overwrite existing PDB & PCH prefixes based on additional prefixes.
             if handle.sub_prefix_check(pfx, help_tree) and pfx.split('/')[0] not in additional_ixp_ip2asn:
-                print(pfx,help_tree[pfx])
+                
                 subTree.remove(help_tree[pfx])
                 final_sub2name.pop(help_tree[pfx])
                 final_subnet2country.pop(help_tree[pfx])
