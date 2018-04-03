@@ -53,6 +53,8 @@ class string_handler():
             # For IP handling.
             if kind == 'IP':
                 try:
+                    if address.endswith('.0') or address.endswith('.255'):
+                        return False
                     socket.inet_aton(address)
                     return True
                 except socket.error as e:
@@ -174,6 +176,7 @@ class string_handler():
         '''
 
         if prefix in tree:
+            # Due to bug in SubnetTree. Returns True for a lookup of 1.1.1.0/24 when having only 1.1.1.0/25
             if int(prefix.split('/')[1]) >= int(tree[prefix].split('/')[1]):
                 return True
         return False
@@ -332,6 +335,15 @@ class string_handler():
         except ValueError:
             return False
 
+    def clean_ixp_name(self, ixp_name):
+    
+        ixp_name = re.sub('\(.*?\)', '', ixp_name)
+        ixp_name = ixp_name.replace(',', ' ')
+        ixp_name = ixp_name.strip()
+        ixp_name = re.sub(' +', ' ', ixp_name)
+        
+        return ixp_name
+    
     def clean_long_short(self, long_name, short_name):
         '''
         Cleans the given long and short IXP names from unnecessary characters.
@@ -341,16 +353,7 @@ class string_handler():
             a) long_name, short_name: The cleaned long and short names respectively.
         '''
 
-        long_name = re.sub('\(.*?\)', '', long_name)
-        long_name = long_name.replace(',', ' ')
-        long_name = long_name.strip()
-        long_name = re.sub(' +', ' ', long_name)
-        short_name = re.sub('\(.*?\)', '', short_name)
-        short_name = short_name.replace(',', ' ')
-        short_name = short_name.strip()
-        short_name = re.sub(' +', ' ', short_name)
-
-        return long_name, short_name
+        return self.clean_ixp_name(long_name), self.clean_ixp_name(short_name)
         
     def format_country_city(self, entry):
         entry = re.split('/|,|&', entry.strip())

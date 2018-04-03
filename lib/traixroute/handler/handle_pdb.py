@@ -253,6 +253,7 @@ class peering_handle():
             
                 ixpip = handler.clean_ip(ixpip, 'IP')
                 if handler.is_valid_ip_address(ixpip, 'IP', 'PDB'):
+                    
                     if (ixpip not in ixp_to_asn.keys() and ixpip not in dumped_ixps and ixpip not in reserved_tree and ixpip in temp_subnet_tree):
                         ixp_to_asn[ixpip] = [str(node['asn'])]
                     elif ixpip in ixp_to_asn.keys():

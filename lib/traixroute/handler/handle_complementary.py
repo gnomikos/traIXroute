@@ -163,7 +163,7 @@ class Subnet_handle():
         '''
         Returns a Subnet Tree containing all the IXP subnets.
         Input:
-            a) Sub: A dictionary with {Subnet}=[IXP long name,IXP short name] after merging datasets.
+            a) Sub: A dictionary with {Subnet}=[IXP long name,IXP short name] after merging PDB and PCH datasets.
             b) additional_tree: a Subnet Tree containing all the user {IXP Subnet}=IXP Subnet.
             c) reserved_sub_tree: A SubnetTree containing the reserved Subnets.
             d) final_subnet2country: A dictionary with {Subnet}=[country,city].
@@ -224,6 +224,7 @@ class Subnet_handle():
                 Sub.pop(subnet)
                 final_subnet2country.pop(subnet)
         
+        print('Subnet_tree',len(Sub))
         return Stree, Sub, help_tree
 
     def exclude_reserved_subpref(self, subTree, final_sub2name, reserved_list, final_subnet2country):
@@ -257,7 +258,12 @@ class extract_additional_info():
     def __init__(self):
 
         # IXP_dict: A dictionary with {IXP IP}=[ASN].
-        self.IXP_dict = {}
+        self.ixp_ip2asn = {}
+        # IXP_dict: A dictionary with {IXP IP}=[IXP short name, IXP long name].
+        self.ixp_ip2names = {}
+        # IXP_dict: A dictionary with {IXP IP}=[CC, city].
+        self.ixp_ip2cc = {}
+        
         # Subnet: A dictionary with {Subnet}=[IXP long name,IXP short name].
         self.Subnet = {}
         # additional_info_tree: A Subnet Tree containing all the IXP subnets
@@ -296,13 +302,12 @@ class extract_additional_info():
                 i = 0
                 for line in f:
                     i += 1
-                    # Ignores existing comments.
-                    line = line.split('#')[0].replace(' ', '').strip()
-
-                    if line == '':
+                    
+                    # Ignores lines with comments.
+                    if line.startswith('#'):
                         continue
 
-                    line_split = [line.strip() for line in line.split(',')]
+                    line_split = [line.strip() for line in line.split(', ')]
 
                     IXP = handles.extract_ip(line, 'Subnet')
                     IXP = IXP[0] if len(IXP) else ''
@@ -311,8 +316,8 @@ class extract_additional_info():
                     if handles.is_valid_ip_address(IXP, 'Subnet', 'Additional') and IXP == line_split[0]:
                         if len(line_split) == 5:
 
-                            ixp_full_name   = line_split[1]
-                            ixp_short_name  = line_split[2]
+                            ixp_short_name  = line_split[1]
+                            ixp_full_name   = line_split[2]
                             country         = line_split[3]
                             city            = line_split[4]
                             
@@ -326,8 +331,7 @@ class extract_additional_info():
                                     'additional_info.txt: Multiple similar IXP Prefixes detected. Exiting.')
                                 sys.exit(0)
                         else:
-                            print('Invalid syntax in line ' +
-                                  str(i + 1) + '. Exiting.')
+                            print('Invalid syntax in line ' + str(i) + '. Exiting.')
                             sys.exit(0)
                     # Imports only IXP IPs with valid format.
                     else:
@@ -338,18 +342,17 @@ class extract_additional_info():
                             try:
                                 int(line_split[1])
                             except:
-                                print(
-                                    'additional_info.txt: Invalid syntax in line ' + str(i + 1) + '. Exiting.')
+                                print('additional_info.txt: Invalid syntax in line ' + str(i) + '. Exiting.')
                                 sys.exit(0)
                             asn             = line_split[1]
-                            ixp_full_name   = line_split[2]
-                            ixp_short_name  = line_split[3]
+                            ixp_short_name  = line_split[2]
+                            ixp_full_name   = line_split[3]
                             country         = line_split[4]
                             city            = line_split[5]
                             
-                            if handles.is_valid_ip_address(IXP, 'IP', 'Additional') and IXP == line_split[0]:
-                                if IXP not in self.IXP_dict:
-                                    self.IXP_dict[IXP]       = [asn]
+                            if handles.is_valid_ip_address(IXP, 'IP', 'Additional'):
+                                if IXP not in self.ixp_ip2asn:
+                                    self.ixp_ip2asn[IXP]     = [asn]
                                     self.Subnet[IXP + '/32'] = [ixp_short_name, ixp_full_name]
                                     self.pfx2cc[IXP + '/32'] = [country, city]
                                 else:
@@ -358,9 +361,9 @@ class extract_additional_info():
                                     sys.exit(0)
                             else:
                                 print(
-                                    'additional_info.txt: Invalid syntax in line ' + str(i + 1) + '. Exiting.')
+                                    'additional_info.txt: Invalid IP in line ' + str(i) + '. Exiting.')
                                 sys.exit(0)
                         else:
                             print(
-                                'additional_info.txt: Invalid syntax in line ' + str(i + 1) + '. Exiting.')
+                                'additional_info.txt: Invalid syntax in line ' + str(i) + '. Exiting.')
                             sys.exit(0)

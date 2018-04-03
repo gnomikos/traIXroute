@@ -20,6 +20,8 @@ Version 2.3 - March 2018
 - Fixed bug when formatting IXP countries and cities.
 - Fixed bug when merging IXP prefixes/subprefixes with different IXP names.
 - Added Levenshtein distance as metric to compare IXP names.
+- Fixed bug when importing IXP IPs/Prefixes from additional file (entries specified by the user).
+- Fixed bug when parsing IXP IPs like x.x.x.0.
 
 Version 2.2 - June 2017
 - Fixed bug when some RIPE Atlas measurements fields are missing from the results.

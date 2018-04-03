@@ -67,7 +67,7 @@ class dict_merger():
                 d2[k] = d1[k]
         return d2
 
-    def include_additional(self, final_sub2name, subTree, additional_subnet2name, final_subnet2country, additional_pfx2cc, help_tree):
+    def include_additional_prefixes(self, final_sub2name, subTree, additional_subnet2name, final_subnet2country, additional_pfx2cc, help_tree, additional_ixp_ip2asn):
         '''
         Includes the additional info subnet2names to the final dictionaries.
         Input:
@@ -76,6 +76,7 @@ class dict_merger():
             c) additional_subnet2name: The user imported {IXP Subnet}=[[IXP name long, IXP name short]].
             d) help_tree: SubneTree containing the IXP Subnets.
             e) final_subnet2country: subTree: The final [IXP Subnet]=[[IXP name long, IXP name short]].
+            f) additional_ixp_ip2asn: {IXP IP} = ASN, all the IXP IPs from additional file.
         Output:
             a) subTree: The final [IXP Subnet]=[[IXP name long, IXP name short]].
             b) final_sub2name: The final dictionary with {IXP Subnet} = [[IXP long name, IXP short name]].
@@ -85,7 +86,9 @@ class dict_merger():
         handle = string_handler.string_handler()
 
         for pfx in additional_subnet2name:
-            if handle.sub_prefix_check(pfx, help_tree):
+            # Include and/or overwrite existing PDB & PCH prefixes based on additional prefixes.
+            if handle.sub_prefix_check(pfx, help_tree) and pfx.split('/')[0] not in additional_ixp_ip2asn:
+                print(pfx,help_tree[pfx])
                 subTree.remove(help_tree[pfx])
                 final_sub2name.pop(help_tree[pfx])
                 final_subnet2country.pop(help_tree[pfx])
