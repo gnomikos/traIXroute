@@ -263,7 +263,7 @@ class database():
         '''
         Prints the IXP subnets with their corresponding IXP names to the ixp_prefixes.txt file.
         Input:
-            a) d1: The dictionary with the IXP subnets-to-IXP names from the additional_info.txt file.
+            a) additional_prefixes: The dictionary with the IXP subnets-to-IXP names from the additional_info.txt file.
             b) d2: The dictionary with the IXP subnets-to-IXP names from the database (after merging pch and peeringdb).
         '''
 
@@ -273,29 +273,30 @@ class database():
             
             for prefix in additional_prefixes:
                 if prefix in self.subTree and prefix.split('/')[0] not in additional_ixp_ip2asn:
-                    output = output + str(number) + ', ' + '+' + ', ' + prefix
+                    output += ', '.join([str(number), '+', prefix, ''])
                     for IXP in self.subTree[prefix]:
-                        output = output + ', ' + IXP[1] + ', ' + IXP[0]
+                        output += ', '.join([IXP[1], IXP[0], ''])
                     if prefix in self.cc_tree:
-                        output = output + ', ' + self.cc_tree[prefix][1] + ', ' + self.cc_tree[prefix][0]
-                    output = output + '\n'
+                        output += ', '.join([self.cc_tree[prefix][1], self.cc_tree[prefix][0]])
+                    output += '\n'
                     number += 1
 
             for key in d2:
                 # To overwrite from additional prefixes an existing prefix in merged PDB & PCH prefixes
                 if key not in additional_prefixes:
                     if key in self.subTree:
+                        # Dirty prefix.
                         if len(self.subTree[key]) > 1:
-                            output = output + str(number) + ', ' + '?' + ', ' + key
+                            output += ', '.join([str(number), '?', key, ''])
+                        # Valid prefix.
                         else:
-                            output = output + str(number) + ', ' + '!' + ', ' + key
+                            output += ', '.join([str(number), '!', key, ''])
                         for IXP in self.subTree[key]:
-                            output = output + ', ' + IXP[1] + ', ' + IXP[0]
+                            output += ', '.join([IXP[1], IXP[0], ''])
                         if key in self.cc_tree:
-                            output = output + ', ' + \
-                                self.cc_tree[key][0] + ', ' + self.cc_tree[key][1]
+                            output += ', '.join([self.cc_tree[key][0], self.cc_tree[key][1]])
 
-                    output = output + '\n'
+                    output += '\n'
                     number += 1
                     
             filename.write(output)
@@ -314,31 +315,31 @@ class database():
             number = 0
             for key in additional_ixp_ip2asn:
                 if key in self.subTree:
-                    output = output + str(number) + ', ' + '+' + ', ' + key
+                    output += ', '.join([str(number), '+', key, ''])
                     for node in additional_ixp_ip2asn[key]:
-                        output = output + ', AS' + node
+                        output += ', '.join(['AS' + node, ''])
                     for IXP in self.subTree[key]:
-                        output = output + ', ' + IXP[1] + ', ' + IXP[0]
+                        output += ', '.join([IXP[1], IXP[0], ''])
                     if key in self.cc_tree:
-                        output = output + ', ' + \
-                            self.cc_tree[key][1] + ', ' + self.cc_tree[key][0]
-                    output = output + '\n'
+                        output += ', '.join([self.cc_tree[key][1], self.cc_tree[key][0]])
+                    output += '\n'
                     number += 1
             
             for key in merged_ixp2asn:
                 if key not in additional_ixp_ip2asn and key in self.subTree:
+                    # Dirty membership entry.
                     if len(self.subTree[key]) > 1:
-                        output = output + str(number) + ', ' + '?' + ', ' + key
+                        output += ', '.join([str(number), '?', key, ''])
+                    # Valid membership entry.
                     else:
-                        output = output + str(number) + ', ' + '!' + ', ' + key
+                        output += ', '.join([str(number), '!', key, ''])
                     for node in merged_ixp2asn[key]:
-                        output = output + ', AS' + node
+                        output += ', '.join(['AS' + node, ''])
                         for IXP in self.subTree[key]:
-                            output = output + ', ' + IXP[1] + ', ' + IXP[0]
+                            output += ', '.join([IXP[1], IXP[0], ''])
                     if key in self.cc_tree:
-                        output = output + ', ' + \
-                            self.cc_tree[key][0] + ', ' + self.cc_tree[key][1]
-                    output = output + '\n'
+                        output += ', '.join([self.cc_tree[key][0], self.cc_tree[key][1]])
+                    output += '\n'
                     number += 1
                     
             filename.write(output)
