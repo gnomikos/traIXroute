@@ -53,8 +53,6 @@ class string_handler():
             # For IP handling.
             if kind == 'IP':
                 try:
-                    if address.endswith('.0') or address.endswith('.255'):
-                        return False
                     socket.inet_aton(address)
                     return True
                 except socket.error as e:

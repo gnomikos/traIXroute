@@ -183,12 +183,9 @@ class database():
 
             results = []
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-                results.append(executor.submit(
-                    asn_hand.routeviews_extract, self.reserved_sub_tree))
-                results.append(executor.submit(peeringdb.peering_handle_main,
-                                               additional_info_tree, self.reserved_sub_tree, country2cc))
-                results.append(executor.submit(
-                    pch.pch_handle_main, self.reserved_sub_tree, additional_info_tree, country2cc))
+                results.append(executor.submit(asn_hand.routeviews_extract, self.reserved_sub_tree))
+                results.append(executor.submit(peeringdb.peering_handle_main, self.reserved_sub_tree, country2cc))
+                results.append(executor.submit(pch.pch_handle_main, self.reserved_sub_tree, additional_info_tree, country2cc))
 
             self.asn_routeviews     = results[0].result()[0]
             routeviews_dict         = results[0].result()[1]
@@ -196,22 +193,26 @@ class database():
             pdb_subnet2name         = results[1].result()[0]
             pdb_ip2asn              = results[1].result()[1]
             pdb_subnet2country      = results[1].result()[2]
-
-            pch_subnet2names        = results[2].result()[0]
-            pch_ixp2asn             = results[2].result()[1]
+            stats_pdb_prefixes      = len(pdb_subnet2name)
+            stats_pdb_ips           = len(pdb_ip2asn)
+    
+            pch_subnet2name         = results[2].result()[0]
+            pch_ip2asn              = results[2].result()[1]
             pch_subnet2country      = results[2].result()[2]
-
+            stats_pch_prefixes      = len(pch_subnet2name)
+            stats_pch_ips           = len(pch_ip2asn)
+            
             # Merges the dictionaries from pch, peeringdb and the
             # additional_info file.
             final_subnet2country = dict_merge.merge_cc(pdb_subnet2country, pch_subnet2country)
-            merged_sub2name = dict_merge.merge_keys2names(pch_subnet2names, pdb_subnet2name)
-
+            merged_sub2name = dict_merge.merge_keys2names(pch_subnet2name, pdb_subnet2name)
+            
             [self.subTree, self.final_sub2name, help_tree] = Sub_hand.Subnet_tree(merged_sub2name, additional_info_help_tree, self.reserved_sub_tree, final_subnet2country)
             [self.subTree, self.final_sub2name] = Sub_hand.exclude_reserved_subpref(self.subTree, self.final_sub2name, reserved_list, final_subnet2country)
             [self.subTree, self.final_sub2name, final_subnet2country] = dict_merge.include_additional_prefixes(self.final_sub2name, self.subTree, additional_subnet2name, final_subnet2country, additional_pfx2cc, help_tree, additional_ixp_ip2asn)
-
+            
             # Merging PDB & PCH IXP memberhip data.
-            [merged_ixp2asn, dirty_count] = dict_merge.merge_ixp2asns(pch_ixp2asn, pdb_ip2asn, True, self.subTree)
+            [merged_ixp2asn, dirty_count] = dict_merge.merge_ixp2asns(pch_ip2asn, pdb_ip2asn, True, self.subTree)
             # Merging PCB & PCH with additional membership data.
             self.final_ixp2asn = dict_merge.merge_ixp2asns(additional_ixp_ip2asn, merged_ixp2asn, False, self.subTree, replace=True)
             self.asnmemb = asn_hand_info.asn_memb(self.final_ixp2asn, self.subTree)
@@ -228,8 +229,8 @@ class database():
                                 self.homepath + '/database/Merged/trIX_subnet2name.json')
                 executor.submit(json_handle.export_IXP_dict, final_subnet2country,
                                 self.homepath + '/database/Merged/sub2country.json')
-
-            output.print_db_stats(len(pdb_ip2asn), len(pdb_subnet2name), len(pch_ixp2asn), len(pch_subnet2names), self.final_ixp2asn, self.final_sub2name, dirty_count, additional_ixp_ip2asn, additional_subnet2name, len(reserved_list), self.print_db, self.homepath + '/')
+            
+            output.print_db_stats(stats_pdb_ips, stats_pdb_prefixes, stats_pch_ips, stats_pch_prefixes, self.final_ixp2asn, self.final_sub2name, dirty_count, additional_ixp_ip2asn, additional_subnet2name, len(reserved_list), self.print_db, self.homepath + '/')
 
         # Adds country and city related information of IXPs
         self.cc_tree = self.dict2tree(final_subnet2country)
