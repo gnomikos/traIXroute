@@ -278,7 +278,7 @@ class database():
                     for IXP in self.subTree[prefix]:
                         output += ', '.join([IXP[1], IXP[0], ''])
                     if prefix in self.cc_tree:
-                        output += ', '.join([self.cc_tree[prefix][1], self.cc_tree[prefix][0]])
+                        output += ', '.join([self.cc_tree[prefix][0], self.cc_tree[prefix][1]])
                     output += '\n'
                     number += 1
 
@@ -322,7 +322,7 @@ class database():
                     for IXP in self.subTree[key]:
                         output += ', '.join([IXP[1], IXP[0], ''])
                     if key in self.cc_tree:
-                        output += ', '.join([self.cc_tree[key][1], self.cc_tree[key][0]])
+                        output += ', '.join([self.cc_tree[key][0], self.cc_tree[key][1]])
                     output += '\n'
                     number += 1
             

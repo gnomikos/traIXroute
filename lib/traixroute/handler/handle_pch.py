@@ -206,7 +206,6 @@ class pch_handle():
             a) ixpip2long: A dictionary with {keyid}=[IXP long name].
             b) IXP_region: A dictionary with {keyid}=[IXP country, IXP city].
         '''
-#317, North America, United States, New York, Equinix New York IBX, Equinix NY, Active, Ethernet, Commercial, 20030311, https://www.equinix.com/, https://www.equinix.com/resources/, , 66, 0, 0
         
         handle_string = string_handler.string_handler()
         doc = self.file_opener(self.filename_excha, 2)

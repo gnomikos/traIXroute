@@ -108,7 +108,7 @@ class traixroute_output():
             l) mypath: The path to the database.
         '''
 
-        tmp = 'Imported ' + str(lenreserved) + ' Reserved Subnets.\n'
+        tmp =  'Imported '  + str(lenreserved) + ' Reserved Subnets.\n'
         tmp += 'Extracted ' +  str(len(additional_ip2asn)) + ' IXP IPs from additional_info.txt.\n'
         tmp += 'Extracted ' + str(len(additional_subnet2name) - len(additional_ip2asn)) + ' IXP Subnets from additional_info.txt.\n'
         tmp += 'Extracted ' + str(peering_ixp2asn)    + ' IXP IPs from PDB.\n'
@@ -116,7 +116,7 @@ class traixroute_output():
         tmp += 'Extracted ' + str(peering_sub2name)   + ' IXP Subnets from PDB.\n'
         tmp += 'Extracted ' + str(pch_sub2name)       + ' IXP Subnets from PCH.\n'
         tmp += 'Extracted ' + str(len(final_ixp2asn)) + ' (no) dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
-        tmp +=  'Detected ' +  str(dirty_ips)          + ' dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
+        tmp += 'Detected ' +  str(dirty_ips)          + ' dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
         tmp += 'Extracted ' + str(len([subnet for subnet in final_sub2name if '/32' not in subnet]))+ ' IXP Subnets after merging PDB, PCH and additional_info.txt.\n'
         if db_print:
             print(tmp)

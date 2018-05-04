@@ -275,7 +275,7 @@ class extract_additional_info():
     def extract_additional_info(self, mypath):
         '''
         Input: 
-            a) filename: the additional_info.txt file.
+            a) mypath: the directory path of the additional file.
         '''
 
         mypath += '/configuration/' + self.user_ixps_filename
