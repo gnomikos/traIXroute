@@ -30,7 +30,7 @@ setup(
     install_requires=['setuptools',
                       'cffi==1.7.0',
                       'cryptography==2.1.4',
-                      'idna==2.1',
+                      'idna==2.5',
                       'pyasn1==0.1.9',
                       'pycparser==2.14',
                       'pyOpenSSL==17.4.0',
