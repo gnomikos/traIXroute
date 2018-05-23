@@ -307,7 +307,7 @@ class traIXroute():
                 # Check IP or FQDN format consistency for the given destinations.
                 string_handle = string_handler.string_handler()
                 for inputIP in input_list:
-                    if not string_handle.is_valid_ip_address(inputIP, 'IP'):
+                    if not string_handle.is_valid_ip_address(inputIP, 'IP', 'CommandLine'):
                         try:
                             IP_name = socket.gethostbyname(inputIP)
                         except:
