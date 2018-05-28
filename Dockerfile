@@ -1,17 +1,19 @@
 FROM python:3
 
-LABEL contributor="Shrivatsan N R"
+LABEL contributor="Shrivatsan N R <nrshrivatsan@outlook.com>"
 LABEL maintainer="Dimitrios Mavrommatis <jim.mavrommatis@gmail.com>"
 
-WORKDIR /root
+RUN apt-get update && \
+      apt-get install -y git g++ gcc python3 python3-setuptools python3-dev traceroute python3-pip libssl-dev libffi-dev
 
-COPY lib/traixroute/downloader/install_scamper.py install_scamper.py
+RUN git clone https://github.com/gnomikos/traIXroute.git && \
+    cd traIXroute
 
-RUN pip install --no-cache-dir traixroute
+WORKDIR /traIXroute
 
-RUN python install_scamper.py
-
-RUN traixroute -u -process
-
-ENTRYPOINT ["traixroute"]
+RUN pip3 install -r setup/requirements.txt &&\
+      python3 lib/traixroute/downloader/install_scamper.py install_scamper.py &&\
+        python3 setup.py sdist bdist_wheel
+WORKDIR bin/
+ENTRYPOINT ["./traixroute"]
 CMD ["-h"]
