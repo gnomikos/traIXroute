@@ -10,6 +10,19 @@ The heuristics used and their evaluation are described in the following paper:
 
 **traIXroute enhances for the first time its features interoperating with the [Remote Peering Jedi tool](http://inspire.edu.gr/rp/index.html). For now, only data for DE-CIX (Frankfurt), Any2 (Los Angeles), AMS-IX, France-IX, LINX and MSK-IX are included.**
 
+## Installation (docker)
+The tool can be run inside from a container by building it with:
+
+```sh
+docker build -t traixroute .
+```
+
+and then running it with:
+
+```sh
+docker run -ti --name trx traixroute:latest
+```
+
 ## Installation
 The program has been tested on Linux and Mac OS X. Detailed installation instructions can be found in the INSTALL file in the repository. You can install all the necessary packages running:
 
