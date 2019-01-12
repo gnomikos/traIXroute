@@ -47,17 +47,13 @@ class trace_tool():
         # of an IP address.
         string_handle = string_handler.string_handler()
         arguments = arguments.strip()
-        if not string_handle.is_valid_ip_address(IP_name, 'IP'):
+        if not string_handle.is_valid_ip_address(IP_name, 'IP', 'CommandLine'):
             try:
                 IP_name = socket.gethostbyname(IP_name)
             except:
                 print('--> ' + IP_name +
                       ' has wrong address format. Expected an IPv4 format or a valid url.')
                 return [], []
-        elif not string_handle.check_input_ip(IP_name):
-            print('--> ' + IP_name +
-                  ' has wrong address format. Expected an IPv4 format or a valid url.')
-            return [], []
 
         if classic:
             [route, mytime] = self.scamper_call(IP_name, arguments)

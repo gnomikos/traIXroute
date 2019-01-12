@@ -24,11 +24,12 @@ OS=$(uname)
 cur_dir=$(dirname $0)
 
 additional(){
+
+    sudo pip3 install --upgrade -r $cur_dir/requirements.txt
+
     if ! hash scamper 2>/dev/null; then
-        python3 $cur_dir/setup.py
+        sudo python3 $cur_dir/../lib/traixroute/downloader/install_scamper.py
     fi
-    pip3 install --upgrade pip
-    pip3 install --upgrade -r $cur_dir/requirements.txt
 }
 
 # Install dependencies for OS X.
@@ -64,7 +65,7 @@ if [ $OS = 'Darwin' ]; then
 elif [ $OS = 'Linux' ]; then
     echo 'Installing dependencies for Linux.'
     sudo apt-get update
-    sudo apt-get install g++ gcc python3 python3-setuptools python3-dev traceroute python3-pip libssl-dev libffi-dev -y
+    sudo apt-get install g++ gcc traceroute libssl-dev libffi-dev -y
     additional
 
 # Not supported OS.

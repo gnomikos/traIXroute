@@ -1,5 +1,34 @@
-Version 2.1.1 - February 2017
+Version 2.3 - March 2018
+- Plenty of performance improvements, optimizations and code polishes.
+- Added more inline comments.
+- Fixed error messages in case of bad format in detection rules.
+- Fixed bug when a RIPE atlas traceroute measurement returns an error message.
+- Changed to keep the total initial format of a RIPE Atlas traceroute measurement in the json output.
+- Fixed bug with IP hops when importing a RIPE Atlas traceroute measurement json file.
+- Fixed bug when measuring traceroute path stats.
+- Fixed bug with dns flag.
+- Fixed bug when checking the validity of IP/FQDN format for each destination.
+- Replaced command -o with -otxt and -ojson.
+- Added new commands -silent and -stats.
+- Fixed bug when installing the tool without using pip.
+- Updated scamper version.
+- Added two new modes, -process for performance (using processes) and -thread for conservative mode (using threads) respectively.
+- Added support for multiple file analysis specifying the directory path instead of the file name.
+- Added more flexibility to the output file names.
+- Fixed bug with dataset merging.
+- Improved output json format.
+- Fixed bug when formatting IXP countries and cities.
+- Fixed bug when merging IXP prefixes/subprefixes with different IXP names.
+- Added Levenshtein distance as metric to compare IXP names.
+- Fixed bug when importing IXP IPs/Prefixes from additional file (entries specified by the user).
+- Fixed bug when parsing IXP IPs like x.x.x.0/255.
+- Fixed bug with database stats.
 
+Version 2.2 - June 2017
+- Fixed bug when some RIPE Atlas measurements fields are missing from the results.
+- Added missing short/long IXP names in the IXP membership data under some circumstances.
+
+Version 2.1.1 - February 2017
 - Added support for installation with pip.
 - Changed the directory hierarchy and structure of the repository.
 - Configuration and dataset files are stored in home directory.
@@ -10,7 +39,6 @@ Version 2.1.1 - February 2017
 - Added two new IXP detection rules to infer possible IXP crossing links in IP paths.
 
 Version 2.1 - December 2016
-
 - Added Remote IXP peering detection based on datasets from "Remote Peering Jedi" project (http://www.inspire.edu.gr/rp/about.html).
 - Fixed bug in installation process.
 - Fixed bug with no public ripe measurements.
@@ -19,7 +47,6 @@ Version 2.1 - December 2016
 - Fixed syntax of some IXP detection rules.
 
 Version 2.0 - October 2016
-
 - Added configuration file.
 - Added "Examples" folder with input samples.
 - Changed the organisation of the tool in folders and classes.
@@ -44,5 +71,4 @@ Version 2.0 - October 2016
 - Added city and country level information of IXPs.
 
 Version 1.0 - May 2016
-
 - First build of traIXroute.

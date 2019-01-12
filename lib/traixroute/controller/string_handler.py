@@ -23,7 +23,9 @@
 import re
 import socket
 import difflib
-
+import ipaddress
+import netaddr
+from fuzzywuzzy import fuzz
 
 class string_handler():
     '''
@@ -31,7 +33,7 @@ class string_handler():
     '''
 
     # TODO: Change this function for IPv6
-    def is_valid_ip_address(self, address, kind):
+    def is_valid_ip_address(self, address, kind, dataset):
         '''
         Determines if the given string is in valid IP/Subnet form.
         Input: 
@@ -40,73 +42,36 @@ class string_handler():
         Output:
             a) True if the form is valid, False otherwise.
         '''
-
+    
         if(kind != 'IP' and kind != 'Subnet'):
-            print("Error in argument kind. Give \"IP\" or \"Subnet\".")
+            print("Wrong argument kind. Give \"IP\" or \"Subnet\".")
             return False
 
-        if address is None or address == '' or address == '\n':
+        if not address or address == '\n':
             return False
-
-        splitted = address.split('.')
-        network = address.split('/')
-
-        # For IP handling.
-        if kind == 'IP' and len(splitted) > 3:
-            try:
-                for node in splitted:
-                    if int(node) > 255 or int(node) < 0:
-                        return False
-
-                if splitted[-1] != '0' and splitted[-1] != '255':
-                    return True
-            except:
-                return False
-
-        # For Subnet Handling.
-        elif kind == 'Subnet' and len(splitted) > 3 and len(network) > 1:
-            try:
-                for node in network[0].split('.'):
-                    if int(node) > 255 or int(node) < 0:
-                        print("Error in subnet format.")
-                        return False
-            except:
-                return False
-
-            try:
-                mask = int(network[1])
-                if (mask < 32) or (mask == 32 and network[0].split('.')[-1] != '0'):
-                    return True
-            except:
-                print("Error in subnet mask:", address)
-                return False
-
-        return False
-
-    def subnetcheck(self, string, mask):
-        '''
-        Converts wrong formatted subnets to valid prefixes:
-            A.B.C/24 -> A.B.C.0/24
-            A.B/16 -> A.B.0.0/16
-            A/8 -> A.0.0.0/8
-        Inputs:
-            a) string: The subnet.
-            b) mask: The mask of the subnet.
-        Output:
-            a) The valid subnet.
-        '''
-
-        subnet_dict = {'8': '.0.0.0', '16': '.0.0', '24': '.0'}
-        try:
-            int_mask = int(mask)
-        except:
-            return []
-        if mask not in subnet_dict:
-            return []
         else:
-            ip = re.findall(
-                r'[0-9]+(?:\.[0-9]+){3}/[0-9]+', string + subnet_dict[mask] + '/' + mask)
-            return ip
+            # For IP handling.
+            if kind == 'IP':
+                try:
+                    socket.inet_aton(address)
+                    return True
+                except socket.error as e:
+                    print('From',dataset,'error with IP:', address, '-', e)
+                    return False
+                
+            # For Subnet Handling.
+            elif kind == 'Subnet':
+                try:
+                    if ipaddress.IPv4Network(address):
+                        return True
+                except ValueError as e:
+                    print('From',dataset,'error with prefix:', address, '-', e)
+                except ipaddress.AddressValueError as e:
+                    print('From',dataset,'error with prefix:', address, '-', e)
+                except ipaddress.NetmaskValueError as e:
+                    print('From',dataset,'error with prefix:', address, '-', e)
+
+                return False
 
     # TODO: Change this function for IPv6
     def extract_ip(self, string, kind):
@@ -128,13 +93,13 @@ class string_handler():
                 temp_string[1] = temp_string[1].strip('.')
                 ip = re.findall(
                     r'[0-9]+(?:\.[0-9]+){3}/[0-9]+', temp_string[0] + '/' + temp_string[1])
-                return self.subnetcheck(temp_string[0], temp_string[1]) if not ip else ip
+                return ip
             else:
                 return []
         elif kind == 'IP':
             return re.findall(r'[0-9]+(?:\.[0-9]+){3}', string)
         else:
-            print('Wrong argument type!')
+            print('Wrong argument type when extracting IP or Subnet.')
 
     def string_removal(self, string):
         '''
@@ -157,10 +122,10 @@ class string_handler():
 
         return (string)
 
-    def string_comparison(self, string1, string2, prob=0.80):
+    def string_comparison(self, string1, string2, prob_difflib = 0.80, prob_leven = 74):
         '''
         A function which compares the similarity of two strings.
-        This function has been configured with a similarity factor (true_ratio) equals to 0.8
+        This function has been configured with a similarity factors (true_ratio) after manual tuning.
         Input: 
             a) string1, string2: The two strings to be compared.
             b) prob: The similarity threshold.
@@ -170,13 +135,17 @@ class string_handler():
 
         string1 = self.string_removal(string1)
         string2 = self.string_removal(string2)
-        true_ratio = difflib.SequenceMatcher(None, string1, string2).ratio()
+        ratio_diff = difflib.SequenceMatcher(None, string1, string2).ratio()
+        ratio_leven = fuzz.WRatio(string1, string2)
+        
         if string1 == '' or string2 == '':
             return False
-        if true_ratio > prob:
+        
+        if ratio_diff > prob_difflib or ratio_leven > prob_leven:
             return True
         else:
             return False
+        
 
     # TODO: Change this function for IPv6
     def clean_ip(self, IP, kind):
@@ -189,50 +158,10 @@ class string_handler():
             a) final: The "cleaned" IP address.
         '''
 
-        temp = IP
         if kind == 'Subnet':
-            splitted = IP.split('/')
-            if len(splitted) > 1:
-                temp = IP.split('/')[0]
-            else:
-                return ''
-
-        final = ''
-        for node in temp.split('.'):
-            part = ''
-            i = -1
-            for i in range(0, len(node) - 1):
-                if node[i] != '0':
-                    part = part + node[i]
-                    break
-            for j in range(i + 1, len(node)):
-                part = part + node[j]
-            if len(node) == 1:
-                part = node[0]
-            final = final + part + '.'
-        if final[-1] == '.':
-            final = final[:-1]
-        if kind == 'Subnet':
-            final = final + '/' + splitted[1]
-
-        return(final)
-
-    def check_input_ip(self, IP):
-        '''
-        Checks the format of an IP address.
-        Input:
-            a) IP: The IP to be checked.
-        Ouput: 
-            a) True if the IP has a valid form, False otherwise.
-        '''
-
-        temp = IP.split('.')
-        if len(temp) > 4:
-            return False
-        for node in temp:
-            if len(node) > 1 and node[0] == '0':
-                return False
-        return True
+            return str(netaddr.IPNetwork(IP).cidr)
+        else:
+            return str(netaddr.IPNetwork(IP).cidr).split('/')[0]
 
     def sub_prefix_check(self, prefix, tree):
         '''
@@ -245,6 +174,7 @@ class string_handler():
         '''
 
         if prefix in tree:
+            # Due to bug in SubnetTree. Returns True for a lookup of 1.1.1.0/24 when having only 1.1.1.0/25
             if int(prefix.split('/')[1]) >= int(tree[prefix].split('/')[1]):
                 return True
         return False
@@ -267,6 +197,8 @@ class string_handler():
         tmp_sname2 = self.concat_nums(sname2)
         tmp_lname1 = self.concat_nums(lname1)
         tmp_lname2 = self.concat_nums(lname2)
+
+        # Check if IXP names are substrings of each other.        
         sname1_lname2 = self.shortinlong(tmp_sname1, tmp_lname2)
         sname2_lname1 = self.shortinlong(tmp_sname2, tmp_lname1)
         sname1_sname2 = self.shortinlong(tmp_sname1, tmp_sname2)
@@ -275,19 +207,20 @@ class string_handler():
         lname2_lname1 = self.shortinlong(tmp_lname2, tmp_lname1)
 
         if self.string_comparison(tmp_lname1, tmp_lname2):
-            d3[0] = lname1
+            d3[0] = lname1 if len(lname1) > len(lname2) else lname2
         elif tmp_lname1 == '' and tmp_lname2 != '':
             d3[0] = lname2
         elif tmp_lname1 != '' and tmp_lname2 == '':
             d3[0] = lname1
 
         if self.string_comparison(tmp_sname1, tmp_sname2):
-            d3[1] = sname1
+            d3[1] = sname1 if len(sname1) > len(sname2) else sname2
         elif tmp_sname1 == '' and tmp_sname2 != '':
             d3[1] = sname2
         elif tmp_sname1 != '' and tmp_sname2 == '':
             d3[1] = sname1
-
+            
+        # Comparing IXP names checking if the first IXP name is substring of the second IXP name and vice versa.
         if d3[1] == '' and d3[0] == '':
             if (sname1_lname2):
                 d3 = [lname2, sname1]
@@ -326,8 +259,17 @@ class string_handler():
                     d3 = [lname2, d3[1]]
 
         if flag:
+            for i in range(len(d3)):
+                if d3[i][0] == '':
+                    d3[i][0] = d3[i][1]
+                elif d3[i][1] == '':
+                    d3[i][1] = d3[i][0]
             return d3
         else:
+            if d3[0] == '':
+                d3[0] = d3[1]
+            elif d3[1] == '':
+                d3[1] = d3[0]
             return [d3]
 
     def shortinlong(self, sname, lname):
@@ -366,16 +308,15 @@ class string_handler():
             a) new_String: The IXP name with the concatenated numbers.
         '''
 
-        temp_string = string.split()
-        new_string = ""
+        new_string = ''
 
-        for word in temp_string:
+        for word in string.split():
             if self.is_int(word):
                 new_string = new_string + word
             else:
-                new_string = new_string + " " + word
+                new_string = new_string + ' ' + word
 
-        return new_string
+        return new_string.strip()
 
     def is_int(self, myint):
         '''
@@ -392,6 +333,15 @@ class string_handler():
         except ValueError:
             return False
 
+    def clean_ixp_name(self, ixp_name):
+    
+        ixp_name = re.sub('\(.*?\)', '', ixp_name)
+        ixp_name = ixp_name.replace(',', ' ')
+        ixp_name = ixp_name.strip()
+        ixp_name = re.sub(' +', ' ', ixp_name)
+        
+        return ixp_name
+    
     def clean_long_short(self, long_name, short_name):
         '''
         Cleans the given long and short IXP names from unnecessary characters.
@@ -401,13 +351,10 @@ class string_handler():
             a) long_name, short_name: The cleaned long and short names respectively.
         '''
 
-        long_name = re.sub('\(.*?\)', '', long_name)
-        long_name = long_name.replace(',', ' ')
-        long_name = long_name.strip()
-        long_name = re.sub(' +', ' ', long_name)
-        short_name = re.sub('\(.*?\)', '', short_name)
-        short_name = short_name.replace(',', ' ')
-        short_name = short_name.strip()
-        short_name = re.sub(' +', ' ', short_name)
-
-        return long_name, short_name
+        return self.clean_ixp_name(long_name), self.clean_ixp_name(short_name)
+        
+    def format_country_city(self, entry):
+        entry = re.split('/|,|&', entry.strip())
+        
+        return '|'.join([item.strip() for item in entry])
+        

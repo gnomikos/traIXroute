@@ -20,13 +20,16 @@
 # You should have received a copy of the GNU General Public License
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
+from traixroute.controller import string_handler
+from time import ctime
 import os
 import socket
 import sys
-import json
+import ujson
 import time
-from traixroute.controller import string_handler
-from time import ctime
+import itertools
+import ntpath
+import datetime
 
 
 class traixroute_output():
@@ -35,36 +38,36 @@ class traixroute_output():
     '''
 
     def __init__(self):
+        
         self.measurement_json = {
             'ixp_crossings': [],
             'remote_peering': [],
             'possible_ixp_crossings': []
         }
 
-        self.measurement_info = ''
-        self.ixp_hops = ''
-        self.remote_hops = ''
-        self.unknown_hops = ''
+        self.measurement_info   = ''
+        self.ixp_hops           = ''
+        self.remote_hops        = ''
+        self.unknown_hops       = ''
+        # A list with all the analyzed paths to export to json file
+        self.json_obj = []  
+        # A list with all the analyzed paths to export to .txt file
+        self.txt_obj  = []   
 
-    def flush(self, fp):
+    def flush(self, traixparser):
         '''
-         Prints the data and flushes them to a file.
-         Input:
-            a) fp: The pointer to the file to write the data.
-            a) fp_json: The pointer to the json file to write the data.
+        Prints the data and flushes them to a file.
+            a) traixparser: The instance of parser that specifies which of the traIXroute command line arguments have been enabled.
         '''
-
+        
+        # Complements content output.
         output = self.measurement_info
         if self.ixp_hops != '':
-            output += 'IXP hops:\n' + self.ixp_hops
+            output += 'IXP hops:\n'          + self.ixp_hops
         if self.remote_hops != '':
-            output += 'Remote Peering:\n' + self.remote_hops
+            output += 'Remote Peering:\n'    + self.remote_hops
         if self.unknown_hops != '':
             output += 'Possible IXP hops:\n' + self.unknown_hops
-
-        print(output)
-        fp.write(output)
-
         if len(self.measurement_json['ixp_crossings']) == 0:
             del self.measurement_json['ixp_crossings']
         if len(self.measurement_json['remote_peering']) == 0:
@@ -72,7 +75,20 @@ class traixroute_output():
         if len(self.measurement_json['possible_ixp_crossings']) == 0:
             del self.measurement_json['possible_ixp_crossings']
 
-        return self.measurement_json
+        # SupplementS the relative output lists.
+        if not traixparser.flags['silent']      : print(output)
+        if traixparser.flags['outputfile_txt']  : self.txt_obj.append(output)
+        if traixparser.flags['outputfile_json'] : self.json_obj.append(self.measurement_json)
+
+        self.measurement_info   = ''
+        self.ixp_hops           = ''
+        self.remote_hops        = ''
+        self.unknown_hops       = ''
+        self.measurement_json = {
+            'ixp_crossings': [],
+            'remote_peering': [],
+            'possible_ixp_crossings': []
+        }
 
     def print_db_stats(self, peering_ixp2asn, peering_sub2name, pch_ixp2asn, pch_sub2name, final_ixp2asn, final_sub2name, dirty_ips, additional_ip2asn, additional_subnet2name, lenreserved, db_print, mypath):
         '''
@@ -92,34 +108,21 @@ class traixroute_output():
             l) mypath: The path to the database.
         '''
 
-        tmp = 'Imported ' + str(lenreserved) + ' Reserved Subnets.\n'
-        tmp = tmp + 'Extracted ' + \
-            str(len(additional_ip2asn)) + \
-            ' IXP IPs from additional_info.txt.\n'
-        tmp = tmp + 'Extracted ' + str(len(additional_subnet2name) - len(
-            additional_ip2asn)) + ' IXP Subnets from additional_info.txt.\n'
-        tmp = tmp + 'Extracted ' + \
-            str(peering_ixp2asn) + ' IXP IPs from PDB.\n'
-        tmp = tmp + 'Extracted ' + str(pch_ixp2asn) + ' IXP IPs from PCH.\n'
-        tmp = tmp + 'Extracted ' + \
-            str(peering_sub2name) + ' IXP Subnets from PDB.\n'
-        tmp = tmp + 'Extracted ' + \
-            str(pch_sub2name) + ' IXP Subnets from PCH.\n'
-        tmp = tmp + 'Extracted ' + \
-            str(len(final_ixp2asn)) + \
-            ' no dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
-        tmp = tmp + 'Extracted ' + \
-            str(dirty_ips) + \
-            ' dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
-        tmp = tmp + 'Extracted ' + \
-            str(len(final_sub2name)) + \
-            ' IXP Subnets after merging PDB, PCH and additional_info.txt.\n'
+        tmp =  'Imported '  + str(lenreserved) + ' Reserved Subnets.\n'
+        tmp += 'Extracted ' +  str(len(additional_ip2asn)) + ' IXP IPs from additional_info.txt.\n'
+        tmp += 'Extracted ' + str(len(additional_subnet2name) - len(additional_ip2asn)) + ' IXP Subnets from additional_info.txt.\n'
+        tmp += 'Extracted ' + str(peering_ixp2asn)    + ' IXP IPs from PDB.\n'
+        tmp += 'Extracted ' + str(pch_ixp2asn)        + ' IXP IPs from PCH.\n'
+        tmp += 'Extracted ' + str(peering_sub2name)   + ' IXP Subnets from PDB.\n'
+        tmp += 'Extracted ' + str(pch_sub2name)       + ' IXP Subnets from PCH.\n'
+        tmp += 'Extracted ' + str(len(final_ixp2asn)) + ' (no) dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
+        tmp += 'Detected ' +  str(dirty_ips)          + ' dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
+        tmp += 'Extracted ' + str(len([subnet for subnet in final_sub2name if '/32' not in subnet]))+ ' IXP Subnets after merging PDB, PCH and additional_info.txt.\n'
         if db_print:
             print(tmp)
         try:
-            f = open(mypath + 'db.txt', 'w')
-            f.write(tmp)
-            f.close()
+            with open(mypath + 'db.txt', 'w') as f:
+                f.write(tmp)
         except:
             print('Could not open db.txt file. Exiting.')
             sys.exit(0)
@@ -142,32 +145,31 @@ class traixroute_output():
         unsure = path_info_extract.unsure
         asn_print = traIXparser.flags['asn']
         dns_print = traIXparser.flags['dns']
+        size = len(ip_path)
 
         # Makes dns queries.
+        dns = [''] * size
         if dns_print:
-            dns = [ip_path[i] for i in range(0, len(ip_path))]
-            for i in range(0, len(ip_path)):
-                if ip_path[i] != '*':
+            for i,item in enumerate(ip_path):
+                if item != '*':
                     try:
-                        dns[i] = socket.gethostbyaddr(ip_path[i])[0]
+                        dns[i] = socket.gethostbyaddr(item)[0]
                     except:
-                        pass
-        else:
-            dns = ['' for i in range(0, len(ip_path))]
-
+                        dns[i] = item
+        
         # The minimum space between the printed strings.
         defaultstep = 3
 
         # The numbers to be printed in front of each line.
-        numbers = [str(x) + ')' for x in range(1, len(ip_path) + 1)]
+        numbers = [str(x) + ')' for x in range(1, size + 1)]
 
         # Fix indents for printing.
         maxlenas = 0
         maxlennum = 0
-        gra_path = ['*' for x in range(0, len(ip_path))]
-        gra_asn = ['' for x in range(0, len(ip_path))]
+        gra_path = ['*'] * size
+        gra_asn = [''] * size
 
-        for i in range(0, len(ip_path)):
+        for i in range(0, size):
             temp = len('AS' + asn_list[i])
             if temp > maxlenas:
                 maxlenas = temp
@@ -175,7 +177,7 @@ class traixroute_output():
             if temp > maxlennum:
                 maxlennum = temp
 
-        for i in range(0, len(ip_path)):
+        for i in range(0, size):
             gra_path[i] = self.polish_output(
                 numbers[i], maxlennum + defaultstep)
             if asn_print:
@@ -187,7 +189,7 @@ class traixroute_output():
 
         # Prints the output and saves it to a file.
         print_data = ''
-        for i in range(0, len(ip_path)):
+        for i in range(0, size):
             if ixp_short_names[i] == ['No Short Name'] and ixp_long_names[i] == ['No Long Name']:
                 if asn_print:
                     temp_print = gra_path[i] + gra_asn[i] + dns[i] + \
@@ -198,14 +200,12 @@ class traixroute_output():
             else:
                 base_ixp_print = '('
                 for ixp in range(0, len(ixp_short_names[i])):
-                    if ixp > 0:
+                    if ixp:
                         base_ixp_print = base_ixp_print + ','
                     if ixp_short_names[i][ixp] != '':
-                        base_ixp_print = base_ixp_print + \
-                            ixp_short_names[i][ixp]
+                        base_ixp_print = base_ixp_print + ixp_short_names[i][ixp]
                     else:
-                        base_ixp_print = base_ixp_print + \
-                            ixp_long_names[i][ixp]
+                        base_ixp_print = base_ixp_print + ixp_long_names[i][ixp]
                 base_ixp_print = base_ixp_print + ')'
                 temp_print = gra_path[i] + unsure[i] + base_ixp_print + '->' + gra_asn[
                     i] + dns[i] + ' ' + '(' + ip_path[i] + ')' + ' ' + mytime[i]
@@ -214,42 +214,58 @@ class traixroute_output():
 
         self.measurement_info += print_data
 
-    def print_traIXroute_dest(self, dst_ip, src_ip='', info=''):
+    def print_traIXroute_dest(self, traixparser, db_extract, dns_print, dst_ip, src_ip='', info=''):
         '''
         Prints traIXroute destination.
         Input:
-            a) dst_ip: The destination IP/FQDN to probe.
-            b) src_ip: The IP that issued the probe (optional).
-            c) info: Traceroute path description.
+            a) dns_print: Flag to enable resolving IP or FQDN.
+            b) dst_ip: The destination IP/FQDN to probe.
+            c) src_ip: The IP that issued the probe (optional).
+            d) info: Traceroute path description.
         '''
-
+    
         string_handle = string_handler.string_handler()
+        print_data = 'traIXroute'
         dns_name = '*'
         output_IP = '*'
-        if string_handle.is_valid_ip_address(dst_ip, 'IP'):
-            try:
-                dns_name = socket.gethostbyaddr(dst_ip)[0]
-            except:
-                pass
+        if string_handle.is_valid_ip_address(dst_ip, 'IP', 'CLI'):
+            if dns_print:
+                try:
+                    dns_name = socket.gethostbyaddr(dst_ip)[0]
+                except:
+                    pass
             output_IP = dst_ip
         else:
-            try:
-                output_IP = socket.gethostbyname(dst_ip)
-            except:
-                pass
+            if dns_print:
+                try:
+                    output_IP = socket.gethostbyname(dst_ip)
+                except:
+                    pass
             dns_name = dst_ip
         if src_ip != '':
             origin_dns = '*'
-            try:
-                origin_dns = socket.gethostbyaddr(src_ip)[0]
-            except:
-                pass
-            src_ip = ' from ' + origin_dns + ' (' + src_ip + ')'
+            if dns_print:
+                try:
+                    origin_dns = socket.gethostbyaddr(src_ip)[0]
+                except:
+                    pass
+            print_data += ' from ' + origin_dns + ' (' + src_ip + ')'
 
-        print_data = 'traIXroute' + src_ip + ' to ' + \
-            dns_name + ' (' + output_IP + ').'
+        if traixparser.flags['asn']:
+            if src_ip in db_extract.asn_routeviews:
+                print_data += ' AS'+db_extract.asn_routeviews[src_ip]
+            elif src_ip:
+                print_data += ' AS*'
+        
+        print_data += ' to ' +  dns_name + ' (' + output_IP + ')'
+        if traixparser.flags['asn']:
+            if output_IP in db_extract.asn_routeviews:
+                print_data += ' AS'+db_extract.asn_routeviews[output_IP]
+            else:
+                print_data += ' AS*'
+           
         if info != '':
-            print_data = print_data + ' info: ' + info
+            print_data += ' info: ' + info
 
         self.measurement_info += print_data + '\n'
 
@@ -276,7 +292,7 @@ class traixroute_output():
         '''
 
         print("Imported", len(final_rules),
-              "IXP Detection Rules from", file + ".")
+              "IXP detection rules from", file + ".")
 
     def print_result(self, asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, remote_peering=None):
         '''
@@ -297,6 +313,7 @@ class traixroute_output():
             m) cc_tree: SubnetTree that contains Subnets to [country,city].
             n) remote_peering: A flag to indicate a potential IXP crossing link based on remote peering connectivity.
         '''
+        
         ixp_crossing = None
         unknown_hop = None
         remote_crossing = None
@@ -304,9 +321,9 @@ class traixroute_output():
         if print_rule:
             rule = 'Rule: ' + str(j + 1) + ' --- '
 
-        gra_asn = ['' for x in cur_path_asn]
-        ixp_string = ['' for x in cur_ixp_short]
-        ixp_dict = [{} for x in cur_ixp_short]
+        gra_asn = [''] * len(cur_path_asn)
+        ixp_string = [''] * len(cur_ixp_short)
+        ixp_dict = [{}] * len(cur_ixp_short)
 
         for pointer in range(0, len(ixp_string)):
             if len(ixp_short) > i + pointer - 1:
@@ -495,7 +512,7 @@ class traixroute_output():
 
         if temp_print != '' and temp_print not in self.ixp_hops:
             self.ixp_hops += temp_print
-
+        
         if remote_peering is not None:
             remote_data = remote_peering.find_and_print(
                 path[i - 1:i + 2], asm_a)
@@ -538,7 +555,7 @@ class traixroute_output():
             self.measurement_json['remote_peering'].append(remote_crossing)
         if unknown_hop != None:
             self.measurement_json['possible_ixp_crossings'].append(unknown_hop)
-
+        
     def print_args(self, classic, search, arguments, from_ripe, from_import):
         '''
         Prints the arguments of traceroute
@@ -550,35 +567,32 @@ class traixroute_output():
             e) from_import: Flag when importing from json file.
         '''
 
-        try:
-            # Remove the key argument from printing.
-            if 'key' in arguments:
-                del arguments['key']
+        # Remove the key argument from printing.
+        if 'key' in arguments:
+            del arguments['key']
 
-            if classic and search:
-                if arguments != '':
-                    print('traIXroute using scamper with "' +
-                          arguments + '" options.')
-                else:
-                    print('traIXroute using scamper with default options.')
-            elif search and not (from_ripe or from_import):
-                if arguments != '':
-                    print('traIXroute using traceroute with "' +
-                          arguments + '" options.')
-                else:
-                    print('traIXroute using traceroute with default options.')
-            elif from_ripe == 1:
-                print(
-                    'Run traIXroute fetching results from ripe measurement:', arguments)
-            elif from_ripe == 2:
-                print('Creating a new measurement at RIPE Atlas:', arguments)
-            elif from_import == 1:
-                print(
-                    'Run traIXroute from a file with traIXroute json format:', arguments)
-            elif from_import == 2:
-                print('Run traIXroute from a file with ripe json format:', arguments)
-        except:
-            pass
+        if classic and search:
+            if arguments != '':
+                print('traIXroute using scamper with "' +
+                      arguments + '" options.')
+            else:
+                print('traIXroute using scamper with default options.')
+        elif search and not (from_ripe or from_import):
+            if arguments != '':
+                print('traIXroute using traceroute with "' +
+                      arguments + '" options.')
+            else:
+                print('traIXroute using traceroute with default options.')
+        elif from_ripe == 1:
+            print(
+                'Run traIXroute fetching results from ripe measurement:', arguments)
+        elif from_ripe == 2:
+            print('Creating a new measurement at RIPE Atlas:', arguments)
+        elif from_import == 1:
+            print(
+                'Run traIXroute from file with traIXroute json format:', arguments)
+        elif from_import == 2:
+            print('Run traIXroute from file with ripe json format:', arguments)
 
     def print_pr_db_stats(self, filepath):
         '''
@@ -588,13 +602,10 @@ class traixroute_output():
         '''
 
         try:
-            f = open(filepath, 'r')
-            data = f.read()
-            print(data)
-            f.close
+            with open(filepath, 'r') as f:
+                print(f.read())
         except:
             print('Could not open db.txt.')
-            pass
 
     def read_lst_mod(self, filename, fname2):
         '''
@@ -604,23 +615,19 @@ class traixroute_output():
             a) filename: The lst_mod.txt file.
             b) mypath: The path to traIXroute folder.
         Output:
-            b) True if the file has not been modified, False otherwise.
+            a) True if the file has not been modified, False otherwise.
         '''
 
-        try:
-            additional_lst_mod = ctime(os.path.getmtime(
-                fname2))
-            f = open(filename, 'r')
-            data = f.read()
-            data = data.split('\n')
-            data = data[0]
-            if data == additional_lst_mod:
-                return True
-        except:
-            pass
+        additional_lst_mod = ctime(os.path.getmtime(fname2))
+        if (os.path.isfile(filename)):
+            with open(filename, 'r') as f:
+                data = f.read()
+                if data.split('\n')[0] == additional_lst_mod:
+                    return True
 
-        self.write_lst_mod(filename, additional_lst_mod)
-        return False
+        else:
+            self.write_lst_mod(filename, additional_lst_mod)
+            return False
 
     def write_lst_mod(self, filename, data):
         '''
@@ -631,8 +638,8 @@ class traixroute_output():
         '''
 
         try:
-            f = open(filename, 'w')
-            f.write(data)
+            with open(filename, 'w') as f:
+                f.write(data)
         except:
             print('Could not write to lst_mod.txt. Exiting')
             sys.exit(0)
@@ -644,6 +651,7 @@ class traixroute_output():
             a) ip_path: Contains the IPs of all the hops in order.
             b) delays: Contains all the delays of the hops in order.
         '''
+        
         self.measurement_json.update({
             'af': 4,
             'dst_addr': dst_ip,
@@ -651,28 +659,116 @@ class traixroute_output():
             'type': 'traceroute',
             'timestamp': time.time()
         })
+        
         result = []
-        hop = 1
-        for ip in ip_path:
+        for i,ip in enumerate(ip_path):
             result.append(
-                {'hop': hop, 'result': [{'from': ip_path[hop - 1], 'asn': asn_list[hop - 1], 'rtt': delays[hop - 1]}]})
-            hop += 1
+                {'hop': i+1, 'result': [{'from': ip, 'asn': asn_list[i], 'rtt': delays[i]}]})
+        
         self.measurement_json['result'] = result
 
-    def buildJsonRipe(self, entry, asn_list):
+    def buildJsonRipe(self, entry, asn_list, db_extract):
+        '''
+        Builds the structure of the json file when having ripe atlas measurement as input.
+        Input:
+            a) entry:       The ripe atlas measurement object
+            b) asn_list:    The ASNs for each hop.
+            c) db_extract:  The database instance containing the total IXP/AS related information.
+            d) traixparser: The instance of parser that specifies which of the traIXroute command line arguments have been enabled.
+        '''
+        
+        # Add ASN for the public source/dest IP of the traceroute path.
+        if entry['from'] in db_extract.asn_routeviews:
+            entry['from_asn'] = db_extract.asn_routeviews[entry['from']]
+        if entry['dst_addr'] in db_extract.asn_routeviews:
+            entry['dst_addr_asn'] = db_extract.asn_routeviews[entry['dst_addr']] 
+        
         for hop in entry['result']:
             if hop['hop'] != 255:
-                new_entry = {}
-                for hop_entry in hop['result']:
-                    if 'from' in hop_entry:
-                        new_entry = hop_entry
-                        new_entry['asn'] = asn_list[hop['hop'] - 1]
-                        break
-
-                if not new_entry:
-                    new_entry = hop['result'][0]
-
-                hop['result'] = [new_entry]
+                try:
+                    hop['asn'] = asn_list[hop['hop'] - 1]
+                except KeyError:
+                    pass
             else:
-                del hop['hop']
+                hop['asn'] = '*'
         self.measurement_json.update(entry)
+     
+    def get_filename_from_path(self, path):
+        head, tail = ntpath.split(path)
+        return tail or ntpath.basename(head)
+           
+    def export_results_to_files(self, json_data, txt_data, traixparser, homepath, arguments, exact_time):
+        '''
+        Exports the total results to .txt/.json files.
+        Input:
+            a) json_data: Contains all the analyzed traceroute paths to be exported in json format.
+            b) txt_data: Contains all the analyzed traceroute paths to be exported in raw txt format.
+            c) traixparser: The instance of parser to identify if necessary arguments have been enabled.
+            d) homepath: The home directory path of traIXroute.
+            e) arguments: The absolute path of the traceroute path file.
+        '''
+    
+        # Discriminating the case when we have as input ripe altas measurements directly from RIPE's database or local files.
+        file_name = self.get_filename_from_path(arguments) if not traixparser.flags['ripe'] else 'msm_id_' + str(arguments['msm_id'])
+        
+        if traixparser.flags['outputfile_json']:
+            outputfile_json = traixparser.outputfile_json
+            filename = outputfile_json + file_name if outputfile_json else homepath + '/output/output_json_' + (file_name if file_name else exact_time)
+                
+            with open(filename, 'w') as f:
+                size_list = len(json_data)
+                counter = 1
+                f.write('[\n')
+                for entry in itertools.chain.from_iterable(json_data):
+                    f.write(ujson.dumps(entry))
+                    # Checking for the last element.
+                    if counter < size_list:
+                        f.write('\n,\n')
+                    counter+=1    
+                f.write('\n]')
+                print('Results in json format have been exported:', filename)
+            
+        if traixparser.flags['outputfile_txt']:
+            outputfile_txt  = traixparser.outputfile_txt
+            filename = outputfile_txt + file_name if outputfile_txt else homepath + '/output/output_txt_' + (file_name if file_name else exact_time)
+            
+            with open(filename, 'w') as f:
+                for entry in txt_data:
+                    for subentry in entry:
+                        f.write(subentry+'\n')
+                print('Results have been exported:', filename)
+
+    def stats_extract(self, homepath, num_ips, rules, final_rules_hit, exact_time, traixparser, arguments):
+            '''
+            Writes various statistics to the stats.txt file.
+            Input:
+                a) homepath: The home directory path of traIXroute.
+                b) num_ips: The number of IPs to send probes.
+                c) rules: The rules that detected IXP crossing links.
+                d) funal_rules_hit: The number of "hits" for each rule.
+                e) exact_time: The starting timestamp of traIXroute.
+                f) traixparser: The instance of parser to identify if necessary arguments have been enabled.
+                g) arguments: The absolute path of the traceroute path file.
+            '''
+
+            file_name = self.get_filename_from_path(arguments)
+            filename = homepath+'/output/output_stats_' + (file_name if file_name else exact_time)
+                        
+            num_hits = sum(final_rules_hit)
+            with open(filename, 'w') as fp_stats:
+                temp = num_hits / num_ips
+                data = 'traIXroute stats from ' + exact_time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S")                                + '\n'  +\
+                    'Number of IXP hits: ' + str(num_hits)      + '\n'  +\
+                    'Number of traIXroutes: ' + str(num_ips)    + '\n'  +\
+                    'IXP hit ratio: ' + str(temp)               + '\n'  +\
+                    'Number of hits per rule:\n'
+                for myi in range(0, len(rules)):
+                    if num_hits > 0:
+                        temp = final_rules_hit[myi] / num_hits
+                        data += 'Rule ' + str(myi + 1) + ': Times encountered: ' + str(
+                            final_rules_hit[myi]) + ' - Encounter Percentage: ' + str(temp) + '\n'
+                    else:
+                        data += 'Rule ' + str(myi + 1) + ': Times encountered:0 Encounter Percentage:0\n'
+                fp_stats.write(data)
+            print('Stats have been exported:', filename)
+            

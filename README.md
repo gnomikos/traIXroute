@@ -15,6 +15,19 @@ The heuristics used and their evaluation are described in the following paper:
 
 **traIXroute enhances for the first time its features interoperating with the [Remote Peering Jedi tool](http://inspire.edu.gr/rp/index.html). For now, only data for DE-CIX (Frankfurt), Any2 (Los Angeles), AMS-IX, France-IX, LINX and MSK-IX are included.**
 
+## Installation (docker)
+The tool can be run inside from a container by building it with:
+
+```sh
+docker build -t traixroute .
+```
+
+and then running it with:
+
+```sh
+docker run -ti --name trx traixroute:latest
+```
+
 ## Installation
 The program has been tested on Linux and Mac OS X. Detailed installation instructions can be found in the INSTALL file in the repository. You can install all the necessary packages running:
 
@@ -23,15 +36,16 @@ The latest version is available on [`pypi`](https://pypi.python.org/pypi/traixro
 ```sh
 $ pip3 install traixroute
 $ scamper-install (To enable probes using scamper)
+$ traixroute (To build the configuration files in the home directory)
 $ traixroute --help
 ```
 
 It is also possible to download the latest archive from github:
 
 ```sh
-$ curl -L https://github.com/gnomikos/traIXroute/archive/v2.1.1.tar.gz | tar zx
-$ sh traIXroute-2.1.1/setup/install.sh
-$ ./traIXroute-2.1.1/bin/traixroute
+$ curl -L https://github.com/gnomikos/traIXroute/archive/v2.3.tar.gz | tar zx
+$ sh traIXroute-2.3/setup/install.sh
+$ ./traIXroute-2.3/bin/traixroute
 ```
 
 If using `git`:
@@ -55,10 +69,10 @@ If you have problems, please contact George Nomikos (gnomikos [at] ics.forth.gr)
 
 ## Dependencies
 
-* [Python 3](https://www.python.org/downloads/)   —  **traIXroute** requires Python 3.4 or 3.5.
-* [PySubnetTree](https://www.bro.org/downloads/release/pysubnettree-0.24.tar.gz)  —  A Python module for CIDR lookups.
+* [Python 3](https://www.python.org/downloads/)   —  **traIXroute** requires Python 3.5 or greater.
 * [Scamper](https://www.caida.org/tools/measurement/scamper/)  —  A tool provided by CAIDA for probing the Internet in parallel, so that bulk data can be collected in a timely fashion.
 * [Traceroute](https://en.wikipedia.org/wiki/Traceroute)  —  A diagnostic tool for measuring Internet paths and their per hop delay.
+* [Click here for other dependencies.](https://github.com/gnomikos/traIXroute/blob/v2.3/setup/requirements.txt)
 
 ## Documentation
 

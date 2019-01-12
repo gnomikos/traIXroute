@@ -90,23 +90,22 @@ class pch_handle():
         sub_to_ixp = {}
         hstring = string_handler.string_handler()
         dumped_ixps = []
-        flag = True
+        
+        # Skip the first line of the file.
+        next(doc)
         for line in doc:
-            if flag:
-                flag = False
-                continue
             temp_string = line.split(',')
             if len(temp_string) > 1:
                 ip = hstring.extract_ip(temp_string[1], 'IP')
 
                 for inode in ip:
                     inode = hstring.clean_ip(inode, 'IP')
-                    if hstring.is_valid_ip_address(inode, 'IP') and temp_string[3].replace(' ', '') != '':
+                    if hstring.is_valid_ip_address(inode, 'IP', 'PCH') and temp_string[3].replace(' ', '') != '':
 
                         subnet = hstring.extract_ip(temp_string[0], 'Subnet')
                         for snode in subnet:
                             snode = hstring.clean_ip(snode, 'Subnet')
-                            if hstring.is_valid_ip_address(snode, 'Subnet'):
+                            if hstring.is_valid_ip_address(snode, 'Subnet','PCH'):
                                 tree[snode] = snode
                                 if (inode in tree and inode not in ixpip2asn.keys() and inode not in dumped_ixps and inode not in reserved_tree) or (inode in add_info_tree):
                                     ixpip2asn[inode] = [
@@ -131,7 +130,7 @@ class pch_handle():
         Output: 
             a) subnets: A dictionary with {IXP Subnet}=[IXP long name, IXP short name].
             b) IXP_cc: A dictionary with {IXP Subnet}=[IXP country,IXP region].
-            c) Subnet_names: SubnetTree with Subnet to [IXP long name, IXP short name].
+            c) Subnet_names: SubnetTree with {Subnet} = [IXP long name, IXP short name].
         '''
 
         handled_string = string_handler.string_handler()
@@ -139,39 +138,43 @@ class pch_handle():
         IXP_cc = {}
         subnets = {}
         Subnet_names = SubnetTree.SubnetTree()
-        flag = True
+
+        # Skip the first line of the file.
+        next(doc)
         for line in doc:
-            if flag:
-                flag = False
-                continue
             temp_string = line.split(',')
             if len(temp_string) > 5:
                 mykey = temp_string[0]
-                myip = temp_string[6]
-                myip = handled_string.extract_ip(myip, 'Subnet')
+                myip = handled_string.extract_ip(temp_string[5], 'Subnet')
+
                 for ips in myip:
+                    # Clean misspelled Subnets.
                     ips = handled_string.clean_ip(ips, 'Subnet')
+
                     if ips != '' and handled_string.string_comparison(temp_string[2], 'Active'):
-                        if handled_string.is_valid_ip_address(ips, 'Subnet') and ips not in subnets.keys():
+                        if handled_string.is_valid_ip_address(ips, 'Subnet', 'PCH') and ips not in subnets:
                             if mykey in long_mem.keys():
                                 IXP_cc[ips] = IXP_region[mykey]
                                 [long_name, short_name] = handled_string.clean_long_short(
                                     long_mem[mykey], temp_string[1])
+                                if long_name == '':
+                                    long_name = short_name
+                                elif short_name == '':
+                                    short_name = long_name
                                 if len(long_name) > len(short_name):
                                     subnets[ips] = [[long_name, short_name]]
                                 else:
                                     subnets[ips] = [[short_name, long_name]]
 
                             elif temp_string[1] != '':
-                                [long_name, short_name] = handled_string.clean_long_short("", temp_string[
-                                                                                          1])
+                                [long_name, short_name] = handled_string.clean_long_short("", temp_string[1])
                                 if len(short_name) < len(long_name):
                                     subnets[ips] = [['', short_name]]
                                 else:
                                     subnets[ips] = [['', long_name]]
                             else:
                                 continue
-                        elif ips in subnets.keys():
+                        elif ips in subnets:
                             IXP_cc[ips] = IXP_region[mykey]
                             [long_name, short_name] = handled_string.clean_long_short(
                                 long_mem[mykey], temp_string[1])
@@ -189,6 +192,7 @@ class pch_handle():
                         if ips in subnets:
                             Subnet_names[ips] = subnets[ips]
 
+        doc.close()
         return (subnets, IXP_cc, Subnet_names)
 
     def pch_handle_long(self, country2cc):
@@ -203,32 +207,32 @@ class pch_handle():
             b) IXP_region: A dictionary with {keyid}=[IXP country, IXP city].
         '''
 
+        handle_string = string_handler.string_handler()
         doc = self.file_opener(self.filename_excha, 2)
         ixpip2long = {}
         IXP_region = {}
-        flag = True
-        handled_string = string_handler.string_handler()
-        for line in doc:
-            if flag:
-                flag = False
-                continue
-            temp_string = line.split(',')
-            if len(temp_string) > 6:
-                if handled_string.string_comparison(temp_string[5], 'Active'):
-                    ixpip2long[temp_string[0]] = temp_string[4]
-                    country = re.sub('([^\s\w]|_)+', ' ',
-                                     temp_string[2].strip())
-                    country = ' '.join(self.unique_list(country.split(' ')))
-                    country = re.sub(' +', ' ', country)
 
-                    city = re.sub('([^\s\w]|_)+', ' ', temp_string[3].strip())
-                    city = ' '.join(self.unique_list(city.split(' ')))
-                    city = re.sub(' +', ' ', city)
+        # Skip the first line of the file.
+        next(doc)
+        for line in doc:
+            temp_string = [item.strip() for item in line.split(', ')]
+
+            if len(temp_string) > 6:
+                if handle_string.string_comparison(temp_string[6], 'Active'):
+                    # IXP long name
+                    ixpip2long[temp_string[0]] = temp_string[4]
+                    # Country name
+                    country = handle_string.format_country_city(temp_string[2])
+                    # City name
+                    city = handle_string.format_country_city(temp_string[3])
+
                     try:
                         IXP_region[temp_string[0]] = country2cc[country], city
                     except KeyError:
+                        print('Warning, update your CCs for:', country)
                         IXP_region[temp_string[0]] = country, city
 
+        doc.close()
         return (ixpip2long, IXP_region)
 
     def file_opener(self, filename, option):
@@ -262,6 +266,3 @@ class pch_handle():
                 sys.exit(0)
 
         return doc
-
-    def unique_list(self, l):
-        return list(set(l))

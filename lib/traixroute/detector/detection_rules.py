@@ -36,8 +36,6 @@ class detection_rules():
 
     def __init__(self):
 
-        # rule_hits: a list of the number of hits for each rule
-        self.rule_hits = []
         # rules: A list of the condition parts of the rules.
         self.rules = []
         # asmt: A list of the assessment parts of the rules.
@@ -51,85 +49,98 @@ class detection_rules():
         Input: 
             a) file: The file that contains the rules.
         '''
+        
         file = '/configuration/rules.txt'
         try:
-            f = open(mypath + '/configuration/rules.txt', 'r')
+            with open(mypath + '/configuration/rules.txt', 'r') as f:
+                rules = [line.strip() for line in f.readlines()]
         except:
             print(file + ' does not exist. Exiting.')
             sys.exit(0)
-        [delimeters1, expressions] = self.load_syntax_rules(
+        [delimiters, expressions] = self.load_syntax_rules(
             'configuration/expressions.txt', 'configuration/delimeters.txt', mypath)
-        rules = f.read()
-        rules = rules.split('\n')
-
-        for i in range(0, len(rules)):
-            temp = (rules[i].split('#'))
+        
+        general_flag = True   
+        for i,item in enumerate(rules):
+            temp = item.split('#')
             temp[0] = temp[0].replace(' ', '')
             if temp[0] != '':
-                rules[i] = temp[0]
                 flag = True
-                temp = (rules[i].split(':'))
+                temp = (temp[0].split(':'))
                 if len(temp) != 2:
-                    print('-->Rule in line ' + (str(i + 1)) +
-                          'not included. Expected one condition and one assessment part respectively.')
                     flag = False
+                    general_flag = False
+                    print('-->Error with rule in line ' + (str(i + 1)) +
+                          'not included. Expected one condition and one assessment part respectively.')
+                    
                 array = temp[0].split('-')
-
                 for node in array:
                     if len(array) > 3:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected a maximum rule length of 3.')
                     elif len(array) < 2:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected a minimum rule length of 2.')
                     elif '(' in node and ')' not in node:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected \')\' at the end of ' + node + '.')
                     elif '(' in node and 'and' not in node:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected 1 \'and\' at the middle of ' + node + '.')
                     elif ')' in node and '(' not in node:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected one \'(\' at the beginning of ' + node + '.')
                     elif node.count('(') > 1:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected only 1 \'(\' at the beginning of ' + node + '.')
                     elif node.count(')') > 1:
                         flag = False
-                        print('-->Rule ' + (str(i + 1)) +
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
                               ' not included. Expected only 1 \')\' at the end of ' + node + '.')
+                        
                     node = node.replace('(', '')
                     node = node.replace(')', '')
-                    flag2 = self.check_syntax_rules(
-                        node, expressions, delimeters1)
-                    if not flag2:
-                        print('-->Rule ' + (str(i + 1)) +
-                              ' not included. Wrong syntax in ' + node + '.')
+                    if not self.check_syntax_rules(node, expressions, delimiters):
                         flag = False
-
-                if 'IXP_IP' not in temp[0] and flag:
-                    print('-->Rule ' + (str(i + 1)) +
-                          ' not included. Expected an IXP_IP in ' + temp[0] + '.')
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
+                              ' not included. Wrong syntax in ' + node + '.')
+                if 'IXP_IP' not in temp[0]:
                     flag = False
-                if flag:
-                    node = temp[1]
-                    node = node.replace(' ', '')
+                    general_flag = False
+                    print('-->Error with rule in line ' + (str(i + 1)) +
+                          ' not included. Expected an IXP_IP in ' + temp[0] + '.')
+                elif flag:
+                    node = temp[1].replace(' ', '')
                     if 'a' != node and 'b' != node and 'aorb' != node and 'aandb' != node and '?' != node:
                         flag = False
-                        print('-->Rule' + (str(i + 1)) +
-                              'not included. Expected a valid assessment.')
+                        general_flag = False
+                        print('-->Error with rule in line ' + (str(i + 1)) +
+                              ' not included. Expected a valid assessment (e.g., a, b, a or b, a and b).')
+                
                 if flag:
                     self.rules.append(array)
                     self.remote_peering.check_rule(array, len(self.rules) - 1)
                     self.asmt.append(temp[1])
-        output = traixroute_output.traixroute_output()
-        output.print_rules_number(self.rules, file)
+                    
+        if general_flag:
+            output = traixroute_output.traixroute_output()
+            output.print_rules_number(self.rules, mypath+file)
+        else:
+            sys.exit(0)
 
     def resolve_path(self, path, output, path_info_extract, db_extract, traIXparser):
         '''
@@ -142,34 +153,33 @@ class detection_rules():
             e) db_extract: The database_extract class.
             f) traIXparser: The traIXparser class.           
         '''
-
-        path_asn = path_info_extract.asn_list
-        encounter_type = path_info_extract.type_vector
-        ixp_long = path_info_extract.ixp_long_names
-        ixp_short = path_info_extract.ixp_short_names
-        asn2names = db_extract.asnmemb
+        
+        num = 1
+        rule_hits = [0] * len(self.rules)
         asn_print = traIXparser.flags['asn']
         print_rule = traIXparser.flags['rule']
+        # asn2names : Contains the total IXP membership info for each ASN.
+        # asn2names: {'ASN': [IXP long name, IXP short name ]}
+        asn2names = db_extract.asnmemb
         cc_tree = db_extract.cc_tree
         self.remote_peering.rp_database = db_extract.remote_peering
-
-        num = 1
-        self.rule_hits = [0 for x in range(0, len(self.rules))]
-        temp_path_asn = []
-        for node in path_asn:
-            if node != 'AS*':
-                temp_path_asn.append(node)
-            else:
-                temp_path_asn.append('*')
-
-        for i in range(1, len(path)):
+        
+        # Info related to the candidate traceroute path.
+        path_asn = path_info_extract.asn_list
+        temp_path_asn = [''] * len(path_asn)
+        encounter_type = path_info_extract.type_vector
+        ixp_ip_indices = path_info_extract.ixp_ip_indices
+        ixp_long = path_info_extract.ixp_long_names
+        ixp_short = path_info_extract.ixp_short_names
+        
+        for i in ixp_ip_indices:
             asn_list1 = path_asn[i - 1].split('_')
             asn_list3 = path_asn[i].split('_')
             if len(path) > i + 1:
                 asn_list2 = path_asn[i + 1].split('_')
             else:
                 asn_list2 = '*'
-
+                
             for asn1 in asn_list1:
                 # In case of MOAS, all the possible AS paths are checked for
                 # IXP crossing.
@@ -179,53 +189,49 @@ class detection_rules():
                         temp_path_asn[i] = asn3
                         if len(path_asn) > i + 1:
                             temp_path_asn[i + 1] = asn2
-                        for j in range(0, len(self.rules)):
-
-                            cur_rule = self.rules[j]
+                        
+                        for j,item_rule in enumerate(self.rules):
+                            cur_rule = item_rule
                             cur_asmt = self.asmt[j]
+#                            print('cur_rule',cur_rule)
 
                             # Check if the condition part of a candidate rule
                             # is satisfied in order to proceed with the
                             # assessment part.
-                            if len(cur_rule) > 0:
-                                current_hop = 1
-                                if i < len(path) - 1:
-                                    cur_path_asn = temp_path_asn[i - 1:i + 2]
-                                    temp_ixp_long = ixp_long[i - 1:i + 2]
-                                    temp_ixp_short = ixp_short[i - 1:i + 2]
-                                    cur_encounter_type = encounter_type[
-                                        i - 1:i + 2]
-                                    cur_path = path[i - 1:i + 2]
-                                else:
-                                    cur_path_asn = temp_path_asn[i - 1:i + 1]
-                                    temp_ixp_long = ixp_long[i - 1:i + 1]
-                                    temp_ixp_short = ixp_short[i - 1:i + 1]
-                                    cur_encounter_type = encounter_type[
-                                        i - 1:i + 1]
-                                    cur_path = path[i - 1:i + 1]
-
-                                set_ixp_short = list(
-                                    itertools.product(*temp_ixp_short))
-                                set_ixp_long = list(
-                                    itertools.product(*temp_ixp_long))
-                                for ixp in range(0, len(set_ixp_short)):
-                                    cur_ixp_long = list(set_ixp_long[ixp])
-                                    cur_ixp_short = list(set_ixp_short[ixp])
-                                    rule_check = self.check_rules(
-                                        cur_path, cur_rule, cur_path_asn, current_hop, cur_ixp_long, cur_ixp_short, asn2names, cur_encounter_type)
-                                    if rule_check:
-                                        if cur_asmt != '?':
-                                            self.rule_hits[
-                                                j] = self.rule_hits[j] + 1
-
-                                        if self.remote_peering.rule_hit(j):
-                                            self.remote_peering.temp_index = j
-                                            output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn,
-                                                                path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, self.remote_peering)
-                                        else:
-                                            output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short,
-                                                                cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree)
-                                        num = num + 1
+                            current_hop = 1
+                            if i < len(path) - 1:
+                                cur_path_asn = temp_path_asn[i - 1:i + 2]
+                                temp_ixp_long = ixp_long[i - 1:i + 2]
+                                temp_ixp_short = ixp_short[i - 1:i + 2]
+                                cur_encounter_type = encounter_type[i - 1:i + 2]
+                                cur_path = path[i - 1:i + 2]
+                            else:
+                                cur_path_asn = temp_path_asn[i - 1:i + 1]
+                                temp_ixp_long = ixp_long[i - 1:i + 1]
+                                temp_ixp_short = ixp_short[i - 1:i + 1]
+                                cur_encounter_type = encounter_type[i - 1:i + 1]
+                                cur_path = path[i - 1:i + 1]
+#                            print('cur_path',cur_path)
+#                            print('cur_path_asn',cur_path_asn)
+                            
+                            set_ixp_short = list(itertools.product(*temp_ixp_short))
+                            set_ixp_long = list(itertools.product(*temp_ixp_long))
+                            
+                            for ixp in range(0, len(set_ixp_short)):
+                                cur_ixp_long = list(set_ixp_long[ixp])
+                                cur_ixp_short = list(set_ixp_short[ixp])
+                                rule_check = self.check_rules(
+                                    cur_path, cur_rule, cur_path_asn, current_hop, cur_ixp_long, cur_ixp_short, asn2names, cur_encounter_type)
+                                if rule_check:
+                                    if cur_asmt != '?':
+                                        rule_hits[j] += 1
+                                    if self.remote_peering.rule_hit(j):
+                                        self.remote_peering.temp_index = j
+                                        output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn,path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, self.remote_peering)
+                                    else:
+                                        output.print_result(asn_print, print_rule, cur_ixp_long, cur_ixp_short,cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree)
+                                    num += 1
+        return rule_hits
 
     def check_rules(self, path, rule, path_asn, path_cur, ixp_long, ixp_short, asn2names, encounter_type):
         '''                      
@@ -244,33 +250,30 @@ class detection_rules():
 
         if len(rule) > len(path_asn):
             return False
-        for i in range(0, len(rule)):
+        for i,item in enumerate(rule):
             if len(path_asn) > path_cur + i - 1:
-                if ('IXP_IP' in rule[i] and '!AS_M' in rule[i]) and 'IXP prefix' not in encounter_type[path_cur + i - 1] and 'IXP IP' not in encounter_type[path_cur + i - 1]:
-                    # if 'IXP_IP' in rule[i] and '!AS_M' in rule[i] and 'IXP
-                    # prefix' not in encounter_type[path_cur+i-1]:
+                if ('IXP_IP' in item and '!AS_M' in item) and 'IXP prefix' not in encounter_type[path_cur + i - 1] and 'IXP IP' not in encounter_type[path_cur + i - 1]:
                     return False
-                elif 'IXP_IP' in rule[i] and 'AS_M' in rule[i] and '!' not in rule[i] and 'IXP IP' not in encounter_type[path_cur + i - 1]:
+                elif 'IXP_IP' in item and 'AS_M' in item and '!' not in item and 'IXP IP' not in encounter_type[path_cur + i - 1]:
                     return False
-                elif ('IXP_IP' not in rule[i] or '!AS_M' not in rule[i]) and 'IXP prefix' in encounter_type[path_cur + i - 1]:
+                elif ('IXP_IP' not in item or '!AS_M' not in item) and 'IXP prefix' in encounter_type[path_cur + i - 1]:
                     return False
-                elif ('IXP_IP' not in rule[i] or 'AS_M' not in rule[i]) and 'IXP IP' in encounter_type[path_cur + i - 1]:
+                elif ('IXP_IP' not in item or 'AS_M' not in item) and 'IXP IP' in encounter_type[path_cur + i - 1]:
                     return False
 
-        # Applies each condition of the condition part of the candidate rule
-        # onto the path.
+        # Applies each condition of the condition part of the candidate rule onto the path.
         string_h = string_handler.string_handler()
         check = 0
-        for i in range(0, len(rule)):
+        for i,expression in enumerate(rule):
+        
             # The current condition of the condition part of the rule.
             current = path_cur + i - 1
-            expression = rule[i]
 
             # Checking for IXP membership based on a non-IXP IP.
             if '!AS_M' in expression and 'and' not in expression and path_cur != current:
                # Finds the path_asn in the routeview path_asn dict. If not, an
                # assessment is not possible.
-                check = check + 1
+                check += 1
                 if path_asn[current] == '*' and encounter_type[current] != 'IXP prefix':
                     return False
 
@@ -296,7 +299,7 @@ class detection_rules():
             elif 'AS_M' in expression and 'and' not in expression and path_cur != current:
                 if path_asn[current] == '*' and encounter_type[current] != 'IXP prefix':
                     return False
-                check = check + 1
+                check += 1
                 flag = False
 
                 if encounter_type[path_cur] == 'IXP IP' or encounter_type[path_cur] == 'IXP prefix':
@@ -326,20 +329,20 @@ class detection_rules():
             # Checking for IXP IP or Prefix based on either IXP membership or
             # Prefixes data.
             if 'IXP_IP' in expression and '!AS_M' in expression:
-                check = check + 1
+                check += 1
                 if not self.check_names(rule, expression, current, i, encounter_type, 'IXP_IP', ixp_long, ixp_short):
                     return False
                 elif not self.check_number(rule, expression, path_asn, current, i, encounter_type, '!AS_M'):
                     return False
             elif 'IXP_IP' in expression and 'AS_M' in expression:
-                check = check + 1
+                check += 1
                 if not self.check_names(rule, expression, current, i, encounter_type, 'IXP_IP', ixp_long, ixp_short):
                     return False
                 elif not self.check_number(rule, expression, path_asn, current, i, encounter_type, 'AS_M'):
                     return False
 
         if len(rule) > 2 and len(path_asn) > current + 1:
-            check = check + 1
+            check += 1
             if not self.check_edges(rule, path_asn, current, 'AS_M', ixp_long, ixp_short):
                 return False
             elif not self.check_edges(rule, path_asn, current, 'IXP_IP', ixp_long, ixp_short):
@@ -361,7 +364,7 @@ class detection_rules():
         Output: 
             True if the condition is satisfied, False otherwise.
         '''
-
+        
         [final1, final2] = self.find_numbers(rule, str_to_chk, current, False)
 
         if final1 == '' or final2 == '':
@@ -392,11 +395,10 @@ class detection_rules():
         Output:
             True if the condition is satisfied, False otherwise.
         '''
-
+        
         if len(rule) > i + 1 and len(path_asn) > current + 1:
 
-            [final1, final2] = self.find_numbers(
-                rule, str_to_chk, current, True)
+            [final1, final2] = self.find_numbers(rule, str_to_chk, current, True)
             if final1 == '' or final2 == '':
                 return True
             if self.is_int(final1) and self.is_int(final2):
@@ -418,7 +420,7 @@ class detection_rules():
         Output:
             True if the condition is satisfied, False otherwise.
         '''
-
+        
         string_handle = string_handler.string_handler()
         if len(rule) > i + 1 and len(ixp_long) > current + 1:
             [final1, final2] = self.find_numbers(
@@ -441,6 +443,7 @@ class detection_rules():
         Output:
             True if a string number can be converted to an integer, False otherwise.
         '''
+        
         try:
             int(myint)
             return True
@@ -458,7 +461,7 @@ class detection_rules():
         Output:
             a) final1,final2: The concatenated numbers of the keywords.
         '''
-
+        
         final1 = ''
         final2 = ''
         if consecutive:
@@ -466,13 +469,11 @@ class detection_rules():
         else:
             j = i + 2
         try:
-            final1 = rule[i].split(str_to_chk)[1]
-            final1 = final1[:1]
-            final2 = rule[j].split(str_to_chk)[1]
-            final2 = final2[:1]
+            final1 = rule[i].split(str_to_chk)[1][:1]
+            final2 = rule[j].split(str_to_chk)[1][:1]
         except:
             pass
-
+        
         return (final1, final2)
 
     def load_syntax_rules(self, filename1, filename2, mypath):
@@ -486,52 +487,30 @@ class detection_rules():
             a) delimeters1: A list containing the delimeters that separate the keywords.
             b) expressions: A list containing the allowed keywords. 
         '''
+        
+        def load_files(filename):
+            try:
+                with open(filename) as f:
+                    return [line.strip() for line in f.readlines()]
+            except:
+                print(filename + ' not found. Exiting.')
+                sys.exit(0)
 
-        try:
-            file_ex = open(mypath + '/' + filename1)
-        except:
-            print(filename1 + ' was not found. Exiting.')
-            sys.exit(0)
-        try:
-            file_del = open(mypath + '/' + filename2)
-        except:
-            print(filename2 + ' was not found. Exiting.')
-            sys.exit(0)
+        expression_dump = load_files(mypath + '/' + filename1)
+        delimiter_dump  = load_files(mypath + '/' + filename2)
 
-        candidate_delimeters = []
-        delimeters1 = []
-        delimeter_dump = file_del.read().split('\n')
-        file_del.close()
-
-        for del_node in delimeter_dump:
-            del_node = del_node.split('#')[0]
-            if del_node != '':
-                candidate_delimeters.append(del_node)
-
-        if len(candidate_delimeters) != 1:
+        candidate_delimiters = [del_node.split('#')[0] for del_node in delimiter_dump if del_node.split('#')[0]]
+        if len(candidate_delimiters) != 1:
             print('Expected one line of delimeters in ' +
                   filename2 + '. Exiting.')
             sys.exit(0)
+            
+        delimiters = [node for node in candidate_delimiters[0].split(',')]
+        expressions = [ex_node.split('#')[0] for ex_node in expression_dump if ex_node.split('#')[0]]
+       
+        return (delimiters, expressions)
 
-        priority1 = candidate_delimeters[0].split(',')
-        for node in priority1:
-            delimeters1.append(node)
-
-        expression_dump = file_ex.read().split('\n')
-        file_ex.close()
-        candidate_expression = []
-        for ex_node in expression_dump:
-            ex_node = ex_node.split('#')[0]
-            if ex_node != '':
-                candidate_expression.append(ex_node)
-
-        expressions = []
-        for node in candidate_expression:
-            expressions.append(node)
-
-        return (delimeters1, expressions)
-
-    def check_syntax_rules(self, cur_expression, expressions, delimeter1):
+    def check_syntax_rules(self, cur_expression, expressions, delimiter):
         '''
         Validates a condition set in the rule.
         Input:
@@ -542,17 +521,10 @@ class detection_rules():
             a) True if the expression is valid, False otherwise.
         '''
 
-        split_expression = cur_expression
-        for node in delimeter1:
-            split_expression = split_expression.replace(node, 'cut')
+        for node in delimiter:
+            cur_expression = cur_expression.replace(node, 'cut')
 
-        split_expression = split_expression.split('cut')
-
-        for node in split_expression:
-            flag = True
-            for node2 in expressions:
-                if node == node2:
-                    flag = False
-            if flag:
+        for node in cur_expression.split('cut'):
+            if node not in expressions:
                 return False
         return True

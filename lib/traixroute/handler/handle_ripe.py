@@ -152,7 +152,7 @@ class handle_ripe():
             a) ip: The first valid ip from the list of IPs for a certain hop.
             b) delay: The relative rtt value of the selected IP.
         '''
-
+        
         for pkt in packet:
             ip = pkt.origin
             delay = str(pkt.rtt)

@@ -15,11 +15,25 @@ Introduction
 
 The heuristics used by traIXroute and their evaluation are described in the following paper:
 
-- G. Nomikos, X. Dimitropoulos. **"traIXroute: Detecting IXPs in traceroute paths"**. In Proceedings of the Passive and Active Measurements Conference (PAM'16) 31 March - 1 April 2016, Heraklion, Greece.
+- G\. Nomikos, X. Dimitropoulos. **"traIXroute: Detecting IXPs in traceroute paths"**. In Proceedings of the Passive and Active Measurements Conference (PAM'16) 31 March - 1 April 2016, Heraklion, Greece.
 
-- G. Nomikos, X. Dimitropoulos. `"Detecting IXPs in Traceroute Paths Using traIXroute" <https://labs.ripe.net/Members/george_nomikos/detecting-ixps-in-traceroute-paths-using-traixroute>`_. RIPE Labs, 3 Aug 2016.
+- G\. Nomikos, X. Dimitropoulos. `"Detecting IXPs in Traceroute Paths Using traIXroute" <https://labs.ripe.net/Members/george_nomikos/detecting-ixps-in-traceroute-paths-using-traixroute>`_. RIPE Labs, 3 Aug 2016.
 
 ``traIXroute`` enhances for the first time its features interoperating with the `Remote Peering Jedi tool <http://inspire.edu.gr/rp/index.html>`_. For now, only data for DE-CIX (Frankfurt), Any2 (Los Angeles), AMS-IX, France-IX, LINX and MSK-IX are included.
+
+Installation (docker)
+------------
+The tool can be run inside from a container by building it with:
+
+::
+
+$ docker build -t traixroute .
+
+and then running it with:
+
+::
+
+$ docker run -ti --name trx traixroute:latest
 
 Installation
 ------------
@@ -31,15 +45,16 @@ The latest version is available on `pypi <https://pypi.python.org/pypi/traixrout
 
 $ pip3 install traixroute
 $ scamper-install (To enable probes using scamper)
+$ traixroute (To build the configuration files in the home directory)
 $ traixroute --help
 
 It is also possible to download the latest archive from github:
 
 ::
 
-$ curl -L https://github.com/gnomikos/traIXroute/archive/v2.1.1.tar.gz | tar zx
-$ sh traIXroute-2.1.1/setup/install.sh
-$ ./traIXroute-2.1.1/bin/traixroute
+$ curl -L https://github.com/gnomikos/traIXroute/archive/v2.3.tar.gz | tar zx
+$ sh traIXroute-2.3/setup/install.sh
+$ ./traIXroute-2.3/bin/traixroute
 
 If using `git`:
 
@@ -63,10 +78,10 @@ If you have problems, please contact George Nomikos (gnomikos [at] ics.forth.gr)
 
 Dependencies
 ------------
-- `Python 3 <https://www.python.org/downloads/>`_ —  ``traIXroute`` requires Python 3.4 or 3.5.
-- `PySubnetTree <https://www.bro.org/downloads/release/pysubnettree-0.24.tar.gz>`_ — A Python module for CIDR lookups.
+- `Python 3 <https://www.python.org/downloads/>`_ —  ``traIXroute`` requires Python 3.5 or greater.
 - `Scamper <https://www.caida.org/tools/measurement/scamper/>`_ — A tool provided by CAIDA for probing the Internet in parallel, so that bulk data can be collected in a timely fashion. 
 - `Traceroute <https://en.wikipedia.org/wiki/Traceroute>`_ — A diagnostic tool for measuring Internet paths and their per hop delay.
+- `Click here for other dependencies. <https://github.com/gnomikos/traIXroute/blob/v2.3/setup/requirements.txt>`_
 
 Documentation
 -------------

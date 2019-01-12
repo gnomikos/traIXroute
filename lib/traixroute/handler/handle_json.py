@@ -58,7 +58,6 @@ class handle_json():
             with open(filename, 'r') as fp:
                 data = ujson.load(fp)
         except:
-            print(filename, 'not found.')
             flag = True
         return data, flag
 
@@ -153,10 +152,10 @@ class handle_json():
             d) trace_src: A string with the traceroute's source. The source might be either IP or url.
             e) trace_info: A string with information related to the current traceroute path.
         '''
-
+        
         if(trace['af'] != 4 or trace['type'] != 'traceroute'):
-            print('TraIXroute only supports Traceroute and IPv4 measurements. Exiting.')
-            os._exit(0)
+            print('TraIXroute only supports Traceroute and IPv4 measurements. The following traceroute path has been skipped:')
+            print(trace)
 
         current_trace = []
         current_info = []
@@ -172,19 +171,37 @@ class handle_json():
                 trace_info = trace['msm_name']
             path_to_parse = trace['result']
             len_path = len(path_to_parse)
-        except:
-            print('Wrong json format. Exiting.')
+            
+            # Select the first IP from the list and set as info the rtt.
+            for hop in trace['result']:
+                if hop['hop'] != 255:
+                    if 'error' in hop.keys():
+                        current_trace.append('*')
+                        current_info.append("error: " + hop['error'])
+                    elif 'result' in hop.keys():
+                        [ip, delay] = self.choose_ip(hop['result'])
+                        current_trace.append(ip)
+                        current_info.append(delay)
+        except KeyError:
+            print('Invalid traceroute path format. Exiting.')
             print(trace)
-            os._exit(0)
-
-        # Select the first IP from the list and set as info the rtt.
-        for hop in trace['result']:
-            if hop['hop'] != 255:
-                if 'from' in hop['result'][0]:
-                    current_trace.append(hop['result'][0]['from'])
-                    current_info.append(str(hop['result'][0]['rtt']) + ' ms')
-                else:
-                    current_trace.append('*')
-                    current_info.append('')
 
         return current_trace, current_info, trace_dst, trace_src, trace_info
+        
+    def choose_ip(self, packet):
+        '''
+        Returns the first valid IP reply for a given traceroute hop.
+        Input: 
+            a) packet: A Hop class containing the packets for the certain hop.
+        Output:
+            a) ip: The first valid ip from the list of IPs for a certain hop.
+            b) delay: The relative rtt value of the selected IP.
+        '''
+    
+        for pkt in packet:
+            if 'from' in pkt:
+                if 'rtt' in pkt:
+                    return pkt['from'], str(round(pkt['rtt'],3))+ ' ms'
+                else:
+                    return pkt['from'], ''
+        return '*', ''
