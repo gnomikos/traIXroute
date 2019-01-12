@@ -138,19 +138,19 @@ class pch_handle():
         IXP_cc = {}
         subnets = {}
         Subnet_names = SubnetTree.SubnetTree()
-        
+
         # Skip the first line of the file.
         next(doc)
         for line in doc:
             temp_string = line.split(',')
             if len(temp_string) > 5:
                 mykey = temp_string[0]
-                myip = handled_string.extract_ip(temp_string[6], 'Subnet')
-                
+                myip = handled_string.extract_ip(temp_string[5], 'Subnet')
+
                 for ips in myip:
                     # Clean misspelled Subnets.
                     ips = handled_string.clean_ip(ips, 'Subnet')
-                    
+
                     if ips != '' and handled_string.string_comparison(temp_string[2], 'Active'):
                         if handled_string.is_valid_ip_address(ips, 'Subnet', 'PCH') and ips not in subnets:
                             if mykey in long_mem.keys():
@@ -188,10 +188,10 @@ class pch_handle():
                                     handled_string.assign_names(
                                         IXP[0], short_name, IXP[1], long_name)
                             subnets[ips] = assigned_tuple
-                                                    
+
                         if ips in subnets:
                             Subnet_names[ips] = subnets[ips]
-        
+
         doc.close()
         return (subnets, IXP_cc, Subnet_names)
 
@@ -206,17 +206,17 @@ class pch_handle():
             a) ixpip2long: A dictionary with {keyid}=[IXP long name].
             b) IXP_region: A dictionary with {keyid}=[IXP country, IXP city].
         '''
-        
+
         handle_string = string_handler.string_handler()
         doc = self.file_opener(self.filename_excha, 2)
         ixpip2long = {}
         IXP_region = {}
-        
+
         # Skip the first line of the file.
         next(doc)
         for line in doc:
             temp_string = [item.strip() for item in line.split(', ')]
-            
+
             if len(temp_string) > 6:
                 if handle_string.string_comparison(temp_string[6], 'Active'):
                     # IXP long name
@@ -225,13 +225,13 @@ class pch_handle():
                     country = handle_string.format_country_city(temp_string[2])
                     # City name
                     city = handle_string.format_country_city(temp_string[3])
-                    
+
                     try:
                         IXP_region[temp_string[0]] = country2cc[country], city
                     except KeyError:
                         print('Warning, update your CCs for:', country)
                         IXP_region[temp_string[0]] = country, city
-        
+
         doc.close()
         return (ixpip2long, IXP_region)
 
