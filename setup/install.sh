@@ -25,10 +25,10 @@ cur_dir=$(dirname $0)
 
 additional(){
 
-    sudo pip install --upgrade -r $cur_dir/requirements.txt
+    sudo pip3 install --upgrade -r $cur_dir/requirements.txt
 
     if ! hash scamper 2>/dev/null; then
-        sudo python $cur_dir/../lib/traixroute/downloader/install_scamper.py
+        sudo python3 $cur_dir/../lib/traixroute/downloader/install_scamper.py
     fi
 }
 
@@ -44,14 +44,14 @@ if [ $OS = 'Darwin' ]; then
         echo 'Exit.'
     elif [ $installed -eq 0 ]; then 
         echo 'Xcode Command Line Tools are installed.'
-        python -V &>/dev/null;
+        python3 -V &>/dev/null;
         if [ $? -ne 0 ]; then
             echo 'Python 3 is not installed.'
             installer -pkg $cur_dir/python-3.4.4-macosx10.6.pkg -target /
             echo 'Installing dependencies for OS X.'
             additional
         else
-            python -c "import sys; exit(float(sys.version[0:3])>=3.4)"
+            python3 -c "import sys; exit(float(sys.version[0:3])>=3.4)"
             if [ $? -eq 1 ]; then
                 echo 'Python version is >= 3.4.'
                 echo 'Installing dependencies for OS X.'
