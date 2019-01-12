@@ -7,6 +7,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, 'README.rst')) as f:
     long_description = f.read()
 
+
 def packages(lib):
     def dirs(*path):
         for location, _, _ in os.walk(os.path.join(*path)):
@@ -20,6 +21,7 @@ def packages(lib):
         for d in dirs(lib, module):
             r.append(d.replace('/', '.').replace('\\', '.')[len(lib) + 1:])
     return r
+
 
 setup(
     name="traixroute",
@@ -55,7 +57,7 @@ setup(
     keywords="traIXroute Internet Exchange Points crossing traceroute ripe atlas",
     url="https://github.com/gnomikos/traIXroute",
     license='GNU General Public License v3 (GPLv3)',
-    platforms=[get_platform(),],
+    platforms=[get_platform(), ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',

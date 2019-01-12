@@ -29,13 +29,13 @@ def main():
     mypath = os.path.expanduser("~")
     version = 'scamper-cvs-20141211g'
 
-    #--------------------SCAMPER---------------------------
+    # --------------------SCAMPER---------------------------
     # Download Scamper
     try:
         urlretrieve(
-            'https://www.caida.org/tools/measurement/scamper/code/'+version+'.tar.gz', mypath + '/scamper.tar')
+            'https://www.caida.org/tools/measurement/scamper/code/' + version + '.tar.gz', mypath + '/scamper.tar')
         print('Scamper has been downloaded successfully.')
-    except:
+    except BaseException:
         print('Scamper has not been downloaded. Exiting.')
         sys.exit(0)
 
@@ -44,7 +44,7 @@ def main():
         subprocess.call('tar -xvzf ' + mypath +
                         '/scamper.tar -C' + mypath, shell=True)
         print('Scamper has been unzipped successfully.')
-    except:
+    except BaseException:
         print('Scamper has not been unzipped. Exiting.')
         sys.exit(0)
 
@@ -64,6 +64,7 @@ def main():
     else:
         print('Scamper has not been installed. Exiting.')
         sys.exit(0)
+
 
 if __name__ == '__main__':
     main()

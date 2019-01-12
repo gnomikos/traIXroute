@@ -53,10 +53,10 @@ class peering_handle():
         '''
         Handles all the methods to import IXP related information from peeringdb .json files.
         Input:
-            
+
             a) reserved_tree: The SubnetTree containing the reserved Subnets.
             b) country2cc: A dictionary with {Country}=Country Code.
-        Output: 
+        Output:
             a) sub2names: A dictionary with {IXP Subnet}=[IXP long name, IXP short name].
             b) ip2asn: A dictionary with {IXP IP}=[ASN].
             c) ixp_to_names: A dictionary with {IXP IP}=[IXP long name, IXP short name].
@@ -64,7 +64,8 @@ class peering_handle():
         '''
 
         json_names = self.extract_json_data(self.filename_peer_name, 2)
-        [id_to_names, id_to_region] = self.extract_names(json_names, country2cc)
+        [id_to_names, id_to_region] = self.extract_names(
+            json_names, country2cc)
 
         json_ixlan = self.extract_json_data(self.filename_peer_ixlan, 4)
         ixlan_dict = self.extract_ixlan(json_ixlan)
@@ -81,19 +82,19 @@ class peering_handle():
     def extract_json_data(self, filename, option):
         '''
         Imports .json files from peeringdb and returns a list of dictionaries with all the retrieved IXP information.
-        Input: 
+        Input:
             a) filename: A .json file name.
             b) mypath: The directory path of the database.
             c) option: Flag to download the file.
             d) config: Dictionary that contains the config file.
-        Ouput: 
+        Ouput:
             a) A list of dictionaries.
         '''
 
         try:
             with open(self.homepath + '/database' + filename) as data_file:
                 obj = ujson.load(data_file)
-        except:
+        except BaseException:
             print(filename + ' was not found.')
 
             if not self.downloader.download_peering(option):
@@ -102,14 +103,14 @@ class peering_handle():
                 try:
                     copyfile(self.libpath + '/database/Default' + filename,
                              self.homepath + '/database' + filename)
-                except:
+                except BaseException:
                     print('Could not copy ' + filename +
                           ' from the default database.')
 
             try:
                 with open(self.homepath + '/database' + filename) as data_file:
                     obj = ujson.load(data_file)
-            except:
+            except BaseException:
                 print('Could not open ' + filename + '. Exiting.')
                 exit(0)
         return (obj['data'])
@@ -118,8 +119,8 @@ class peering_handle():
         '''
         Extracts a json table and returns a key-to-key dictionary to bind the ix.json with the ixpfx.json via the ixlan.csv file.
         Input:
-            a) json_ixlan: A json table with ixlan and ix ids. 
-        Ouput: 
+            a) json_ixlan: A json table with ixlan and ix ids.
+        Ouput:
             a) ixlan_dict: A dictionary with {ixlan key}=ix key.
         '''
 
@@ -157,18 +158,19 @@ class peering_handle():
                 names_dict[node['id']] = [long_name, short_name]
             else:
                 names_dict[node['id']] = [short_name, long_name]
-            
+
             # Country Code
             country = handle_string.format_country_city(node['country'])
             country = country2cc[country] if country in country2cc else country
             # City Name
-            city    = handle_string.format_country_city(node['city'])
-            
+            city = handle_string.format_country_city(node['city'])
+
             region_dict[node['id']] = [country, city]
 
         return (names_dict, region_dict)
 
-    def extract_pfx(self, json_pfx, ixlan_dict, id_to_names, reserved_tree, region_dict):
+    def extract_pfx(self, json_pfx, ixlan_dict, id_to_names,
+                    reserved_tree, region_dict):
         '''
         Extracts the prefixes from ixpfxs:
         Input:
@@ -187,40 +189,44 @@ class peering_handle():
         temp_subnet_tree = SubnetTree.SubnetTree()
         pfxs_dict = {}
         subnet2region = {}
-        
+
         for node in json_pfx:
             for subnet in handler.extract_ip(node['prefix'], 'Subnet'):
-                
+
                 subnet = handler.clean_ip(subnet, 'Subnet')
                 if handler.is_valid_ip_address(subnet, 'Subnet', 'PDB'):
-                    
+
                     ixlan_id = node['ixlan_id']
                     if ixlan_id in ixlan_dict:
                         ix_id = ixlan_dict[ixlan_id]
-                        
-                        # Checking if there exists IXP name for the given prefix and if the candidate IXP prefix is already inside the dictionary that aggregates the PDB prefixes
+
+                        # Checking if there exists IXP name for the given
+                        # prefix and if the candidate IXP prefix is already
+                        # inside the dictionary that aggregates the PDB
+                        # prefixes
                         if ix_id in id_to_names and subnet not in pfxs_dict:
                             if id_to_names != ['', '']:
                                 pfxs_dict[subnet] = [id_to_names[ix_id]]
                             else:
                                 continue
-                            temp_subnet_tree[subnet]    = [id_to_names[ix_id]]
-                            subnet2region[subnet]       = region_dict[ix_id]
-                        
+                            temp_subnet_tree[subnet] = [id_to_names[ix_id]]
+                            subnet2region[subnet] = region_dict[ix_id]
+
                         elif subnet in pfx_dict:
                             assign_tuple = []
                             for IXP in pfx_dict[subnet]:
                                 assign_tuple = assign_tuple + \
-                                    handler.assign_names(IXP[1], id_to_names[ix_id][1], IXP[0], id_to_names[ix_id][0])
-                            pfxs_dict[subnet]       = assign_tuple
-                            subnet2regions[subnet]  = region_dict[ix_id]
-        
+                                    handler.assign_names(
+                                        IXP[1], id_to_names[ix_id][1], IXP[0], id_to_names[ix_id][0])
+                            pfxs_dict[subnet] = assign_tuple
+                            subnet2regions[subnet] = region_dict[ix_id]
+
         return (pfxs_dict, temp_subnet_tree, subnet2region)
 
     def extract_ip(self, json_ip, temp_subnet_tree, reserved_tree):
         '''
         Extracts the IXP IPs from peeringdb.
-        Input: 
+        Input:
             a) json_IP: A json table containing IXP IPs, IXP short names and IXP IDs.
             b) temp_subnet_Tree: The Subnet Tree containing the IXP subnets from peeringdb.
             c) reserved_tree: The SubnetTree containing the reserved Subnets.
@@ -240,11 +246,12 @@ class peering_handle():
             ips = handler.extract_ip(temp, 'IP')
 
             for ixpip in ips:
-            
+
                 ixpip = handler.clean_ip(ixpip, 'IP')
                 if handler.is_valid_ip_address(ixpip, 'IP', 'PDB'):
-                    
-                    if (ixpip not in ixp_to_asn.keys() and ixpip not in dumped_ixps and ixpip not in reserved_tree and ixpip in temp_subnet_tree):
+
+                    if (ixpip not in ixp_to_asn.keys(
+                    ) and ixpip not in dumped_ixps and ixpip not in reserved_tree and ixpip in temp_subnet_tree):
                         ixp_to_asn[ixpip] = [str(node['asn'])]
                     elif ixpip in ixp_to_asn.keys():
                         if ixp_to_asn[ixpip] != [str(node['asn'])]:
@@ -252,4 +259,3 @@ class peering_handle():
                             ixp_to_asn.pop(ixpip, None)
 
         return ixp_to_asn
-

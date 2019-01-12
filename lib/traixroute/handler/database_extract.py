@@ -36,13 +36,14 @@ class database():
     Returns the total information needed for resolving a traceroute path.
     '''
 
-    def __init__(self, traixroute_parser, downloader, config, outcome, libpath):
+    def __init__(self, traixroute_parser, downloader,
+                 config, outcome, libpath):
         '''
         The initialization of the tool.
-        Inputs: 
+        Inputs:
             a) traixroute_parser: A dictionary that contains the user input flags.
             b) downloader: Instance of the Downloader class to download all the datasets.
-            c) config: A dictionary that contains the total configurations based on the config file. 
+            c) config: A dictionary that contains the total configurations based on the config file.
             d) outcome: True if the files have been updated successfully, False otherwise.
             e) libpath: The absolute path to the library folder.
         '''
@@ -93,13 +94,13 @@ class database():
         self.final_sub2name.clear()
         self.remote_peering.clear()
         self.reserved_sub_tree = None
-        self.asnmemb           = None
-        self.asn_routeviews    = None
-        self.subTree           = None
-        self.cc_tree           = None
-    
+        self.asnmemb = None
+        self.asn_routeviews = None
+        self.subTree = None
+        self.cc_tree = None
+
     def dbextract(self):
-        ''' 
+        '''
         Handles all the methods to extract information from the databases.
         '''
 
@@ -112,14 +113,14 @@ class database():
         try:
             with open(self.homepath + '/configuration/check_update.txt', 'r') as f:
                 chk_update = f.readline()
-        except:
+        except BaseException:
             chk_update = False
 
         # Imports the reserved IPs.
         reserved = handle_complementary.reserved_handle()
         reserved.reserved_extract()
-        self.reserved_sub_tree  = reserved.reserved_sub_tree
-        reserved_list           = reserved.reserved_list
+        self.reserved_sub_tree = reserved.reserved_sub_tree
+        reserved_list = reserved.reserved_list
 
         # Extracts the ASNs from routeviews file
         asn_hand = handle_complementary.asn_handle(
@@ -130,7 +131,7 @@ class database():
         if (lst_modified and not chk_update and not self.merge_flag) or not self.outcome:
             print("Loading from Database.")
             results = []
-            
+
             with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
                 results.append(executor.submit(
                     json_handle.import_IXP_dict, self.homepath + '/database/Merged/IXPIP2ASN.json'))
@@ -147,12 +148,12 @@ class database():
                 flag = flag or item.result()[1]
 
             if not flag:
-                self.final_ixp2asn      = results[0].result()[0]
-                self.final_sub2name     = results[1].result()[0]
-                self.asnmemb            = results[2].result()[0]
-                final_subnet2country    = results[3].result()[0]
-                self.asn_routeviews     = self.dict2tree(results[4].result()[0])
-                self.subTree            = self.dict2tree(self.final_sub2name)
+                self.final_ixp2asn = results[0].result()[0]
+                self.final_sub2name = results[1].result()[0]
+                self.asnmemb = results[2].result()[0]
+                final_subnet2country = results[3].result()[0]
+                self.asn_routeviews = self.dict2tree(results[4].result()[0])
+                self.subTree = self.dict2tree(self.final_sub2name)
                 if self.print_db:
                     output.print_pr_db_stats(self.homepath + '/db.txt')
 
@@ -166,56 +167,86 @@ class database():
             else:
                 print("Loading from database.")
 
-            user_imports    = handle_complementary.extract_additional_info()
-            pch             = handle_pch.pch_handle(self.downloader, self.libpath)
-            peeringdb       = handle_pdb.peering_handle(self.downloader, self.libpath)
-            dict_merge      = dict_merger.dict_merger()
-            asn_hand_info   = handle_complementary.asn_memb_info()
+            user_imports = handle_complementary.extract_additional_info()
+            pch = handle_pch.pch_handle(self.downloader, self.libpath)
+            peeringdb = handle_pdb.peering_handle(
+                self.downloader, self.libpath)
+            dict_merge = dict_merger.dict_merger()
+            asn_hand_info = handle_complementary.asn_memb_info()
 
             user_imports.extract_additional_info(self.homepath)
             # additional IXP membership information.
-            additional_ixp_ip2asn       = user_imports.ixp_ip2asn
+            additional_ixp_ip2asn = user_imports.ixp_ip2asn
             # additional IXP prefixes information.
-            additional_subnet2name      = user_imports.Subnet
-            additional_info_tree        = user_imports.additional_info_tree
-            additional_info_help_tree   = user_imports.additional_info_help_tree
-            additional_pfx2cc           = user_imports.pfx2cc
+            additional_subnet2name = user_imports.Subnet
+            additional_info_tree = user_imports.additional_info_tree
+            additional_info_help_tree = user_imports.additional_info_help_tree
+            additional_pfx2cc = user_imports.pfx2cc
 
             results = []
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-                results.append(executor.submit(asn_hand.routeviews_extract, self.reserved_sub_tree))
-                results.append(executor.submit(peeringdb.peering_handle_main, self.reserved_sub_tree, country2cc))
-                results.append(executor.submit(pch.pch_handle_main, self.reserved_sub_tree, additional_info_tree, country2cc))
+                results.append(
+                    executor.submit(
+                        asn_hand.routeviews_extract,
+                        self.reserved_sub_tree))
+                results.append(
+                    executor.submit(
+                        peeringdb.peering_handle_main,
+                        self.reserved_sub_tree,
+                        country2cc))
+                results.append(
+                    executor.submit(
+                        pch.pch_handle_main,
+                        self.reserved_sub_tree,
+                        additional_info_tree,
+                        country2cc))
 
-            self.asn_routeviews     = results[0].result()[0]
-            routeviews_dict         = results[0].result()[1]
+            self.asn_routeviews = results[0].result()[0]
+            routeviews_dict = results[0].result()[1]
 
-            pdb_subnet2name         = results[1].result()[0]
-            pdb_ip2asn              = results[1].result()[1]
-            pdb_subnet2country      = results[1].result()[2]
-            stats_pdb_prefixes      = len(pdb_subnet2name)
-            stats_pdb_ips           = len(pdb_ip2asn)
-    
-            pch_subnet2name         = results[2].result()[0]
-            pch_ip2asn              = results[2].result()[1]
-            pch_subnet2country      = results[2].result()[2]
-            stats_pch_prefixes      = len(pch_subnet2name)
-            stats_pch_ips           = len(pch_ip2asn)
-            
+            pdb_subnet2name = results[1].result()[0]
+            pdb_ip2asn = results[1].result()[1]
+            pdb_subnet2country = results[1].result()[2]
+            stats_pdb_prefixes = len(pdb_subnet2name)
+            stats_pdb_ips = len(pdb_ip2asn)
+
+            pch_subnet2name = results[2].result()[0]
+            pch_ip2asn = results[2].result()[1]
+            pch_subnet2country = results[2].result()[2]
+            stats_pch_prefixes = len(pch_subnet2name)
+            stats_pch_ips = len(pch_ip2asn)
+
             # Merges the dictionaries from pch, peeringdb and the
             # additional_info file.
-            final_subnet2country = dict_merge.merge_cc(pdb_subnet2country, pch_subnet2country)
-            merged_sub2name = dict_merge.merge_keys2names(pch_subnet2name, pdb_subnet2name)
-            
-            [self.subTree, self.final_sub2name, help_tree] = Sub_hand.Subnet_tree(merged_sub2name, additional_info_help_tree, self.reserved_sub_tree, final_subnet2country)
-            [self.subTree, self.final_sub2name] = Sub_hand.exclude_reserved_subpref(self.subTree, self.final_sub2name, reserved_list, final_subnet2country)
-            [self.subTree, self.final_sub2name, final_subnet2country] = dict_merge.include_additional_prefixes(self.final_sub2name, self.subTree, additional_subnet2name, final_subnet2country, additional_pfx2cc, help_tree, additional_ixp_ip2asn)
-            
+            final_subnet2country = dict_merge.merge_cc(
+                pdb_subnet2country, pch_subnet2country)
+            merged_sub2name = dict_merge.merge_keys2names(
+                pch_subnet2name, pdb_subnet2name)
+
+            [self.subTree, self.final_sub2name, help_tree] = Sub_hand.Subnet_tree(
+                merged_sub2name, additional_info_help_tree, self.reserved_sub_tree, final_subnet2country)
+            [self.subTree, self.final_sub2name] = Sub_hand.exclude_reserved_subpref(
+                self.subTree, self.final_sub2name, reserved_list, final_subnet2country)
+            [
+                self.subTree,
+                self.final_sub2name,
+                final_subnet2country] = dict_merge.include_additional_prefixes(
+                self.final_sub2name,
+                self.subTree,
+                additional_subnet2name,
+                final_subnet2country,
+                additional_pfx2cc,
+                help_tree,
+                additional_ixp_ip2asn)
+
             # Merging PDB & PCH IXP memberhip data.
-            [merged_ixp2asn, dirty_count] = dict_merge.merge_ixp2asns(pch_ip2asn, pdb_ip2asn, True, self.subTree)
+            [merged_ixp2asn, dirty_count] = dict_merge.merge_ixp2asns(
+                pch_ip2asn, pdb_ip2asn, True, self.subTree)
             # Merging PCB & PCH with additional membership data.
-            self.final_ixp2asn = dict_merge.merge_ixp2asns(additional_ixp_ip2asn, merged_ixp2asn, False, self.subTree, replace=True)
-            self.asnmemb = asn_hand_info.asn_memb(self.final_ixp2asn, self.subTree)
+            self.final_ixp2asn = dict_merge.merge_ixp2asns(
+                additional_ixp_ip2asn, merged_ixp2asn, False, self.subTree, replace=True)
+            self.asnmemb = asn_hand_info.asn_memb(
+                self.final_ixp2asn, self.subTree)
             if not exists(self.homepath + '/database/Merged'):
                 makedirs(self.homepath + '/database/Merged')
             with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
@@ -229,20 +260,39 @@ class database():
                                 self.homepath + '/database/Merged/trIX_subnet2name.json')
                 executor.submit(json_handle.export_IXP_dict, final_subnet2country,
                                 self.homepath + '/database/Merged/sub2country.json')
-            
-            output.print_db_stats(stats_pdb_ips, stats_pdb_prefixes, stats_pch_ips, stats_pch_prefixes, self.final_ixp2asn, self.final_sub2name, dirty_count, additional_ixp_ip2asn, additional_subnet2name, len(reserved_list), self.print_db, self.homepath + '/')
+
+            output.print_db_stats(
+                stats_pdb_ips,
+                stats_pdb_prefixes,
+                stats_pch_ips,
+                stats_pch_prefixes,
+                self.final_ixp2asn,
+                self.final_sub2name,
+                dirty_count,
+                additional_ixp_ip2asn,
+                additional_subnet2name,
+                len(reserved_list),
+                self.print_db,
+                self.homepath + '/')
 
         # Adds country and city related information of IXPs
         self.cc_tree = self.dict2tree(final_subnet2country)
         # Imports the remote peering datasets
-        self.remote_peering = handle_remote.handle_remote(self.homepath, self.libpath).handle_import(json_handle)
-        
+        self.remote_peering = handle_remote.handle_remote(
+            self.homepath, self.libpath).handle_import(json_handle)
+
         # If merge has been enabled, export IXP membership and prefixes data.
         if self.merge_flag:
             # Export IXP prefixes.
-            self.subs_to_file(additional_subnet2name, merged_sub2name, additional_ixp_ip2asn)
+            self.subs_to_file(
+                additional_subnet2name,
+                merged_sub2name,
+                additional_ixp_ip2asn)
             # Export IXP membership data.
-            self.ips_to_file(additional_ixp_ip2asn, additional_info_tree, merged_ixp2asn)
+            self.ips_to_file(
+                additional_ixp_ip2asn,
+                additional_info_tree,
+                merged_ixp2asn)
             print("The files ixp_prefixes.txt and ixp_membership.txt have been created.")
 
     def dict2tree(self, d1):
@@ -271,19 +321,22 @@ class database():
         with open(self.homepath + '/ixp_prefixes.txt', 'w') as filename:
             output = ''
             number = 0
-            
+
             for prefix in additional_prefixes:
-                if prefix in self.subTree and prefix.split('/')[0] not in additional_ixp_ip2asn:
+                if prefix in self.subTree and prefix.split(
+                        '/')[0] not in additional_ixp_ip2asn:
                     output += ', '.join([str(number), '+', prefix, ''])
                     for IXP in self.subTree[prefix]:
                         output += ', '.join([IXP[1], IXP[0], ''])
                     if prefix in self.cc_tree:
-                        output += ', '.join([self.cc_tree[prefix][0], self.cc_tree[prefix][1]])
+                        output += ', '.join([self.cc_tree[prefix]
+                                             [0], self.cc_tree[prefix][1]])
                     output += '\n'
                     number += 1
 
             for key in d2:
-                # To overwrite from additional prefixes an existing prefix in merged PDB & PCH prefixes
+                # To overwrite from additional prefixes an existing prefix in
+                # merged PDB & PCH prefixes
                 if key not in additional_prefixes:
                     if key in self.subTree:
                         # Dirty prefix.
@@ -295,14 +348,16 @@ class database():
                         for IXP in self.subTree[key]:
                             output += ', '.join([IXP[1], IXP[0], ''])
                         if key in self.cc_tree:
-                            output += ', '.join([self.cc_tree[key][0], self.cc_tree[key][1]])
+                            output += ', '.join([self.cc_tree[key]
+                                                 [0], self.cc_tree[key][1]])
 
                     output += '\n'
                     number += 1
-                    
+
             filename.write(output)
 
-    def ips_to_file(self, additional_ixp_ip2asn, additional_ip2name, merged_ixp2asn):
+    def ips_to_file(self, additional_ixp_ip2asn,
+                    additional_ip2name, merged_ixp2asn):
         '''
         Prints all the IXP IP-ASN-IXP long name-IXP short name entries to the ixp_membership.txt file.
         Input:
@@ -322,10 +377,11 @@ class database():
                     for IXP in self.subTree[key]:
                         output += ', '.join([IXP[1], IXP[0], ''])
                     if key in self.cc_tree:
-                        output += ', '.join([self.cc_tree[key][0], self.cc_tree[key][1]])
+                        output += ', '.join([self.cc_tree[key]
+                                             [0], self.cc_tree[key][1]])
                     output += '\n'
                     number += 1
-            
+
             for key in merged_ixp2asn:
                 if key not in additional_ixp_ip2asn and key in self.subTree:
                     # Dirty membership entry.
@@ -339,11 +395,13 @@ class database():
                         for IXP in self.subTree[key]:
                             output += ', '.join([IXP[1], IXP[0], ''])
                     if key in self.cc_tree:
-                        output += ', '.join([self.cc_tree[key][0], self.cc_tree[key][1]])
+                        output += ', '.join([self.cc_tree[key]
+                                             [0], self.cc_tree[key][1]])
                     output += '\n'
                     number += 1
-                    
+
             filename.write(output)
+
 
 # Dictionary that contains country names to country codes.
 country2cc = {
@@ -428,7 +486,7 @@ country2cc = {
     'Finland': 'FI',
     'France': 'FR',
     'French Guiana': 'FR',
-    'GF':'FR',
+    'GF': 'FR',
     'French Polynesia': 'PF',
     'French Southern Territories': 'TF',
     'Gabon': 'GA',
@@ -544,7 +602,7 @@ country2cc = {
     'Russia': 'RU',
     'Rwanda': 'RW',
     'Réunion': 'FR',
-    'RE':'FR',
+    'RE': 'FR',
     'Saint Barthélemy': 'BL',
     'Saint Helena, Ascension and Tristan da Cunha': 'SH',
     'Saint Kitts and Nevis': 'KN',

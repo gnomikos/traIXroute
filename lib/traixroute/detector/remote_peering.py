@@ -50,7 +50,7 @@ class remote_peering():
 
     def check_rule(self, rule, index):
         '''
-        Checks if a remote peering detection rule also exists in the IXP detection rule list and then asocciates 
+        Checks if a remote peering detection rule also exists in the IXP detection rule list and then asocciates
         which hop of the hop window has to be checked for IXP crossing based on the remote peering link.
         Input:
             a) rule: Candidate rule.

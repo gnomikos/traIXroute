@@ -75,7 +75,7 @@ class pch_handle():
     def pch_handle_ixpm(self, reserved_tree, add_info_tree):
         '''
         Extracts the IXP IPs from PCH.
-        Input: 
+        Input:
             a) filename: The ixp_membership.csv file.
             b) self.homepath: The directory path of the database.
             c) reserved_tree: The SubnetTree containing the reserved Subnets.
@@ -90,7 +90,7 @@ class pch_handle():
         sub_to_ixp = {}
         hstring = string_handler.string_handler()
         dumped_ixps = []
-        
+
         # Skip the first line of the file.
         next(doc)
         for line in doc:
@@ -100,18 +100,22 @@ class pch_handle():
 
                 for inode in ip:
                     inode = hstring.clean_ip(inode, 'IP')
-                    if hstring.is_valid_ip_address(inode, 'IP', 'PCH') and temp_string[3].replace(' ', '') != '':
+                    if hstring.is_valid_ip_address(
+                            inode, 'IP', 'PCH') and temp_string[3].replace(' ', '') != '':
 
                         subnet = hstring.extract_ip(temp_string[0], 'Subnet')
                         for snode in subnet:
                             snode = hstring.clean_ip(snode, 'Subnet')
-                            if hstring.is_valid_ip_address(snode, 'Subnet','PCH'):
+                            if hstring.is_valid_ip_address(
+                                    snode, 'Subnet', 'PCH'):
                                 tree[snode] = snode
-                                if (inode in tree and inode not in ixpip2asn.keys() and inode not in dumped_ixps and inode not in reserved_tree) or (inode in add_info_tree):
+                                if (inode in tree and inode not in ixpip2asn.keys(
+                                ) and inode not in dumped_ixps and inode not in reserved_tree) or (inode in add_info_tree):
                                     ixpip2asn[inode] = [
                                         temp_string[3].replace(' ', '')]
                                 elif inode in ixpip2asn.keys():
-                                    if ixpip2asn[inode] != [temp_string[3].replace(' ', '')]:
+                                    if ixpip2asn[inode] != [
+                                            temp_string[3].replace(' ', '')]:
                                         ixpip2asn.pop(inode, None)
                                         dumped_ixps.append(inode)
                                 tree.remove(snode)
@@ -127,7 +131,7 @@ class pch_handle():
             c) reserved_tree: The SubnetTree containing the reserved Subnets.
             d) long_mem: Dictionary containing id to long names.
             e) IXP_region: Dictionary containing {IXP Subnet} = [IXP country, IXP city].
-        Output: 
+        Output:
             a) subnets: A dictionary with {IXP Subnet}=[IXP long name, IXP short name].
             b) IXP_cc: A dictionary with {IXP Subnet}=[IXP country,IXP region].
             c) Subnet_names: SubnetTree with {Subnet} = [IXP long name, IXP short name].
@@ -151,8 +155,10 @@ class pch_handle():
                     # Clean misspelled Subnets.
                     ips = handled_string.clean_ip(ips, 'Subnet')
 
-                    if ips != '' and handled_string.string_comparison(temp_string[2], 'Active'):
-                        if handled_string.is_valid_ip_address(ips, 'Subnet', 'PCH') and ips not in subnets:
+                    if ips != '' and handled_string.string_comparison(
+                            temp_string[2], 'Active'):
+                        if handled_string.is_valid_ip_address(
+                                ips, 'Subnet', 'PCH') and ips not in subnets:
                             if mykey in long_mem.keys():
                                 IXP_cc[ips] = IXP_region[mykey]
                                 [long_name, short_name] = handled_string.clean_long_short(
@@ -167,7 +173,8 @@ class pch_handle():
                                     subnets[ips] = [[short_name, long_name]]
 
                             elif temp_string[1] != '':
-                                [long_name, short_name] = handled_string.clean_long_short("", temp_string[1])
+                                [long_name, short_name] = handled_string.clean_long_short(
+                                    "", temp_string[1])
                                 if len(short_name) < len(long_name):
                                     subnets[ips] = [['', short_name]]
                                 else:
@@ -198,7 +205,7 @@ class pch_handle():
     def pch_handle_long(self, country2cc):
         '''
         Returns a dictionary with the IXP long names.
-        Input: 
+        Input:
             a) filename: The ixp_exchange.csv file.
             b) self.homepath: The directory path of the database.
             c) country2cc: Dictionary that contains country names to country codes.
@@ -248,7 +255,7 @@ class pch_handle():
 
         try:
             doc = open(self.homepath + '/database' + filename + '.csv')
-        except:
+        except BaseException:
             print(filename + ' was not found.')
             if not self.downloader.download_pch(option):
                 print("Could not download " + filename +
@@ -256,12 +263,12 @@ class pch_handle():
                 try:
                     copyfile(self.libpath + '/database/Default' + filename +
                              '.csv', self.homepath + '/database' + filename + '.csv')
-                except:
+                except BaseException:
                     print('Could not copy ' + filename +
                           'from the default database.')
             try:
                 doc = open(self.homepath + '/database' + filename + '.csv')
-            except:
+            except BaseException:
                 print('Could not open ' + filename + '. Exiting.')
                 sys.exit(0)
 

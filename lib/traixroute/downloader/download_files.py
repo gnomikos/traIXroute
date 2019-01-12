@@ -228,7 +228,8 @@ class download_files():
             print('RouteViews cannot be updated.')
             return False
 
-        if os.path.exists(self.homepath + '/database/RouteViews/routeviews.gz'):
+        if os.path.exists(
+                self.homepath + '/database/RouteViews/routeviews.gz'):
             os.remove(self.homepath + '/database/RouteViews/routeviews.gz')
         if os.path.exists(self.homepath + '/database/RouteViews/caidalog.log'):
             os.remove(self.homepath + '/database/RouteViews/caidalog.log')

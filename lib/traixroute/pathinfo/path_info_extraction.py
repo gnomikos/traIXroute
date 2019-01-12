@@ -36,7 +36,8 @@ class path_info_extraction():
         # self.type_vector: A list with the detected types (IXP IP, Prefix,
         # Normal IP) in the IP path.
         self.type_vector = []
-        # self.ixp_ip_indices : A list with the hops of IXP IPs in traceroute path
+        # self.ixp_ip_indices : A list with the hops of IXP IPs in traceroute
+        # path
         self.ixp_ip_indices = []
         # self.ixp_long_names: A list with the IXP long names in the IP path.
         self.ixp_long_names = []
@@ -54,9 +55,9 @@ class path_info_extraction():
             b) ip_path: The IP path.
         '''
 
-        ip2asn      = db_extract.final_ixp2asn
+        ip2asn = db_extract.final_ixp2asn
         Subnet_tree = db_extract.subTree
-        prefix2asn  = db_extract.asn_routeviews
+        prefix2asn = db_extract.asn_routeviews
 
         path_length = len(ip_path)
         self.asn_list = ['*'] * path_length
@@ -65,7 +66,7 @@ class path_info_extraction():
         self.type_vector = ['Unresolved'] * path_length
         self.unsure = [''] * path_length
 
-        for i,path_cur in enumerate(ip_path):
+        for i, path_cur in enumerate(ip_path):
 
             # If there is an IXP hit.
             if path_cur in ip2asn and path_cur in Subnet_tree:

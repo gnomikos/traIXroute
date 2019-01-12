@@ -33,17 +33,17 @@ class dict_merger():
 
     def merge_keys2names(self, d1, d2):
         '''
-        Returns a dictionary C containing the union of the dictionaries A and B. 
+        Returns a dictionary C containing the union of the dictionaries A and B.
         The input dictionaries contain key-to-IXP long, short name entries. The key values can be either IXP Prefix or IP.
         E.g.: if A[id1]=[a,b], B[id1]=[c,d] then C[id1]=[a,b], if a is similar to c and b is similar to d. [a,b] are the valid IXP long and short names for the IXP subnet.
         Input:
             a) d1,d2: The two dictionaries to be merged.
         Output:
-            a) d1 or d2: The output dictionary after merging. 
+            a) d1 or d2: The output dictionary after merging.
         '''
 
         handle = string_handler.string_handler()
-        
+
         for k in d1:
             if k in d2:
                 assign_tuple = []
@@ -55,10 +55,11 @@ class dict_merger():
                 deleted = []
                 for i in range(0, len(assign_tuple) - 1):
                     for j in range(i + 1, len(assign_tuple)):
-                        if len(handle.assign_names(assign_tuple[i][0], assign_tuple[j][0], assign_tuple[i][1], assign_tuple[j][1])) == 1:
+                        if len(handle.assign_names(
+                                assign_tuple[i][0], assign_tuple[j][0], assign_tuple[i][1], assign_tuple[j][1])) == 1:
                             if j not in deleted:
                                 deleted = [j] + deleted
-                                
+
                 for node in deleted:
                     del assign_tuple[node]
 
@@ -67,7 +68,8 @@ class dict_merger():
                 d2[k] = d1[k]
         return d2
 
-    def include_additional_prefixes(self, final_sub2name, subTree, additional_subnet2name, final_subnet2country, additional_pfx2cc, help_tree, additional_ixp_ip2asn):
+    def include_additional_prefixes(self, final_sub2name, subTree, additional_subnet2name,
+                                    final_subnet2country, additional_pfx2cc, help_tree, additional_ixp_ip2asn):
         '''
         Includes the additional info subnet2names to the final dictionaries.
         Input:
@@ -86,16 +88,18 @@ class dict_merger():
         handle = string_handler.string_handler()
 
         for pfx in additional_subnet2name:
-            # Include and/or overwrite existing PDB & PCH prefixes based on additional prefixes.
-            if handle.sub_prefix_check(pfx, help_tree) and pfx.split('/')[0] not in additional_ixp_ip2asn:
-                
+            # Include and/or overwrite existing PDB & PCH prefixes based on
+            # additional prefixes.
+            if handle.sub_prefix_check(pfx, help_tree) and pfx.split(
+                    '/')[0] not in additional_ixp_ip2asn:
+
                 subTree.remove(help_tree[pfx])
                 final_sub2name.pop(help_tree[pfx])
                 final_subnet2country.pop(help_tree[pfx])
                 help_tree.remove(help_tree[pfx])
-                
-            final_sub2name[pfx]       = [additional_subnet2name[pfx]]
-            subTree[pfx]              = [additional_subnet2name[pfx]]
+
+            final_sub2name[pfx] = [additional_subnet2name[pfx]]
+            subTree[pfx] = [additional_subnet2name[pfx]]
             final_subnet2country[pfx] = additional_pfx2cc[pfx]
 
         return (subTree, final_sub2name, final_subnet2country)
@@ -108,22 +112,22 @@ class dict_merger():
             b) Subnet_tree: The Subnet tree that contains the IXP subnets.
             c) flag: A flag that specifies the need to search for dirty IXPs or not.
             d) replace: A Flag that specifies if dictionary d1 has higher priority than d2.
-        Output: 
+        Output:
             a) d3: The output dictionary after merging.
         '''
-        
+
         if replace:
             for key in d1:
                 d2[key] = d1[key]
-            return d2 
-            
+            return d2
+
         if len(d2) > len(d1):
-            big     = d2
-            small   = d1
+            big = d2
+            small = d1
         else:
-            big     = d1
-            small   = d2            
-        
+            big = d1
+            small = d2
+
         dirty_count = 0
 
         for k in small:
@@ -138,7 +142,10 @@ class dict_merger():
         if flag:
             keys = list(big.keys())
             for key in keys:
-                # Exclude an IXP - IP when it does not map to an IXP - Prefix. This means that for this IXP IP is not possible to have a mapping to an IXP Name. Because, all the IXP names come from the IXP Prefixes.
+                # Exclude an IXP - IP when it does not map to an IXP - Prefix.
+                # This means that for this IXP IP is not possible to have a
+                # mapping to an IXP Name. Because, all the IXP names come from
+                # the IXP Prefixes.
                 if key not in Subnet_tree:
                     big.pop(key)
                 elif len(Subnet_tree[key]) > 1:
@@ -149,7 +156,7 @@ class dict_merger():
 
     def merge_cc(self, d1, d2):
         '''
-        Returns a dictionary C containing the union of the dictionaries A and B. 
+        Returns a dictionary C containing the union of the dictionaries A and B.
         The input dictionaries contain key-to-IXP long, short name entries. The key values can be either IXP Prefix or IP.
         E.g.: if A[id1]=[a,b], B[id1]=[c,d] then C[id1]=[a,b], if and only if a is similar to c and b is similar to d. [a,b] are the valid IXP long and short names for the IXP subnet.
         Input:
@@ -157,20 +164,21 @@ class dict_merger():
         Output:
             a) d1 or d2: The output dictionary after merging.
         '''
-        
+
         handle = string_handler.string_handler()
-        
+
         if len(d2) > len(d1):
-            big     = d2
-            small   = d1
+            big = d2
+            small = d1
         else:
-            big     = d1
-            small   = d2
-        
+            big = d1
+            small = d2
+
         for k in small:
             if k in big:
                 # Compare countries and cities between the two dictionaries
-                # example entries of dicts {'198.32.118.0/24': ['US', 'New York']}
+                # example entries of dicts {'198.32.118.0/24': ['US', 'New
+                # York']}
                 mytuple = self.assign_countries(
                     small[k][0], big[k][0], small[k][1], big[k][1])
                 if mytuple != []:
@@ -194,7 +202,7 @@ class dict_merger():
         string_handle = string_handler.string_handler()
         country = ''
         city = ''
-        
+
         # Comparing IXP countries.
         if string_handle.string_comparison(country1, country2):
             country = country1
@@ -213,7 +221,7 @@ class dict_merger():
             city = city2
         elif city1 != '' and city2 == '':
             city = city1
-        # Both cities are different 
+        # Both cities are different
         if city == '':
             if string_handle.shortinlong(city1, city2):
                 city = city2
@@ -221,6 +229,5 @@ class dict_merger():
                 city = city1
             else:
                 city = city1 + '//' + city2
-                
+
         return [country, city] if country != '' and city != '' else []
-        

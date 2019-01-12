@@ -38,34 +38,34 @@ class traixroute_output():
     '''
 
     def __init__(self):
-        
+
         self.measurement_json = {
             'ixp_crossings': [],
             'remote_peering': [],
             'possible_ixp_crossings': []
         }
 
-        self.measurement_info   = ''
-        self.ixp_hops           = ''
-        self.remote_hops        = ''
-        self.unknown_hops       = ''
+        self.measurement_info = ''
+        self.ixp_hops = ''
+        self.remote_hops = ''
+        self.unknown_hops = ''
         # A list with all the analyzed paths to export to json file
-        self.json_obj = []  
+        self.json_obj = []
         # A list with all the analyzed paths to export to .txt file
-        self.txt_obj  = []   
+        self.txt_obj = []
 
     def flush(self, traixparser):
         '''
         Prints the data and flushes them to a file.
             a) traixparser: The instance of parser that specifies which of the traIXroute command line arguments have been enabled.
         '''
-        
+
         # Complements content output.
         output = self.measurement_info
         if self.ixp_hops != '':
-            output += 'IXP hops:\n'          + self.ixp_hops
+            output += 'IXP hops:\n' + self.ixp_hops
         if self.remote_hops != '':
-            output += 'Remote Peering:\n'    + self.remote_hops
+            output += 'Remote Peering:\n' + self.remote_hops
         if self.unknown_hops != '':
             output += 'Possible IXP hops:\n' + self.unknown_hops
         if len(self.measurement_json['ixp_crossings']) == 0:
@@ -76,54 +76,66 @@ class traixroute_output():
             del self.measurement_json['possible_ixp_crossings']
 
         # SupplementS the relative output lists.
-        if not traixparser.flags['silent']      : print(output)
-        if traixparser.flags['outputfile_txt']  : self.txt_obj.append(output)
-        if traixparser.flags['outputfile_json'] : self.json_obj.append(self.measurement_json)
+        if not traixparser.flags['silent']:
+            print(output)
+        if traixparser.flags['outputfile_txt']:
+            self.txt_obj.append(output)
+        if traixparser.flags['outputfile_json']:
+            self.json_obj.append(self.measurement_json)
 
-        self.measurement_info   = ''
-        self.ixp_hops           = ''
-        self.remote_hops        = ''
-        self.unknown_hops       = ''
+        self.measurement_info = ''
+        self.ixp_hops = ''
+        self.remote_hops = ''
+        self.unknown_hops = ''
         self.measurement_json = {
             'ixp_crossings': [],
             'remote_peering': [],
             'possible_ixp_crossings': []
         }
 
-    def print_db_stats(self, peering_ixp2asn, peering_sub2name, pch_ixp2asn, pch_sub2name, final_ixp2asn, final_sub2name, dirty_ips, additional_ip2asn, additional_subnet2name, lenreserved, db_print, mypath):
+    def print_db_stats(self, peering_ixp2asn, peering_sub2name, pch_ixp2asn, pch_sub2name, final_ixp2asn,
+                       final_sub2name, dirty_ips, additional_ip2asn, additional_subnet2name, lenreserved, db_print, mypath):
         '''
         Prints the number of the extracted IXP IP addresses and Subnets from each dataset before and after merging.
         Input:
             a) peering_ixp2asn: A dictionary with {IXP IP}=[ASN] extracted from peeringdb.
-            b) peering_sub2name: A dictionary with {Subnet}=[IXP long name, IXP short name] extracted from peeringdb. 
+            b) peering_sub2name: A dictionary with {Subnet}=[IXP long name, IXP short name] extracted from peeringdb.
             c) pch_ixp2asn: A dictionary with {IXP IP}=[ASN] extracted from pch.
             d) pch_sub2name: A dictionary with {Subnet}=[IXP long name, IXP short name] extracted from pch.
             e) final_ixp2asn: A dictionary with {IXP IP}=[ASN] after merging pch, peeringdb and user's data.
             f) final_sub2name: A dictionary with {Subnet}=[IXP long name, IXP short name] after merging pch, peeringdb and user's data.
-            g) dirty_ips: The number of dirty ips. 
+            g) dirty_ips: The number of dirty ips.
             h) additional_ip2asn: A dictionary with {IXP IP}=[ASN] specified by the user.
             i) additional_subnet2name: A dictionary with {IXP Subnet}=[IXP long name, IXP short name] specified by the user.
             j) lenreserved: The number of the imported reserved subnets.
-            k) db_print: Flag to output the db stats. 
+            k) db_print: Flag to output the db stats.
             l) mypath: The path to the database.
         '''
 
-        tmp =  'Imported '  + str(lenreserved) + ' Reserved Subnets.\n'
-        tmp += 'Extracted ' +  str(len(additional_ip2asn)) + ' IXP IPs from additional_info.txt.\n'
-        tmp += 'Extracted ' + str(len(additional_subnet2name) - len(additional_ip2asn)) + ' IXP Subnets from additional_info.txt.\n'
-        tmp += 'Extracted ' + str(peering_ixp2asn)    + ' IXP IPs from PDB.\n'
-        tmp += 'Extracted ' + str(pch_ixp2asn)        + ' IXP IPs from PCH.\n'
-        tmp += 'Extracted ' + str(peering_sub2name)   + ' IXP Subnets from PDB.\n'
-        tmp += 'Extracted ' + str(pch_sub2name)       + ' IXP Subnets from PCH.\n'
-        tmp += 'Extracted ' + str(len(final_ixp2asn)) + ' (no) dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
-        tmp += 'Detected ' +  str(dirty_ips)          + ' dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
-        tmp += 'Extracted ' + str(len([subnet for subnet in final_sub2name if '/32' not in subnet]))+ ' IXP Subnets after merging PDB, PCH and additional_info.txt.\n'
+        tmp = 'Imported ' + str(lenreserved) + ' Reserved Subnets.\n'
+        tmp += 'Extracted ' + str(len(additional_ip2asn)) + \
+            ' IXP IPs from additional_info.txt.\n'
+        tmp += 'Extracted ' + str(len(additional_subnet2name) - len(
+            additional_ip2asn)) + ' IXP Subnets from additional_info.txt.\n'
+        tmp += 'Extracted ' + str(peering_ixp2asn) + ' IXP IPs from PDB.\n'
+        tmp += 'Extracted ' + str(pch_ixp2asn) + ' IXP IPs from PCH.\n'
+        tmp += 'Extracted ' + str(peering_sub2name) + \
+            ' IXP Subnets from PDB.\n'
+        tmp += 'Extracted ' + str(pch_sub2name) + ' IXP Subnets from PCH.\n'
+        tmp += 'Extracted ' + \
+            str(len(final_ixp2asn)) + \
+            ' (no) dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
+        tmp += 'Detected ' + \
+            str(dirty_ips) + \
+            ' dirty IXP IPs after merging PDB, PCH and additional_info.txt.\n'
+        tmp += 'Extracted ' + str(len([subnet for subnet in final_sub2name if '/32' not in subnet])
+                                  ) + ' IXP Subnets after merging PDB, PCH and additional_info.txt.\n'
         if db_print:
             print(tmp)
         try:
             with open(mypath + 'db.txt', 'w') as f:
                 f.write(tmp)
-        except:
+        except BaseException:
             print('Could not open db.txt file. Exiting.')
             sys.exit(0)
 
@@ -150,13 +162,13 @@ class traixroute_output():
         # Makes dns queries.
         dns = [''] * size
         if dns_print:
-            for i,item in enumerate(ip_path):
+            for i, item in enumerate(ip_path):
                 if item != '*':
                     try:
                         dns[i] = socket.gethostbyaddr(item)[0]
-                    except:
+                    except BaseException:
                         dns[i] = item
-        
+
         # The minimum space between the printed strings.
         defaultstep = 3
 
@@ -190,7 +202,8 @@ class traixroute_output():
         # Prints the output and saves it to a file.
         print_data = ''
         for i in range(0, size):
-            if ixp_short_names[i] == ['No Short Name'] and ixp_long_names[i] == ['No Long Name']:
+            if ixp_short_names[i] == [
+                    'No Short Name'] and ixp_long_names[i] == ['No Long Name']:
                 if asn_print:
                     temp_print = gra_path[i] + gra_asn[i] + dns[i] + \
                         ' ' + '(' + ip_path[i] + ')' + ' ' + mytime[i]
@@ -203,9 +216,11 @@ class traixroute_output():
                     if ixp:
                         base_ixp_print = base_ixp_print + ','
                     if ixp_short_names[i][ixp] != '':
-                        base_ixp_print = base_ixp_print + ixp_short_names[i][ixp]
+                        base_ixp_print = base_ixp_print + \
+                            ixp_short_names[i][ixp]
                     else:
-                        base_ixp_print = base_ixp_print + ixp_long_names[i][ixp]
+                        base_ixp_print = base_ixp_print + \
+                            ixp_long_names[i][ixp]
                 base_ixp_print = base_ixp_print + ')'
                 temp_print = gra_path[i] + unsure[i] + base_ixp_print + '->' + gra_asn[
                     i] + dns[i] + ' ' + '(' + ip_path[i] + ')' + ' ' + mytime[i]
@@ -214,7 +229,8 @@ class traixroute_output():
 
         self.measurement_info += print_data
 
-    def print_traIXroute_dest(self, traixparser, db_extract, dns_print, dst_ip, src_ip='', info=''):
+    def print_traIXroute_dest(
+            self, traixparser, db_extract, dns_print, dst_ip, src_ip='', info=''):
         '''
         Prints traIXroute destination.
         Input:
@@ -223,7 +239,7 @@ class traixroute_output():
             c) src_ip: The IP that issued the probe (optional).
             d) info: Traceroute path description.
         '''
-    
+
         string_handle = string_handler.string_handler()
         print_data = 'traIXroute'
         dns_name = '*'
@@ -232,14 +248,14 @@ class traixroute_output():
             if dns_print:
                 try:
                     dns_name = socket.gethostbyaddr(dst_ip)[0]
-                except:
+                except BaseException:
                     pass
             output_IP = dst_ip
         else:
             if dns_print:
                 try:
                     output_IP = socket.gethostbyname(dst_ip)
-                except:
+                except BaseException:
                     pass
             dns_name = dst_ip
         if src_ip != '':
@@ -247,23 +263,23 @@ class traixroute_output():
             if dns_print:
                 try:
                     origin_dns = socket.gethostbyaddr(src_ip)[0]
-                except:
+                except BaseException:
                     pass
             print_data += ' from ' + origin_dns + ' (' + src_ip + ')'
 
         if traixparser.flags['asn']:
             if src_ip in db_extract.asn_routeviews:
-                print_data += ' AS'+db_extract.asn_routeviews[src_ip]
+                print_data += ' AS' + db_extract.asn_routeviews[src_ip]
             elif src_ip:
                 print_data += ' AS*'
-        
-        print_data += ' to ' +  dns_name + ' (' + output_IP + ')'
+
+        print_data += ' to ' + dns_name + ' (' + output_IP + ')'
         if traixparser.flags['asn']:
             if output_IP in db_extract.asn_routeviews:
-                print_data += ' AS'+db_extract.asn_routeviews[output_IP]
+                print_data += ' AS' + db_extract.asn_routeviews[output_IP]
             else:
                 print_data += ' AS*'
-           
+
         if info != '':
             print_data += ' info: ' + info
 
@@ -272,7 +288,7 @@ class traixroute_output():
     def polish_output(self, string1, number1):
         '''
         Sanitizes traIXroute output.
-        Input: 
+        Input:
             a) string1: The string to be modified.
             b) number1: The number of empty spaces between strings.
         Ouput:
@@ -294,10 +310,11 @@ class traixroute_output():
         print("Imported", len(final_rules),
               "IXP detection rules from", file + ".")
 
-    def print_result(self, asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn, path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, remote_peering=None):
+    def print_result(self, asn_print, print_rule, cur_ixp_long, cur_ixp_short, cur_path_asn,
+                     path, i, j, num, ixp_short, cur_asmt, ixp_long, cc_tree, remote_peering=None):
         '''
         Prints IXP Hops if they exist.
-        Input: 
+        Input:
             a) asn_print: True if the user wants to print the ASNs, False otherwise.
             b) print_rule: True if the user wants to print the rule that infered the IXP crossing, False otherwise.
             c) cur_ixp_long:  A list that contains the IXP long names for the current window.
@@ -313,7 +330,7 @@ class traixroute_output():
             m) cc_tree: SubnetTree that contains Subnets to [country,city].
             n) remote_peering: A flag to indicate a potential IXP crossing link based on remote peering connectivity.
         '''
-        
+
         ixp_crossing = None
         unknown_hop = None
         remote_crossing = None
@@ -512,7 +529,7 @@ class traixroute_output():
 
         if temp_print != '' and temp_print not in self.ixp_hops:
             self.ixp_hops += temp_print
-        
+
         if remote_peering is not None:
             remote_data = remote_peering.find_and_print(
                 path[i - 1:i + 2], asm_a)
@@ -549,13 +566,13 @@ class traixroute_output():
                         'ixp': asm_a_dict,
                     }
 
-        if ixp_crossing != None:
+        if ixp_crossing is not None:
             self.measurement_json['ixp_crossings'].append(ixp_crossing)
-        if remote_crossing != None:
+        if remote_crossing is not None:
             self.measurement_json['remote_peering'].append(remote_crossing)
-        if unknown_hop != None:
+        if unknown_hop is not None:
             self.measurement_json['possible_ixp_crossings'].append(unknown_hop)
-        
+
     def print_args(self, classic, search, arguments, from_ripe, from_import):
         '''
         Prints the arguments of traceroute
@@ -596,7 +613,7 @@ class traixroute_output():
 
     def print_pr_db_stats(self, filepath):
         '''
-        Prints the number of the extracted IXP IP addresses and Subnets from each dataset for the last time the datasets were merged. 
+        Prints the number of the extracted IXP IP addresses and Subnets from each dataset for the last time the datasets were merged.
         Input:
             a) filepath: The directory path of the file that contains the stats.
         '''
@@ -604,7 +621,7 @@ class traixroute_output():
         try:
             with open(filepath, 'r') as f:
                 print(f.read())
-        except:
+        except BaseException:
             print('Could not open db.txt.')
 
     def read_lst_mod(self, filename, fname2):
@@ -640,7 +657,7 @@ class traixroute_output():
         try:
             with open(filename, 'w') as f:
                 f.write(data)
-        except:
+        except BaseException:
             print('Could not write to lst_mod.txt. Exiting')
             sys.exit(0)
 
@@ -651,7 +668,7 @@ class traixroute_output():
             a) ip_path: Contains the IPs of all the hops in order.
             b) delays: Contains all the delays of the hops in order.
         '''
-        
+
         self.measurement_json.update({
             'af': 4,
             'dst_addr': dst_ip,
@@ -659,12 +676,12 @@ class traixroute_output():
             'type': 'traceroute',
             'timestamp': time.time()
         })
-        
+
         result = []
-        for i,ip in enumerate(ip_path):
+        for i, ip in enumerate(ip_path):
             result.append(
-                {'hop': i+1, 'result': [{'from': ip, 'asn': asn_list[i], 'rtt': delays[i]}]})
-        
+                {'hop': i + 1, 'result': [{'from': ip, 'asn': asn_list[i], 'rtt': delays[i]}]})
+
         self.measurement_json['result'] = result
 
     def buildJsonRipe(self, entry, asn_list, db_extract):
@@ -676,13 +693,13 @@ class traixroute_output():
             c) db_extract:  The database instance containing the total IXP/AS related information.
             d) traixparser: The instance of parser that specifies which of the traIXroute command line arguments have been enabled.
         '''
-        
+
         # Add ASN for the public source/dest IP of the traceroute path.
         if entry['from'] in db_extract.asn_routeviews:
             entry['from_asn'] = db_extract.asn_routeviews[entry['from']]
         if entry['dst_addr'] in db_extract.asn_routeviews:
-            entry['dst_addr_asn'] = db_extract.asn_routeviews[entry['dst_addr']] 
-        
+            entry['dst_addr_asn'] = db_extract.asn_routeviews[entry['dst_addr']]
+
         for hop in entry['result']:
             if hop['hop'] != 255:
                 try:
@@ -692,12 +709,13 @@ class traixroute_output():
             else:
                 hop['asn'] = '*'
         self.measurement_json.update(entry)
-     
+
     def get_filename_from_path(self, path):
         head, tail = ntpath.split(path)
         return tail or ntpath.basename(head)
-           
-    def export_results_to_files(self, json_data, txt_data, traixparser, homepath, arguments, exact_time):
+
+    def export_results_to_files(
+            self, json_data, txt_data, traixparser, homepath, arguments, exact_time):
         '''
         Exports the total results to .txt/.json files.
         Input:
@@ -707,14 +725,18 @@ class traixroute_output():
             d) homepath: The home directory path of traIXroute.
             e) arguments: The absolute path of the traceroute path file.
         '''
-    
-        # Discriminating the case when we have as input ripe altas measurements directly from RIPE's database or local files.
-        file_name = self.get_filename_from_path(arguments) if not traixparser.flags['ripe'] else 'msm_id_' + str(arguments['msm_id'])
-        
+
+        # Discriminating the case when we have as input ripe altas measurements
+        # directly from RIPE's database or local files.
+        file_name = self.get_filename_from_path(
+            arguments) if not traixparser.flags['ripe'] else 'msm_id_' + str(arguments['msm_id'])
+
         if traixparser.flags['outputfile_json']:
             outputfile_json = traixparser.outputfile_json
-            filename = outputfile_json + file_name if outputfile_json else homepath + '/output/output_json_' + (file_name if file_name else exact_time)
-                
+            filename = outputfile_json + file_name if outputfile_json else homepath + \
+                '/output/output_json_' + \
+                (file_name if file_name else exact_time)
+
             with open(filename, 'w') as f:
                 size_list = len(json_data)
                 counter = 1
@@ -724,51 +746,56 @@ class traixroute_output():
                     # Checking for the last element.
                     if counter < size_list:
                         f.write('\n,\n')
-                    counter+=1    
+                    counter += 1
                 f.write('\n]')
                 print('Results in json format have been exported:', filename)
-            
+
         if traixparser.flags['outputfile_txt']:
-            outputfile_txt  = traixparser.outputfile_txt
-            filename = outputfile_txt + file_name if outputfile_txt else homepath + '/output/output_txt_' + (file_name if file_name else exact_time)
-            
+            outputfile_txt = traixparser.outputfile_txt
+            filename = outputfile_txt + file_name if outputfile_txt else homepath + \
+                '/output/output_txt_' + \
+                (file_name if file_name else exact_time)
+
             with open(filename, 'w') as f:
                 for entry in txt_data:
                     for subentry in entry:
-                        f.write(subentry+'\n')
+                        f.write(subentry + '\n')
                 print('Results have been exported:', filename)
 
-    def stats_extract(self, homepath, num_ips, rules, final_rules_hit, exact_time, traixparser, arguments):
-            '''
-            Writes various statistics to the stats.txt file.
-            Input:
-                a) homepath: The home directory path of traIXroute.
-                b) num_ips: The number of IPs to send probes.
-                c) rules: The rules that detected IXP crossing links.
-                d) funal_rules_hit: The number of "hits" for each rule.
-                e) exact_time: The starting timestamp of traIXroute.
-                f) traixparser: The instance of parser to identify if necessary arguments have been enabled.
-                g) arguments: The absolute path of the traceroute path file.
-            '''
+    def stats_extract(self, homepath, num_ips, rules,
+                      final_rules_hit, exact_time, traixparser, arguments):
+        '''
+        Writes various statistics to the stats.txt file.
+        Input:
+            a) homepath: The home directory path of traIXroute.
+            b) num_ips: The number of IPs to send probes.
+            c) rules: The rules that detected IXP crossing links.
+            d) funal_rules_hit: The number of "hits" for each rule.
+            e) exact_time: The starting timestamp of traIXroute.
+            f) traixparser: The instance of parser to identify if necessary arguments have been enabled.
+            g) arguments: The absolute path of the traceroute path file.
+        '''
 
-            file_name = self.get_filename_from_path(arguments)
-            filename = homepath+'/output/output_stats_' + (file_name if file_name else exact_time)
-                        
-            num_hits = sum(final_rules_hit)
-            with open(filename, 'w') as fp_stats:
-                temp = num_hits / num_ips
-                data = 'traIXroute stats from ' + exact_time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S")                                + '\n'  +\
-                    'Number of IXP hits: ' + str(num_hits)      + '\n'  +\
-                    'Number of traIXroutes: ' + str(num_ips)    + '\n'  +\
-                    'IXP hit ratio: ' + str(temp)               + '\n'  +\
-                    'Number of hits per rule:\n'
-                for myi in range(0, len(rules)):
-                    if num_hits > 0:
-                        temp = final_rules_hit[myi] / num_hits
-                        data += 'Rule ' + str(myi + 1) + ': Times encountered: ' + str(
-                            final_rules_hit[myi]) + ' - Encounter Percentage: ' + str(temp) + '\n'
-                    else:
-                        data += 'Rule ' + str(myi + 1) + ': Times encountered:0 Encounter Percentage:0\n'
-                fp_stats.write(data)
-            print('Stats have been exported:', filename)
-            
+        file_name = self.get_filename_from_path(arguments)
+        filename = homepath + '/output/output_stats_' + \
+            (file_name if file_name else exact_time)
+
+        num_hits = sum(final_rules_hit)
+        with open(filename, 'w') as fp_stats:
+            temp = num_hits / num_ips
+            data = 'traIXroute stats from ' + exact_time + ' to ' + datetime.datetime.now().strftime("%Y_%m_%d-%H_%M_%S") + '\n' +\
+                'Number of IXP hits: ' + str(num_hits) + '\n' +\
+                'Number of traIXroutes: ' + str(num_ips) + '\n' +\
+                'IXP hit ratio: ' + str(temp) + '\n' +\
+                'Number of hits per rule:\n'
+            for myi in range(0, len(rules)):
+                if num_hits > 0:
+                    temp = final_rules_hit[myi] / num_hits
+                    data += 'Rule ' + str(myi + 1) + ': Times encountered: ' + str(
+                        final_rules_hit[myi]) + ' - Encounter Percentage: ' + str(temp) + '\n'
+                else:
+                    data += 'Rule ' + \
+                        str(myi + 1) + \
+                        ': Times encountered:0 Encounter Percentage:0\n'
+            fp_stats.write(data)
+        print('Stats have been exported:', filename)

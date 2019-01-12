@@ -69,7 +69,7 @@ class handle_ripe():
         Input:
             a) kwargs: The user input arguments in a dictionary.
         Output:
-            a) response: The response from ripe. 
+            a) response: The response from ripe.
         '''
 
         default_defs = {
@@ -146,13 +146,13 @@ class handle_ripe():
     def choose_ip(self, packet):
         '''
         Returns the first valid IP reply for a given traceroute hop.
-        Input: 
+        Input:
             a) packet: A Hop class containing the packets for the certain hop.
         Output:
             a) ip: The first valid ip from the list of IPs for a certain hop.
             b) delay: The relative rtt value of the selected IP.
         '''
-        
+
         for pkt in packet:
             ip = pkt.origin
             delay = str(pkt.rtt)

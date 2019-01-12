@@ -27,6 +27,7 @@ import ipaddress
 import netaddr
 from fuzzywuzzy import fuzz
 
+
 class string_handler():
     '''
     This modules handles the strings.
@@ -36,13 +37,13 @@ class string_handler():
     def is_valid_ip_address(self, address, kind, dataset):
         '''
         Determines if the given string is in valid IP/Subnet form.
-        Input: 
+        Input:
             a) address: The IP address.
             b) kind: "IP" for ip address or "Subnet" for prefix.
         Output:
             a) True if the form is valid, False otherwise.
         '''
-    
+
         if(kind != 'IP' and kind != 'Subnet'):
             print("Wrong argument kind. Give \"IP\" or \"Subnet\".")
             return False
@@ -56,20 +57,38 @@ class string_handler():
                     socket.inet_aton(address)
                     return True
                 except socket.error as e:
-                    print('From',dataset,'error with IP:', address, '-', e)
+                    print('From', dataset, 'error with IP:', address, '-', e)
                     return False
-                
+
             # For Subnet Handling.
             elif kind == 'Subnet':
                 try:
                     if ipaddress.IPv4Network(address):
                         return True
                 except ValueError as e:
-                    print('From',dataset,'error with prefix:', address, '-', e)
+                    print(
+                        'From',
+                        dataset,
+                        'error with prefix:',
+                        address,
+                        '-',
+                        e)
                 except ipaddress.AddressValueError as e:
-                    print('From',dataset,'error with prefix:', address, '-', e)
+                    print(
+                        'From',
+                        dataset,
+                        'error with prefix:',
+                        address,
+                        '-',
+                        e)
                 except ipaddress.NetmaskValueError as e:
-                    print('From',dataset,'error with prefix:', address, '-', e)
+                    print(
+                        'From',
+                        dataset,
+                        'error with prefix:',
+                        address,
+                        '-',
+                        e)
 
                 return False
 
@@ -77,10 +96,10 @@ class string_handler():
     def extract_ip(self, string, kind):
         '''
         Extracts an IP or a Subnet from a string using regular expressions.
-        Input: 
+        Input:
             a) string: A string containing IP address or Subnet.
             b) kind: "IP" for ip address or "Subnet" for prefix.
-        Output: 
+        Output:
             a) ip: A list of IPs or Subnets extracted from the databases.
         '''
 
@@ -104,7 +123,7 @@ class string_handler():
     def string_removal(self, string):
         '''
         Removes unwanted characters from a string.
-        Input: 
+        Input:
             a) string: The string to be cleaned.
         Output:
             a) string: The "cleaned" string.
@@ -122,11 +141,12 @@ class string_handler():
 
         return (string)
 
-    def string_comparison(self, string1, string2, prob_difflib = 0.80, prob_leven = 74):
+    def string_comparison(self, string1, string2,
+                          prob_difflib=0.80, prob_leven=74):
         '''
         A function which compares the similarity of two strings.
         This function has been configured with a similarity factors (true_ratio) after manual tuning.
-        Input: 
+        Input:
             a) string1, string2: The two strings to be compared.
             b) prob: The similarity threshold.
         Ouput:
@@ -137,15 +157,14 @@ class string_handler():
         string2 = self.string_removal(string2)
         ratio_diff = difflib.SequenceMatcher(None, string1, string2).ratio()
         ratio_leven = fuzz.WRatio(string1, string2)
-        
+
         if string1 == '' or string2 == '':
             return False
-        
+
         if ratio_diff > prob_difflib or ratio_leven > prob_leven:
             return True
         else:
             return False
-        
 
     # TODO: Change this function for IPv6
     def clean_ip(self, IP, kind):
@@ -174,7 +193,8 @@ class string_handler():
         '''
 
         if prefix in tree:
-            # Due to bug in SubnetTree. Returns True for a lookup of 1.1.1.0/24 when having only 1.1.1.0/25
+            # Due to bug in SubnetTree. Returns True for a lookup of 1.1.1.0/24
+            # when having only 1.1.1.0/25
             if int(prefix.split('/')[1]) >= int(tree[prefix].split('/')[1]):
                 return True
         return False
@@ -198,7 +218,7 @@ class string_handler():
         tmp_lname1 = self.concat_nums(lname1)
         tmp_lname2 = self.concat_nums(lname2)
 
-        # Check if IXP names are substrings of each other.        
+        # Check if IXP names are substrings of each other.
         sname1_lname2 = self.shortinlong(tmp_sname1, tmp_lname2)
         sname2_lname1 = self.shortinlong(tmp_sname2, tmp_lname1)
         sname1_sname2 = self.shortinlong(tmp_sname1, tmp_sname2)
@@ -219,8 +239,9 @@ class string_handler():
             d3[1] = sname2
         elif tmp_sname1 != '' and tmp_sname2 == '':
             d3[1] = sname1
-            
-        # Comparing IXP names checking if the first IXP name is substring of the second IXP name and vice versa.
+
+        # Comparing IXP names checking if the first IXP name is substring of
+        # the second IXP name and vice versa.
         if d3[1] == '' and d3[0] == '':
             if (sname1_lname2):
                 d3 = [lname2, sname1]
@@ -334,14 +355,14 @@ class string_handler():
             return False
 
     def clean_ixp_name(self, ixp_name):
-    
+
         ixp_name = re.sub('\(.*?\)', '', ixp_name)
         ixp_name = ixp_name.replace(',', ' ')
         ixp_name = ixp_name.strip()
         ixp_name = re.sub(' +', ' ', ixp_name)
-        
+
         return ixp_name
-    
+
     def clean_long_short(self, long_name, short_name):
         '''
         Cleans the given long and short IXP names from unnecessary characters.
@@ -352,9 +373,8 @@ class string_handler():
         '''
 
         return self.clean_ixp_name(long_name), self.clean_ixp_name(short_name)
-        
+
     def format_country_city(self, entry):
         entry = re.split('/|,|&', entry.strip())
-        
+
         return '|'.join([item.strip() for item in entry])
-        

@@ -67,7 +67,8 @@ class handle_remote():
         '''
 
         if os.path.exists(self.homedir + '/' + self.rp_dataset_json):
-            return json_handle.import_IXP_dict(self.homedir + '/' + self.rp_dataset_json)[0]
+            return json_handle.import_IXP_dict(
+                self.homedir + '/' + self.rp_dataset_json)[0]
         else:
             libfiles = [file for file in os.listdir(
                 self.directory) if file.endswith(".json")]

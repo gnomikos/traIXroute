@@ -57,7 +57,7 @@ class handle_json():
         try:
             with open(filename, 'r') as fp:
                 data = ujson.load(fp)
-        except:
+        except BaseException:
             flag = True
         return data, flag
 
@@ -89,7 +89,7 @@ class handle_json():
                 trace_info = trace['info']
             path_to_parse = trace['result']
             len_path = len(path_to_parse)
-        except:
+        except BaseException:
             print('Wrong json format. Exiting.')
             print(trace)
             os._exit(0)
@@ -112,7 +112,7 @@ class handle_json():
                     try:
                         hop_to_parse = hop[0]
                         flag = True
-                    except:
+                    except BaseException:
                         print('Wrong format, hop: ' +
                               str(i + 1) + '. Exiting.')
                         print(trace)
@@ -122,7 +122,7 @@ class handle_json():
                           str(i + 1) + ' in ' + trace + '. Hop is ignored.')
                     IP = '*'
                     info = ' '
-            except:
+            except BaseException:
                 IP = '*'
                 info = ''
 
@@ -131,7 +131,7 @@ class handle_json():
                     IP = hop_to_parse['from']
                     if('info' in hop_to_parse.keys()):
                         info = str(hop_to_parse['info'])
-                except:
+                except BaseException:
                     print('Wrong format, hop: ' + str(i + 1) + '. Exiting.')
                     print(trace)
                     os._exit(0)
@@ -152,7 +152,7 @@ class handle_json():
             d) trace_src: A string with the traceroute's source. The source might be either IP or url.
             e) trace_info: A string with information related to the current traceroute path.
         '''
-        
+
         if(trace['af'] != 4 or trace['type'] != 'traceroute'):
             print('TraIXroute only supports Traceroute and IPv4 measurements. The following traceroute path has been skipped:')
             print(trace)
@@ -171,7 +171,7 @@ class handle_json():
                 trace_info = trace['msm_name']
             path_to_parse = trace['result']
             len_path = len(path_to_parse)
-            
+
             # Select the first IP from the list and set as info the rtt.
             for hop in trace['result']:
                 if hop['hop'] != 255:
@@ -187,21 +187,21 @@ class handle_json():
             print(trace)
 
         return current_trace, current_info, trace_dst, trace_src, trace_info
-        
+
     def choose_ip(self, packet):
         '''
         Returns the first valid IP reply for a given traceroute hop.
-        Input: 
+        Input:
             a) packet: A Hop class containing the packets for the certain hop.
         Output:
             a) ip: The first valid ip from the list of IPs for a certain hop.
             b) delay: The relative rtt value of the selected IP.
         '''
-    
+
         for pkt in packet:
             if 'from' in pkt:
                 if 'rtt' in pkt:
-                    return pkt['from'], str(round(pkt['rtt'],3))+ ' ms'
+                    return pkt['from'], str(round(pkt['rtt'], 3)) + ' ms'
                 else:
                     return pkt['from'], ''
         return '*', ''

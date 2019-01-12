@@ -33,12 +33,12 @@ class trace_tool():
 
     def trace_call(self, IP_name, classic, arguments):
         '''
-        Calls scamper and extracting the route from the text file. 
-        Input: 
+        Calls scamper and extracting the route from the text file.
+        Input:
             a) IP_name: The IP to probe.
             b) classic: Flag to enable scamper or traceroute.
             c) arguments: The arguments of the selected tool.
-        Output: 
+        Output:
             a) route: The IP path list.
             b) mytime: The list with the hop delays.
         '''
@@ -50,7 +50,7 @@ class trace_tool():
         if not string_handle.is_valid_ip_address(IP_name, 'IP', 'CommandLine'):
             try:
                 IP_name = socket.gethostbyname(IP_name)
-            except:
+            except BaseException:
                 print('--> ' + IP_name +
                       ' has wrong address format. Expected an IPv4 format or a valid url.')
                 return [], []
@@ -72,8 +72,8 @@ class trace_tool():
         Calls Scamper with the proper arguments and returns the hop delays in ms.
         Input:
             a) IP_name: The IP to probe.
-            b) arguments: The scamper arguments. 
-        Output: 
+            b) arguments: The scamper arguments.
+        Output:
             a) route: The IP path list.
             b) mytime: The list with the hop delays.
         '''
@@ -82,7 +82,7 @@ class trace_tool():
             try:
                 whole = subprocess.check_output(
                     str('scamper -i ' + IP_name).split(" "), shell=False)
-            except:
+            except BaseException:
                 try:
                     print('Scamper failed. Trying to run with sudo..')
                     whole = subprocess.check_output(
@@ -95,7 +95,7 @@ class trace_tool():
             try:
                 whole = subprocess.check_output(
                     ['scamper', '-I', arguments], shell=False)
-            except:
+            except BaseException:
                 try:
                     print('Scamper failed. Trying to run with sudo..')
                     whole = subprocess.check_output(
@@ -127,8 +127,8 @@ class trace_tool():
         Calls traceroute with the proper arguments and returns the hop delays in ms.
         Input:
             a) IP_name: The IP to probe.
-            b) arguments: The traceroute arguments. 
-        Output: 
+            b) arguments: The traceroute arguments.
+        Output:
             a) route: The IP path list.
             b) mytime: The list with the hop delays.
         '''
@@ -137,7 +137,7 @@ class trace_tool():
             try:
                 whole = subprocess.check_output(
                     str('traceroute ' + IP_name + ' ' + arguments).split(" "), shell=False)
-            except:
+            except BaseException:
                 try:
                     print('Traceroute failed. Trying to run with sudo..')
                     whole = subprocess.check_output(
@@ -149,7 +149,7 @@ class trace_tool():
             try:
                 whole = subprocess.check_output(
                     str('traceroute ' + IP_name).split(" "), shell=False)
-            except:
+            except BaseException:
                 try:
                     print('Traceroute failed. Trying to run with sudo..')
                     whole = subprocess.check_output(
