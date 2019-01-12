@@ -20,13 +20,10 @@
 # You should have received a copy of the GNU General Public License
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
-from traixroute.handler import dict_merger
-from traixroute.downloader import download_files
 from traixroute.controller import string_handler
 from shutil import copyfile
 import ujson
 import SubnetTree
-import re
 
 
 class peering_handle():
@@ -212,14 +209,14 @@ class peering_handle():
                             temp_subnet_tree[subnet] = [id_to_names[ix_id]]
                             subnet2region[subnet] = region_dict[ix_id]
 
-                        elif subnet in pfx_dict:
+                        elif subnet in pfxs_dict:
                             assign_tuple = []
-                            for IXP in pfx_dict[subnet]:
+                            for IXP in pfxs_dict[subnet]:
                                 assign_tuple = assign_tuple + \
                                     handler.assign_names(
                                         IXP[1], id_to_names[ix_id][1], IXP[0], id_to_names[ix_id][0])
                             pfxs_dict[subnet] = assign_tuple
-                            subnet2regions[subnet] = region_dict[ix_id]
+                            subnet2region[subnet] = region_dict[ix_id]
 
         return (pfxs_dict, temp_subnet_tree, subnet2region)
 

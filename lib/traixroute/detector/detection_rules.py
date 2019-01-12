@@ -22,8 +22,6 @@
 
 from traixroute.controller import traixroute_output, string_handler
 from traixroute.detector.remote_peering import remote_peering
-from math import fabs
-import os
 import sys
 import itertools
 
@@ -305,8 +303,8 @@ class detection_rules():
 
             # Checking for IXP membership based on a non-IXP IP.
             if '!AS_M' in expression and 'and' not in expression and path_cur != current:
-               # Finds the path_asn in the routeview path_asn dict. If not, an
-               # assessment is not possible.
+                # Finds the path_asn in the routeview path_asn dict. If not, an
+                # assessment is not possible.
                 check += 1
                 if path_asn[current] == '*' and encounter_type[current] != 'IXP prefix':
                     return False
@@ -411,12 +409,12 @@ class detection_rules():
 
         if final1 == '' or final2 == '':
             return True
-        if self.is_int(final1) and self.is_int(final2) and 'AS_M' in str_chk:
+        if self.is_int(final1) and self.is_int(final2) and 'AS_M' in str_to_chk:
             if (final1 == final2 and path_asn[current - 1] != path_asn[current + 1]) or (
                     final1 != final2 and path_asn[current - 1] == path_asn[current + 1]):
                 return False
-        elif self.is_int(final1) and self.is_int(final2) and 'IXP_IP' in str_chk:
-            string_hanlde = string_handler.string_handler()
+        elif self.is_int(final1) and self.is_int(final2) and 'IXP_IP' in str_to_chk:
+            string_handle = string_handler.string_handler()
             flag = (string_handle.string_comparison(ixp_long[current - 1], ixp_long[
                     current + 1]) or string_handle.string_comparison(ixp_short[current - 1], ixp_short[current + 1]))
             if (final1 == final2 and not flag) or (final1 != final2 and flag):

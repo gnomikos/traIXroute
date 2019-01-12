@@ -22,8 +22,6 @@
 
 import ujson
 import os
-import SubnetTree
-import sys
 
 
 class handle_json():
@@ -82,13 +80,11 @@ class handle_json():
         info = ''
         trace_info = ''
         try:
-            trace_id = trace['id']
             trace_dst = trace['dst']
             trace_src = trace['src']
-            if('info' in trace.keys()):
+            if 'info' in trace:
                 trace_info = trace['info']
             path_to_parse = trace['result']
-            len_path = len(path_to_parse)
         except BaseException:
             print('Wrong json format. Exiting.')
             print(trace)
@@ -161,16 +157,12 @@ class handle_json():
         current_info = []
         trace_src = '-'
         trace_dst = '-'
-        info = ''
         trace_info = ''
         try:
-            trace_id = trace['msm_id']
             trace_dst = trace['dst_addr']
             trace_src = trace['from']
-            if('msm_name' in trace.keys()):
+            if 'msm_name' in trace:
                 trace_info = trace['msm_name']
-            path_to_parse = trace['result']
-            len_path = len(path_to_parse)
 
             # Select the first IP from the list and set as info the rtt.
             for hop in trace['result']:

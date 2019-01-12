@@ -21,7 +21,7 @@
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
 from ripe.atlas.cousteau import AtlasResultsRequest, Traceroute, AtlasSource, AtlasCreateRequest
-from ripe.atlas.sagan import Result, TracerouteResult
+from ripe.atlas.sagan import TracerouteResult
 from datetime import datetime
 import sys
 

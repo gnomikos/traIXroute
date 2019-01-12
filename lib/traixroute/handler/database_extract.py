@@ -20,12 +20,10 @@
 # You should have received a copy of the GNU General Public License
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
-from traixroute.handler import handle_json, handle_pch, handle_pdb, handle_ripe, dict_merger, handle_complementary, handle_remote
-from traixroute.controller import traixroute_output, traixroute_parser
+from traixroute.handler import handle_json, handle_pch, handle_pdb, dict_merger, handle_complementary, handle_remote
+from traixroute.controller import traixroute_output
 from os import remove, makedirs
 from os.path import exists
-from multiprocessing import cpu_count
-import sys
 import SubnetTree
 import concurrent.futures
 

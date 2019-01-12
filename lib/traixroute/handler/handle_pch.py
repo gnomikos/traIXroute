@@ -20,14 +20,10 @@
 # You should have received a copy of the GNU General Public License
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
-from traixroute.handler import dict_merger
 from traixroute.controller import string_handler
-from collections import defaultdict
-from traixroute.downloader import download_files
 from shutil import copyfile
 import SubnetTree
 import sys
-import re
 
 
 class pch_handle():
@@ -87,7 +83,6 @@ class pch_handle():
         doc = self.file_opener(self.filename_ixp_membership, 3)
         tree = SubnetTree.SubnetTree()
         ixpip2asn = {}
-        sub_to_ixp = {}
         hstring = string_handler.string_handler()
         dumped_ixps = []
 

@@ -305,7 +305,6 @@ class string_handler():
 
         if sname == '' or lname == '':
             return False
-        whitelist = set('abcdefghijklmnopqrstuvwxyz1234567890 ')
         sname = sname.lower()
         sname = re.sub('([^\s\w]|_)+', ' ', sname.strip())
         sname = re.sub(' +', ' ', sname)

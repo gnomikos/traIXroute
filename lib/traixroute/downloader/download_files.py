@@ -21,13 +21,11 @@
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
 from urllib.request import urlretrieve, urlopen
-import shutil
 import ujson
 import os
 import shutil
 import subprocess
 import concurrent.futures
-import sys
 
 
 class download_files():

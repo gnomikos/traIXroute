@@ -21,9 +21,6 @@
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
 from traixroute.controller import string_handler
-from collections import defaultdict
-import re
-import itertools
 
 
 class dict_merger():
@@ -164,8 +161,6 @@ class dict_merger():
         Output:
             a) d1 or d2: The output dictionary after merging.
         '''
-
-        handle = string_handler.string_handler()
 
         if len(d2) > len(d1):
             big = d2

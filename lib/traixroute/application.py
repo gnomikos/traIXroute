@@ -25,24 +25,19 @@ from distutils.dir_util import copy_tree
 from shutil import copyfile
 from multiprocessing import cpu_count
 from multiprocessing import Manager
-from traixroute.tracetools import *
-from traixroute.pathinfo import *
-from traixroute.downloader import *
-from traixroute.detector import *
-from traixroute.controller import *
-from stat import *
+from traixroute.tracetools import trace_tool
+from traixroute.pathinfo import path_info_extraction
+from traixroute.downloader import download_files
+from traixroute.detector import detection_rules
+from traixroute.controller import string_handler, traixroute_output, traixroute_parser
+from stat import ST_MODE, S_ISDIR, S_ISREG
 import concurrent.futures
 import sys
-import getopt
 import os
 import datetime
 import socket
-import SubnetTree
-import ujson
-import threading
 import math
 import xmlrpc.client
-import resource
 
 
 class traIXroute():
@@ -168,9 +163,9 @@ class traIXroute():
         self.arguments = self.traixparser.arguments
         useTraIXroute = self.traixparser.flags['useTraiXroute']
         merge_flag = self.traixparser.flags['merge']
-        print_rule = self.traixparser.flags['rule']
-        db_print = self.traixparser.flags['db']
-        path_print = self.traixparser.flags['silent']
+        # print_rule = self.traixparser.flags['rule']
+        # db_print = self.traixparser.flags['db']
+        # path_print = self.traixparser.flags['silent']
         self.ripe = self.traixparser.flags['ripe']
         self.selected_tool = self.traixparser.flags['tracetool']
         import_is_dir = self.traixparser.flags['import_is_dir']
@@ -358,7 +353,7 @@ class traIXroute():
                     if not string_handle.is_valid_ip_address(
                             inputIP, 'IP', 'CommandLine'):
                         try:
-                            IP_name = socket.gethostbyname(inputIP)
+                            socket.gethostbyname(inputIP)
                         except BaseException:
                             print(
                                 'Wrong input IP address format.\nExpected an IPv4 format or a valid url.')
