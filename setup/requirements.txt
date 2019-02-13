@@ -3,11 +3,11 @@ cryptography==2.3
 idna==2.5
 pyasn1==0.1.9
 pycparser==2.14
-pyOpenSSL==17.4.0
+pyopenssl==17.5.0
 pysubnettree==0.26
 python-dateutil==2.5.3
 pytz==2016.6.1
-requests==2.18.4
+requests==2.20.0
 ripe.atlas.cousteau==1.4
 ripe.atlas.sagan==1.1.11
 six==1.11.0
