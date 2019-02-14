@@ -24,7 +24,7 @@ path="$(cd "$(dirname "$0")"/.. ; pwd)"
 
 export PYTHONPATH="$path"/lib
 
-for INTERPRETER in "$INTERPRETER" pypy3 python3 python3.3 python3.4 python3.5 python3.7; do
+for INTERPRETER in "$INTERPRETER" pypy3 python3 python3.5 python3.6 python3.7; do
         INTERPRETER="$(command -v "$INTERPRETER")" && break
 done
 
