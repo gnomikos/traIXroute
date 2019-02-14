@@ -212,8 +212,8 @@ class peering_handle():
                             for IXP in pfx_dict[subnet]:
                                 assign_tuple = assign_tuple + \
                                     handler.assign_names(IXP[1], id_to_names[ix_id][1], IXP[0], id_to_names[ix_id][0])
-                            pfxs_dict[subnet]       = assign_tuple
-                            subnet2regions[subnet]  = region_dict[ix_id]
+                            pfxs_dict[subnet]      = assign_tuple
+                            subnet2region[subnet]  = region_dict[ix_id]
         
         return (pfxs_dict, temp_subnet_tree, subnet2region)
 

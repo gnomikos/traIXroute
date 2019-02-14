@@ -1,3 +1,8 @@
+Version 2.4 (Beta)
+- Fixed bug when merging datasets.
+- Added docker support.
+- Fixed bug when parsing data from PeeringDB.
+
 Version 2.3 - March 2018
 - Plenty of performance improvements, optimizations and code polishes.
 - Added more inline comments.

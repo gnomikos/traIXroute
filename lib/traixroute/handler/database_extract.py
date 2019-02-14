@@ -21,7 +21,7 @@
 # along with traIXroute.  If not, see <http://www.gnu.org/licenses/>.
 
 from traixroute.handler import handle_json, handle_pch, handle_pdb, handle_ripe, dict_merger, handle_complementary, handle_remote
-from traixroute.controller import traixroute_output, traixroute_parser
+from traixroute.controller import traixroute_output
 from os import remove, makedirs
 from os.path import exists
 from multiprocessing import cpu_count
@@ -83,10 +83,12 @@ class database():
         # self.config: Contains the config file dictionary.
         self.config = config
 
-        self.outcome = outcome
+        self.outcome    = outcome
         self.downloader = downloader
-        self.homepath = downloader.getDestinationPath()
-        self.libpath = libpath
+        self.homepath   = downloader.getDestinationPath()
+        self.libpath    = libpath
+        if 'pdb' in  traixroute_parser.flags:
+            self.peeringdb_input_file = traixroute_parser.flags['pdb']
 
     def clean(self):
         self.final_ixp2asn.clear()

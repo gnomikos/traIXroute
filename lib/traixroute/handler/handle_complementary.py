@@ -205,7 +205,8 @@ class Subnet_handle():
                         if len(handle_string.assign_names(assign_tuple[i][0], assign_tuple[j][0], assign_tuple[i][1], assign_tuple[j][1])) == 1:
                             if j not in deleted:
                                 deleted = [j] + deleted
-                for node in deleted:
+
+                for node in sorted(deleted, reverse=True):
                     del assign_tuple[node]
 
                 # Delete Subprefixes when there are Prefixes with same IXP names.

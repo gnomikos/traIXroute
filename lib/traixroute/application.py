@@ -54,7 +54,7 @@ class traIXroute():
     '''
 
     def __init__(self):
-        self.version        = '2.3'
+        self.version        = '2.4'
         self.mode           = None
         self.downloader     = None
         self.config         = None
@@ -69,7 +69,7 @@ class traIXroute():
         self.ripe           = None
         self.selected_tool  = None
         self.ripe_handle    = None
-        self.traixparser    = traixroute_parser.traixroute_parser(self.version)
+        self.traixparser    = traixroute_argument_parser.traixroute_argument_parser(self.version)
         self.detection_rules= detection_rules.detection_rules()
         self.json_handle    = handle_json.handle_json()
 
@@ -167,6 +167,7 @@ class traIXroute():
         self.enable_stats   = self.traixparser.flags['stats']
         self.dns_print      = self.traixparser.flags['dns']
         self.mode           = self.traixparser.flags['mode']
+
         self.libpath        = os.path.dirname(os.path.realpath(__file__))
         
         if '-v' in sys.argv or '--version' in sys.argv:
@@ -254,16 +255,16 @@ class traIXroute():
 
         # Extract info from the database folder.
         if useTraIXroute or merge_flag:
-            db_extract = database_extract.database(
+            self.db_extract = database_extract.database(
                     self.traixparser, self.downloader, self.config, self.outcome, self.libpath)
             
             if self.mode == 'thread':
-                self.db_extract = db_extract
+                #self.db_extract = db_extract
                 self.db_extract.dbextract()
             else:
                 if merge_flag:
-                    db_extract.dbextract()
-                    db_extract.clean()
+                    self.db_extract.dbextract()
+                    self.db_extract.clean()
                     # To avoid merging again when processes are used.
                     self.traixparser.flags['merge'] = False
             
