@@ -28,6 +28,7 @@ import shutil
 import subprocess
 import concurrent.futures
 import sys
+import json
 
 
 class download_files():
@@ -149,17 +150,9 @@ class download_files():
         '''
 
         print('Started downloading PCH dataset.')
-        if option == 1 or not option:
-            try:
-                urlretrieve(self.ixp_subnet, self.homepath +
-                            '/database/PCH/ixp_subnets.csv')
-            except Exception as e:
-                print(str(e))
-                print('ixp_subnets.csv cannot be updated.')
-                return False
-
         if option == 2 or not option:
             try:
+                print("Downloading PCH directory datasets")
                 urlretrieve(self.ixp_exchange, self.homepath +
                             '/database/PCH/ixp_exchange.csv')
             except Exception as e:
@@ -167,10 +160,19 @@ class download_files():
                 print('ixp_exchange.csv cannot be updated.')
                 return False
 
+        if option == 1 or not option:
+            try:
+                print("Downloading PCH Subnet datasets")
+                self.get_subnets()
+            except Exception as e:
+                print(str(e))
+                print('ixp_subnets.csv cannot be updated.')
+                return False
+
         if option == 3 or not option:
             try:
-                urlretrieve(self.ixp_ip, self.homepath +
-                            '/database/PCH/ixp_membership.csv')
+                print("Downloading PCH Membership datasets")
+                self.get_membership()
             except Exception as e:
                 print(str(e))
                 print('ixp_membership.csv cannot be updated.')
@@ -179,6 +181,95 @@ class download_files():
         print('PCH dataset has been updated successfully.')
 
         return True
+
+    def get_subnets(self):
+        # read ixp_exchange file
+        # self.homepath + '/database/PCH/ixp_subnets.csv'
+        try:
+            doc = open(self.homepath + '/database/PCH/ixp_exchange.csv')
+            subnets_file = open(self.homepath + '/database/PCH/ixp_subnets.csv', "w")
+            subnets_file.write(
+                "exchange_point_id, short_name, status, version, multicast, mlpa, subnet, participants \n")  # header
+
+            next(doc)
+            for line in doc:
+                temp_string = [item.strip() for item in line.split(',')]
+                if len(temp_string) > 6:
+                    try:
+                        urlData = self.ixp_subnet + str(temp_string[0])
+                        webURL = urlopen(urlData)
+                        data = webURL.read()
+                        encoding = webURL.info().get_content_charset('utf-8')
+                        json_data = json.loads(data.decode(encoding))
+
+                        for item in json_data:
+                            # rebuild the old structure: exchange_point_id, short_name, status, version, multicast, mlpa, subnet, participants
+                            line_entry = ','.join(
+                                [item["exchange_point_id"], item["short_name"], item["status"], item["version"],
+                                 "Unknown", item["mlpa"], item["subnet"], item["participants"]])
+                            subnets_file.write(line_entry + "\n")
+
+
+                    except Exception as e:
+                        print("Could not fetch: " + str(urlData))
+            return True
+        except Exception as e:
+            print(self.homepath + '/database/PCH/ixp_exchange.csv' + ' was not found.')
+            return False
+        finally:
+            subnets_file.close()
+            doc.close()
+
+    def get_membership(self):
+        # read ixp_exchange file
+        # self.homepath + '/database/PCH/ixp_subnets.csv'
+        try:
+            doc = open(self.homepath + '/database/PCH/ixp_exchange.csv')
+            memberships_file = open(self.homepath + '/database/PCH/ixp_membership.csv', "w")
+            memberships_file.write("subnet, ip, fqdn, asn, organization \n")  # header
+
+            next(doc)
+            for line in doc:
+                temp_string = [item.strip() for item in line.split(',')]
+                if len(temp_string) > 6:
+                    try:
+                        urlData = "https://www.pch.net/api/ixp/subnet_details/" + str(temp_string[0])
+                        webURL = urlopen(urlData)
+                        data = webURL.read()
+                        encoding = webURL.info().get_content_charset('utf-8')
+                        json_data = json.loads(data.decode(encoding))
+
+                        for protocol, prefixes in json_data.items():  # IPv6 & IPv4
+                            for prefix, ips in prefixes.items():  # each prefix
+                                if not isinstance(ips, list):  # This is when the input is directly a dict
+                                    for ip, content in ips.items():  # each ip
+                                        # rebuild the old structure: subnet, ip, fqdn, asn, organization
+                                        tmp = [prefix, str(content["ip"]), str(content["fqdn"]), str(content["asn"]),
+                                               str(content["org"])]
+                                        for i in range(len(tmp)):
+                                            if tmp[i] == "None": tmp[i] = " "
+                                        line_entry = ','.join(tmp)
+                                        memberships_file.write(line_entry + "\n")
+                                else:  # This is when the input is a list
+                                    for ip in ips:  # each ip
+                                        # rebuild the old structure: subnet, ip, fqdn, asn, organization
+                                        tmp = [prefix, str(ip["ip"]), str(ip["fqdn"]), str(ip["asn"]), str(ip["org"])]
+                                        for i in range(len(tmp)):
+                                            if tmp[i] == "None": tmp[i] = " "
+                                        line_entry = ','.join(tmp)
+                                        memberships_file.write(line_entry + "\n")
+
+
+                    except Exception as e:
+                        print("Could not fetch: " + str(urlData))
+                        #print(e)
+            return True
+        except Exception as e:
+            print(self.homepath + '/database/PCH/ixp_exchange.csv' + ' was not found.')
+            return False
+        finally:
+            memberships_file.close()
+            doc.close()
 
     def download_routeviews(self):
         '''
