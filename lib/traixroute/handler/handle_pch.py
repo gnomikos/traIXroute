@@ -143,9 +143,9 @@ class pch_handle():
         next(doc)
         for line in doc:
             temp_string = line.split(',')
-            if len(temp_string) > 5:
+            if len(temp_string) > 6:
                 mykey = temp_string[0]
-                myip = handled_string.extract_ip(temp_string[5], 'Subnet')
+                myip = handled_string.extract_ip(temp_string[6], 'Subnet')
 
                 for ips in myip:
                     # Clean misspelled Subnets.
@@ -215,7 +215,7 @@ class pch_handle():
         # Skip the first line of the file.
         next(doc)
         for line in doc:
-            temp_string = [item.strip() for item in line.split(', ')]
+            temp_string = [item.strip() for item in line.split(',')]
 
             if len(temp_string) > 6:
                 if handle_string.string_comparison(temp_string[6], 'Active'):
