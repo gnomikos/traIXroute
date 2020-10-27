@@ -29,7 +29,7 @@ setup(
     package_dir={'': 'lib'},
     install_requires=['setuptools',
                       'cffi==1.7.0',
-                      'cryptography==2.3',
+                      'cryptography==3.2',
                       'idna==2.5',
                       'pyasn1==0.1.9',
                       'pycparser==2.14',
