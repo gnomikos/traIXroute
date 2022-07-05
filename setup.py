@@ -42,7 +42,7 @@ setup(
                       'ripe.atlas.sagan==1.1.11',
                       'six==1.11.0',
                       'socketIO-client==0.7.0',
-                      'ujson==1.35',
+                      'ujson==5.4.0',
                       'websocket-client==0.37.0',
                       'fuzzywuzzy[speedup]==0.16.0',
                       'netaddr==0.7.19'
